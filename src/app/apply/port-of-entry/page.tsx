@@ -4,6 +4,7 @@ import { Callout } from '@/components/ui/Callout';
 import { StepList } from '@/components/ui/StepList';
 import Link from 'next/link';
 import airports from '@/data/airports.json';
+import borderCrossings from '@/data/border-crossings.json';
 
 export const metadata: Metadata = {
   title: 'Applying at the Port of Entry',
@@ -125,6 +126,25 @@ export default function PortOfEntryPage() {
         Do not bring moving boxes or household goods on your first TN entry — it signals permanent intent.
         Ship belongings separately after your status is approved, or make a second trip.
       </Callout>
+
+      <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Land Border Crossings</h2>
+      <Callout type="tip" title="Province-Specific Recommendations">
+        <strong>Ontario:</strong> Peace Bridge (Fort Erie) has the most TN experience. <strong>BC:</strong> Pacific Highway (Surrey) is the main crossing. <strong>Quebec:</strong> Lacolle is the primary option.
+      </Callout>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 mb-8">
+        {borderCrossings.map(c => (
+          <div key={c.name} className="card p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-semibold text-fg">{c.name}</p>
+                <p className="text-sm text-fg-muted">{c.location}</p>
+              </div>
+              {c.recommended && <span className="badge">Recommended</span>}
+            </div>
+            {c.notes && <p className="text-xs text-fg-muted mt-2">{c.notes}</p>}
+          </div>
+        ))}
+      </div>
 
       <p className="mt-6">
         <Link href="/apply" className="text-accent hover:underline font-medium">

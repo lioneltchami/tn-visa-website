@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { type ReactNode } from 'react'
 import { Reveal } from '@/components/ui/Reveal'
+import JsonLd from '@/components/JsonLd'
 
 interface ContentLayoutProps {
   title: string
@@ -11,9 +12,19 @@ interface ContentLayoutProps {
 }
 
 export default function ContentLayout({ title, description, lastUpdated, children, breadcrumbs }: ContentLayoutProps) {
+  const breadcrumbLd = breadcrumbs?.length ? {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tnvisaguide.ca' },
+      ...breadcrumbs.map((b, i) => ({ '@type': 'ListItem', position: i + 2, name: b.label, item: `https://tnvisaguide.ca${b.href}` })),
+    ],
+  } : null
+
   return (
     <div className="section-padding">
       <div className="max-w-3xl mx-auto">
+        {breadcrumbLd && <JsonLd data={breadcrumbLd} />}
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav className="flex items-center gap-1.5 text-sm text-fg-muted mb-6">
             <Link href="/" className="hover:text-accent transition-colors">Home</Link>

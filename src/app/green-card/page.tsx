@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Link from 'next/link';
+import Image from 'next/image';
 import { Callout } from '@/components/ui/Callout';
 import { ComparisonTable } from '@/components/ui/ComparisonTable';
 
@@ -16,6 +18,10 @@ export default function GreenCardPage() {
       breadcrumbs={[{label:'Green Card', href:'/green-card'}]}
       lastUpdated="April 2026"
     >
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=400&fit=crop" alt="Path to permanent residence" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
+
       <section>
         <h2 className="text-2xl font-bold text-fg mt-12 mb-4">The Dual Intent Problem</h2>
         <p className="mb-4">
@@ -112,6 +118,12 @@ export default function GreenCardPage() {
           ]}
         />
       </section>
+
+      <div className="mt-8 flex flex-wrap gap-4">
+        <Link href="/compare" className="text-accent hover:underline">TN vs H-1B comparison →</Link>
+        <Link href="/renewal" className="text-accent hover:underline">Renewal guide →</Link>
+        <Link href="/usmca-review" className="text-accent hover:underline">USMCA 2026 review →</Link>
+      </div>
     </ContentLayout>
   );
 }

@@ -36,6 +36,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/jobs`, lastModified, changeFrequency: 'daily', priority: 0.8 },
     { url: `${base}/usmca-review`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/government-shutdown`, lastModified, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/employer-guide`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/blog`, lastModified, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${base}/blog/tn-visa-computer-science-degree-2026`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/blog/tn-visa-vs-h1b-2026`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/blog/usmca-ends-tn-visa`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/blog/tn-visa-remote-work-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/blog/canadian-moving-to-us-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/blog/tn-visa-mexico-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/glossary`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${base}/compare/tn-vs-o1`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${base}/compare/tn-vs-l1`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${base}/compare/tn-vs-e2`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${base}/credentials`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
   ]
 
   const companyRoutes: MetadataRoute.Sitemap = SEED_COMPANIES.map(c => ({

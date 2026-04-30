@@ -3,6 +3,7 @@ import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import JsonLd from '@/components/JsonLd'
 import FaqAccordion from '@/components/ui/FaqAccordion'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'TN Visa FAQ — Frequently Asked Questions',
@@ -57,6 +58,10 @@ export default function FaqPage() {
           acceptedAnswer: { '@type': 'Answer', text: f.a },
         })),
       }} />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop" alt="Finding answers" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
 
       <FaqAccordion sections={sections} />
 

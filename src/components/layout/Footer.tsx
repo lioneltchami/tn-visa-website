@@ -1,78 +1,66 @@
 import Link from 'next/link'
 
-const navLinks = [
-  { href: '/eligibility', label: 'Eligibility' },
-  { href: '/professions', label: 'Professions' },
-  { href: '/apply', label: 'Apply' },
-  { href: '/documents', label: 'Documents' },
-  { href: '/fees', label: 'Fees' },
-  { href: '/taxes', label: 'Taxes' },
-  { href: '/moving', label: 'Moving' },
-  { href: '/compare', label: 'TN vs H-1B' },
-]
-
-const resourceLinks = [
-  { href: '/renewal', label: 'Renewal' },
-  { href: '/dependents', label: 'Dependents' },
-  { href: '/employers', label: 'Employers' },
-  { href: '/green-card', label: 'Green Card' },
-  { href: '/mistakes', label: 'Common Mistakes' },
-  { href: '/companies', label: 'TN-Friendly Companies' },
-  { href: '/changes', label: 'Policy Updates' },
-]
-
 export default function Footer() {
   return (
     <footer className="bg-bg-secondary border-t border-border">
-      <div className="container-wide py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="container-wide py-10">
+        {/* Link grid — compact, 4 columns on desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
           <div>
-            <h3 className="font-semibold text-fg mb-3 text-sm uppercase tracking-wider">Navigation</h3>
-            <ul className="space-y-2">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-fg-secondary hover:text-accent transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+            <p className="text-xs font-semibold text-fg-muted uppercase tracking-wider mb-3">Guide</p>
+            <ul className="space-y-1.5">
+              {[
+                { href: '/eligibility', label: 'Eligibility' },
+                { href: '/professions', label: 'Professions' },
+                { href: '/apply', label: 'How to Apply' },
+                { href: '/fees', label: 'Fees' },
+                { href: '/documents', label: 'Documents' },
+                { href: '/faq', label: 'FAQ' },
+              ].map(l => <li key={l.href}><Link href={l.href} className="text-sm text-fg-secondary hover:text-accent transition-colors">{l.label}</Link></li>)}
             </ul>
           </div>
-
           <div>
-            <h3 className="font-semibold text-fg mb-3 text-sm uppercase tracking-wider">Resources</h3>
-            <ul className="space-y-2">
-              {resourceLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-fg-secondary hover:text-accent transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+            <p className="text-xs font-semibold text-fg-muted uppercase tracking-wider mb-3">Resources</p>
+            <ul className="space-y-1.5">
+              {[
+                { href: '/renewal', label: 'Renewal' },
+                { href: '/taxes', label: 'Taxes' },
+                { href: '/green-card', label: 'Green Card' },
+                { href: '/moving', label: 'Moving to US' },
+                { href: '/compare', label: 'TN vs H-1B' },
+                { href: '/glossary', label: 'Glossary' },
+              ].map(l => <li key={l.href}><Link href={l.href} className="text-sm text-fg-secondary hover:text-accent transition-colors">{l.label}</Link></li>)}
             </ul>
           </div>
-
           <div>
-            <h3 className="font-semibold text-fg mb-3 text-sm uppercase tracking-wider">Legal</h3>
-            <p className="text-sm text-fg-muted mb-3">
-              <strong>Disclaimer:</strong> This website provides general information about TN visas for educational purposes only. It is not legal advice and does not create an attorney-client relationship. Immigration laws change frequently. Consult a qualified immigration attorney for advice specific to your situation.
-            </p>
-            <p className="text-sm text-fg-muted mb-3">
-              <strong>Sources:</strong> Information is based on the USCIS Policy Manual, CBP guidelines, USMCA Chapter 16, and official government publications.
-            </p>
-            <div className="flex flex-wrap gap-2 text-xs">
-              <a href="https://www.uscis.gov" target="_blank" rel="noopener noreferrer" className="text-fg-muted hover:text-accent">uscis.gov</a>
-              <span className="text-fg-muted">·</span>
-              <a href="https://www.cbp.gov" target="_blank" rel="noopener noreferrer" className="text-fg-muted hover:text-accent">cbp.gov</a>
-              <span className="text-fg-muted">·</span>
-              <a href="https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement" target="_blank" rel="noopener noreferrer" className="text-fg-muted hover:text-accent">ustr.gov</a>
-            </div>
+            <p className="text-xs font-semibold text-fg-muted uppercase tracking-wider mb-3">Tools</p>
+            <ul className="space-y-1.5">
+              {[
+                { href: '/letter-builder', label: 'Letter Builder' },
+                { href: '/jobs', label: 'Job Board' },
+                { href: '/companies', label: 'Companies' },
+                { href: '/experiences', label: 'Community' },
+                { href: '/blog', label: 'Blog' },
+                { href: '/products', label: 'Products' },
+              ].map(l => <li key={l.href}><Link href={l.href} className="text-sm text-fg-secondary hover:text-accent transition-colors">{l.label}</Link></li>)}
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-fg-muted uppercase tracking-wider mb-3">For Employers</p>
+            <ul className="space-y-1.5">
+              {[
+                { href: '/employer-guide', label: 'Sponsorship Guide' },
+                { href: '/employer-letter', label: 'Letter Guide' },
+                { href: '/post-job', label: 'Post a Job' },
+              ].map(l => <li key={l.href}><Link href={l.href} className="text-sm text-fg-secondary hover:text-accent transition-colors">{l.label}</Link></li>)}
+            </ul>
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-border text-center space-y-1">
-          <p className="text-xs text-fg-muted">Some links on this site are affiliate links. We may earn a commission at no extra cost to you.</p>
-          <p className="text-xs text-fg-muted">© {new Date().getFullYear()} TN Visa Guide. All rights reserved.</p>
+        {/* Legal — compact */}
+        <div className="pt-6 border-t border-border text-xs text-fg-muted space-y-2">
+          <p>This website provides general information about TN visas for educational purposes only. It is not legal advice. Consult a qualified immigration attorney for your situation. Some links are affiliate links. <Link href="/disclosure" className="underline hover:text-fg-secondary">Disclosure</Link></p>
+          <p>© {new Date().getFullYear()} TN Visa Guide · Built in Canada 🇨🇦 · <a href="https://www.uscis.gov" target="_blank" rel="noopener noreferrer" className="hover:text-fg-secondary">uscis.gov</a> · <a href="https://www.cbp.gov" target="_blank" rel="noopener noreferrer" className="hover:text-fg-secondary">cbp.gov</a> · <a href="https://ustr.gov" target="_blank" rel="noopener noreferrer" className="hover:text-fg-secondary">ustr.gov</a></p>
         </div>
       </div>
     </footer>

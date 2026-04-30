@@ -264,6 +264,20 @@ c) **Future: Implement paid tiers** (currently all free):
 - `npm install @next/mdx` and configure
 - Prompt in ROADMAP.md Phase 6.1
 
+### 17. Employer Email Templates
+The employer dashboard is built at /employer. To complete the employer experience:
+
+a) **Welcome email for new employer accounts:**
+   - Trigger: when a user completes onboarding with role='company'
+   - Add to the onboarding page's handleSubmit success path
+   - Send via Resend with employer-specific content (link to /employer-guide, /post-job)
+
+b) **Monthly digest email:**
+   - Create a script similar to send-renewal-reminders.ts
+   - Query: company profile views (requires adding a views tracking table)
+   - Send monthly summary via Resend
+   - This is a Phase 6 feature — skip for now
+
 ---
 
 ## 📊 CURRENT STATE
@@ -277,6 +291,31 @@ c) **Future: Implement paid tiers** (currently all free):
 | Content pages | /denied, /border-interview, /employer-letter, /self-employment, /processing-times, /faq |
 | Email capture | Homepage banner + /changes page inline |
 | Sitemap URLs | 94 (23 static + 63 professions + 8 companies) |
+
+---
+
+## 🟠 SEO MAINTENANCE (Ongoing)
+
+### Annual Content Refresh
+When the year changes (e.g., 2026 → 2027):
+1. Update `src/lib/constants.ts` with the new year
+2. Update page titles that include the year (search for "2026" across all files)
+3. Update `lastModified` in `src/app/sitemap.ts`
+4. Review and update fee data in `src/data/fees.json` if USCIS changes fees
+5. Update profession data in `src/data/professions.json` if USMCA list changes
+6. Write new blog posts targeting "[topic] [year]" keywords
+
+### Monthly Tasks
+- Check for USCIS policy updates and update `/changes`
+- Review and approve community experiences in Supabase
+- Post new jobs or reach out to employers
+- Send newsletter via Resend (if subscriber list is growing)
+
+### Quarterly Tasks
+- Review analytics (Plausible) for top-performing pages
+- Update content on pages with declining traffic
+- Add new blog posts targeting trending keywords
+- Review affiliate link performance
 
 ---
 

@@ -20,10 +20,10 @@ export default function ProcessingTimesPage() {
       <ComparisonTable
         headers={['Method', 'Processing Time', 'Cost']}
         rows={[
-          { label: 'Port of Entry (Canadian)', values: ['Same day (15 min – 2 hours)', '$80 ($50 processing + $30 I-94)'] },
-          { label: 'POE during DHS shutdown', values: ['Same day + 2–3 extra hours', '$80'] },
-          { label: 'I-129 USCIS (standard)', values: ['3–5 months', '$510–$1,615 (varies by employer size)'] },
-          { label: 'I-129 USCIS (premium)', values: ['15 business days', '$2,965 + filing fee'] },
+          { label: 'Port of Entry (Canadian)', values: ['Same day (15 min – 2 hours)', '$80 (~$110 CAD)'] },
+          { label: 'POE during DHS shutdown', values: ['Same day + 2–3 extra hours', '$80 (~$110 CAD)'] },
+          { label: 'I-129 USCIS (standard)', values: ['3–5 months', '$510–$1,615 (~$700–$2,230 CAD)'] },
+          { label: 'I-129 USCIS (premium)', values: ['15 business days', '$2,965 (~$4,090 CAD) + filing fee'] },
           { label: 'Consular (Mexican)', values: ['2–8 weeks', '$185 DS-160 fee'] },
         ]}
       />

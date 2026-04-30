@@ -112,6 +112,36 @@ export default function ChangesPage() {
       </section>
 
       <section>
+        <h2 className="text-2xl font-bold text-fg mt-12 mb-4">2026 Updates</h2>
+        <div className="space-y-4 mb-8">
+          <div className="card p-4 border-l-4 border-l-accent">
+            <p className="font-semibold text-fg text-sm">March 2026 — Billy Bishop Toronto Pre-Clearance</p>
+            <p className="text-sm text-fg-secondary">Billy Bishop Toronto City Airport (YTZ) now offers US CBP pre-clearance, giving Canadian TN applicants a new processing location in downtown Toronto.</p>
+          </div>
+          <div className="card p-4 border-l-4 border-l-warning">
+            <p className="font-semibold text-fg text-sm">March 2026 — Premium Processing Fee Increase</p>
+            <p className="text-sm text-fg-secondary">Premium processing (Form I-907) increased from $2,805 to $2,965 for I-129 petitions including TN.</p>
+          </div>
+          <div className="card p-4 border-l-4 border-l-danger">
+            <p className="font-semibold text-fg text-sm">December 2025 — USCIS Vetting Center</p>
+            <p className="text-sm text-fg-secondary">USCIS created a centralized Vetting Center expanding social media and online presence checks. Expect more secondary inspections and longer processing at the border.</p>
+          </div>
+          <div className="card p-4 border-l-4 border-l-warning">
+            <p className="font-semibold text-fg text-sm">September 2025 — Mexican In-Person Interview Requirement</p>
+            <p className="text-sm text-fg-secondary">All Mexican TN visa applicants now require in-person interviews at US consulates, adding processing time.</p>
+          </div>
+          <div className="card p-4 border-l-4 border-l-accent">
+            <p className="font-semibold text-fg text-sm">September 2025 — I-94 Fee Increase</p>
+            <p className="text-sm text-fg-secondary">The I-94 fee at land borders increased from $6 to $30 under the One Big Beautiful Bill Act, raising the total POE cost to $80.</p>
+          </div>
+        </div>
+      </section>
+
+      <Callout type="info" title="Related: Government Shutdown">
+        The DHS government shutdown (70+ days and counting) is causing longer wait times at the border but TN processing continues. <Link href="/government-shutdown" className="text-accent hover:underline font-medium">Read the full impact guide</Link>.
+      </Callout>
+
+      <section>
         <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Denial Rate Spike</h2>
         <p className="mb-4">
           FY 2024 saw an unprecedented <strong>42.63% denial rate</strong> for TN petitions filed with USCIS — the highest
@@ -163,6 +193,7 @@ export default function ChangesPage() {
       <Callout type="warning" title="USMCA Review Risk">
         The USMCA 2026 review is the biggest risk to TN visas. If you plan to stay in the U.S. long-term,
         consider pursuing a green card as a backup plan before the review date.
+        {' '}<Link href="/usmca-review" className="text-accent hover:underline font-medium">Read our full USMCA review analysis →</Link>
       </Callout>
 
       <p className="mt-6">

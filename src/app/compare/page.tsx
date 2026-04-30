@@ -68,6 +68,12 @@ export default function ComparePage() {
           <Link href="/green-card" className="text-[var(--accent)] underline">Learn about the green card path →</Link>
         </p>
       </div>
+      <h2 className="text-2xl font-bold text-fg mt-12 mb-4">More Visa Comparisons</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <Link href="/compare/tn-vs-o1" className="card card-interactive p-4 text-center font-medium text-accent">TN vs O-1</Link>
+        <Link href="/compare/tn-vs-l1" className="card card-interactive p-4 text-center font-medium text-accent">TN vs L-1</Link>
+        <Link href="/compare/tn-vs-e2" className="card card-interactive p-4 text-center font-medium text-accent">TN vs E-2</Link>
+      </div>
     </ContentLayout>
   )
 }

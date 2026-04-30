@@ -1,0 +1,10 @@
+[
+  { "name": "Peace Bridge", "location": "Fort Erie, ON → Buffalo, NY", "province": "Ontario", "notes": "Highest TN volume land crossing. Very experienced officers.", "recommended": true },
+  { "name": "Rainbow Bridge", "location": "Niagara Falls, ON → Niagara Falls, NY", "province": "Ontario", "notes": "Less busy than Peace Bridge. Good alternative.", "recommended": false },
+  { "name": "Thousand Islands Bridge", "location": "Lansdowne, ON → Alexandria Bay, NY", "province": "Ontario", "notes": "Quieter crossing. Less experienced with TN.", "recommended": false },
+  { "name": "Ambassador Bridge", "location": "Windsor, ON → Detroit, MI", "province": "Ontario", "notes": "Busy commercial crossing. TN processing available.", "recommended": false },
+  { "name": "Pacific Highway", "location": "Surrey, BC → Blaine, WA", "province": "British Columbia", "notes": "Main BC crossing. Experienced with TN.", "recommended": true },
+  { "name": "Douglas (Peace Arch)", "location": "Surrey, BC → Blaine, WA", "province": "British Columbia", "notes": "Adjacent to Pacific Highway. NEXUS lane available.", "recommended": false },
+  { "name": "Lacolle", "location": "Saint-Bernard-de-Lacolle, QC → Champlain, NY", "province": "Quebec", "notes": "Main Quebec land crossing.", "recommended": false },
+  { "name": "Emerson", "location": "Emerson, MB → Pembina, ND", "province": "Manitoba", "notes": "Main Manitoba crossing.", "recommended": false }
+]

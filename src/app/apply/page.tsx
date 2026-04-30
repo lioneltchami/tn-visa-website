@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import ContentLayout from '@/components/layout/ContentLayout'
 import JsonLd from '@/components/JsonLd'
 import { Callout } from '@/components/ui/Callout'
@@ -7,7 +8,7 @@ import { ComparisonTable } from '@/components/ui/ComparisonTable'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'How to Apply for a TN Visa',
+  title: 'How to Apply for a TN Visa from Canada',
   description: 'Two methods to apply: at the border (same-day) or by filing Form I-129 with USCIS. Step-by-step guide for Canadians.',
 }
 
@@ -31,6 +32,11 @@ export default function ApplyPage() {
           { "@type": "HowToStep", "name": "Receive approval", "text": "Get your I-94 confirming TN status and authorized stay." }
         ]
       }} />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=1200&h=400&fit=crop" alt="International border crossing" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
+
       <ComparisonTable
         headers={['', 'Port of Entry (POE)', 'Form I-129 (USCIS)']}
         rows={[
@@ -74,13 +80,11 @@ export default function ApplyPage() {
         Premium processing (Form I-907) guarantees USCIS action within 15 business days for an additional $2,965 fee.
       </Callout>
 
-      <div className="mt-8 space-x-4">
-        <Link href="/documents" className="text-accent hover:underline">
-          Required documents →
-        </Link>
-        <Link href="/fees" className="text-accent hover:underline">
-          Fee breakdown →
-        </Link>
+      <div className="mt-8 flex flex-wrap gap-4">
+        <Link href="/documents" className="text-accent hover:underline">Required documents →</Link>
+        <Link href="/fees" className="text-accent hover:underline">Fee breakdown →</Link>
+        <Link href="/border-interview" className="text-accent hover:underline">Border interview guide →</Link>
+        <Link href="/processing-times" className="text-accent hover:underline">Processing times →</Link>
       </div>
     </ContentLayout>
   )

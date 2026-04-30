@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -6,9 +7,11 @@ import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
 import JsonLd from '@/components/JsonLd'
 import airports from '@/data/airports.json'
+import borderCrossings from '@/data/border-crossings.json'
+import ProvinceSelector from '@/components/ui/ProvinceSelector'
 
 export const metadata: Metadata = {
-  title: 'TN Visa Border Interview Guide',
+  title: 'TN Visa Border Interview Guide for Canadians',
   description: 'What to expect at the border, common CBP officer questions, how to answer, and tips to avoid denial. Updated for 2026 enhanced vetting.',
 }
 
@@ -27,7 +30,7 @@ export default function BorderInterviewPage() {
         name: 'How to Prepare for a TN Visa Border Interview',
         description: 'Step-by-step preparation guide for the TN visa border interview at a US port of entry or Canadian preclearance airport.',
         step: [
-          { '@type': 'HowToStep', name: 'Organize your documents', text: 'Prepare a complete, organized document package with a cover sheet summarizing your application.' },
+          { '@type': 'HowToStep', name: 'Organise your documents', text: 'Prepare a complete, organised document package with a cover sheet summarising your application.' },
           { '@type': 'HowToStep', name: 'Know your story', text: 'Be ready to concisely explain your role, qualifications, and temporary intent in 2-3 sentences.' },
           { '@type': 'HowToStep', name: 'Practice common questions', text: 'Rehearse answers to the 10-15 most common CBP officer questions.' },
           { '@type': 'HowToStep', name: 'Arrive prepared', text: 'Bring multiple copies of all documents. At land borders, allow 2-3 extra hours. At airports, arrive early.' },
@@ -38,6 +41,12 @@ export default function BorderInterviewPage() {
       <Callout type="tip" title="Airport Preclearance Is Recommended">
         If denied at a Canadian airport preclearance facility, you can withdraw your application and walk back into the terminal. At a land border, you&apos;re subject to US immigration enforcement including potential expedited removal.
       </Callout>
+
+      <ProvinceSelector />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1200&h=400&fit=crop" alt="Airport terminal" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">What to Expect</h2>
       <p className="text-fg-secondary mb-4">The TN border process has two stages:</p>
@@ -87,7 +96,7 @@ export default function BorderInterviewPage() {
         <li><strong>Employer support letter</strong> on company letterhead (see <Link href="/employer-letter" className="text-accent hover:underline">letter guide</Link>)</li>
         <li><strong>Degree/diploma</strong> (original or certified copy)</li>
         <li><strong>Official transcripts</strong></li>
-        <li><strong>Professional license</strong> (if applicable — P.Eng, CPA, etc.)</li>
+        <li><strong>Professional licence</strong> (if applicable — P.Eng, CPA, etc.)</li>
         <li><strong>Credential evaluation</strong> (if your degree is from outside Canada/US)</li>
         <li><strong>Resume/CV</strong></li>
         <li><strong>Previous TN approval notices</strong> (if renewing)</li>
@@ -144,6 +153,32 @@ export default function BorderInterviewPage() {
       <Callout type="tip" title="Professional Interview Preparation">
         Want to practice with an expert? <AffiliateLink href="https://tnvisaexpert.com/products/tn-visa-border-interview-kit/" provider="tnvisaexpert">TN Visa Expert&apos;s Border Interview Kit</AffiliateLink> ($54) covers 30+ common questions with ideal answers.
       </Callout>
+
+      <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Land Border Crossings</h2>
+      <p className="text-fg-secondary mb-4">Major Canada-US land border crossings where you can apply for TN status:</p>
+      {['Ontario', 'British Columbia', 'Quebec', 'Manitoba'].map(province => {
+        const crossings = borderCrossings.filter(c => c.province === province)
+        if (!crossings.length) return null
+        return (
+          <div key={province} className="mb-6">
+            <h3 className="text-lg font-semibold text-fg mb-2">{province}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {crossings.map(c => (
+                <div key={c.name} className="card p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-fg">{c.name}</p>
+                      <p className="text-sm text-fg-muted">{c.location}</p>
+                    </div>
+                    {c.recommended && <span className="badge">Recommended</span>}
+                  </div>
+                  {c.notes && <p className="text-xs text-fg-muted mt-2">{c.notes}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      })}
 
       <Callout type="warning" title="2026 Update: Enhanced Vetting">
         Since December 2025, USCIS has operated a centralized Vetting Center with expanded social media and online presence checks. During the ongoing DHS shutdown, expect longer wait times and more secondary inspections. <strong>Allow 2-3 extra hours</strong> at the border.

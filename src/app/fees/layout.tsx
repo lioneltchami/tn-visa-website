@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'TN Visa Fees & Cost Calculator',
+  title: 'TN Visa Fees & Cost Calculator (USD & CAD)',
   description: 'Calculate your total TN visa costs. Fee breakdown for POE, I-129, premium processing, and dependents.',
 }
 

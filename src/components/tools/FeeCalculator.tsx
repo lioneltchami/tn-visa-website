@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Calculator } from 'lucide-react';
 import clsx from 'clsx';
 import fees from '@/data/fees.json';
+import { formatCAD } from '@/lib/currency';
 import { trackEvent } from '@/hooks/useAnalytics';
 
 type Method = 'poe-land' | 'poe-airport' | 'i-129';
@@ -111,7 +112,10 @@ export default function FeeCalculator() {
         </div>
         <div className="flex justify-between items-center mt-4 pt-4 border-t border-border">
           <span className="font-semibold text-fg">Total</span>
-          <span className="text-2xl font-bold gradient-text">${total.toLocaleString()}</span>
+          <div className="text-right">
+            <span className="text-2xl font-bold gradient-text">${total.toLocaleString()}</span>
+            <p className="text-sm text-fg-muted">{formatCAD(total)}</p>
+          </div>
         </div>
       </div>
     </div>

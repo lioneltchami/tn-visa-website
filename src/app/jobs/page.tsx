@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 import { MapPin, DollarSign, Clock, Briefcase, Plus, Star } from 'lucide-react'
 import clsx from 'clsx'
@@ -66,6 +67,10 @@ export default function JobsPage() {
           <Link href="/post-job" className="gradient-bg text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center gap-2 w-fit">
             <Plus className="w-4 h-4" /> Post a Job
           </Link>
+        </div>
+
+        <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+          <Image src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=400&fit=crop" alt="Job search" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
         </div>
 
         <div className="flex flex-wrap gap-3 mb-8">

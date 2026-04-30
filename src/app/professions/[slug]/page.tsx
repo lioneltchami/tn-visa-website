@@ -64,6 +64,16 @@ export default function ProfessionPage({ params }: { params: { slug: string } })
         {p.commonTitles.map((t) => <span key={t} className="px-3 py-1.5 rounded-lg bg-bg-secondary text-sm text-fg-secondary">{t}</span>)}
       </div>
 
+      {(p as { canadianCredentials?: string[] }).canadianCredentials && (
+        <>
+          <h2 className="text-2xl font-bold text-fg mt-8 mb-4">Canadian Credentials</h2>
+          <ul className="list-disc pl-6 mb-6 space-y-1">
+            {(p as { canadianCredentials?: string[] }).canadianCredentials!.map((c) => <li key={c} className="text-fg-secondary">{c}</li>)}
+          </ul>
+          <p className="text-sm text-fg-muted mb-6">See our <a href="/credentials" className="text-accent hover:underline">full Canadian credentials guide</a> for more details.</p>
+        </>
+      )}
+
       <h2 className="text-2xl font-bold text-fg mt-8 mb-4">Common Denial Reasons</h2>
       <ul className="list-disc pl-6 mb-6 space-y-2">
         {p.commonDenialReasons.map((r) => <li key={r} className="text-fg-secondary">{r}</li>)}

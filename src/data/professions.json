@@ -38,7 +38,12 @@
       "max": 120000
     },
     "demandLevel": "high",
-    "juneUpdate": null
+    "juneUpdate": null,
+    "canadianCredentials": [
+      "CPA Canada (formerly CA, CGA, CMA)",
+      "Provincial CPA designation accepted",
+      "Bring licence number and issuing body documentation"
+    ]
   },
   {
     "id": "architect",
@@ -77,7 +82,11 @@
       "max": 130000
     },
     "demandLevel": "medium",
-    "juneUpdate": null
+    "juneUpdate": null,
+    "canadianCredentials": [
+      "Provincial architecture licence (OAA, OAQ, AIBC, AAA)",
+      "CACB-accredited degree from a Canadian university"
+    ]
   },
   {
     "id": "computer-systems-analyst",
@@ -241,7 +250,11 @@
       "max": 150000
     },
     "demandLevel": "high",
-    "juneUpdate": "CRITICAL: As of June 2025, USCIS requires credentials in a recognized engineering discipline. Computer Science degrees no longer qualify. Software developers without an engineering degree or PE/P.Eng license should apply under Computer Systems Analyst instead."
+    "juneUpdate": "CRITICAL: As of June 2025, USCIS requires credentials in a recognized engineering discipline. Computer Science degrees no longer qualify. Software developers without an engineering degree or PE/P.Eng license should apply under Computer Systems Analyst instead.",
+    "canadianCredentials": [
+      "P.Eng from any provincial association (PEO, APEGA, EGBC, OIQ, etc.)",
+      "Strengthens application significantly since June 2025 CS degree change"
+    ]
   },
   {
     "id": "forester",
@@ -1190,7 +1203,12 @@
       "max": 160000
     },
     "demandLevel": "medium",
-    "juneUpdate": null
+    "juneUpdate": null,
+    "canadianCredentials": [
+      "Provincial pharmacy licence",
+      "PEBC (Pharmacy Examining Board of Canada) certification",
+      "US state pharmacy licence or application in progress recommended"
+    ]
   },
   {
     "id": "physician",
@@ -1374,7 +1392,12 @@
       "max": 120000
     },
     "demandLevel": "high",
-    "juneUpdate": null
+    "juneUpdate": null,
+    "canadianCredentials": [
+      "Provincial RN licence (CNO, CRNBC, CARNA, etc.)",
+      "CGFNS certificate may be required for US state licensing",
+      "NCLEX-RN pass required for most US states"
+    ]
   },
   {
     "id": "veterinarian",

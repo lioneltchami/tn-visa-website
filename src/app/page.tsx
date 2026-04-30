@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import JsonLd from '@/components/JsonLd'
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal'
 import EmailCapture from '@/components/ui/EmailCapture'
+import TestimonialCarousel from '@/components/ui/TestimonialCarousel'
 import {
   Shield,
   Clock,
@@ -41,6 +43,15 @@ export default function Home() {
       }} />
       {/* HERO */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 -z-20">
+          <Image
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&auto=format"
+            alt=""
+            fill
+            className="object-cover opacity-[0.07] dark:opacity-[0.04]"
+            priority
+          />
+        </div>
         <div
           className="absolute inset-0 -z-10"
           style={{
@@ -53,18 +64,26 @@ export default function Home() {
         />
         <div className="container-tight text-center py-20">
           <Reveal variant="fadeUp">
-            <span className="badge inline-block mb-6">✨ Updated for 2026 USMCA changes</span>
+            <span className="badge inline-block mb-6"><span className="text-canadian">🍁</span> The #1 TN Visa Resource for Canadians</span>
           </Reveal>
           <Reveal variant="fadeUp" delay={0.1}>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
               Your Complete Guide to{' '}
-              <span className="gradient-text">Working in the U.S.</span>
+              <span className="gradient-text">Working in the USA</span>
             </h1>
           </Reveal>
           <Reveal variant="fadeUp" delay={0.2}>
-            <p className="text-lg md:text-xl text-[var(--fg-secondary)] max-w-2xl mx-auto mb-10">
-              Everything Canadian professionals need — from eligibility to taxes. Based on official USCIS sources, updated for 2026.
+            <p className="text-lg md:text-xl text-[var(--fg-secondary)] max-w-2xl mx-auto mb-4">
+              Everything Canadian professionals need to work in the United States — from eligibility to taxes. Based on official USCIS sources, updated for 2026.
             </p>
+          </Reveal>
+          <Reveal variant="fadeUp" delay={0.25}>
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {['Engineers', 'Accountants', 'Nurses', 'Consultants', 'Designers', 'Architects'].map(p => (
+                <span key={p} className="px-3 py-1 rounded-full bg-[var(--bg-secondary)] text-sm text-[var(--fg-secondary)]">{p}</span>
+              ))}
+              <span className="px-3 py-1 rounded-full bg-[var(--bg-secondary)] text-sm text-[var(--accent)]">+ 57 more</span>
+            </div>
           </Reveal>
           <Reveal variant="fadeUp" delay={0.3}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
@@ -74,12 +93,12 @@ export default function Home() {
               >
                 Check Your Eligibility
               </Link>
-              <Link
+              <a
                 href="#guide"
                 className="border border-[var(--border)] rounded-full px-8 py-4 font-semibold hover:bg-[var(--bg-secondary)] transition-colors"
               >
                 Explore the Guide
-              </Link>
+              </a>
             </div>
           </Reveal>
           <Reveal variant="fadeUp" delay={0.4}>
@@ -149,6 +168,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* HOW IT WORKS */}
+      <section className="section-padding">
+        <div className="container-tight">
+          <Reveal variant="fadeUp">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">How It Works</h2>
+          </Reveal>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { step: '1', title: 'Check Your Eligibility', desc: 'Use our free tool to see if your profession and degree qualify for TN status under USMCA.' },
+              { step: '2', title: 'Prepare Your Application', desc: 'Build your employer letter, organise documents, and prepare for the border interview.' },
+              { step: '3', title: 'Apply & Get Approved', desc: 'Apply at the border for same-day approval, or file I-129 with USCIS by mail.' },
+            ].map(item => (
+              <StaggerItem key={item.step} className="text-center">
+                <div className="w-12 h-12 rounded-full gradient-bg text-white text-xl font-bold flex items-center justify-center mx-auto mb-4">{item.step}</div>
+                <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
+                <p className="text-[var(--fg-secondary)] text-sm">{item.desc}</p>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
       {/* ALERT BANNER */}
       <section className="section-padding">
         <div className="container-tight">
@@ -212,33 +253,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MORE RESOURCES */}
-      <section className="section-padding">
+      {/* SUCCESS STORIES */}
+      <section className="section-padding overflow-hidden">
         <div className="container-tight">
           <Reveal variant="fadeUp">
-            <h2 className="text-2xl font-bold mb-8">More Resources</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { label: 'Renewal', href: '/renewal' },
-                { label: 'Dependents', href: '/dependents' },
-                { label: 'Employer Guide', href: '/employers' },
-                { label: 'Green Card Pathways', href: '/green-card' },
-                { label: 'Common Mistakes', href: '/mistakes' },
-                { label: 'USMCA 2026 Review', href: '/changes' },
-              ].map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="flex items-center gap-2 py-2 text-[var(--fg-secondary)] hover:text-[var(--accent)] transition-colors"
-                >
-                  <ArrowRight className="w-4 h-4" />
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+            <h2 className="text-2xl font-bold text-center mb-8">What Canadians Are Saying</h2>
           </Reveal>
+          <TestimonialCarousel />
         </div>
       </section>
+
     </main>
   )
 }

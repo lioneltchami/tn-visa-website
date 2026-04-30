@@ -17,6 +17,7 @@ const config: Config = {
         success: "hsl(var(--success))",
         warning: "hsl(var(--warning))",
         danger: "hsl(var(--danger))",
+        canadian: "hsl(var(--canadian-red))",
       },
       borderRadius: { DEFAULT: "var(--radius)" },
       fontFamily: {

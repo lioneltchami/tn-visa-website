@@ -5,7 +5,7 @@ import { StepList } from '@/components/ui/StepList'
 import { ComparisonTable } from '@/components/ui/ComparisonTable'
 
 export const metadata: Metadata = {
-  title: 'TN Visa Renewal & Extension',
+  title: 'TN Visa Renewal Guide for Canadians',
   description: 'How to renew your TN status, timing strategies, and the 240-day automatic extension rule.',
 }
 

@@ -1,50 +1,40 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 import clsx from 'clsx'
 
 interface Heading { id: string; text: string; level: number }
 
 export default function TableOfContents({ headings }: { headings: Heading[] }) {
-  const [active, setActive] = useState('')
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id)
-        }
-      },
-      { rootMargin: '-80px 0px -60% 0px' }
-    )
-    headings.forEach(h => {
-      const el = document.getElementById(h.id)
-      if (el) observer.observe(el)
-    })
-    return () => observer.disconnect()
-  }, [headings])
+  const [open, setOpen] = useState(false)
 
   if (!headings.length) return null
 
   return (
-    <nav className="hidden lg:block sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto" aria-label="Table of contents">
-      <p className="text-xs font-semibold text-fg-muted uppercase tracking-wider mb-3">On this page</p>
-      <ul className="space-y-1.5 border-l border-border">
-        {headings.map(h => (
-          <li key={h.id}>
-            <a
-              href={`#${h.id}`}
-              onClick={e => { e.preventDefault(); document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' }) }}
-              className={clsx(
-                'block text-sm py-0.5 pl-3 -ml-px border-l-2 transition-colors',
-                active === h.id ? 'border-accent text-accent font-medium' : 'border-transparent text-fg-muted hover:text-fg-secondary'
-              )}
-            >
-              {h.text}
-            </a>
-          </li>
-        ))}
-      </ul>
+    <nav className="card p-4 mb-8" aria-label="Table of contents">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center justify-between w-full text-left"
+      >
+        <p className="text-sm font-semibold text-fg">On this page</p>
+        <ChevronDown className={clsx('w-4 h-4 text-fg-muted transition-transform', open && 'rotate-180')} />
+      </button>
+      <div className={clsx('transition-all duration-300', open ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0 overflow-hidden')}>
+        <ul className="space-y-1.5 border-l border-border">
+          {headings.map(h => (
+            <li key={h.id}>
+              <a
+                href={`#${h.id}`}
+                onClick={e => { e.preventDefault(); document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' }); setOpen(false) }}
+                className="block text-sm py-0.5 pl-3 -ml-px border-l-2 border-transparent text-fg-muted hover:text-accent hover:border-accent transition-colors"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   )
 }

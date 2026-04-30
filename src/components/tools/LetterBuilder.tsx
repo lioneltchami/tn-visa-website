@@ -184,7 +184,7 @@ ${form.companyPhone}${form.signatoryEmail ? ' | ' + form.signatoryEmail : ''}`
               </select>
             </div>
             <div><label className={labelCls}>Degree *</label><input value={form.degree} onChange={e => set('degree', e.target.value)} placeholder="Bachelor of Science in Computer Science" className={inputCls} /></div>
-            <div><label className={labelCls}>Institution *</label><input value={form.institution} onChange={e => set('institution', e.target.value)} placeholder="University of Toronto" className={inputCls} /></div>
+            <div><label className={labelCls}>Institution *</label><input value={form.institution} onChange={e => set('institution', e.target.value)} placeholder="e.g. University of Toronto, UBC, McGill, Waterloo" className={inputCls} /></div>
             <div><label className={labelCls}>Years of Relevant Experience</label><input value={form.yearsExperience} onChange={e => set('yearsExperience', e.target.value)} type="number" min="0" className={inputCls} /></div>
           </div>
         )}

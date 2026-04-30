@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'TN Visa Guide',
   },
   twitter: { card: 'summary_large_image' },
-  alternates: { canonical: 'https://tnvisaguide.ca' },
+  alternates: { canonical: 'https://tnvisaguide.ca', languages: { 'en-CA': 'https://tnvisaguide.ca' } },
   robots: { index: true, follow: true },
 }
 
@@ -28,6 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="theme-color" content="#6366f1" />
         <script defer data-domain="tnvisaguide.ca" src="https://plausible.io/js/script.js" />
         <script

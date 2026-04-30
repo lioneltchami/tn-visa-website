@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
+import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'TN Visa Employer Support Letter Guide & Template',
+  title: 'TN Visa Employer Letter Guide — Canadian Requirements',
   description: 'How to write a TN visa employer support letter that won\'t get denied. Required elements, sample structure, common mistakes, and profession-specific tips.',
 }
 
@@ -19,6 +21,19 @@ export default function EmployerLetterPage() {
       lastUpdated="April 2026"
     >
       <AffiliateDisclosure />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=400&fit=crop" alt="Professional reviewing documents" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
+
+      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'HowTo', name: 'How to Write a TN Visa Employer Support Letter', description: 'Step-by-step guide to writing an employer support letter for TN visa applications.', step: [
+        { '@type': 'HowToStep', name: 'Use company letterhead', text: 'Print the letter on official company letterhead with full contact information.' },
+        { '@type': 'HowToStep', name: 'State the TN profession', text: 'Include the exact USMCA profession name that matches the applicant role.' },
+        { '@type': 'HowToStep', name: 'Detail job duties', text: 'List 5-7 specific professional duties tied to the TN profession category.' },
+        { '@type': 'HowToStep', name: 'Include qualifications', text: 'Reference the applicant degree, credentials, and relevant experience.' },
+        { '@type': 'HowToStep', name: 'Add employment terms', text: 'Specify start date, end date, salary, and work location.' },
+        { '@type': 'HowToStep', name: 'State temporary intent', text: 'Include language confirming the position is temporary.' },
+      ] }} />
       <Callout type="danger" title="Job Title Must Match USMCA Exactly">
         The TN profession name in the letter must match the USMCA list exactly. &quot;Software Engineer&quot; is NOT the same as &quot;Engineer.&quot; &quot;Financial Analyst&quot; is NOT &quot;Economist.&quot; Check the <Link href="/professions" className="text-accent hover:underline font-medium">full profession list</Link> for exact names.
       </Callout>
@@ -40,7 +55,7 @@ export default function EmployerLetterPage() {
         <li><strong>Specific TN profession category</strong> — must match the USMCA Appendix 2 list exactly (e.g., &quot;Engineer,&quot; &quot;Computer Systems Analyst,&quot; &quot;Accountant&quot;)</li>
         <li><strong>Detailed job duties</strong> — minimum 5-7 bullet points describing specific, professional-level duties. This is the most scrutinized section.</li>
         <li><strong>How duties relate to the TN profession</strong> — explicitly connect each duty to the USMCA profession category</li>
-        <li><strong>Applicant&apos;s qualifications</strong> — degree name, institution, graduation year, professional licenses, relevant experience</li>
+        <li><strong>Applicant&apos;s qualifications</strong> — degree name, institution, graduation year, professional licences, relevant experience</li>
         <li><strong>Employment terms</strong> — start date, end date (required for temporary intent), annual salary, work location (city and state)</li>
         <li><strong>Temporary nature statement</strong> — explicit language that the position is temporary and the applicant will depart the US when employment ends</li>
         <li><strong>Company description</strong> — 2-3 sentences about what the company does, size, and industry</li>
@@ -66,7 +81,7 @@ export default function EmployerLetterPage() {
         • [Specific duty #6]<br />
         • [Specific duty #7]</p>
         <p><strong>Qualifications:</strong><br />
-        [Name] holds a [Degree] in [Field] from [University], graduated [Year]. [He/She] also holds [professional license/certification]. [He/She] has [X] years of experience in [relevant field].</p>
+        [Name] holds a [Degree] in [Field] from [University], graduated [Year]. [He/She] also holds [professional licence/certification]. [He/She] has [X] years of experience in [relevant field].</p>
         <p><strong>Terms of Employment:</strong><br />
         Start date: [Date]<br />
         End date: [Date — must include an end date]<br />
@@ -98,7 +113,7 @@ export default function EmployerLetterPage() {
         <Link href="/professions/engineer" className="text-accent hover:underline">Engineer</Link>
       </h3>
       <p className="text-fg-secondary mb-4">
-        Since June 2025, duties must involve the application of engineering principles. Specify the engineering discipline (mechanical, civil, electrical). Reference the applicant&apos;s engineering degree or PE/P.Eng license. Avoid describing pure software development.
+        Since June 2025, duties must involve the application of engineering principles. Specify the engineering discipline (mechanical, civil, electrical). Reference the applicant&apos;s engineering degree or PE/P.Eng licence. Avoid describing pure software development.
       </p>
 
       <h3 className="text-lg font-semibold mt-6 mb-2">

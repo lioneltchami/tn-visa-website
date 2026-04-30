@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'TN Visa Eligibility Checker',
+  title: 'TN Visa Eligibility Checker for Canadians',
   description: 'Check if your profession qualifies for TN visa status. Interactive tool covering all 63 USMCA professions.',
 }
 

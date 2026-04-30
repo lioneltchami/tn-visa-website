@@ -6,7 +6,7 @@ const config = {
   warning: { icon: AlertTriangle, border: 'border-l-warning', text: 'text-warning', bg: 'bg-amber-50/50 dark:bg-amber-950/20' },
   tip: { icon: Lightbulb, border: 'border-l-success', text: 'text-success', bg: 'bg-green-50/50 dark:bg-green-950/20' },
   info: { icon: Info, border: 'border-l-accent', text: 'text-accent', bg: 'bg-blue-50/50 dark:bg-blue-950/20' },
-  danger: { icon: XCircle, border: 'border-l-danger', text: 'text-danger', bg: 'bg-red-50/50 dark:bg-red-950/20' },
+  danger: { icon: XCircle, border: 'border-l-canadian', text: 'text-danger', bg: 'bg-red-50/50 dark:bg-red-950/20' },
 };
 
 interface CalloutProps {

@@ -1,0 +1,22 @@
+[
+  {"term": "USMCA", "definition": "United States-Mexico-Canada Agreement. The trade agreement that replaced NAFTA in 2020 and provides the legal basis for TN visa status.", "relatedPages": ["/usmca-review", "/changes"]},
+  {"term": "TN Visa", "definition": "A nonimmigrant work visa for Canadian and Mexican citizens in one of 63 USMCA-listed professions. No annual cap, no lottery, renewable indefinitely.", "relatedPages": ["/eligibility", "/apply"]},
+  {"term": "TD Status", "definition": "Trade Dependent status for spouses and unmarried children under 21 of TN visa holders. TD holders cannot work but can study.", "relatedPages": ["/dependents"]},
+  {"term": "CBP", "definition": "U.S. Customs and Border Protection. The agency that processes TN visa applications at ports of entry and airport preclearance facilities.", "relatedPages": ["/border-interview", "/apply/port-of-entry"]},
+  {"term": "USCIS", "definition": "U.S. Citizenship and Immigration Services. Processes Form I-129 petitions for TN status changes and extensions filed by mail.", "relatedPages": ["/apply", "/processing-times"]},
+  {"term": "I-94", "definition": "Arrival/Departure Record. Issued at the border confirming your TN status, authorized stay duration, and employer. Costs $30 at land borders.", "relatedPages": ["/fees", "/apply/port-of-entry"]},
+  {"term": "I-129", "definition": "Petition for Nonimmigrant Worker. The form employers file with USCIS to request TN status for an employee. Filing fee: $510-$1,615.", "relatedPages": ["/apply", "/fees"]},
+  {"term": "I-907", "definition": "Request for Premium Processing Service. Guarantees USCIS action on an I-129 petition within 15 business days. Fee: $2,965.", "relatedPages": ["/processing-times", "/fees"]},
+  {"term": "RFE", "definition": "Request for Evidence. USCIS asks for additional documentation before making a decision on your petition. Common for complex cases.", "relatedPages": ["/denied", "/processing-times"]},
+  {"term": "Dual Intent", "definition": "The ability to hold a temporary visa while intending to pursue permanent residence. TN does NOT allow dual intent; H-1B does.", "relatedPages": ["/green-card", "/compare"]},
+  {"term": "PERM", "definition": "Program Electronic Review Management. The labor certification process required for most employer-sponsored green cards (EB-2, EB-3).", "relatedPages": ["/green-card"]},
+  {"term": "EB-2 NIW", "definition": "Employment-Based Second Preference National Interest Waiver. A green card path that doesn't require employer sponsorship or PERM labor certification.", "relatedPages": ["/green-card"]},
+  {"term": "Substantial Presence Test", "definition": "IRS formula to determine US tax residency. If present 31+ days in current year AND formula total ≥ 183 days, you're a US tax resident.", "relatedPages": ["/taxes"]},
+  {"term": "Port of Entry", "definition": "A designated location where travelers can enter the US. Canadians apply for TN status at land border crossings or airport preclearance facilities.", "relatedPages": ["/apply/port-of-entry", "/border-interview"]},
+  {"term": "Preclearance", "definition": "US CBP inspection facilities at Canadian airports. Allows TN applicants to clear US immigration before boarding their flight.", "relatedPages": ["/border-interview", "/apply/port-of-entry"]},
+  {"term": "Employer Support Letter", "definition": "The letter from your US employer describing your job, qualifications, and temporary intent. The most critical document in a TN application.", "relatedPages": ["/employer-letter", "/letter-builder"]},
+  {"term": "P.Eng", "definition": "Professional Engineer license issued by Canadian provincial engineering associations. Strengthens TN Engineer applications.", "relatedPages": ["/professions/engineer"]},
+  {"term": "WES", "definition": "World Education Services. A credential evaluation organization that assesses foreign degrees for US equivalency.", "relatedPages": ["/documents"]},
+  {"term": "DS-160", "definition": "Online Nonimmigrant Visa Application. Required for Mexican TN applicants applying at US consulates. Fee: $185.", "relatedPages": ["/blog/tn-visa-mexico-2026"]},
+  {"term": "Expedited Removal", "definition": "A fast-track deportation process that can be triggered by a TN denial at a land border. Results in a 5-year entry bar.", "relatedPages": ["/denied"]}
+]

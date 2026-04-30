@@ -4,51 +4,68 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
-const links = [
+const primaryLinks = [
   { href: '/eligibility', label: 'Eligibility' },
   { href: '/professions', label: 'Professions' },
   { href: '/apply', label: 'Apply' },
-  { href: '/fees', label: 'Fees' },
-  { href: '/companies', label: 'Companies' },
   { href: '/jobs', label: 'Jobs' },
-  { href: '/compare', label: 'TN vs H-1B' },
-  { href: '/taxes', label: 'Taxes' },
-  { href: '/changes', label: 'Updates' },
 ]
 
+const moreLinks = [
+  { href: '/fees', label: 'Fees & Calculator' },
+  { href: '/taxes', label: 'Tax Guide' },
+  { href: '/compare', label: 'TN vs H-1B' },
+  { href: '/companies', label: 'Companies' },
+  { href: '/changes', label: 'Policy Updates' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/faq', label: 'FAQ' },
+]
+
+const allLinks = [...primaryLinks, ...moreLinks]
+
 export default function Nav() {
-  const [open, setOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [moreOpen, setMoreOpen] = useState(false)
   const pathname = usePathname()
   const menuRef = useRef<HTMLDivElement>(null)
+  const moreRef = useRef<HTMLLIElement>(null)
 
-  // Close on Escape
+  // Close dropdowns on route change
+  useEffect(() => { setMoreOpen(false); setMobileOpen(false) }, [pathname])
+
+  // Close More dropdown on outside click
   useEffect(() => {
-    if (!open) return
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false)
+    if (!moreOpen) return
+    const handler = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) setMoreOpen(false)
     }
-    document.addEventListener('keydown', handleKey)
-    return () => document.removeEventListener('keydown', handleKey)
-  }, [open])
+    document.addEventListener('click', handler)
+    return () => document.removeEventListener('click', handler)
+  }, [moreOpen])
 
-  // Focus trap
+  // Close mobile on Escape
+  useEffect(() => {
+    if (!mobileOpen) return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileOpen(false) }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [mobileOpen])
+
   const handleMenuKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key !== 'Tab' || !menuRef.current) return
     const focusable = menuRef.current.querySelectorAll<HTMLElement>('a, button')
-    if (focusable.length === 0) return
-    const first = focusable[0]
-    const last = focusable[focusable.length - 1]
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault()
-      last.focus()
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault()
-      first.focus()
-    }
+    if (!focusable.length) return
+    const first = focusable[0], last = focusable[focusable.length - 1]
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
   }, [])
+
+  const isActive = (href: string) => pathname === href
+  const isMoreActive = moreLinks.some(l => pathname === l.href)
+  const linkCls = (active: boolean) => `px-3 py-2 text-sm rounded-md transition-colors ${active ? 'text-accent' : 'text-fg-secondary hover:text-fg'}`
 
   return (
     <>
@@ -57,33 +74,41 @@ export default function Nav() {
       </a>
       <nav className="glass sticky top-0 z-50 border-b border-border" aria-label="Main navigation">
         <div className="container-wide flex items-center justify-between h-14">
-          <Link href="/" className="font-bold text-lg gradient-text">
-            🍁 TN Guide
+          <Link href="/" className="flex flex-col">
+            <span className="font-bold text-lg gradient-text"><span className="text-canadian">🍁</span> TN Visa Guide</span>
+            <span className="text-[10px] text-fg-muted hidden sm:block">For Canadian Professionals</span>
           </Link>
 
-          <ul className="hidden lg:flex items-center gap-1">
-            {links.map((link) => (
+          {/* Desktop nav */}
+          <ul className="hidden lg:flex items-center gap-0.5">
+            {primaryLinks.map(link => (
               <li key={link.href} className="relative">
-                <Link
-                  href={link.href}
-                  aria-current={pathname === link.href ? 'page' : undefined}
-                  className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                    pathname === link.href
-                      ? 'text-accent'
-                      : 'text-fg-secondary hover:text-fg'
-                  }`}
-                >
+                <Link href={link.href} aria-current={isActive(link.href) ? 'page' : undefined} className={linkCls(isActive(link.href))}>
                   {link.label}
-                  {pathname === link.href && (
-                    <motion.span
-                      layoutId="nav-active"
-                      className="absolute inset-x-1 -bottom-[9px] h-0.5 bg-accent rounded-full"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
+                  {isActive(link.href) && <motion.span layoutId="nav-active" className="absolute inset-x-1 -bottom-[9px] h-0.5 bg-accent rounded-full" transition={{ type: 'spring', stiffness: 380, damping: 30 }} />}
                 </Link>
               </li>
             ))}
+            {/* More dropdown */}
+            <li className="relative" ref={moreRef}>
+              <button
+                onClick={() => setMoreOpen(!moreOpen)}
+                className={`${linkCls(isMoreActive)} inline-flex items-center gap-1`}
+                aria-expanded={moreOpen}
+              >
+                More <ChevronDown className={`w-3.5 h-3.5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
+                {isMoreActive && <motion.span layoutId="nav-active" className="absolute inset-x-1 -bottom-[9px] h-0.5 bg-accent rounded-full" transition={{ type: 'spring', stiffness: 380, damping: 30 }} />}
+              </button>
+              {moreOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 card p-2 shadow-xl border border-border">
+                  {moreLinks.map(link => (
+                    <Link key={link.href} href={link.href} className={`block px-3 py-2 text-sm rounded-md transition-colors ${isActive(link.href) ? 'text-accent bg-bg-secondary' : 'text-fg-secondary hover:text-fg hover:bg-bg-secondary'}`}>
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </li>
           </ul>
 
           <div className="flex items-center gap-2">
@@ -91,56 +116,26 @@ export default function Nav() {
             <Link href="/login" className="hidden sm:inline-flex items-center px-4 py-1.5 text-sm font-medium rounded-full gradient-bg text-white hover:opacity-90 transition-opacity">
               Sign In
             </Link>
-            <button
-              className="lg:hidden p-2 rounded-lg hover:bg-bg-secondary transition-colors"
-              onClick={() => setOpen(!open)}
-              aria-label="Toggle menu"
-              aria-expanded={open}
-            >
-              {open ? <X size={20} /> : <Menu size={20} />}
+            <button className="lg:hidden p-2 rounded-lg hover:bg-bg-secondary transition-colors" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu" aria-expanded={mobileOpen}>
+              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
       </nav>
 
+      {/* Mobile menu */}
       <AnimatePresence>
-        {open && (
-          <motion.div
-            ref={menuRef}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-md lg:hidden flex flex-col items-center justify-center"
-            onKeyDown={handleMenuKeyDown}
-          >
-            <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-6">
-              {links.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    aria-current={pathname === link.href ? 'page' : undefined}
-                    className={`text-2xl font-medium transition-colors ${
-                      pathname === link.href ? 'text-accent' : 'text-fg-secondary hover:text-fg'
-                    }`}
-                  >
+        {mobileOpen && (
+          <motion.div ref={menuRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-md lg:hidden flex flex-col items-center justify-center" onKeyDown={handleMenuKeyDown}>
+            <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-5">
+              {allLinks.map((link, i) => (
+                <motion.div key={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} transition={{ delay: i * 0.04 }}>
+                  <Link href={link.href} onClick={() => setMobileOpen(false)} aria-current={isActive(link.href) ? 'page' : undefined} className={`text-xl font-medium transition-colors ${isActive(link.href) ? 'text-accent' : 'text-fg-secondary hover:text-fg'}`}>
                     {link.label}
                   </Link>
                 </motion.div>
               ))}
-              <button
-                onClick={() => setOpen(false)}
-                className="mt-4 px-6 py-2 rounded-full border border-border text-fg-secondary hover:text-fg text-sm"
-              >
-                Close menu
-              </button>
+              <button onClick={() => setMobileOpen(false)} className="mt-4 px-6 py-2 rounded-full border border-border text-fg-secondary hover:text-fg text-sm">Close</button>
             </nav>
           </motion.div>
         )}

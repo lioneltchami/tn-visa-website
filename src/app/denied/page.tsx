@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -31,6 +32,10 @@ export default function DeniedPage() {
           { '@type': 'Question', name: 'What was the TN visa denial rate in 2024?', acceptedAnswer: { '@type': 'Answer', text: 'The Department of State consular denial rate was 42.63% in FY2024. However, the USCIS approval rate recovered to 94.6% in Q2 2025 for properly prepared applications.' } },
         ],
       }} />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&h=400&fit=crop" alt="Professional consultation" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
 
       <Callout type="danger" title="Critical: Denial vs Withdrawal">
         If the officer signals they will deny your application, ask to <strong>withdraw</strong> your application instead. A withdrawal does not go on your record. A denial does — and can trigger expedited removal at land borders.

@@ -99,7 +99,7 @@ export default function EligibilityChecker() {
                 <h3 className="text-lg font-semibold text-[var(--fg)]">What field is your degree in?</h3>
                 <input type="text" value={answers.field} onChange={e => setAnswers({ ...answers, field: e.target.value })}
                   aria-label="Degree field"
-                  placeholder="e.g. Computer Science, Engineering, Accounting..."
+                  placeholder="e.g. Computer Science (UofT), Engineering (Waterloo), Commerce (McGill)..."
                   className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 text-lg text-[var(--fg)] placeholder:text-[var(--fg-muted)] focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-all" />
               </div>
             )}

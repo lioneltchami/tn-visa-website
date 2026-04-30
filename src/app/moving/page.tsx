@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import { Callout } from '@/components/ui/Callout';
 import AffiliateLink from '@/components/ui/AffiliateLink';
@@ -6,7 +7,7 @@ import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure';
 import { StepList } from '@/components/ui/StepList';
 
 export const metadata: Metadata = {
-  title: 'Moving to the U.S. on a TN Visa',
+  title: 'Moving to the US from Canada on a TN Visa',
   description: 'Practical relocation guide: SSN, banking, housing, health insurance, and everything Canadians need to know.',
 };
 
@@ -14,11 +15,29 @@ export default function MovingPage() {
   return (
     <ContentLayout
       title="Practical Guide to Moving to the U.S."
-      description="SSN, driver's license, banking, housing, health insurance, and everything else you need to know."
+      description="SSN, driver's licence, banking, housing, health insurance, and everything else you need to know."
       breadcrumbs={[{label:'Moving', href:'/moving'}]}
       lastUpdated="April 2026"
     >
       <AffiliateDisclosure />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&h=400&fit=crop" alt="Moving to a new city" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
+
+      <section>
+        <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Before You Leave Canada</h2>
+        <p className="text-fg-secondary mb-4">Do these before you cross the border:</p>
+        <ul className="list-disc pl-6 space-y-2 text-fg-secondary mb-4">
+          <li><strong>Keep your Canadian bank account open</strong> — you&apos;ll need it for RRSP access, TFSA, receiving any Canadian income, and tax refunds from CRA</li>
+          <li><strong>Notify your bank you&apos;re moving</strong> — some Canadian banks (especially credit unions) close accounts of non-residents. TD and RBC are generally fine.</li>
+          <li><strong>Consider TD Bank or RBC</strong> — both have US subsidiaries (TD Bank US, RBC Bank). Opening a US account with the same bank makes transfers easier.</li>
+          <li><strong>Get a no-FX-fee credit card</strong> — Scotiabank Passport Visa Infinite or Brim Financial Mastercard charge no foreign transaction fees, useful while you transition.</li>
+          <li><strong>Download your I-94</strong> — print it from i94.cbp.dhs.gov after entry. You&apos;ll need it for SSN, driver&apos;s licence, and bank account.</li>
+          <li><strong>Cancel provincial health insurance</strong> — OHIP, MSP, RAMQ, etc. You&apos;re no longer eligible once you move. See our <a href="/taxes" className="text-accent hover:underline">tax guide</a> for implications.</li>
+        </ul>
+      </section>
+
       <section>
         <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Social Security Number</h2>
         <p className="mb-4">You need an SSN for employment, banking, credit, and taxes. Here is how to get one:</p>
@@ -42,8 +61,8 @@ export default function MovingPage() {
           <li><strong>Proof of legal presence</strong> — I-94, TN approval notice</li>
         </ul>
         <p className="mb-4">
-          Your Canadian license is valid for 30-90 days depending on state. Some states waive the road test for
-          Canadian license holders. Request a <strong>REAL ID</strong> compliant license for domestic flights.
+          Your Canadian licence is valid for 30-90 days depending on state. Some states waive the road test for
+          Canadian licence holders. Request a <strong>REAL ID</strong> compliant licence for domestic flights.
         </p>
       </section>
 
@@ -77,6 +96,20 @@ export default function MovingPage() {
         American Express Global Transfer lets you transfer your Canadian Amex history to a U.S. Amex card —
         giving you an instant credit card without a U.S. credit check. Apply online and select &quot;new to the U.S.&quot;
       </Callout>
+
+      <section>
+        <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Building US Credit</h2>
+        <p className="text-fg-secondary mb-4">Your Canadian credit score does <strong>not</strong> transfer to the US. You start at zero. Here&apos;s the typical timeline:</p>
+        <ul className="list-disc pl-6 space-y-2 text-fg-secondary mb-4">
+          <li><strong>Month 1:</strong> Open a secured credit card ($500-1,000 deposit) or use Amex Global Transfer</li>
+          <li><strong>Month 1-2:</strong> Try <strong>Nova Credit</strong> — some US lenders (including Amex, HSBC) accept Canadian credit reports via Nova Credit to approve you without US history</li>
+          <li><strong>Month 3-6:</strong> Your first US credit score appears (typically 650-700 with on-time payments)</li>
+          <li><strong>Month 6-12:</strong> Enough credit history for a car loan, apartment lease, or unsecured credit card</li>
+        </ul>
+        <Callout type="info" title="Pro Tip">
+          Apply for 2-3 credit products in your first month (secured card + Amex transfer + Nova Credit lender). Multiple accounts build your score faster than one.
+        </Callout>
+      </section>
 
       <Callout type="tip" title="Multi-Currency Banking">
         Before you move, set up a <AffiliateLink href="https://wise.com/invite/" provider="wise">Wise multi-currency account</AffiliateLink> to manage USD and CAD in one place with the real exchange rate.

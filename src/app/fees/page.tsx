@@ -21,6 +21,7 @@ export default function FeesPage() {
         "applicationCategory": "FinanceApplication",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }} />
+      <p className="text-sm text-fg-muted mb-6">All fees shown in USD. Approximate CAD equivalents shown where applicable (rate: 1 USD = 1.38 CAD).</p>
       <FeeCalculator />
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Fee Breakdown</h2>
