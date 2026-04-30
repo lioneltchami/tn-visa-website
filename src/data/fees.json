@@ -1,0 +1,6 @@
+{
+  "poe": {"processingFee": 50, "i94LandBorder": 30, "i94Airport": 0},
+  "i129": {"largeFiling": 1015, "largeAsylum": 600, "smallFiling": 510, "smallAsylum": 300, "nonprofitFiling": 510, "nonprofitAsylum": 0},
+  "premiumProcessing": 2965,
+  "other": {"credentialEval": {"min": 100, "max": 400}, "translations": {"min": 50, "max": 200}, "attorney": {"min": 750, "max": 3500}, "tdLandBorder": 30, "tdAirport": 0}
+}

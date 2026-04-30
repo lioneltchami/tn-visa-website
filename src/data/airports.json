@@ -1,0 +1,12 @@
+[
+  {"name": "Toronto Pearson International", "code": "YYZ", "recommended": true, "notes": "Highest volume, very experienced officers"},
+  {"name": "Billy Bishop Toronto City", "code": "YTZ", "recommended": false, "notes": "Opened March 2026"},
+  {"name": "Vancouver International", "code": "YVR", "recommended": true, "notes": "High volume, experienced officers"},
+  {"name": "Calgary International", "code": "YYC", "recommended": false, "notes": ""},
+  {"name": "Edmonton International", "code": "YEG", "recommended": false, "notes": ""},
+  {"name": "Montreal-Trudeau International", "code": "YUL", "recommended": true, "notes": "Experienced with TN"},
+  {"name": "Ottawa Macdonald-Cartier International", "code": "YOW", "recommended": false, "notes": ""},
+  {"name": "Halifax Stanfield International", "code": "YHZ", "recommended": false, "notes": ""},
+  {"name": "Winnipeg James Armstrong Richardson International", "code": "YWG", "recommended": false, "notes": ""},
+  {"name": "Victoria International", "code": "YYJ", "recommended": false, "notes": ""}
+]

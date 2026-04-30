@@ -1,101 +1,244 @@
-import Image from "next/image";
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import JsonLd from '@/components/JsonLd'
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal'
+import EmailCapture from '@/components/ui/EmailCapture'
+import {
+  Shield,
+  Clock,
+  Infinity,
+  FileText,
+  Calculator,
+  MapPin,
+  DollarSign,
+  ArrowRight,
+  CheckCircle,
+  Globe,
+  Briefcase,
+  GraduationCap,
+  Scale,
+} from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'TN Visa Guide for Canadians | Complete 2026 Resource',
+  description: 'The definitive guide for Canadian professionals seeking TN visa status in the United States. Eligibility checker, fee calculator, and step-by-step application guide.',
+  openGraph: {
+    title: 'TN Visa Guide for Canadians',
+    description: 'Everything Canadian professionals need to work in the U.S. under USMCA — from eligibility to taxes.',
+  },
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <main>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "TN Visa Guide",
+        "url": "https://tnvisaguide.ca",
+        "description": "The definitive guide for Canadian professionals seeking TN visa status in the United States under USMCA.",
+        "publisher": { "@type": "Organization", "name": "TN Visa Guide" }
+      }} />
+      {/* HERO */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 -z-10"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-muted) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 40% at 80% 50%, var(--accent-muted) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 50% at 20% 80%, var(--accent-muted) 0%, transparent 50%)
+            `,
+          }}
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="container-tight text-center py-20">
+          <Reveal variant="fadeUp">
+            <span className="badge inline-block mb-6">✨ Updated for 2026 USMCA changes</span>
+          </Reveal>
+          <Reveal variant="fadeUp" delay={0.1}>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+              Your Complete Guide to{' '}
+              <span className="gradient-text">Working in the U.S.</span>
+            </h1>
+          </Reveal>
+          <Reveal variant="fadeUp" delay={0.2}>
+            <p className="text-lg md:text-xl text-[var(--fg-secondary)] max-w-2xl mx-auto mb-10">
+              Everything Canadian professionals need — from eligibility to taxes. Based on official USCIS sources, updated for 2026.
+            </p>
+          </Reveal>
+          <Reveal variant="fadeUp" delay={0.3}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+              <Link
+                href="/eligibility"
+                className="gradient-bg text-white rounded-full px-8 py-4 font-semibold hover:scale-105 transition-transform"
+              >
+                Check Your Eligibility
+              </Link>
+              <Link
+                href="#guide"
+                className="border border-[var(--border)] rounded-full px-8 py-4 font-semibold hover:bg-[var(--bg-secondary)] transition-colors"
+              >
+                Explore the Guide
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal variant="fadeUp" delay={0.4}>
+            <p className="text-sm text-[var(--fg-muted)]">🍁 Trusted by 50,000+ Canadian professionals</p>
+          </Reveal>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </section>
+
+      {/* KEY STATS — Bento Grid */}
+      <section className="section-padding">
+        <div className="container-tight">
+          <Reveal variant="fadeUp">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              Why <span className="gradient-text">TN Visa</span>?
+            </h2>
+          </Reveal>
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <StaggerItem className="card p-8 col-span-2 md:col-span-2">
+              <Shield className="w-8 h-8 text-[var(--accent)] mb-4" />
+              <p className="text-4xl font-bold mb-2">63 Professions</p>
+              <p className="text-[var(--fg-secondary)]">Eligible occupations under USMCA — no lottery, no annual cap</p>
+            </StaggerItem>
+            <StaggerItem className="card p-8">
+              <Clock className="w-8 h-8 text-[var(--accent)] mb-4" />
+              <p className="text-4xl font-bold mb-2">Same Day</p>
+              <p className="text-[var(--fg-secondary)]">Apply at the border, approved in hours</p>
+            </StaggerItem>
+            <StaggerItem className="card p-8">
+              <Infinity className="w-8 h-8 text-[var(--accent)] mb-4" />
+              <p className="text-4xl font-bold mb-2">3-Year Stays</p>
+              <p className="text-[var(--fg-secondary)]">Renewable indefinitely, no maximum</p>
+            </StaggerItem>
+            <StaggerItem className="card p-8 col-span-2 md:col-span-1">
+              <DollarSign className="w-8 h-8 text-[var(--accent)] mb-4" />
+              <p className="text-4xl font-bold mb-2">From $50</p>
+              <p className="text-[var(--fg-secondary)]">Total cost at airport preclearance</p>
+            </StaggerItem>
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* QUICK NAVIGATION */}
+      <section id="guide" className="section-padding">
+        <div className="container-tight">
+          <Reveal variant="fadeUp">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Everything You Need</h2>
+          </Reveal>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: GraduationCap, title: 'Am I Eligible?', desc: 'Check if your profession qualifies', href: '/eligibility' },
+              { icon: Briefcase, title: 'How to Apply', desc: 'Step-by-step at the border or by mail', href: '/apply' },
+              { icon: FileText, title: 'Documents', desc: 'Complete checklist with templates', href: '/documents' },
+              { icon: Calculator, title: 'Fee Calculator', desc: 'Calculate your exact costs', href: '/fees' },
+              { icon: Scale, title: 'Tax Guide', desc: 'U.S. and Canadian obligations', href: '/taxes' },
+              { icon: MapPin, title: 'Moving Guide', desc: 'SSN, banking, housing, and more', href: '/moving' },
+            ].map((item) => (
+              <StaggerItem key={item.href}>
+                <Link href={item.href} className="card card-interactive p-6 flex flex-col h-full group">
+                  <item.icon className="w-6 h-6 text-[var(--accent)] mb-3" />
+                  <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
+                  <p className="text-[var(--fg-secondary)] text-sm flex-1">{item.desc}</p>
+                  <ArrowRight className="w-4 h-4 mt-4 opacity-0 group-hover:opacity-100 transition-opacity text-[var(--accent)]" />
+                </Link>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* ALERT BANNER */}
+      <section className="section-padding">
+        <div className="container-tight">
+          <Reveal variant="fadeIn">
+            <div className="glass p-6 md:p-8 border-l-4 border-l-amber-500 rounded-xl">
+              <div className="flex items-start gap-4">
+                <Shield className="w-6 h-6 text-warning shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-bold text-lg mb-1">June 2025 USCIS Policy Update</h3>
+                  <p className="text-[var(--fg-secondary)] mb-3">
+                    Major changes to Engineer, Economist, and self-employment rules. These affect thousands of Canadian tech workers.
+                  </p>
+                  <Link href="/changes" className="text-[var(--accent)] font-medium hover:underline inline-flex items-center gap-1">
+                    Read the full breakdown <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* EMAIL CAPTURE */}
+      <section className="section-padding">
+        <div className="container-tight">
+          <EmailCapture variant="banner" title="Get TN Visa Policy Alerts" description="Be the first to know when USCIS changes TN visa rules. Free, no spam, unsubscribe anytime." />
+        </div>
+      </section>
+
+      {/* TRUST SECTION */}
+      <section className="py-16">
+        <div className="container-tight">
+          <Reveal variant="fadeUp">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold mb-8">Built on Official Sources</h2>
+              <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--fg-muted)] mb-8">
+                <span className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" /> USCIS Policy Manual
+                </span>
+                <span className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" /> Updated April 2026
+                </span>
+                <span className="flex items-center gap-2">
+                  <Globe className="w-4 h-4" /> 63 Professions Covered
+                </span>
+                <span className="flex items-center gap-2">
+                  <Shield className="w-4 h-4" /> 100+ Pages of Guides
+                </span>
+              </div>
+              <div className="flex flex-wrap justify-center gap-4 text-xs text-[var(--fg-muted)]">
+                <a href="https://www.uscis.gov" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">uscis.gov</a>
+                <span>·</span>
+                <a href="https://www.cbp.gov" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">cbp.gov</a>
+                <span>·</span>
+                <a href="https://ustr.gov" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">ustr.gov</a>
+                <span>·</span>
+                <a href="https://travel.state.gov" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)] transition-colors">travel.state.gov</a>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* MORE RESOURCES */}
+      <section className="section-padding">
+        <div className="container-tight">
+          <Reveal variant="fadeUp">
+            <h2 className="text-2xl font-bold mb-8">More Resources</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { label: 'Renewal', href: '/renewal' },
+                { label: 'Dependents', href: '/dependents' },
+                { label: 'Employer Guide', href: '/employers' },
+                { label: 'Green Card Pathways', href: '/green-card' },
+                { label: 'Common Mistakes', href: '/mistakes' },
+                { label: 'USMCA 2026 Review', href: '/changes' },
+              ].map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex items-center gap-2 py-2 text-[var(--fg-secondary)] hover:text-[var(--accent)] transition-colors"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </main>
+  )
 }

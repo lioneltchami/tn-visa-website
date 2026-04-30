@@ -1,0 +1,2400 @@
+[
+  {
+    "id": "accountant",
+    "name": "Accountant",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "CPA, CA, CGA, or CMA",
+    "commonTitles": [
+      "Staff Accountant",
+      "Tax Accountant",
+      "Auditor",
+      "Financial Analyst"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "accountant",
+    "description": "Accountants prepare, examine, and analyze financial records for individuals and organizations. Canadian accountants can qualify with a bachelor's degree or with professional designations including CPA, CA, CGA, or CMA.",
+    "qualifyingDegrees": [
+      "Accounting",
+      "Finance",
+      "Business Administration with Accounting concentration",
+      "Commerce with Accounting major"
+    ],
+    "commonDenialReasons": [
+      "Degree is in general business without accounting focus",
+      "Job duties are primarily bookkeeping rather than professional accounting",
+      "Canadian designation not properly documented",
+      "Role is financial analysis rather than accounting"
+    ],
+    "employerLetterTips": [
+      "Reference the specific accounting designation (CPA, CA, CGA, CMA)",
+      "Detail professional accounting duties (auditing, tax preparation, financial reporting)",
+      "Distinguish from bookkeeping or basic financial record-keeping",
+      "Include the applicant's designation number and issuing body"
+    ],
+    "averageSalary": {
+      "min": 60000,
+      "max": 120000
+    },
+    "demandLevel": "high",
+    "juneUpdate": null
+  },
+  {
+    "id": "architect",
+    "name": "Architect",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Architect",
+      "Project Architect",
+      "Design Architect"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "architect",
+    "description": "Architects plan and design buildings and structures, ensuring they are functional, safe, and aesthetically pleasing. Professional licensure (state registration or provincial license) strengthens TN applications significantly.",
+    "qualifyingDegrees": [
+      "Architecture (B.Arch, M.Arch)",
+      "Architectural Studies",
+      "Environmental Design"
+    ],
+    "commonDenialReasons": [
+      "Degree is in architectural technology rather than architecture",
+      "No professional license or license in progress",
+      "Role is interior design or drafting rather than architecture",
+      "Job duties don't involve building design"
+    ],
+    "employerLetterTips": [
+      "Reference architectural license or registration",
+      "Detail building design and planning responsibilities",
+      "Include project examples demonstrating architectural work",
+      "Distinguish from drafting, interior design, or construction management"
+    ],
+    "averageSalary": {
+      "min": 70000,
+      "max": 130000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "computer-systems-analyst",
+    "name": "Computer Systems Analyst",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "Post-secondary diploma + 3 years experience",
+    "commonTitles": [
+      "Systems Analyst",
+      "IT Consultant",
+      "Business Systems Analyst",
+      "Software Engineer"
+    ],
+    "notes": "",
+    "diplomaAlternative": true,
+    "slug": "computer-systems-analyst",
+    "description": "Computer Systems Analysts design and implement computer systems to meet business needs. This has become the primary TN category for tech workers displaced from the Engineer category after the June 2025 USCIS policy change. Note: pure programmers do NOT qualify.",
+    "qualifyingDegrees": [
+      "Computer Science",
+      "Information Systems",
+      "Information Technology",
+      "Management Information Systems",
+      "Computer Engineering",
+      "Software Engineering"
+    ],
+    "commonDenialReasons": [
+      "Job duties describe pure programming rather than systems analysis",
+      "No evidence of designing or implementing business systems",
+      "Job title doesn't align with systems analysis work",
+      "Degree not related to computer systems"
+    ],
+    "employerLetterTips": [
+      "Emphasize systems analysis, design, and implementation duties",
+      "Describe how the role evaluates business requirements and designs solutions",
+      "Avoid listing pure coding or programming as primary duties",
+      "Show the role involves analyzing organizational needs, not just writing code"
+    ],
+    "averageSalary": {
+      "min": 75000,
+      "max": 140000
+    },
+    "demandLevel": "high",
+    "juneUpdate": "This category has seen increased applications since June 2025 as tech workers displaced from the Engineer category seek alternatives. USCIS is scrutinizing CSA applications more closely — ensure job duties clearly describe systems analysis, not programming."
+  },
+  {
+    "id": "disaster-relief-insurance-claims-adjuster",
+    "name": "Disaster Relief Insurance Claims Adjuster",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "3 years experience in claims adjustment + successful completion of training",
+    "commonTitles": [
+      "Claims Adjuster",
+      "Catastrophe Adjuster"
+    ],
+    "notes": "Limited to disaster relief claims only",
+    "diplomaAlternative": true,
+    "slug": "disaster-relief-insurance-claims-adjuster",
+    "description": "Disaster Relief Insurance Claims Adjusters assess and process insurance claims resulting from natural disasters and catastrophic events. This TN category is limited strictly to disaster relief claims and accepts 3 years of experience with training as an alternative to a degree.",
+    "qualifyingDegrees": [
+      "Insurance",
+      "Business Administration",
+      "Risk Management"
+    ],
+    "commonDenialReasons": [
+      "Claims work is not limited to disaster relief",
+      "Insufficient documentation of 3 years experience and training completion",
+      "Role is general insurance adjusting rather than disaster-specific"
+    ],
+    "employerLetterTips": [
+      "Specify that the role is limited to disaster relief claims",
+      "Detail the specific disaster event or type of catastrophe",
+      "Document the applicant's training and experience in claims adjustment"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 90000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "economist",
+    "name": "Economist",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Economist",
+      "Economic Analyst",
+      "Research Economist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "economist",
+    "description": "Economists study the production and distribution of resources, goods, and services by collecting and analyzing data, researching trends, and evaluating economic issues. The June 2025 USCIS update narrowed this category significantly.",
+    "qualifyingDegrees": [
+      "Economics",
+      "Econometrics",
+      "Agricultural Economics",
+      "Development Economics"
+    ],
+    "commonDenialReasons": [
+      "Role is primarily financial analysis or market research, not economics",
+      "Degree is in finance or business rather than economics",
+      "Job duties don't involve economic research or analysis",
+      "Title says 'Economist' but work is consulting or data analytics"
+    ],
+    "employerLetterTips": [
+      "Describe specific economic research and analysis duties",
+      "Reference economic theories, models, or methodologies used",
+      "Distinguish from financial analysis, market research, or data analytics",
+      "Show the role requires applying economic principles"
+    ],
+    "averageSalary": {
+      "min": 70000,
+      "max": 140000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": "June 2025 USCIS update narrowed this category. Roles primarily involving financial analysis, market research, or marketing do NOT qualify even if the job title says 'Economist'. Must demonstrate genuine economic research and analysis."
+  },
+  {
+    "id": "engineer",
+    "name": "Engineer",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license or P.Eng",
+    "commonTitles": [
+      "Software Engineer",
+      "Mechanical Engineer",
+      "Civil Engineer",
+      "Electrical Engineer"
+    ],
+    "notes": "Narrowed June 2025: must hold engineering degree or PE/P.Eng license. Software roles require engineering degree specifically.",
+    "diplomaAlternative": false,
+    "slug": "engineer",
+    "description": "Engineers apply scientific principles to design, develop, and improve structures, machines, and systems. Under USMCA, this category requires credentials in a recognized engineering discipline — Computer Science degrees no longer qualify as of June 2025.",
+    "qualifyingDegrees": [
+      "Mechanical Engineering",
+      "Civil Engineering",
+      "Electrical Engineering",
+      "Chemical Engineering",
+      "Aerospace Engineering",
+      "Industrial Engineering",
+      "Environmental Engineering",
+      "Biomedical Engineering"
+    ],
+    "commonDenialReasons": [
+      "Computer Science degree used instead of engineering degree",
+      "Job duties describe software development rather than engineering",
+      "No P.Eng or PE license and degree is not in a recognized engineering field",
+      "Job title says 'Engineer' but duties don't involve engineering principles"
+    ],
+    "employerLetterTips": [
+      "Specify the engineering discipline (mechanical, civil, etc.)",
+      "Detail how the role applies engineering principles and methodology",
+      "Reference the applicant's engineering degree or PE/P.Eng license",
+      "Avoid describing pure software development or IT duties"
+    ],
+    "averageSalary": {
+      "min": 80000,
+      "max": 150000
+    },
+    "demandLevel": "high",
+    "juneUpdate": "CRITICAL: As of June 2025, USCIS requires credentials in a recognized engineering discipline. Computer Science degrees no longer qualify. Software developers without an engineering degree or PE/P.Eng license should apply under Computer Systems Analyst instead."
+  },
+  {
+    "id": "forester",
+    "name": "Forester",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Forester",
+      "Forest Manager",
+      "Conservation Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "forester",
+    "description": "Foresters manage forested lands for economic, recreational, and conservation purposes. Under USMCA, this profession requires a bachelor's degree in forestry or a closely related natural resources field.",
+    "qualifyingDegrees": [
+      "Forestry",
+      "Forest Management",
+      "Natural Resources Management",
+      "Environmental Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is in general environmental studies rather than forestry",
+      "Job duties are primarily administrative rather than forestry work",
+      "Role is landscaping or groundskeeping rather than forest management"
+    ],
+    "employerLetterTips": [
+      "Detail specific forestry management duties and responsibilities",
+      "Reference the applicant's forestry degree or state/provincial license",
+      "Describe the forested lands or resources being managed"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 85000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "graphic-designer",
+    "name": "Graphic Designer",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "Post-secondary diploma + 3 years experience",
+    "commonTitles": [
+      "Graphic Designer",
+      "Visual Designer",
+      "UX Designer"
+    ],
+    "notes": "",
+    "diplomaAlternative": true,
+    "slug": "graphic-designer",
+    "description": "Graphic Designers create visual concepts using computer software or by hand to communicate ideas that inspire, inform, and captivate consumers. This category accepts a post-secondary diploma with 3 years of experience as an alternative to a bachelor's degree.",
+    "qualifyingDegrees": [
+      "Graphic Design",
+      "Visual Communication",
+      "Fine Arts",
+      "Digital Media",
+      "Communication Design"
+    ],
+    "commonDenialReasons": [
+      "Portfolio not provided as supporting evidence",
+      "Role is primarily web development rather than design",
+      "Degree is unrelated to design",
+      "Job duties focus on coding/development rather than visual design"
+    ],
+    "employerLetterTips": [
+      "Describe specific design responsibilities and creative output",
+      "Reference design tools and methodologies used",
+      "Include portfolio or samples as supporting evidence",
+      "Distinguish from web development or UX engineering roles"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 100000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "hotel-manager",
+    "name": "Hotel Manager",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "Post-secondary diploma + 3 years experience in hotel management",
+    "commonTitles": [
+      "Hotel Manager",
+      "General Manager",
+      "Resort Manager"
+    ],
+    "notes": "",
+    "diplomaAlternative": true,
+    "slug": "hotel-manager",
+    "description": "Hotel Managers oversee the operations of lodging establishments, ensuring guest satisfaction and efficient business operations. This category accepts a post-secondary diploma with 3 years of hotel management experience as an alternative to a bachelor's degree.",
+    "qualifyingDegrees": [
+      "Hospitality Management",
+      "Hotel Management",
+      "Business Administration",
+      "Tourism Management"
+    ],
+    "commonDenialReasons": [
+      "Role is assistant manager or shift supervisor rather than hotel manager",
+      "Experience is in restaurant management rather than hotel management",
+      "Diploma alternative not properly documented with 3 years hotel experience"
+    ],
+    "employerLetterTips": [
+      "Describe full hotel management responsibilities including operations, staff, and budgets",
+      "Specify the size and type of lodging establishment",
+      "If using diploma alternative, detail the 3 years of hotel management experience"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 110000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "industrial-designer",
+    "name": "Industrial Designer",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "Post-secondary diploma + 3 years experience",
+    "commonTitles": [
+      "Industrial Designer",
+      "Product Designer"
+    ],
+    "notes": "",
+    "diplomaAlternative": true,
+    "slug": "industrial-designer",
+    "description": "Industrial Designers develop concepts and designs for manufactured products, combining art, business, and engineering. This category accepts a post-secondary diploma with 3 years of experience as an alternative to a bachelor's degree.",
+    "qualifyingDegrees": [
+      "Industrial Design",
+      "Product Design",
+      "Manufacturing Design",
+      "Applied Arts"
+    ],
+    "commonDenialReasons": [
+      "Role is manufacturing or production rather than design",
+      "Portfolio not provided as supporting evidence",
+      "Degree is unrelated to industrial or product design"
+    ],
+    "employerLetterTips": [
+      "Describe specific product design responsibilities and creative process",
+      "Include portfolio or design samples as supporting evidence",
+      "Distinguish from manufacturing, production, or engineering roles"
+    ],
+    "averageSalary": {
+      "min": 60000,
+      "max": 100000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "interior-designer",
+    "name": "Interior Designer",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "Post-secondary diploma + 3 years experience",
+    "commonTitles": [
+      "Interior Designer",
+      "Space Planner"
+    ],
+    "notes": "",
+    "diplomaAlternative": true,
+    "slug": "interior-designer",
+    "description": "Interior Designers plan and design interior spaces to be functional, safe, and aesthetically pleasing. This category accepts a post-secondary diploma with 3 years of experience as an alternative to a bachelor's degree.",
+    "qualifyingDegrees": [
+      "Interior Design",
+      "Interior Architecture",
+      "Environmental Design",
+      "Applied Arts"
+    ],
+    "commonDenialReasons": [
+      "Role is home staging or decorating rather than professional interior design",
+      "No evidence of space planning or technical design work",
+      "Degree is unrelated to interior design"
+    ],
+    "employerLetterTips": [
+      "Detail professional interior design duties including space planning and technical specifications",
+      "Reference professional certifications (NCIDQ, ARIDO) if applicable",
+      "Distinguish from decorating, staging, or furniture sales"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 90000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "land-surveyor",
+    "name": "Land Surveyor",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license + post-secondary diploma",
+    "commonTitles": [
+      "Land Surveyor",
+      "Surveyor",
+      "Geomatics Technologist"
+    ],
+    "notes": "",
+    "diplomaAlternative": true,
+    "slug": "land-surveyor",
+    "description": "Land Surveyors measure and map the earth's surface to establish official land boundaries and provide data for engineering and construction projects. A state or provincial license combined with a post-secondary diploma can substitute for a bachelor's degree.",
+    "qualifyingDegrees": [
+      "Surveying",
+      "Geomatics",
+      "Civil Engineering",
+      "Geography"
+    ],
+    "commonDenialReasons": [
+      "No professional surveying license",
+      "Role is survey technician rather than licensed surveyor",
+      "Degree is unrelated to surveying or geomatics"
+    ],
+    "employerLetterTips": [
+      "Reference the applicant's surveying license or registration",
+      "Detail professional surveying duties and project types",
+      "Distinguish from survey technician or CAD drafting roles"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 95000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "landscape-architect",
+    "name": "Landscape Architect",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Landscape Architect",
+      "Landscape Designer"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "landscape-architect",
+    "description": "Landscape Architects design outdoor spaces including parks, gardens, campuses, and public areas, balancing environmental sustainability with aesthetic appeal. A bachelor's degree in landscape architecture is required.",
+    "qualifyingDegrees": [
+      "Landscape Architecture",
+      "Environmental Design",
+      "Urban Planning with Landscape focus"
+    ],
+    "commonDenialReasons": [
+      "Degree is in horticulture or landscaping rather than landscape architecture",
+      "Role is landscaping maintenance rather than design",
+      "No professional license or registration"
+    ],
+    "employerLetterTips": [
+      "Reference landscape architecture license or registration",
+      "Detail design and planning responsibilities for outdoor spaces",
+      "Distinguish from landscaping, gardening, or grounds maintenance"
+    ],
+    "averageSalary": {
+      "min": 60000,
+      "max": 110000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "lawyer",
+    "name": "Lawyer",
+    "category": "General",
+    "minEducation": "LL.B., J.D., LL.L., B.C.L., or Licenciatura en Derecho",
+    "altCredentials": "Member of a bar",
+    "commonTitles": [
+      "Attorney",
+      "Lawyer",
+      "Legal Counsel",
+      "Barrister"
+    ],
+    "notes": "Includes Notary in Quebec",
+    "diplomaAlternative": false,
+    "slug": "lawyer",
+    "description": "Lawyers advise and represent individuals, businesses, and government agencies on legal issues and disputes. TN applicants must hold an LL.B., J.D., LL.L., B.C.L., or Licenciatura en Derecho and be a member of a bar.",
+    "qualifyingDegrees": [
+      "Law (LL.B., J.D.)",
+      "Civil Law (LL.L., B.C.L.)",
+      "Licenciatura en Derecho"
+    ],
+    "commonDenialReasons": [
+      "Not a member of any bar association",
+      "Role is paralegal or legal assistant rather than lawyer",
+      "Foreign law degree not recognized without additional credentials"
+    ],
+    "employerLetterTips": [
+      "Reference bar membership and jurisdiction",
+      "Detail legal advisory and representation duties",
+      "Specify the area of law practice"
+    ],
+    "averageSalary": {
+      "min": 90000,
+      "max": 200000
+    },
+    "demandLevel": "high",
+    "juneUpdate": null
+  },
+  {
+    "id": "librarian",
+    "name": "Librarian",
+    "category": "General",
+    "minEducation": "Master's degree (M.L.S. or B.L.S.)",
+    "altCredentials": "",
+    "commonTitles": [
+      "Librarian",
+      "Information Specialist",
+      "Library Director"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "librarian",
+    "description": "Librarians manage library collections, assist patrons with research, and organize information resources. This profession requires a Master's degree in Library Science (M.L.S.) or a Bachelor's in Library Science (B.L.S.).",
+    "qualifyingDegrees": [
+      "Library Science (M.L.S.)",
+      "Library Science (B.L.S.)",
+      "Information Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is not in library or information science",
+      "Role is library assistant or clerk rather than professional librarian",
+      "No M.L.S. or B.L.S. degree"
+    ],
+    "employerLetterTips": [
+      "Reference the M.L.S. or B.L.S. degree specifically",
+      "Detail professional librarian duties including collection management and research services",
+      "Distinguish from library assistant, clerk, or technician roles"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 80000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "management-consultant",
+    "name": "Management Consultant",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "5 years consulting experience",
+    "commonTitles": [
+      "Management Consultant",
+      "Strategy Consultant",
+      "Business Consultant"
+    ],
+    "notes": "Must provide consulting services; cannot be used for permanent operational roles",
+    "diplomaAlternative": true,
+    "slug": "management-consultant",
+    "description": "Management Consultants provide expert advice to organizations on management strategy, operations, and organizational improvement. This is one of the few TN categories that accepts 5 years of consulting experience as an alternative to a bachelor's degree.",
+    "qualifyingDegrees": [
+      "Business Administration",
+      "Management",
+      "Economics",
+      "Finance",
+      "Organizational Development",
+      "Industrial Engineering"
+    ],
+    "commonDenialReasons": [
+      "Role is a permanent operational position, not consulting",
+      "No evidence of providing advisory services to management",
+      "Applicant is an employee performing regular duties, not a consultant",
+      "Insufficient documentation of 5 years consulting experience (if using experience alternative)"
+    ],
+    "employerLetterTips": [
+      "Clearly describe the consulting engagement with defined scope and timeline",
+      "Emphasize advisory nature — the consultant recommends, management decides",
+      "Include specific deliverables and project milestones",
+      "If using experience alternative, detail the 5 years of consulting work"
+    ],
+    "averageSalary": {
+      "min": 90000,
+      "max": 180000
+    },
+    "demandLevel": "high",
+    "juneUpdate": null
+  },
+  {
+    "id": "mathematician",
+    "name": "Mathematician",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Mathematician",
+      "Statistician",
+      "Data Scientist",
+      "Actuary"
+    ],
+    "notes": "Includes Statistician",
+    "diplomaAlternative": false,
+    "slug": "mathematician",
+    "description": "Mathematicians and Statisticians use advanced mathematical and statistical techniques to solve real-world problems in business, engineering, science, and other fields. This category includes Statisticians, Data Scientists, and Actuaries.",
+    "qualifyingDegrees": [
+      "Mathematics",
+      "Statistics",
+      "Applied Mathematics",
+      "Actuarial Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is not in mathematics or statistics",
+      "Role is data entry or basic analytics rather than mathematical analysis",
+      "Job duties don't require advanced mathematical techniques"
+    ],
+    "employerLetterTips": [
+      "Detail specific mathematical or statistical methodologies used",
+      "Reference the applicant's degree in mathematics or statistics",
+      "Describe how the role applies advanced mathematical principles to solve problems"
+    ],
+    "averageSalary": {
+      "min": 80000,
+      "max": 150000
+    },
+    "demandLevel": "high",
+    "juneUpdate": null
+  },
+  {
+    "id": "range-manager",
+    "name": "Range Manager",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Range Manager",
+      "Range Conservationist",
+      "Rangeland Manager"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "range-manager",
+    "description": "Range Managers oversee the management of rangelands and their resources, including vegetation, livestock grazing, and wildlife habitat. A bachelor's degree in range management or a related natural resources field is required.",
+    "qualifyingDegrees": [
+      "Range Management",
+      "Range Science",
+      "Natural Resources Management",
+      "Agriculture"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to range or natural resources management",
+      "Role is ranch hand or farm worker rather than range manager",
+      "Job duties are primarily agricultural rather than rangeland management"
+    ],
+    "employerLetterTips": [
+      "Detail rangeland management responsibilities and conservation duties",
+      "Reference the applicant's degree in range science or related field",
+      "Describe the specific rangelands and resources being managed"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 80000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "research-assistant",
+    "name": "Research Assistant",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Research Assistant",
+      "Research Associate",
+      "Lab Assistant"
+    ],
+    "notes": "Must work at a post-secondary institution or affiliated research facility",
+    "diplomaAlternative": false,
+    "slug": "research-assistant",
+    "description": "Research Assistants support academic research at post-secondary institutions or affiliated research facilities. This category is restricted to work at universities, colleges, or their affiliated research organizations.",
+    "qualifyingDegrees": [
+      "Any bachelor's degree relevant to the research field"
+    ],
+    "commonDenialReasons": [
+      "Work is not at a post-secondary institution or affiliated research facility",
+      "Role is administrative support rather than research",
+      "No clear connection to an academic research program"
+    ],
+    "employerLetterTips": [
+      "Confirm the position is at a post-secondary institution or affiliated facility",
+      "Describe the specific research program and the assistant's role in it",
+      "Detail the academic supervisor and research objectives"
+    ],
+    "averageSalary": {
+      "min": 40000,
+      "max": 65000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "scientific-technician-technologist",
+    "name": "Scientific Technician/Technologist",
+    "category": "General",
+    "minEducation": "Post-secondary diploma",
+    "altCredentials": "2 years experience in discipline",
+    "commonTitles": [
+      "Lab Technician",
+      "Scientific Technologist",
+      "Research Technician"
+    ],
+    "notes": "Must work in direct support of professionals in specified scientific disciplines",
+    "diplomaAlternative": true,
+    "slug": "scientific-technician-technologist",
+    "description": "Scientific Technicians and Technologists work in direct support of professionals in scientific disciplines such as chemistry, biology, engineering, and physics. Major restrictions apply: no patient care and must work under a named supervising professional.",
+    "qualifyingDegrees": [
+      "Laboratory Technology",
+      "Chemical Technology",
+      "Biological Technology",
+      "Engineering Technology",
+      "Applied Science"
+    ],
+    "commonDenialReasons": [
+      "Role involves direct patient care (explicitly prohibited)",
+      "No named supervising professional identified",
+      "Work is self-directed rather than in support of a supervisor",
+      "Supervising professional is not in a qualifying scientific discipline"
+    ],
+    "employerLetterTips": [
+      "Name the supervising professional and their credentials",
+      "Describe how the role supports the supervisor's scientific work",
+      "Explicitly state no patient care is involved",
+      "Detail the scientific discipline and methodology used"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 80000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": "June 2025 USCIS update added strict requirements: no direct patient care (kills use for surgical techs, medical techs who interact with patients), must work under a named supervising professional who sets goals and interprets results, cannot be self-directed."
+  },
+  {
+    "id": "social-worker",
+    "name": "Social Worker",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Social Worker",
+      "Clinical Social Worker",
+      "Case Manager"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "social-worker",
+    "description": "Social Workers help individuals, families, and communities cope with challenges by providing counseling, resources, and advocacy. A bachelor's degree in social work is the minimum requirement under USMCA.",
+    "qualifyingDegrees": [
+      "Social Work (B.S.W., M.S.W.)",
+      "Sociology",
+      "Psychology"
+    ],
+    "commonDenialReasons": [
+      "Degree is in an unrelated field",
+      "Role is case aide or community worker rather than professional social worker",
+      "No social work license or registration where required"
+    ],
+    "employerLetterTips": [
+      "Reference social work degree and any professional license",
+      "Detail professional social work duties including assessment and intervention",
+      "Distinguish from case aide, community outreach, or volunteer coordination roles"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 75000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "sylviculturist",
+    "name": "Sylviculturist",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Sylviculturist",
+      "Silviculturist",
+      "Forest Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "sylviculturist",
+    "description": "Sylviculturists specialize in the cultivation and management of forest trees, focusing on growth, health, and reproduction of forest stands. A bachelor's degree in forestry or silviculture is required.",
+    "qualifyingDegrees": [
+      "Forestry",
+      "Silviculture",
+      "Forest Science",
+      "Natural Resources"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to forestry or silviculture",
+      "Role is logging or timber harvesting rather than forest cultivation",
+      "Job duties don't involve scientific forest management"
+    ],
+    "employerLetterTips": [
+      "Detail silvicultural research or management duties",
+      "Reference the applicant's forestry or silviculture degree",
+      "Describe the forest stands and cultivation methods being used"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 80000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "technical-publications-writer",
+    "name": "Technical Publications Writer",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "Post-secondary diploma + 3 years experience",
+    "commonTitles": [
+      "Technical Writer",
+      "Documentation Specialist",
+      "Content Developer"
+    ],
+    "notes": "",
+    "diplomaAlternative": true,
+    "slug": "technical-publications-writer",
+    "description": "Technical Publications Writers create documentation for complex technical products, processes, and systems. This category accepts a post-secondary diploma with 3 years of experience as an alternative to a bachelor's degree.",
+    "qualifyingDegrees": [
+      "Technical Writing",
+      "English",
+      "Communications",
+      "Journalism"
+    ],
+    "commonDenialReasons": [
+      "Writing samples not provided as supporting evidence",
+      "Role is marketing copywriting rather than technical documentation",
+      "Degree is unrelated to writing or communications"
+    ],
+    "employerLetterTips": [
+      "Describe specific technical documentation responsibilities",
+      "Include writing samples or portfolio as supporting evidence",
+      "Distinguish from marketing, copywriting, or general content creation"
+    ],
+    "averageSalary": {
+      "min": 60000,
+      "max": 100000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "urban-planner",
+    "name": "Urban Planner",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Urban Planner",
+      "City Planner",
+      "Regional Planner",
+      "Geographer"
+    ],
+    "notes": "Includes Geographer",
+    "diplomaAlternative": false,
+    "slug": "urban-planner",
+    "description": "Urban Planners develop plans and programs for land use in towns, cities, and metropolitan areas. This USMCA category also includes Geographers. A bachelor's degree in urban planning, geography, or a related field is required.",
+    "qualifyingDegrees": [
+      "Urban Planning",
+      "City Planning",
+      "Geography",
+      "Regional Planning"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to planning or geography",
+      "Role is administrative rather than professional planning",
+      "Job duties don't involve land use planning or geographic analysis"
+    ],
+    "employerLetterTips": [
+      "Detail urban planning or geographic analysis responsibilities",
+      "Reference the applicant's planning or geography degree",
+      "Describe specific planning projects or geographic research"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 95000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "vocational-counselor",
+    "name": "Vocational Counselor",
+    "category": "General",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Vocational Counselor",
+      "Career Counselor",
+      "Guidance Counselor"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "vocational-counselor",
+    "description": "Vocational Counselors help individuals make career decisions by assessing their skills, interests, and abilities and providing guidance on education and employment options. A bachelor's degree is required under USMCA.",
+    "qualifyingDegrees": [
+      "Counseling",
+      "Vocational Rehabilitation",
+      "Psychology",
+      "Education"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to counseling or psychology",
+      "Role is recruitment or staffing rather than vocational counseling",
+      "Job duties don't involve professional career assessment and guidance"
+    ],
+    "employerLetterTips": [
+      "Detail vocational counseling duties including assessment and guidance",
+      "Reference the applicant's counseling or psychology degree",
+      "Distinguish from recruitment, staffing, or HR roles"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 70000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "dentist",
+    "name": "Dentist",
+    "category": "Medical",
+    "minEducation": "D.D.S., D.M.D., or equivalent",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Dentist",
+      "Oral Surgeon",
+      "Orthodontist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "dentist",
+    "description": "Dentists diagnose and treat problems with patients' teeth, gums, and related parts of the mouth. Canadian dentists must hold a D.D.S., D.M.D., or equivalent degree and typically need to pass US licensing exams.",
+    "qualifyingDegrees": [
+      "Dentistry (D.D.S., D.M.D.)",
+      "Dental Surgery"
+    ],
+    "commonDenialReasons": [
+      "State dental license not obtained or in process",
+      "Credential evaluation not completed",
+      "Role is dental hygienist or assistant rather than dentist"
+    ],
+    "employerLetterTips": [
+      "Reference dental license or license application status",
+      "Detail clinical dentistry duties and specialization",
+      "Include credential evaluation results if applicable"
+    ],
+    "averageSalary": {
+      "min": 150000,
+      "max": 250000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "dietitian",
+    "name": "Dietitian",
+    "category": "Medical",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Dietitian",
+      "Registered Dietitian",
+      "Clinical Dietitian"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "dietitian",
+    "description": "Dietitians plan and conduct food service and nutritional programs to help people maintain healthy eating habits. A bachelor's degree and state or provincial license are typically required under USMCA.",
+    "qualifyingDegrees": [
+      "Dietetics",
+      "Nutrition",
+      "Food Science",
+      "Clinical Nutrition"
+    ],
+    "commonDenialReasons": [
+      "No state or provincial dietitian license",
+      "Role is food service management rather than clinical dietetics",
+      "Degree is in general health rather than dietetics or nutrition"
+    ],
+    "employerLetterTips": [
+      "Reference dietitian registration or license",
+      "Detail clinical nutrition assessment and counseling duties",
+      "Distinguish from food service management or general wellness coaching"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 85000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "medical-laboratory-technologist",
+    "name": "Medical Laboratory Technologist",
+    "category": "Medical",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "Post-secondary diploma + 3 years experience",
+    "commonTitles": [
+      "Medical Lab Technologist",
+      "Clinical Lab Scientist",
+      "MLT"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "medical-laboratory-technologist",
+    "description": "Medical Laboratory Technologists perform complex medical laboratory tests for diagnosis, treatment, and prevention of disease. A bachelor's degree or post-secondary diploma with 3 years of experience is required.",
+    "qualifyingDegrees": [
+      "Medical Laboratory Science",
+      "Clinical Laboratory Science",
+      "Medical Technology",
+      "Biomedical Science"
+    ],
+    "commonDenialReasons": [
+      "Role is phlebotomist or lab assistant rather than technologist",
+      "Credential evaluation or certification not completed",
+      "Degree is unrelated to laboratory science"
+    ],
+    "employerLetterTips": [
+      "Reference professional certification (ASCP, CSMLS) if applicable",
+      "Detail complex laboratory testing duties and methodologies",
+      "Distinguish from phlebotomy, lab assistant, or specimen processing roles"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 85000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "nutritionist",
+    "name": "Nutritionist",
+    "category": "Medical",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Nutritionist",
+      "Nutrition Consultant",
+      "Nutrition Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "nutritionist",
+    "description": "Nutritionists study and advise on the effects of food and nutrition on health and well-being. A bachelor's degree in nutrition or a closely related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Nutrition",
+      "Nutritional Science",
+      "Food Science",
+      "Public Health Nutrition"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to nutrition science",
+      "Role is wellness coaching or personal training rather than nutrition science",
+      "No evidence of applying nutritional science principles"
+    ],
+    "employerLetterTips": [
+      "Detail nutritional science research or clinical duties",
+      "Reference the applicant's nutrition degree and any certifications",
+      "Distinguish from wellness coaching, personal training, or food service"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 80000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "occupational-therapist",
+    "name": "Occupational Therapist",
+    "category": "Medical",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Occupational Therapist",
+      "OT",
+      "Rehabilitation Specialist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "occupational-therapist",
+    "description": "Occupational Therapists help patients develop, recover, and improve skills needed for daily living and working. A bachelor's degree and state or provincial license are required under USMCA.",
+    "qualifyingDegrees": [
+      "Occupational Therapy",
+      "Rehabilitation Science"
+    ],
+    "commonDenialReasons": [
+      "State OT license not obtained",
+      "Credential evaluation not completed",
+      "Role is occupational therapy assistant rather than licensed OT"
+    ],
+    "employerLetterTips": [
+      "Reference state OT license or license application status",
+      "Detail clinical occupational therapy assessment and treatment duties",
+      "Specify the clinical setting and patient population"
+    ],
+    "averageSalary": {
+      "min": 75000,
+      "max": 110000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "pharmacist",
+    "name": "Pharmacist",
+    "category": "Medical",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Pharmacist",
+      "Clinical Pharmacist",
+      "Hospital Pharmacist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "pharmacist",
+    "description": "Pharmacists dispense prescription medications, advise patients on proper use, and monitor drug interactions. Canadian pharmacists must have their credentials evaluated and may need to pass US licensing exams depending on the state.",
+    "qualifyingDegrees": [
+      "Pharmacy (B.Sc.Pharm, Pharm.D.)",
+      "Pharmaceutical Sciences"
+    ],
+    "commonDenialReasons": [
+      "State pharmacy license not obtained or in process",
+      "Credential evaluation not completed",
+      "Role involves pharmaceutical sales rather than pharmacy practice",
+      "Degree from non-accredited institution"
+    ],
+    "employerLetterTips": [
+      "Reference pharmacy license or license application status",
+      "Detail clinical pharmacy duties",
+      "Include credential evaluation results if applicable",
+      "Specify the pharmacy setting (hospital, retail, clinical)"
+    ],
+    "averageSalary": {
+      "min": 120000,
+      "max": 160000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "physician",
+    "name": "Physician",
+    "category": "Medical",
+    "minEducation": "M.D. or equivalent",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Physician",
+      "Medical Doctor",
+      "Clinical Researcher"
+    ],
+    "notes": "Teaching or research ONLY. Cannot engage in direct patient care.",
+    "diplomaAlternative": false,
+    "slug": "physician",
+    "description": "Physicians under TN status are limited to teaching or research positions only — direct patient care is NOT permitted. An M.D. or equivalent degree and state or provincial license are required.",
+    "qualifyingDegrees": [
+      "Medicine (M.D.)",
+      "Osteopathic Medicine (D.O.)"
+    ],
+    "commonDenialReasons": [
+      "Role involves direct patient care (prohibited under TN)",
+      "Position is clinical rather than teaching or research",
+      "Medical credentials not evaluated for US equivalency"
+    ],
+    "employerLetterTips": [
+      "Explicitly state the role is teaching or research only, not patient care",
+      "Detail the academic or research institution and program",
+      "Reference medical license and credential evaluation"
+    ],
+    "averageSalary": {
+      "min": 100000,
+      "max": 200000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "physiotherapist",
+    "name": "Physiotherapist",
+    "category": "Medical",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Physiotherapist",
+      "Physical Therapist",
+      "PT"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "physiotherapist",
+    "description": "Physiotherapists (Physical Therapists) help patients reduce pain and improve mobility through exercise, manual therapy, and other techniques. A bachelor's degree and state or provincial license are required.",
+    "qualifyingDegrees": [
+      "Physiotherapy",
+      "Physical Therapy",
+      "Rehabilitation Science"
+    ],
+    "commonDenialReasons": [
+      "State PT license not obtained",
+      "Credential evaluation not completed",
+      "Role is physical therapy assistant rather than licensed PT"
+    ],
+    "employerLetterTips": [
+      "Reference state PT license or license application status",
+      "Detail clinical physical therapy assessment and treatment duties",
+      "Specify the clinical setting and patient population"
+    ],
+    "averageSalary": {
+      "min": 75000,
+      "max": 110000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "psychologist",
+    "name": "Psychologist",
+    "category": "Medical",
+    "minEducation": "Master's degree or Licenciatura",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Psychologist",
+      "Clinical Psychologist",
+      "Research Psychologist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "psychologist",
+    "description": "Psychologists study mental processes and human behavior by observing, interpreting, and recording how people relate to one another and their environments. A master's degree or Licenciatura and state or provincial license are required.",
+    "qualifyingDegrees": [
+      "Psychology (M.A., M.S., Ph.D., Psy.D.)",
+      "Clinical Psychology",
+      "Counseling Psychology"
+    ],
+    "commonDenialReasons": [
+      "State psychology license not obtained",
+      "Degree is bachelor's level rather than master's or doctoral",
+      "Role is counselor or therapist without psychology license"
+    ],
+    "employerLetterTips": [
+      "Reference state psychology license or license application status",
+      "Detail psychological assessment, research, or clinical duties",
+      "Specify the area of psychology practice and clinical setting"
+    ],
+    "averageSalary": {
+      "min": 80000,
+      "max": 130000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "recreational-therapist",
+    "name": "Recreational Therapist",
+    "category": "Medical",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Recreational Therapist",
+      "Therapeutic Recreation Specialist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "recreational-therapist",
+    "description": "Recreational Therapists plan, direct, and coordinate recreation-based treatment programs for people with disabilities, injuries, or illnesses. A bachelor's degree in recreational therapy or a related field is required.",
+    "qualifyingDegrees": [
+      "Recreational Therapy",
+      "Therapeutic Recreation",
+      "Leisure Studies"
+    ],
+    "commonDenialReasons": [
+      "Degree is in general recreation rather than therapeutic recreation",
+      "Role is recreation coordinator rather than certified therapist",
+      "No evidence of therapeutic treatment planning"
+    ],
+    "employerLetterTips": [
+      "Reference recreational therapy certification (CTRS) if applicable",
+      "Detail therapeutic recreation assessment and treatment planning duties",
+      "Distinguish from general recreation programming or activity coordination"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 70000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "registered-nurse",
+    "name": "Registered Nurse",
+    "category": "Medical",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "State/provincial license + diploma",
+    "commonTitles": [
+      "Registered Nurse",
+      "RN",
+      "Clinical Nurse"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "registered-nurse",
+    "description": "Registered Nurses provide and coordinate patient care, educate patients about health conditions, and provide advice and emotional support. High demand in the US healthcare system makes this a popular TN category.",
+    "qualifyingDegrees": [
+      "Nursing (B.Sc.N., B.N.)",
+      "Nursing Science"
+    ],
+    "commonDenialReasons": [
+      "State nursing license not obtained",
+      "Credential evaluation (CGFNS) not completed",
+      "Role is LPN/LVN level rather than RN",
+      "Degree is a diploma rather than bachelor's (may still qualify with license)"
+    ],
+    "employerLetterTips": [
+      "Reference state nursing license number or NCLEX pass status",
+      "Detail RN-level clinical duties",
+      "Include CGFNS certificate if applicable",
+      "Specify the clinical setting and patient population"
+    ],
+    "averageSalary": {
+      "min": 70000,
+      "max": 120000
+    },
+    "demandLevel": "high",
+    "juneUpdate": null
+  },
+  {
+    "id": "veterinarian",
+    "name": "Veterinarian",
+    "category": "Medical",
+    "minEducation": "D.V.M., D.M.V., or equivalent",
+    "altCredentials": "State/provincial license",
+    "commonTitles": [
+      "Veterinarian",
+      "Vet",
+      "Animal Doctor"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "veterinarian",
+    "description": "Veterinarians diagnose, treat, and prevent diseases and injuries in animals. A D.V.M., D.M.V., or equivalent degree and state or provincial license are required under USMCA.",
+    "qualifyingDegrees": [
+      "Veterinary Medicine (D.V.M., D.M.V.)",
+      "Veterinary Science"
+    ],
+    "commonDenialReasons": [
+      "State veterinary license not obtained",
+      "Credential evaluation not completed",
+      "Role is veterinary technician rather than licensed veterinarian"
+    ],
+    "employerLetterTips": [
+      "Reference state veterinary license or license application status",
+      "Detail veterinary clinical duties and specialization",
+      "Specify the type of practice (small animal, large animal, specialty)"
+    ],
+    "averageSalary": {
+      "min": 95000,
+      "max": 160000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "agriculturist",
+    "name": "Agriculturist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Agriculturist",
+      "Agricultural Scientist",
+      "Agronomist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "agriculturist",
+    "description": "Agriculturists apply scientific principles to farming and crop production, researching methods to improve yield, quality, and sustainability. A bachelor's degree in agriculture or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Agriculture",
+      "Agricultural Science",
+      "Agronomy",
+      "Crop Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to agricultural science",
+      "Role is farm labor or operations rather than agricultural science",
+      "Job duties don't involve scientific research or application"
+    ],
+    "employerLetterTips": [
+      "Detail scientific agricultural research or advisory duties",
+      "Reference the applicant's agriculture or agronomy degree",
+      "Distinguish from farm management, labor, or equipment operation"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 85000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "animal-breeder",
+    "name": "Animal Breeder",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Animal Breeder",
+      "Breeding Specialist",
+      "Livestock Geneticist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "animal-breeder",
+    "description": "Animal Breeders apply genetics and animal science to select and breed animals for desirable characteristics. A bachelor's degree in animal science or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Animal Science",
+      "Animal Genetics",
+      "Zoology",
+      "Veterinary Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to animal science or genetics",
+      "Role is animal caretaker rather than breeding specialist",
+      "No evidence of applying scientific breeding principles"
+    ],
+    "employerLetterTips": [
+      "Detail scientific breeding program responsibilities and methodologies",
+      "Reference the applicant's animal science or genetics degree",
+      "Describe the breeding objectives and genetic selection criteria"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 75000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "animal-scientist",
+    "name": "Animal Scientist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Animal Scientist",
+      "Livestock Researcher",
+      "Animal Nutrition Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "animal-scientist",
+    "description": "Animal Scientists conduct research on the genetics, nutrition, reproduction, and growth of domestic farm animals. A bachelor's degree in animal science or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Animal Science",
+      "Animal Nutrition",
+      "Livestock Science",
+      "Zoology"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to animal science",
+      "Role is animal caretaker or farm worker rather than scientist",
+      "Job duties don't involve scientific research"
+    ],
+    "employerLetterTips": [
+      "Detail animal science research duties and methodologies",
+      "Reference the applicant's animal science degree",
+      "Describe specific research projects and scientific objectives"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 85000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "apiculturist",
+    "name": "Apiculturist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Apiculturist",
+      "Bee Scientist",
+      "Apiary Researcher"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "apiculturist",
+    "description": "Apiculturists study honeybees and their management, including bee biology, behavior, pollination, and honey production. A bachelor's degree in entomology, biology, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Entomology",
+      "Biology",
+      "Agricultural Science",
+      "Apiculture"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to entomology or biology",
+      "Role is beekeeper rather than apiculture scientist",
+      "No evidence of scientific research or study"
+    ],
+    "employerLetterTips": [
+      "Detail scientific apiculture research or advisory duties",
+      "Reference the applicant's entomology or biology degree",
+      "Distinguish from commercial beekeeping or honey production operations"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 70000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "astronomer",
+    "name": "Astronomer",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Astronomer",
+      "Astrophysicist",
+      "Research Astronomer"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "astronomer",
+    "description": "Astronomers study celestial objects and phenomena using advanced mathematics, physics, and specialized instruments. A bachelor's degree in astronomy, astrophysics, or physics is required under USMCA.",
+    "qualifyingDegrees": [
+      "Astronomy",
+      "Astrophysics",
+      "Physics",
+      "Planetary Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to astronomy or physics",
+      "Role is planetarium educator rather than research astronomer",
+      "Job duties don't involve astronomical research or observation"
+    ],
+    "employerLetterTips": [
+      "Detail astronomical research duties and methodologies",
+      "Reference the applicant's astronomy or physics degree",
+      "Describe specific research projects, observatories, or instruments used"
+    ],
+    "averageSalary": {
+      "min": 70000,
+      "max": 130000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "biochemist",
+    "name": "Biochemist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Biochemist",
+      "Molecular Biologist",
+      "Research Biochemist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "biochemist",
+    "description": "Biochemists study the chemical and physical principles of living things and biological processes. A bachelor's degree in biochemistry, molecular biology, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Biochemistry",
+      "Molecular Biology",
+      "Chemistry",
+      "Biological Chemistry"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to biochemistry or molecular biology",
+      "Role is lab technician rather than research biochemist",
+      "Job duties don't involve biochemical research or analysis"
+    ],
+    "employerLetterTips": [
+      "Detail biochemical research duties and laboratory methodologies",
+      "Reference the applicant's biochemistry or molecular biology degree",
+      "Describe specific research projects and scientific objectives"
+    ],
+    "averageSalary": {
+      "min": 60000,
+      "max": 110000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "biologist",
+    "name": "Biologist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Biologist",
+      "Research Biologist",
+      "Life Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "biologist",
+    "description": "Biologists study living organisms and their relationship to the environment, conducting research in areas such as ecology, genetics, and microbiology. A bachelor's degree in biology or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Biology",
+      "Ecology",
+      "Microbiology",
+      "Marine Biology"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to biological sciences",
+      "Role is lab assistant rather than research biologist",
+      "Job duties don't involve biological research or scientific analysis"
+    ],
+    "employerLetterTips": [
+      "Detail biological research duties and methodologies",
+      "Reference the applicant's biology degree and area of specialization",
+      "Describe specific research projects and scientific objectives"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 100000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "chemist",
+    "name": "Chemist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Chemist",
+      "Analytical Chemist",
+      "Research Chemist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "chemist",
+    "description": "Chemists study substances at the atomic and molecular level and analyze the ways in which they interact with one another. A bachelor's degree in chemistry or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Chemistry",
+      "Analytical Chemistry",
+      "Organic Chemistry",
+      "Chemical Engineering"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to chemistry",
+      "Role is lab technician rather than research chemist",
+      "Job duties don't involve chemical research or analysis"
+    ],
+    "employerLetterTips": [
+      "Detail chemical research or analytical duties and methodologies",
+      "Reference the applicant's chemistry degree",
+      "Describe specific research projects, laboratory techniques, or analytical methods"
+    ],
+    "averageSalary": {
+      "min": 60000,
+      "max": 110000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "dairy-scientist",
+    "name": "Dairy Scientist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Dairy Scientist",
+      "Dairy Researcher",
+      "Dairy Technologist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "dairy-scientist",
+    "description": "Dairy Scientists research and develop methods to improve dairy production, processing, and product quality. A bachelor's degree in dairy science, food science, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Dairy Science",
+      "Food Science",
+      "Animal Science",
+      "Agricultural Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to dairy or food science",
+      "Role is dairy farm operations rather than scientific research",
+      "Job duties don't involve scientific research or analysis"
+    ],
+    "employerLetterTips": [
+      "Detail dairy science research duties and methodologies",
+      "Reference the applicant's dairy science or food science degree",
+      "Distinguish from dairy farm management or production operations"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 85000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "entomologist",
+    "name": "Entomologist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Entomologist",
+      "Insect Scientist",
+      "Pest Researcher"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "entomologist",
+    "description": "Entomologists study insects and their relationship to humans, the environment, and other organisms. A bachelor's degree in entomology, biology, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Entomology",
+      "Biology",
+      "Zoology",
+      "Agricultural Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to entomology or biology",
+      "Role is pest control technician rather than research entomologist",
+      "Job duties don't involve scientific research on insects"
+    ],
+    "employerLetterTips": [
+      "Detail entomological research duties and methodologies",
+      "Reference the applicant's entomology or biology degree",
+      "Distinguish from pest control, extermination, or agricultural labor"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 85000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "epidemiologist",
+    "name": "Epidemiologist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Epidemiologist",
+      "Public Health Scientist",
+      "Disease Researcher"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "epidemiologist",
+    "description": "Epidemiologists investigate patterns and causes of disease and injury in humans, developing means for prevention. A bachelor's degree in epidemiology, public health, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Epidemiology",
+      "Public Health",
+      "Biostatistics",
+      "Health Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to epidemiology or public health",
+      "Role is health educator rather than epidemiologist",
+      "Job duties don't involve disease investigation or epidemiological research"
+    ],
+    "employerLetterTips": [
+      "Detail epidemiological research and disease investigation duties",
+      "Reference the applicant's epidemiology or public health degree",
+      "Describe specific research projects, surveillance systems, or outbreak investigations"
+    ],
+    "averageSalary": {
+      "min": 65000,
+      "max": 115000
+    },
+    "demandLevel": "medium",
+    "juneUpdate": null
+  },
+  {
+    "id": "geneticist",
+    "name": "Geneticist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Geneticist",
+      "Genetic Researcher",
+      "Genomics Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "geneticist",
+    "description": "Geneticists study genes and heredity in living organisms, researching genetic variation, inheritance patterns, and molecular genetics. A bachelor's degree in genetics, biology, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Genetics",
+      "Molecular Biology",
+      "Genomics",
+      "Biology"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to genetics or molecular biology",
+      "Role is lab technician rather than research geneticist",
+      "Job duties don't involve genetic research or analysis"
+    ],
+    "employerLetterTips": [
+      "Detail genetic research duties and laboratory methodologies",
+      "Reference the applicant's genetics or molecular biology degree",
+      "Describe specific research projects and genetic analysis techniques"
+    ],
+    "averageSalary": {
+      "min": 65000,
+      "max": 115000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "geochemist",
+    "name": "Geochemist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Geochemist",
+      "Geochemical Analyst",
+      "Earth Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "geochemist",
+    "description": "Geochemists study the chemical composition and processes of the earth, including rocks, minerals, and natural waters. A bachelor's degree in geochemistry, geology, or chemistry is required under USMCA.",
+    "qualifyingDegrees": [
+      "Geochemistry",
+      "Geology",
+      "Chemistry",
+      "Earth Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to geochemistry or earth sciences",
+      "Role is mining operations rather than geochemical research",
+      "Job duties don't involve geochemical analysis or research"
+    ],
+    "employerLetterTips": [
+      "Detail geochemical research or analytical duties",
+      "Reference the applicant's geochemistry or geology degree",
+      "Describe specific research projects, field work, or analytical methods"
+    ],
+    "averageSalary": {
+      "min": 60000,
+      "max": 110000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "geologist",
+    "name": "Geologist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Geologist",
+      "Geological Scientist",
+      "Exploration Geologist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "geologist",
+    "description": "Geologists study the solid and liquid matter that constitutes the earth, examining rocks, minerals, and the processes that shape the planet. A bachelor's degree in geology or a related earth science is required under USMCA.",
+    "qualifyingDegrees": [
+      "Geology",
+      "Earth Science",
+      "Geological Engineering",
+      "Geoscience"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to geology or earth sciences",
+      "Role is mining or drilling operations rather than geological science",
+      "Job duties don't involve geological research or analysis"
+    ],
+    "employerLetterTips": [
+      "Detail geological research, survey, or analytical duties",
+      "Reference the applicant's geology degree and any professional registration",
+      "Describe specific geological projects, field work, or analytical methods"
+    ],
+    "averageSalary": {
+      "min": 60000,
+      "max": 115000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "geophysicist",
+    "name": "Geophysicist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Geophysicist",
+      "Seismologist",
+      "Geophysical Researcher"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "geophysicist",
+    "description": "Geophysicists study the physical properties and processes of the earth using gravity, magnetic, seismic, and electrical methods. A bachelor's degree in geophysics, physics, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Geophysics",
+      "Physics",
+      "Earth Science",
+      "Seismology"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to geophysics or physics",
+      "Role is field technician rather than research geophysicist",
+      "Job duties don't involve geophysical research or analysis"
+    ],
+    "employerLetterTips": [
+      "Detail geophysical research or survey duties and methodologies",
+      "Reference the applicant's geophysics or physics degree",
+      "Describe specific geophysical methods, instruments, or research projects"
+    ],
+    "averageSalary": {
+      "min": 65000,
+      "max": 120000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "horticulturist",
+    "name": "Horticulturist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Horticulturist",
+      "Plant Scientist",
+      "Horticultural Researcher"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "horticulturist",
+    "description": "Horticulturists study and manage the cultivation of fruits, vegetables, flowers, and ornamental plants. A bachelor's degree in horticulture, plant science, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Horticulture",
+      "Plant Science",
+      "Botany",
+      "Agricultural Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to horticulture or plant science",
+      "Role is gardener or landscaper rather than horticultural scientist",
+      "Job duties don't involve scientific research or horticultural management"
+    ],
+    "employerLetterTips": [
+      "Detail horticultural research or management duties",
+      "Reference the applicant's horticulture or plant science degree",
+      "Distinguish from gardening, landscaping, or nursery labor"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 75000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "meteorologist",
+    "name": "Meteorologist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Meteorologist",
+      "Atmospheric Scientist",
+      "Weather Researcher"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "meteorologist",
+    "description": "Meteorologists study atmospheric phenomena and interpret weather data to prepare forecasts and advisories. A bachelor's degree in meteorology, atmospheric science, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Meteorology",
+      "Atmospheric Science",
+      "Climate Science",
+      "Physics"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to meteorology or atmospheric science",
+      "Role is weather presenter rather than research meteorologist",
+      "Job duties don't involve atmospheric research or scientific forecasting"
+    ],
+    "employerLetterTips": [
+      "Detail meteorological research or forecasting duties",
+      "Reference the applicant's meteorology or atmospheric science degree",
+      "Describe specific research projects, forecasting methods, or instruments used"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 100000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "pharmacologist",
+    "name": "Pharmacologist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Pharmacologist",
+      "Drug Researcher",
+      "Clinical Pharmacologist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "pharmacologist",
+    "description": "Pharmacologists study the effects of drugs and chemicals on biological systems, conducting research to develop new medications and therapies. A bachelor's degree in pharmacology or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Pharmacology",
+      "Pharmaceutical Science",
+      "Biochemistry",
+      "Biology"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to pharmacology",
+      "Role is pharmacy technician rather than research pharmacologist",
+      "Job duties don't involve drug research or pharmacological analysis"
+    ],
+    "employerLetterTips": [
+      "Detail pharmacological research duties and methodologies",
+      "Reference the applicant's pharmacology degree",
+      "Distinguish from pharmacy practice, pharmaceutical sales, or lab technician roles"
+    ],
+    "averageSalary": {
+      "min": 65000,
+      "max": 120000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "physicist",
+    "name": "Physicist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Physicist",
+      "Research Physicist",
+      "Applied Physicist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "physicist",
+    "description": "Physicists study the fundamental principles governing matter, energy, space, and time through theoretical and experimental research. A bachelor's degree in physics or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Physics",
+      "Applied Physics",
+      "Engineering Physics",
+      "Astrophysics"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to physics",
+      "Role is engineering or technician rather than physics research",
+      "Job duties don't involve physics research or scientific analysis"
+    ],
+    "employerLetterTips": [
+      "Detail physics research duties and methodologies",
+      "Reference the applicant's physics degree and area of specialization",
+      "Describe specific research projects, experiments, or theoretical work"
+    ],
+    "averageSalary": {
+      "min": 70000,
+      "max": 130000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "plant-breeder",
+    "name": "Plant Breeder",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Plant Breeder",
+      "Plant Geneticist",
+      "Crop Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "plant-breeder",
+    "description": "Plant Breeders apply genetics and plant science to develop new plant varieties with improved characteristics such as yield, disease resistance, and quality. A bachelor's degree in plant science or genetics is required under USMCA.",
+    "qualifyingDegrees": [
+      "Plant Science",
+      "Plant Genetics",
+      "Agronomy",
+      "Horticulture"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to plant science or genetics",
+      "Role is farm worker rather than plant breeding scientist",
+      "No evidence of applying scientific breeding principles"
+    ],
+    "employerLetterTips": [
+      "Detail plant breeding research duties and genetic selection methodologies",
+      "Reference the applicant's plant science or genetics degree",
+      "Describe specific breeding programs, crop varieties, or research objectives"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 90000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "poultry-scientist",
+    "name": "Poultry Scientist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Poultry Scientist",
+      "Poultry Researcher",
+      "Avian Scientist"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "poultry-scientist",
+    "description": "Poultry Scientists research the breeding, feeding, management, and diseases of poultry to improve production and product quality. A bachelor's degree in poultry science, animal science, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Poultry Science",
+      "Animal Science",
+      "Agricultural Science",
+      "Veterinary Science"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to poultry or animal science",
+      "Role is poultry farm operations rather than scientific research",
+      "Job duties don't involve scientific research or analysis"
+    ],
+    "employerLetterTips": [
+      "Detail poultry science research duties and methodologies",
+      "Reference the applicant's poultry science or animal science degree",
+      "Distinguish from poultry farm management or production operations"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 85000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "soil-scientist",
+    "name": "Soil Scientist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Soil Scientist",
+      "Pedologist",
+      "Soil Researcher"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "soil-scientist",
+    "description": "Soil Scientists study the physical, chemical, and biological properties of soils and their management for agriculture, environmental protection, and land use planning. A bachelor's degree in soil science or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Soil Science",
+      "Earth Science",
+      "Environmental Science",
+      "Agronomy"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to soil science or earth sciences",
+      "Role is landscaping or groundskeeping rather than soil research",
+      "Job duties don't involve scientific soil analysis or research"
+    ],
+    "employerLetterTips": [
+      "Detail soil science research or analytical duties",
+      "Reference the applicant's soil science or earth science degree",
+      "Describe specific research projects, field work, or soil analysis methods"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 85000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "zoologist",
+    "name": "Zoologist",
+    "category": "Scientist",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Zoologist",
+      "Wildlife Biologist",
+      "Animal Researcher"
+    ],
+    "notes": "",
+    "diplomaAlternative": false,
+    "slug": "zoologist",
+    "description": "Zoologists study animals and their behavior, genetics, life processes, and ecosystems. A bachelor's degree in zoology, biology, or a related field is required under USMCA.",
+    "qualifyingDegrees": [
+      "Zoology",
+      "Biology",
+      "Wildlife Biology",
+      "Ecology"
+    ],
+    "commonDenialReasons": [
+      "Degree is unrelated to zoology or biology",
+      "Role is zookeeper or animal caretaker rather than research zoologist",
+      "Job duties don't involve scientific research or analysis"
+    ],
+    "employerLetterTips": [
+      "Detail zoological research duties and methodologies",
+      "Reference the applicant's zoology or biology degree",
+      "Distinguish from animal caretaking, zookeeping, or wildlife management labor"
+    ],
+    "averageSalary": {
+      "min": 50000,
+      "max": 85000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "college-teacher",
+    "name": "College Teacher",
+    "category": "Teacher",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "College Professor",
+      "College Instructor",
+      "Lecturer"
+    ],
+    "notes": "K-12 teachers are NOT eligible for TN status",
+    "diplomaAlternative": false,
+    "slug": "college-teacher",
+    "description": "College Teachers instruct students at community colleges and similar post-secondary institutions. K-12 teachers are NOT eligible for TN status — only post-secondary educators qualify under USMCA.",
+    "qualifyingDegrees": [
+      "Any bachelor's degree in the teaching subject area",
+      "Education with subject specialization"
+    ],
+    "commonDenialReasons": [
+      "Position is at a K-12 institution (not eligible)",
+      "Degree is unrelated to the subject being taught",
+      "Role is administrative rather than teaching"
+    ],
+    "employerLetterTips": [
+      "Confirm the institution is a post-secondary college",
+      "Detail the courses and subjects to be taught",
+      "Reference the applicant's degree in the relevant subject area"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 80000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "seminary-teacher",
+    "name": "Seminary Teacher",
+    "category": "Teacher",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "Seminary Professor",
+      "Seminary Instructor",
+      "Theology Teacher"
+    ],
+    "notes": "K-12 teachers are NOT eligible for TN status",
+    "diplomaAlternative": false,
+    "slug": "seminary-teacher",
+    "description": "Seminary Teachers instruct students at theological seminaries and religious educational institutions at the post-secondary level. K-12 teachers are NOT eligible for TN status.",
+    "qualifyingDegrees": [
+      "Theology",
+      "Divinity",
+      "Religious Studies",
+      "Biblical Studies"
+    ],
+    "commonDenialReasons": [
+      "Position is at a K-12 institution (not eligible)",
+      "Degree is unrelated to theology or religious studies",
+      "Role is pastoral or administrative rather than teaching"
+    ],
+    "employerLetterTips": [
+      "Confirm the institution is a post-secondary seminary",
+      "Detail the theological courses and subjects to be taught",
+      "Reference the applicant's theology or divinity degree"
+    ],
+    "averageSalary": {
+      "min": 45000,
+      "max": 75000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  },
+  {
+    "id": "university-teacher",
+    "name": "University Teacher",
+    "category": "Teacher",
+    "minEducation": "Bachelor's degree",
+    "altCredentials": "",
+    "commonTitles": [
+      "University Professor",
+      "Assistant Professor",
+      "Associate Professor",
+      "Lecturer"
+    ],
+    "notes": "K-12 teachers are NOT eligible for TN status",
+    "diplomaAlternative": false,
+    "slug": "university-teacher",
+    "description": "University Teachers instruct and conduct research at universities and degree-granting post-secondary institutions. K-12 teachers are NOT eligible for TN status — only post-secondary educators qualify under USMCA.",
+    "qualifyingDegrees": [
+      "Any bachelor's degree in the teaching subject area",
+      "Master's or doctoral degree in the teaching subject area"
+    ],
+    "commonDenialReasons": [
+      "Position is at a K-12 institution (not eligible)",
+      "Degree is unrelated to the subject being taught",
+      "Role is administrative rather than teaching or research"
+    ],
+    "employerLetterTips": [
+      "Confirm the institution is a degree-granting university",
+      "Detail the courses, subjects, and any research duties",
+      "Reference the applicant's advanced degree in the relevant subject area"
+    ],
+    "averageSalary": {
+      "min": 55000,
+      "max": 120000
+    },
+    "demandLevel": "low",
+    "juneUpdate": null
+  }
+]
