@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -18,6 +19,10 @@ export default function TNvsH1BBlogPost() {
       lastUpdated="April 2026"
     >
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'TN Visa vs H-1B in 2026: Complete Comparison After the $100K Fee', datePublished: '2026-04-30', dateModified: '2026-04-30', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=400&fit=crop" alt="Comparing visa options" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
 
       <Callout type="warning" title="2026 Update: H-1B Costs Have Skyrocketed">
         The new asylum-funding fee adds up to $75,000 on top of existing H-1B costs. Total employer cost now exceeds $100K in many cases.

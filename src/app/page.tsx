@@ -69,7 +69,7 @@ export default function Home() {
           <Reveal variant="fadeUp" delay={0.1}>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
               Your Complete Guide to{' '}
-              <span className="gradient-text">Working in the USA</span>
+              <span className="usa-text">Working in the USA</span> 🗽
             </h1>
           </Reveal>
           <Reveal variant="fadeUp" delay={0.2}>
@@ -178,7 +178,7 @@ export default function Home() {
             {[
               { step: '1', title: 'Check Your Eligibility', desc: 'Use our free tool to see if your profession and degree qualify for TN status under USMCA.' },
               { step: '2', title: 'Prepare Your Application', desc: 'Build your employer letter, organise documents, and prepare for the border interview.' },
-              { step: '3', title: 'Apply & Get Approved', desc: 'Apply at the border for same-day approval, or file I-129 with USCIS by mail.' },
+              { step: '3', title: 'Apply & Get Approved 🗽', desc: 'Apply at the border for same-day approval, or file I-129 with USCIS by mail.' },
             ].map(item => (
               <StaggerItem key={item.step} className="text-center">
                 <div className="w-12 h-12 rounded-full gradient-bg text-white text-xl font-bold flex items-center justify-center mx-auto mb-4">{item.step}</div>

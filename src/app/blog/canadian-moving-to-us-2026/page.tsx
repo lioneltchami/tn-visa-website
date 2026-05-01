@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -19,6 +20,10 @@ export default function MovingFinancialGuideBlogPost() {
       lastUpdated="April 2026"
     >
       <AffiliateDisclosure />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&h=400&fit=crop" alt="City skyline" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
 
       <Callout type="info" title="Before You Move">
         Start your financial prep 2–3 months before your move date. Some steps — like building US credit — are much easier to start from Canada.

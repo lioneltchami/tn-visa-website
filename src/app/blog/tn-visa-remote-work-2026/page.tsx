@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -16,6 +17,10 @@ export default function RemoteWorkBlogPost() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'Remote Work Rules', href: '/blog/tn-visa-remote-work-2026' }]}
       lastUpdated="April 2026"
     >
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1521898284481-a5ec348cb555?w=1200&h=400&fit=crop" alt="Remote work from home" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
+
       <Callout type="danger" title="The Short Answer: No">
         You cannot work remotely from Canada on a TN visa. Doing so violates the terms of your status and creates serious tax and immigration consequences.
       </Callout>

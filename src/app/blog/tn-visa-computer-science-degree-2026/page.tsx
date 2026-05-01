@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -18,6 +19,10 @@ export default function CSDegreeBlogPost() {
       lastUpdated="April 2026"
     >
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'Can You Get a TN Visa with a Computer Science Degree in 2026?', datePublished: '2026-04-28', dateModified: '2026-04-28', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=400&fit=crop" alt="Computer science and programming" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
 
       <Callout type="danger" title="Key Change: CS ≠ Engineering">
         As of June 2025, USCIS no longer accepts Computer Science degrees for the Engineer TN category. This affects thousands of Canadian tech workers.

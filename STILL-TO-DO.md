@@ -17,31 +17,25 @@ RESEND_API_KEY=re_your-resend-api-key
 ```
 
 ### 2. Supabase Database Setup
-Run these SQL files in your Supabase dashboard (SQL Editor):
+Run these in your Supabase dashboard (Dashboard → SQL Editor):
 
-**a) Main schema** — run `supabase/schema.sql`
-- Creates: profiles, companies, documents, work_history tables
-- Sets up RLS policies, indexes, triggers
-- Creates the documents storage bucket
+**Step 1: Run the main schema**
+- Open `supabase/schema-clean.sql` and run the ENTIRE file in the SQL editor
+- This creates ALL 8 tables, indexes, RLS policies, triggers, and the storage bucket
+- Tables: profiles, companies, documents, work_history, subscribers, tn_status, experiences, jobs
 
-**b) pgvector for AI chatbot** — run `supabase/migrations/add_embeddings.sql`
-- Enables the vector extension
-- Creates: content_embeddings table
-- Creates: match_content similarity search function
+**Step 2: Run the embeddings migration (for AI chatbot)**
+- Open `supabase/migrations/embeddings-clean.sql` and run it
+- This enables pgvector and creates the content_embeddings table + search function
+- Note: pgvector must be enabled in your Supabase project (Dashboard → Database → Extensions → search "vector" → enable)
 
-**c) Subscribers table** — already appended to schema.sql, but if you ran schema.sql before the newsletter was added, run this separately:
+**Step 3: After ingesting chatbot content (step 3 below), run this manually:**
 ```sql
-create table public.subscribers (
-  id uuid default gen_random_uuid() primary key,
-  email text not null unique,
-  name text,
-  interests text[] default '{}',
-  subscribed_at timestamptz default now(),
-  unsubscribed_at timestamptz
-);
-alter table public.subscribers enable row level security;
-create policy "Anyone can subscribe" on public.subscribers for insert with check (true);
+create index on public.content_embeddings using ivfflat (embedding extensions.vector_cosine_ops) with (lists = 10);
 ```
+This index speeds up similarity search but requires data in the table first.
+
+**Important:** Use `schema-clean.sql` NOT `schema.sql`. The clean version fixes duplicate constraints, adds missing RLS policies for unsubscribe, and uses `ON CONFLICT` for the storage bucket.
 
 ### 3. Ingest Content for AI Chatbot
 After steps 1 and 2:
@@ -58,16 +52,53 @@ Cost: ~$0.01 in OpenAI credits. Takes ~1-2 minutes.
   - Add the DNS records Resend gives you (SPF, DKIM, DMARC)
   - Until verified, emails send from `onboarding@resend.dev` (fine for testing)
 
-### 5. Domain & Deployment
-- Buy `tnvisaguide.ca` if not already owned
-- Deploy on Vercel:
+### 5. Domain & Deployment (Cloudflare + Vercel)
+
+**a) Buy your domain:**
+- Go to [Cloudflare Registrar](https://dash.cloudflare.com) (cheapest — sells at cost)
+- Or use Namecheap/Porkbun
+- Buy `tnvisaguide.ca` (and optionally `tnvisaguide.com` as redirect)
+
+**b) Set up Cloudflare (free plan):**
+- Add your domain to Cloudflare at dash.cloudflare.com
+- Update your domain's nameservers to Cloudflare's (registrar will show you how)
+- Wait for DNS propagation (5-30 minutes)
+- Set SSL/TLS mode to **"Full (strict)"** (Settings → SSL/TLS)
+- Enable **Web Analytics** (free, no JS needed — Analytics → Web Analytics)
+- Enable **Bot Fight Mode** (Security → Bots)
+
+**c) Deploy on Vercel:**
+- Push your code to GitHub:
   ```bash
   git add -A && git commit -m "feat: complete TN visa guide" && git push
   ```
-  - Connect repo at vercel.com/new
-  - Add ALL env vars from `.env.local` to Vercel project settings
-  - Point tnvisaguide.ca DNS to Vercel
-  - SSL is automatic
+- Go to [vercel.com/new](https://vercel.com/new) and import your GitHub repo
+- Add ALL environment variables from `.env.local` to Vercel project settings:
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `OPENAI_API_KEY`
+  - `SUPABASE_SERVICE_ROLE_KEY`
+  - `RESEND_API_KEY`
+  - `STRIPE_SECRET_KEY` (when ready)
+  - `STRIPE_WEBHOOK_SECRET` (when ready)
+  - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (when ready)
+- Deploy (Vercel builds automatically)
+
+**d) Connect domain via Cloudflare DNS:**
+- In Cloudflare DNS settings, add these records:
+  - Type: `CNAME` | Name: `@` | Target: `cname.vercel-dns.com` | Proxy: ON (orange cloud)
+  - Type: `CNAME` | Name: `www` | Target: `cname.vercel-dns.com` | Proxy: ON (orange cloud)
+- In Vercel, go to your project → Settings → Domains → Add `tnvisaguide.ca` and `www.tnvisaguide.ca`
+- Vercel will verify the domain automatically
+
+**e) Verify everything works:**
+- Visit https://tnvisaguide.ca — should load your site
+- Check Cloudflare Analytics — should show traffic
+- Test the AI chatbot, email signup, and login flows
+
+**What you get for free:**
+- Cloudflare: DDoS protection, CDN, Web Analytics, WAF, Bot Management, SSL
+- Vercel: Full Next.js hosting, serverless functions, edge middleware, image optimization, 100GB bandwidth
 
 ---
 

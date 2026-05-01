@@ -1,175 +1,261 @@
 'use client';
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle, XCircle } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, ArrowRight, CheckCircle, XCircle, AlertTriangle, GraduationCap, Briefcase, MapPin, Search } from 'lucide-react';
 import clsx from 'clsx';
 import professions from '@/data/professions.json';
 import { trackEvent } from '@/hooks/useAnalytics';
 
-const educationLevels = ['High school', '2-year diploma', "Bachelor's", "Master's", 'Doctorate', 'Professional degree'];
-
 export default function EligibilityChecker() {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({ canadian: null as boolean | null, jobOffer: null as boolean | null, education: '', field: '', title: '' });
+  const [citizenship, setCitizenship] = useState<'canadian' | 'mexican' | 'other' | null>(null);
+  const [hasOffer, setHasOffer] = useState<boolean | null>(null);
+  const [education, setEducation] = useState('');
+  const [search, setSearch] = useState('');
+  const [selectedProfession, setSelectedProfession] = useState('');
 
-  const totalSteps = 5;
-  const progress = ((step + 1) / totalSteps) * 100;
+  const totalSteps = 4;
   const showResult = step === totalSteps;
 
+  const filtered = search.trim()
+    ? professions.filter(p => {
+        const q = search.toLowerCase();
+        return p.name.toLowerCase().includes(q) ||
+          p.commonTitles.some(t => t.toLowerCase().includes(q));
+      }).slice(0, 8)
+    : [];
+
+  const profession = professions.find(p => p.name === selectedProfession);
+
   const canNext = () => {
-    if (step === 0) return answers.canadian !== null;
-    if (step === 1) return answers.jobOffer !== null;
-    if (step === 2) return answers.education !== '';
-    if (step === 3) return answers.field.trim() !== '';
-    if (step === 4) return answers.title.trim() !== '';
+    if (step === 0) return citizenship !== null;
+    if (step === 1) return hasOffer !== null;
+    if (step === 2) return education !== '';
+    if (step === 3) return selectedProfession !== '';
     return false;
   };
 
-  const matchingProfessions = professions.filter(p => {
-    const q = (answers.field + ' ' + answers.title).toLowerCase();
-    return p.name.toLowerCase().includes(q) ||
-      p.commonTitles.some(t => t.toLowerCase().includes(answers.title.toLowerCase())) ||
-      p.commonTitles.some(t => t.toLowerCase().includes(answers.field.toLowerCase()));
-  });
+  const getResult = () => {
+    if (citizenship === 'other') return 'ineligible';
+    if (!hasOffer) return 'need-offer';
+    if (!profession) return 'no-match';
+    if (education === 'High school' && !profession.diplomaAlternative) return 'education-gap';
+    if (education === '2-year diploma' && !profession.diplomaAlternative && profession.minEducation.includes("Bachelor")) return 'education-gap';
+    return 'eligible';
+  };
 
-  const isDiploma = answers.education === '2-year diploma';
-  const diplomaProfessions = matchingProfessions.filter(p => p.diplomaAlternative);
+  const result = showResult ? getResult() : null;
 
-  const notEligible = answers.canadian === false || answers.jobOffer === false;
+  const optionCls = (selected: boolean) => clsx(
+    'p-4 rounded-xl border-2 font-medium transition-all text-left flex items-center gap-3',
+    selected ? 'border-accent bg-accent/10 text-accent' : 'border-border text-fg-secondary hover:border-border-hover'
+  );
 
   return (
     <div className="card p-6 sm:p-8">
       {!showResult && (
         <>
-          <div className="mb-6">
-            <div className="h-2 rounded-full bg-[var(--bg-tertiary)] overflow-hidden" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
-              <div className="h-full gradient-bg rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
-            </div>
-            <div className="flex justify-center gap-2 mt-3">
-              {Array.from({ length: totalSteps }).map((_, i) => (
-                <div key={i} className={clsx('w-2 h-2 rounded-full transition-colors', i <= step ? 'bg-[var(--accent)]' : 'bg-[var(--bg-tertiary)]')} />
-              ))}
-            </div>
+          {/* Progress */}
+          <div className="flex items-center gap-2 mb-8">
+            {Array.from({ length: totalSteps }).map((_, i) => (
+              <div key={i} className="flex-1 flex items-center gap-2">
+                <div className={clsx('w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0', i < step ? 'gradient-bg text-white' : i === step ? 'border-2 border-accent text-accent' : 'border-2 border-border text-fg-muted')}>
+                  {i < step ? '✓' : i + 1}
+                </div>
+                {i < totalSteps - 1 && <div className={clsx('h-0.5 flex-1 rounded', i < step ? 'bg-accent' : 'bg-border')} />}
+              </div>
+            ))}
           </div>
 
-          <div className="min-h-[200px]">
+          <div className="min-h-[280px]">
+            {/* Step 0: Citizenship */}
             {step === 0 && (
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-[var(--fg)]">Are you a Canadian citizen?</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {[true, false].map(val => (
-                    <button key={String(val)} onClick={() => setAnswers({ ...answers, canadian: val })}
-                      className={clsx('p-4 rounded-xl border-2 font-medium transition-all text-center',
-                        answers.canadian === val ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]' : 'border-[var(--border)] text-[var(--fg-secondary)] hover:border-[var(--border-hover)]'
-                      )}>{val ? 'Yes' : 'No'}</button>
+                <div className="flex items-center gap-2 mb-2">
+                  <MapPin className="w-5 h-5 text-accent" />
+                  <h3 className="text-xl font-bold text-fg">What is your citizenship?</h3>
+                </div>
+                <p className="text-sm text-fg-muted mb-4">TN visas are available to Canadian and Mexican citizens only.</p>
+                <div className="space-y-2">
+                  {([
+                    { value: 'canadian' as const, label: '🇨🇦 Canadian Citizen', desc: 'Apply at the border — same-day approval' },
+                    { value: 'mexican' as const, label: '🇲🇽 Mexican Citizen', desc: 'Apply at a US consulate' },
+                    { value: 'other' as const, label: '🌍 Other Nationality', desc: 'TN visa is not available' },
+                  ]).map(opt => (
+                    <button key={opt.value} onClick={() => setCitizenship(opt.value)} className={optionCls(citizenship === opt.value)}>
+                      <div>
+                        <p className="font-semibold">{opt.label}</p>
+                        <p className="text-xs text-fg-muted font-normal">{opt.desc}</p>
+                      </div>
+                    </button>
                   ))}
                 </div>
               </div>
             )}
 
+            {/* Step 1: Job Offer */}
             {step === 1 && (
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-[var(--fg)]">Do you have a job offer from a U.S. employer?</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {[true, false].map(val => (
-                    <button key={String(val)} onClick={() => setAnswers({ ...answers, jobOffer: val })}
-                      className={clsx('p-4 rounded-xl border-2 font-medium transition-all text-center',
-                        answers.jobOffer === val ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]' : 'border-[var(--border)] text-[var(--fg-secondary)] hover:border-[var(--border-hover)]'
-                      )}>{val ? 'Yes' : 'No'}</button>
-                  ))}
+                <div className="flex items-center gap-2 mb-2">
+                  <Briefcase className="w-5 h-5 text-accent" />
+                  <h3 className="text-xl font-bold text-fg">Do you have a job offer from a US employer?</h3>
+                </div>
+                <p className="text-sm text-fg-muted mb-4">You need a written offer from a US-based company before applying.</p>
+                <div className="space-y-2">
+                  <button onClick={() => setHasOffer(true)} className={optionCls(hasOffer === true)}>
+                    <div><p className="font-semibold">Yes, I have a job offer</p><p className="text-xs text-fg-muted font-normal">Written offer from a US employer</p></div>
+                  </button>
+                  <button onClick={() => setHasOffer(false)} className={optionCls(hasOffer === false)}>
+                    <div><p className="font-semibold">Not yet</p><p className="text-xs text-fg-muted font-normal">Still looking or in discussions</p></div>
+                  </button>
                 </div>
               </div>
             )}
 
+            {/* Step 2: Education */}
             {step === 2 && (
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-[var(--fg)]">What is your highest education level?</h3>
-                <div className="grid gap-2">
-                  {educationLevels.map(level => (
-                    <button key={level} onClick={() => setAnswers({ ...answers, education: level })}
-                      className={clsx('p-3 rounded-xl border-2 font-medium transition-all text-left',
-                        answers.education === level ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]' : 'border-[var(--border)] text-[var(--fg-secondary)] hover:border-[var(--border-hover)]'
-                      )}>{level}</button>
+                <div className="flex items-center gap-2 mb-2">
+                  <GraduationCap className="w-5 h-5 text-accent" />
+                  <h3 className="text-xl font-bold text-fg">What is your highest education?</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { value: 'High school', label: 'High School' },
+                    { value: '2-year diploma', label: 'College Diploma' },
+                    { value: "Bachelor's", label: "Bachelor's Degree" },
+                    { value: "Master's", label: "Master's Degree" },
+                    { value: 'Doctorate', label: 'Doctorate (PhD)' },
+                    { value: 'Professional', label: 'Professional (MD, JD, etc.)' },
+                  ].map(opt => (
+                    <button key={opt.value} onClick={() => setEducation(opt.value)}
+                      className={clsx('p-3 rounded-xl border-2 text-sm font-medium transition-all text-center',
+                        education === opt.value ? 'border-accent bg-accent/10 text-accent' : 'border-border text-fg-secondary hover:border-border-hover'
+                      )}>{opt.label}</button>
                   ))}
                 </div>
               </div>
             )}
 
+            {/* Step 3: Profession Search */}
             {step === 3 && (
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-[var(--fg)]">What field is your degree in?</h3>
-                <input type="text" value={answers.field} onChange={e => setAnswers({ ...answers, field: e.target.value })}
-                  aria-label="Degree field"
-                  placeholder="e.g. Computer Science (UofT), Engineering (Waterloo), Commerce (McGill)..."
-                  className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 text-lg text-[var(--fg)] placeholder:text-[var(--fg-muted)] focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-all" />
-              </div>
-            )}
-
-            {step === 4 && (
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-[var(--fg)]">What job title are you being offered?</h3>
-                <input type="text" value={answers.title} onChange={e => setAnswers({ ...answers, title: e.target.value })}
-                  aria-label="Job title"
-                  placeholder="e.g. Software Engineer, Accountant, Graphic Designer..."
-                  className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 text-lg text-[var(--fg)] placeholder:text-[var(--fg-muted)] focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-all" />
+                <div className="flex items-center gap-2 mb-2">
+                  <Search className="w-5 h-5 text-accent" />
+                  <h3 className="text-xl font-bold text-fg">Find your TN profession</h3>
+                </div>
+                <p className="text-sm text-fg-muted">Search by job title or profession name. There are 63 eligible professions.</p>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-fg-muted" />
+                  <input
+                    type="text"
+                    value={search}
+                    onChange={e => { setSearch(e.target.value); setSelectedProfession(''); }}
+                    placeholder="e.g. Software Engineer, Accountant, Nurse..."
+                    aria-label="Search professions"
+                    className="w-full pl-10 pr-4 py-3 rounded-lg border border-border bg-bg text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 ring-accent/30 focus:border-accent"
+                  />
+                </div>
+                {filtered.length > 0 && (
+                  <div className="space-y-1.5 max-h-64 overflow-y-auto">
+                    {filtered.map(p => (
+                      <button key={p.id} onClick={() => { setSelectedProfession(p.name); setSearch(p.name); }}
+                        className={clsx('w-full p-3 rounded-lg text-left transition-all flex items-center justify-between',
+                          selectedProfession === p.name ? 'bg-accent/10 border border-accent' : 'bg-bg-secondary hover:bg-bg-tertiary'
+                        )}>
+                        <div>
+                          <p className="font-medium text-fg text-sm">{p.name}</p>
+                          <p className="text-xs text-fg-muted">{p.commonTitles.slice(0, 3).join(', ')}</p>
+                        </div>
+                        {selectedProfession === p.name && <CheckCircle className="w-4 h-4 text-accent shrink-0" />}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {search.trim() && filtered.length === 0 && (
+                  <p className="text-sm text-fg-muted p-3 bg-bg-secondary rounded-lg">No matching professions found. <Link href="/professions" className="text-accent hover:underline">Browse all 63 professions</Link></p>
+                )}
+                {selectedProfession && profession && (
+                  <div className="p-3 rounded-lg bg-accent/5 border border-accent/20 text-sm">
+                    <p className="font-medium text-accent">{profession.name}</p>
+                    <p className="text-fg-muted text-xs mt-1">Requires: {profession.minEducation}{profession.altCredentials ? ` (or ${profession.altCredentials})` : ''}</p>
+                    {profession.juneUpdate && <p className="text-canadian text-xs mt-1">⚠️ Affected by June 2025 changes</p>}
+                  </div>
+                )}
               </div>
             )}
           </div>
 
-          <div className="flex justify-between mt-6 pt-4 border-t border-[var(--border)]">
-            <button onClick={() => setStep(step - 1)} disabled={step === 0}
-              className={clsx('flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all', step === 0 ? 'opacity-0 pointer-events-none' : 'text-[var(--fg-secondary)] hover:text-[var(--fg)] hover:bg-[var(--bg-secondary)]')}>
+          {/* Navigation */}
+          <div className="flex justify-between mt-6 pt-4 border-t border-border">
+            <button onClick={() => setStep(step - 1)} className={clsx('flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-fg-secondary hover:text-fg hover:bg-bg-secondary', step === 0 && 'opacity-0 pointer-events-none')}>
               <ArrowLeft className="w-4 h-4" /> Back
             </button>
-            <button onClick={() => { if (step === totalSteps - 1) trackEvent('eligibility_check_complete', { result: answers.canadian === false || answers.jobOffer === false ? 'not_eligible' : 'eligible' }); setStep(step + 1) }} disabled={!canNext()}
-              className={clsx('flex items-center gap-2 px-6 py-2.5 rounded-full font-medium transition-all', canNext() ? 'gradient-bg text-white hover:scale-105' : 'bg-[var(--bg-tertiary)] text-[var(--fg-muted)] cursor-not-allowed')}>
-              {step === totalSteps - 1 ? 'See Results' : 'Next'} <ArrowRight className="w-4 h-4" />
+            <button onClick={() => { if (step === totalSteps - 1) trackEvent('eligibility_check_complete', { result: citizenship === 'other' || !hasOffer ? 'not_eligible' : 'eligible' }); setStep(step + 1); }} disabled={!canNext()}
+              className={clsx('flex items-center gap-2 px-6 py-2.5 rounded-full font-medium transition-all', canNext() ? 'gradient-bg text-white hover:scale-105' : 'bg-bg-tertiary text-fg-muted cursor-not-allowed')}>
+              {step === totalSteps - 1 ? 'Check Eligibility' : 'Continue'} <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </>
       )}
 
+      {/* Results */}
       {showResult && (
-        <div className="space-y-4" aria-live="polite">
-          {notEligible ? (
-            <div className="rounded-xl p-6 bg-[var(--danger)]/10 border border-[var(--danger)]/20 flex items-start gap-4">
-              <XCircle className="w-7 h-7 text-[var(--danger)] shrink-0" />
-              <div>
-                <p className="text-lg font-semibold text-[var(--danger)]">Not Eligible</p>
-                <p className="text-sm text-[var(--fg-secondary)] mt-1">
-                  {answers.canadian === false ? 'TN visa is only available to Canadian and Mexican citizens.' : 'A job offer from a U.S. employer is required for TN visa status.'}
-                </p>
+        <div className="space-y-6" aria-live="polite">
+          {result === 'eligible' && (
+            <div className="rounded-xl p-6 bg-success/10 border border-success/20 text-center">
+              <CheckCircle className="w-12 h-12 text-success mx-auto mb-3" />
+              <p className="text-xl font-bold text-success">You&apos;re Likely Eligible!</p>
+              <p className="text-sm text-fg-secondary mt-2 max-w-md mx-auto">
+                Based on your answers, you may qualify for TN status as <strong>{selectedProfession}</strong>.
+                {citizenship === 'canadian' ? ' As a Canadian, you can apply at the border for same-day approval.' : ' As a Mexican citizen, you\'ll apply at a US consulate.'}
+              </p>
+            </div>
+          )}
+          {result === 'ineligible' && (
+            <div className="rounded-xl p-6 bg-danger/10 border border-danger/20 text-center">
+              <XCircle className="w-12 h-12 text-danger mx-auto mb-3" />
+              <p className="text-xl font-bold text-danger">Not Eligible for TN</p>
+              <p className="text-sm text-fg-secondary mt-2">TN visas are only available to Canadian and Mexican citizens. Consider H-1B, O-1, or other visa options.</p>
+            </div>
+          )}
+          {result === 'need-offer' && (
+            <div className="rounded-xl p-6 bg-warning/10 border border-warning/20 text-center">
+              <AlertTriangle className="w-12 h-12 text-warning mx-auto mb-3" />
+              <p className="text-xl font-bold text-warning">You Need a Job Offer First</p>
+              <p className="text-sm text-fg-secondary mt-2">TN visa requires a written job offer from a US employer. Browse our <Link href="/jobs" className="text-accent hover:underline">job board</Link> for TN-eligible positions.</p>
+            </div>
+          )}
+          {result === 'education-gap' && (
+            <div className="rounded-xl p-6 bg-warning/10 border border-warning/20 text-center">
+              <AlertTriangle className="w-12 h-12 text-warning mx-auto mb-3" />
+              <p className="text-xl font-bold text-warning">Education Gap</p>
+              <p className="text-sm text-fg-secondary mt-2"><strong>{selectedProfession}</strong> requires {profession?.minEducation}. Your current education may not meet the requirement. Consider credential evaluation or alternative professions.</p>
+            </div>
+          )}
+          {result === 'no-match' && (
+            <div className="rounded-xl p-6 bg-warning/10 border border-warning/20 text-center">
+              <AlertTriangle className="w-12 h-12 text-warning mx-auto mb-3" />
+              <p className="text-xl font-bold text-warning">No Profession Selected</p>
+              <p className="text-sm text-fg-secondary mt-2">Go back and search for your profession to get a complete assessment.</p>
+            </div>
+          )}
+
+          {/* Next Steps */}
+          {(result === 'eligible' || result === 'education-gap') && (
+            <div>
+              <p className="font-semibold text-fg mb-3">Your Next Steps</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <Link href={`/professions/${profession?.slug || ''}`} className="card card-interactive p-3 text-sm font-medium text-accent text-center">View {selectedProfession} Details</Link>
+                <Link href="/employer-letter" className="card card-interactive p-3 text-sm font-medium text-accent text-center">Prepare Employer Letter</Link>
+                <Link href="/border-interview" className="card card-interactive p-3 text-sm font-medium text-accent text-center">Border Interview Guide</Link>
+                <Link href="/fees" className="card card-interactive p-3 text-sm font-medium text-accent text-center">Calculate Costs</Link>
               </div>
             </div>
-          ) : (
-            <>
-              <div className="rounded-xl p-6 bg-[var(--success)]/10 border border-[var(--success)]/20 flex items-start gap-4">
-                <CheckCircle className="w-7 h-7 text-[var(--success)] shrink-0" />
-                <div>
-                  <p className="text-lg font-semibold text-[var(--success)]">Potentially Eligible!</p>
-                  <p className="text-sm text-[var(--fg-secondary)] mt-1">Based on your answers, you may qualify for TN visa status.</p>
-                </div>
-              </div>
-              {matchingProfessions.length > 0 && (
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-[var(--fg-secondary)]">Matching TN professions:</p>
-                  {matchingProfessions.map(p => (
-                    <div key={p.id} className="flex items-center justify-between p-3 rounded-lg bg-[var(--bg-secondary)]">
-                      <span className="font-medium text-[var(--fg)]">{p.name}</span>
-                      <span className="badge">{p.minEducation}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {isDiploma && diplomaProfessions.length > 0 && (
-                <div className="rounded-xl p-4 bg-[var(--accent)]/10 border border-[var(--accent)]/20">
-                  <p className="text-sm font-medium text-[var(--accent)]">These professions accept a diploma + 3 years experience:</p>
-                  <p className="text-sm text-[var(--fg-secondary)] mt-1">{diplomaProfessions.map(p => p.name).join(', ')}</p>
-                </div>
-              )}
-            </>
           )}
-          <button onClick={() => { setStep(0); setAnswers({ canadian: null, jobOffer: null, education: '', field: '', title: '' }); }}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-[var(--fg-secondary)] hover:text-[var(--fg)] hover:bg-[var(--bg-secondary)] transition-all">
+
+          <button onClick={() => { setStep(0); setCitizenship(null); setHasOffer(null); setEducation(''); setSearch(''); setSelectedProfession(''); }}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-fg-secondary hover:text-fg hover:bg-bg-secondary">
             <ArrowLeft className="w-4 h-4" /> Start Over
           </button>
         </div>
@@ -177,4 +263,3 @@ export default function EligibilityChecker() {
     </div>
   );
 }
-

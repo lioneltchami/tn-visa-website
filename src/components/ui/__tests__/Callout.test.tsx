@@ -23,6 +23,6 @@ describe('Callout', () => {
     expect(info.firstChild).toHaveClass('border-l-accent')
 
     const { container: danger } = render(<Callout type="danger">Danger</Callout>)
-    expect(danger.firstChild).toHaveClass('border-l-danger')
+    expect(danger.firstChild).toHaveClass('border-l-canadian')
   })
 })

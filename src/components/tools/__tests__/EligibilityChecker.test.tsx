@@ -3,48 +3,67 @@ import { describe, it, expect } from 'vitest'
 import EligibilityChecker from '../EligibilityChecker'
 
 describe('EligibilityChecker', () => {
-  it('renders first question', () => {
+  it('renders the first step asking about citizenship', () => {
     render(<EligibilityChecker />)
-    expect(screen.getByText('Are you a Canadian citizen?')).toBeInTheDocument()
+    expect(screen.getByText('What is your citizenship?')).toBeInTheDocument()
   })
 
-  it('progresses through steps when answering yes', () => {
+  it('shows three citizenship options', () => {
     render(<EligibilityChecker />)
-    fireEvent.click(screen.getByText('Yes'))
-    fireEvent.click(screen.getByText('Next'))
-    expect(screen.getByText('Do you have a job offer from a U.S. employer?')).toBeInTheDocument()
+    expect(screen.getByText(/Canadian Citizen/)).toBeInTheDocument()
+    expect(screen.getByText(/Mexican Citizen/)).toBeInTheDocument()
+    expect(screen.getByText(/Other Nationality/)).toBeInTheDocument()
   })
 
-  it('disables next when no answer selected', () => {
+  it('disables Continue when no option selected', () => {
     render(<EligibilityChecker />)
-    const nextBtn = screen.getByText('Next')
-    expect(nextBtn).toBeDisabled()
+    expect(screen.getByText('Continue')).toBeDisabled()
   })
 
-  it('enables next after selecting answer', () => {
+  it('enables Continue after selecting citizenship', () => {
     render(<EligibilityChecker />)
-    fireEvent.click(screen.getByText('Yes'))
-    const nextBtn = screen.getByText('Next')
-    expect(nextBtn).not.toBeDisabled()
+    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    expect(screen.getByText('Continue')).not.toBeDisabled()
   })
 
-  it('shows not eligible if not Canadian', () => {
+  it('progresses to job offer step', () => {
     render(<EligibilityChecker />)
-    // Step 1: Not Canadian
-    fireEvent.click(screen.getByText('No'))
-    fireEvent.click(screen.getByText('Next'))
-    // Step 2: Has job offer
-    fireEvent.click(screen.getByText('Yes'))
-    fireEvent.click(screen.getByText('Next'))
-    // Step 3: Education
-    fireEvent.click(screen.getByText("Bachelor's"))
-    fireEvent.click(screen.getByText('Next'))
-    // Step 4: Field
-    fireEvent.change(screen.getByPlaceholderText(/Computer Science/), { target: { value: 'Computer Science' } })
-    fireEvent.click(screen.getByText('Next'))
-    // Step 5: Title
-    fireEvent.change(screen.getByPlaceholderText(/Software Engineer/), { target: { value: 'Software Engineer' } })
-    fireEvent.click(screen.getByText('See Results'))
-    expect(screen.getByText('Not Eligible')).toBeInTheDocument()
+    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Continue'))
+    expect(screen.getByText(/Do you have a job offer/)).toBeInTheDocument()
+  })
+
+  it('progresses to education step', () => {
+    render(<EligibilityChecker />)
+    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Continue'))
+    fireEvent.click(screen.getByText(/Yes, I have a job offer/))
+    fireEvent.click(screen.getByText('Continue'))
+    expect(screen.getByText('What is your highest education?')).toBeInTheDocument()
+  })
+
+  it('progresses to profession search step', () => {
+    render(<EligibilityChecker />)
+    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Continue'))
+    fireEvent.click(screen.getByText(/Yes, I have a job offer/))
+    fireEvent.click(screen.getByText('Continue'))
+    fireEvent.click(screen.getByText("Bachelor's Degree"))
+    fireEvent.click(screen.getByText('Continue'))
+    expect(screen.getByText('Find your TN profession')).toBeInTheDocument()
+  })
+
+  it('shows search results when typing', () => {
+    render(<EligibilityChecker />)
+    // Navigate to step 3
+    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Continue'))
+    fireEvent.click(screen.getByText(/Yes, I have a job offer/))
+    fireEvent.click(screen.getByText('Continue'))
+    fireEvent.click(screen.getByText("Bachelor's Degree"))
+    fireEvent.click(screen.getByText('Continue'))
+    // Search
+    fireEvent.change(screen.getByLabelText('Search professions'), { target: { value: 'engineer' } })
+    expect(screen.getByText('Engineer')).toBeInTheDocument()
   })
 })

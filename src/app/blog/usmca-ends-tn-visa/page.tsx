@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -18,6 +19,10 @@ export default function USMCAEndsBlogPost() {
       lastUpdated="April 2026"
     >
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'What Happens to Your TN Visa if USMCA Ends?', datePublished: '2026-04-30', dateModified: '2026-04-30', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&h=400&fit=crop" alt="Trade agreement documents" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
 
       <Callout type="warning" title="July 2026: The First Joint Review">
         USMCA includes a mandatory joint review every 6 years. The first review is scheduled for July 2026. All three countries must agree to extend, or the agreement begins a 16-year sunset.

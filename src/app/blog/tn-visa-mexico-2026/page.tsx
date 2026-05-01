@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -16,6 +17,10 @@ export default function MexicoTNBlogPost() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'TN Visa for Mexicans', href: '/blog/tn-visa-mexico-2026' }]}
       lastUpdated="April 2026"
     >
+      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
+        <Image src="https://images.unsplash.com/photo-1518659526054-190340b32735?w=1200&h=400&fit=crop" alt="US consulate building" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
+      </div>
+
       <Callout type="warning" title="Key Difference: Visa Stamp Required">
         Unlike Canadians who apply at the border, Mexican citizens must go through consular processing at a US Embassy and obtain a visa stamp before entering the US.
       </Callout>
