@@ -15,7 +15,9 @@ export async function POST(req: Request) {
     const product = PRODUCTS[productId]
     if (!product) return NextResponse.json({ error: 'Invalid product' }, { status: 400 })
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      timeout: 15000,
+    })
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
