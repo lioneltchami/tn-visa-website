@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
-import Stripe from 'stripe'
 
 export const dynamic = 'force-dynamic'
+export const maxDuration = 15
 
 const PRODUCTS: Record<string, { name: string; price: number; description: string }> = {
   'interview-kit': { name: 'TN Visa Border Interview Kit', price: 4900, description: '30+ CBP questions with ideal answers, profession-specific prep, and emergency scenarios.' },
@@ -15,29 +15,33 @@ export async function POST(req: Request) {
     const product = PRODUCTS[productId]
     if (!product) return NextResponse.json({ error: 'Invalid product' }, { status: 400 })
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-      timeout: 15000,
+    const origin = req.headers.get('origin') || 'https://tnvisaguide.ca'
+
+    const res = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.STRIPE_SECRET_KEY}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        'mode': 'payment',
+        'payment_method_types[0]': 'card',
+        'line_items[0][price_data][currency]': 'usd',
+        'line_items[0][price_data][product_data][name]': product.name,
+        'line_items[0][price_data][product_data][description]': product.description,
+        'line_items[0][price_data][unit_amount]': product.price.toString(),
+        'line_items[0][quantity]': '1',
+        'success_url': `${origin}/products/success?session_id={CHECKOUT_SESSION_ID}`,
+        'cancel_url': `${origin}/products`,
+        'metadata[productId]': productId,
+      }),
     })
 
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      payment_method_types: ['card'],
-      line_items: [{
-        price_data: {
-          currency: 'usd',
-          product_data: { name: product.name, description: product.description },
-          unit_amount: product.price,
-        },
-        quantity: 1,
-      }],
-      success_url: `${req.headers.get('origin')}/products/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get('origin')}/products`,
-      metadata: { productId },
-    })
+    const data = await res.json()
+    if (!res.ok) return NextResponse.json({ error: 'Stripe error', detail: data.error?.message || 'Unknown' }, { status: 500 })
 
-    return NextResponse.json({ url: session.url })
+    return NextResponse.json({ url: data.url })
   } catch (err) {
-    console.error('Checkout error:', err)
     const message = err instanceof Error ? err.message : 'Unknown error'
     return NextResponse.json({ error: 'Failed to create checkout session', detail: message }, { status: 500 })
   }
