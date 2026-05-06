@@ -17,23 +17,30 @@ RESEND_API_KEY=re_your-resend-api-key
 ```
 
 ### 2. Supabase Database Setup
-Run these in your Supabase dashboard (Dashboard → SQL Editor):
+Run these in your Supabase dashboard (Dashboard → SQL Editor) **in this exact order:**
 
-**Step 1: Run the main schema**
-- Open `supabase/schema-clean.sql` and run the ENTIRE file in the SQL editor
-- This creates ALL 8 tables, indexes, RLS policies, triggers, and the storage bucket
-- Tables: profiles, companies, documents, work_history, subscribers, tn_status, experiences, jobs
-
-**Step 2: Run the embeddings migration (for AI chatbot)**
-- Open `supabase/migrations/embeddings-clean.sql` and run it
-- This enables pgvector and creates the content_embeddings table + search function
-- Note: pgvector must be enabled in your Supabase project (Dashboard → Database → Extensions → search "vector" → enable)
-
-**Step 3: After ingesting chatbot content (step 3 below), run this manually:**
-```sql
-create index on public.content_embeddings using ivfflat (embedding extensions.vector_cosine_ops) with (lists = 10);
 ```
-This index speeds up similarity search but requires data in the table first.
+┌─────────────────────────────────────────────────────────────────────┐
+│  SQL EXECUTION ORDER                                                │
+├─────────────────────────────────────────────────────────────────────┤
+│  1. supabase/schema-clean.sql                                       │
+│     → Creates ALL 8 tables, indexes, RLS policies, triggers         │
+│                                                                     │
+│  2. supabase/migrations/embeddings-clean.sql                        │
+│     → Enables pgvector, creates content_embeddings table            │
+│     → NOTE: Enable pgvector extension first in Supabase dashboard   │
+│       (Database → Extensions → search "vector" → enable)            │
+│                                                                     │
+│  3. supabase/migrations/add_job_sync_columns.sql                    │
+│     → Adds job sync columns (source, external_id, last_synced_at)   │
+│     → Creates indexes and constraints for external job sync         │
+│                                                                     │
+│  4. AFTER ingesting chatbot content (step 3 below), run:            │
+│     create index on public.content_embeddings                       │
+│       using ivfflat (embedding extensions.vector_cosine_ops)        │
+│       with (lists = 10);                                            │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
 **Important:** Use `schema-clean.sql` NOT `schema.sql`. The clean version fixes duplicate constraints, adds missing RLS policies for unsubscribe, and uses `ON CONFLICT` for the storage bucket.
 
@@ -280,13 +287,35 @@ c) **Test PWA:**
 ### 15. Job Board
 The job board is built (/jobs, /jobs/[slug], /post-job). You need to:
 
-a) **Run the jobs table SQL** in Supabase dashboard (appended to schema.sql)
+a) **Run the SQL migrations** — See Section 2 above for the complete SQL execution order.
+   Make sure you run all 3 files including `add_job_sync_columns.sql`.
 
-b) **Seed initial jobs:**
+b) **Set up JSearch API (for external job sync):**
+   - Sign up at [RapidAPI](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch)
+   - Subscribe to JSearch API (free tier: 100 requests/month)
+   - Get your API key from RapidAPI dashboard
+   - Add to Vercel environment variables:
+     - `JSEARCH_API_KEY=your-rapidapi-key`
+     - `SYNC_SECRET=<generate with: openssl rand -hex 32>`
+     - `CRON_SECRET=<same value as SYNC_SECRET for Vercel Cron>`
+
+c) **Test the sync endpoint locally:**
+   ```bash
+   curl -X POST http://localhost:3000/api/jobs/sync \
+     -H "Authorization: Bearer YOUR_SYNC_SECRET"
+   ```
+   - Should return: `{ success: true, inserted: N, skipped: N, failed: 0, errors: [] }`
+
+d) **Deploy and verify Vercel Cron:**
+   - The `vercel.json` configures daily sync at 6:00 AM UTC
+   - After deploy, check Vercel dashboard → Project → Settings → Cron Jobs
+   - You should see `/api/jobs/sync` scheduled
+
+e) **Seed initial jobs:**
    - Post a few example jobs yourself to populate the board
    - Reach out to TN-friendly companies (Shopify, Stripe, etc.) to post
 
-c) **Future: Implement paid tiers** (currently all free):
+f) **Future: Implement paid tiers** (currently all free):
    - Free: 1 active posting per company
    - Standard ($99/mo): 5 active postings
    - Premium ($299/mo): unlimited + featured placement
