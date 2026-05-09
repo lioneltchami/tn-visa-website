@@ -5,57 +5,80 @@ interface JobDescriptionProps {
 }
 
 export function JobDescription({ text }: JobDescriptionProps) {
-  // Split into paragraphs and process each
-  const paragraphs = text.split(/\n\n+/).filter(p => p.trim())
+  // Normalize bullet points and line breaks
+  const normalized = text
+    .replace(/\r\n/g, '\n')
+    .replace(/•\s*/g, '\n• ')  // Put bullets on new lines
+    .replace(/\n{3,}/g, '\n\n') // Max 2 newlines
+    .trim()
+
+  // Split into sections
+  const sections = normalized.split(/\n\n+/)
 
   return (
-    <div className="prose prose-neutral dark:prose-invert max-w-none">
-      {paragraphs.map((paragraph, i) => {
-        const trimmed = paragraph.trim()
+    <div className="space-y-4">
+      {sections.map((section, i) => {
+        const trimmed = section.trim()
+        if (!trimmed) return null
+
+        const lines = trimmed.split('\n').map(l => l.trim()).filter(Boolean)
         
-        // Check if it's a list (lines starting with •, -, *, or numbers)
-        const lines = trimmed.split('\n')
-        const isList = lines.length > 1 && lines.every(line => 
-          /^[\s]*[•\-\*\d\.]+[\s]/.test(line) || line.trim() === ''
-        )
-        
+        // Check if section is a bullet list
+        const bulletLines = lines.filter(line => /^[•\-\*]/.test(line))
+        const isList = bulletLines.length > 0 && bulletLines.length >= lines.length * 0.5
+
         if (isList) {
-          const items = lines
-            .map(line => line.replace(/^[\s]*[•\-\*\d\.]+[\s]*/, '').trim())
-            .filter(item => item)
+          // Separate header (if any) from list items
+          const headerLines: string[] = []
+          const listItems: string[] = []
+          
+          for (const line of lines) {
+            if (/^[•\-\*]/.test(line)) {
+              listItems.push(line.replace(/^[•\-\*]\s*/, ''))
+            } else if (listItems.length === 0) {
+              headerLines.push(line)
+            } else {
+              // Text after list starts - append to last item
+              listItems[listItems.length - 1] += ' ' + line
+            }
+          }
+
           return (
-            <ul key={i} className="list-disc pl-6 space-y-1 my-4">
-              {items.map((item, j) => (
-                <li key={j} className="text-fg-secondary">{item}</li>
-              ))}
-            </ul>
+            <div key={i}>
+              {headerLines.length > 0 && (
+                <p className="font-semibold text-fg mb-2">
+                  {headerLines.join(' ').replace(/:$/, '')}
+                </p>
+              )}
+              <ul className="list-disc pl-6 space-y-1">
+                {listItems.map((item, j) => (
+                  <li key={j} className="text-fg-secondary">{item}</li>
+                ))}
+              </ul>
+            </div>
           )
         }
-        
-        // Check if it looks like a header (short, ends with colon, or all caps)
+
+        // Check if it's a header (short, possibly ends with colon)
         const isHeader = (
-          trimmed.length < 60 && 
-          (trimmed.endsWith(':') || trimmed === trimmed.toUpperCase()) &&
-          !trimmed.includes('.')
+          lines.length === 1 &&
+          trimmed.length < 80 &&
+          !trimmed.includes('. ') &&
+          (/[A-Z]/.test(trimmed[0]) || trimmed.endsWith(':'))
         )
-        
+
         if (isHeader) {
           return (
-            <h3 key={i} className="font-semibold text-fg mt-6 mb-2">
+            <h3 key={i} className="font-semibold text-fg mt-2">
               {trimmed.replace(/:$/, '')}
             </h3>
           )
         }
-        
-        // Regular paragraph - preserve single line breaks within
+
+        // Regular paragraph
         return (
-          <p key={i} className="text-fg-secondary my-3 leading-relaxed">
-            {trimmed.split('\n').map((line, j, arr) => (
-              <span key={j}>
-                {line}
-                {j < arr.length - 1 && <br />}
-              </span>
-            ))}
+          <p key={i} className="text-fg-secondary leading-relaxed">
+            {lines.join(' ')}
           </p>
         )
       })}

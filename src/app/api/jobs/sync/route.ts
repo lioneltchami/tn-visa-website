@@ -180,6 +180,13 @@ async function handleSync(req: NextRequest) {
           continue
         }
 
+        // Skip non-US jobs
+        const country = (job.job_country as string) || ''
+        if (country && country !== 'US' && country !== 'United States') {
+          skipped++
+          continue
+        }
+
         const rawTitle = (job.job_title as string) || ''
         const rawDescription = (job.job_description as string) || ''
         const applyUrl = (job.job_apply_link as string) || (job.job_google_link as string) || ''
