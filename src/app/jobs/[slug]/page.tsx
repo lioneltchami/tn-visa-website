@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { logger } from '@/lib/logger'
+import { JobDescription } from '@/components/JobDescription'
 import { MapPin, DollarSign, Clock, ExternalLink, ArrowLeft, Star } from 'lucide-react'
 import clsx from 'clsx'
 import professions from '@/data/professions.json'
@@ -64,7 +65,7 @@ export default function JobDetailPage() {
           </a>
 
           <h2 className="text-lg font-semibold text-fg mb-3">Description</h2>
-          <p className="text-fg-secondary whitespace-pre-line mb-6">{job.description}</p>
+          <JobDescription text={job.description} />
 
           {job.requirements.length > 0 && (
             <>
