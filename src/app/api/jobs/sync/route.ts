@@ -6,7 +6,7 @@ import professions from '@/data/professions.json'
 export const maxDuration = 60
 
 // Minimum minutes between syncs (rate limiting)
-const MIN_SYNC_INTERVAL_MINUTES = 30
+const MIN_SYNC_INTERVAL_MINUTES = 1
 
 function slugify(text: string): string {
   return text.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
