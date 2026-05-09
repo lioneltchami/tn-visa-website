@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { logger } from '@/lib/logger'
 import { JobDescription } from '@/components/JobDescription'
+import { JobPostingSchema } from '@/components/StructuredData'
 import { MapPin, DollarSign, Clock, ExternalLink, ArrowLeft, Star } from 'lucide-react'
 import clsx from 'clsx'
 import professions from '@/data/professions.json'
@@ -43,9 +44,11 @@ export default function JobDetailPage() {
     : job.salary_max ? `Up to $${(job.salary_max/1000).toFixed(0)}K/year` : null
 
   return (
-    <div className="section-padding">
-      <div className="container-tight">
-        <Link href="/jobs" className="inline-flex items-center gap-1 text-sm text-accent mb-6"><ArrowLeft className="w-4 h-4" />Back to jobs</Link>
+    <>
+      <JobPostingSchema job={job} />
+      <div className="section-padding">
+        <div className="container-tight">
+          <Link href="/jobs" className="inline-flex items-center gap-1 text-sm text-accent mb-6"><ArrowLeft className="w-4 h-4" />Back to jobs</Link>
 
         <div className={clsx('card p-8', job.is_featured && 'border-accent border-2')}>
           {job.is_featured && <span className="inline-flex items-center gap-1 gradient-bg text-white text-xs font-bold px-2.5 py-1 rounded-full mb-4"><Star className="w-3 h-3" />Featured</span>}
@@ -92,5 +95,6 @@ export default function JobDetailPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

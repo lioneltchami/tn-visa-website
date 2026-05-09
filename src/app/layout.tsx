@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import ChatAssistant from '@/components/tools/ChatAssistant'
 import BackToTop from '@/components/ui/BackToTop'
 import InstallPrompt from '@/components/ui/InstallPrompt'
+import { WebsiteSchema, OrganizationSchema } from '@/components/StructuredData'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -27,6 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <WebsiteSchema />
+        <OrganizationSchema />
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
