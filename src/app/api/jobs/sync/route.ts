@@ -182,9 +182,9 @@ async function handleSync(req: NextRequest) {
 
         // Skip non-US jobs (only reject if explicitly Canadian)
         const country = (job.job_country as string) || ''
-        const state = (job.job_state as string) || ''
+        const jobState = (job.job_state as string) || ''
         const canadianProvinces = ['Ontario', 'Quebec', 'British Columbia', 'Alberta', 'Manitoba', 'Saskatchewan', 'Nova Scotia', 'New Brunswick', 'Newfoundland', 'PEI']
-        const isCanadian = country === 'CA' || country === 'Canada' || canadianProvinces.some(p => state.includes(p))
+        const isCanadian = country === 'CA' || country === 'Canada' || canadianProvinces.some(p => jobState.includes(p))
         if (isCanadian) {
           skipped++
           continue
