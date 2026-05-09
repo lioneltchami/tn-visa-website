@@ -90,9 +90,9 @@ async function fetchJobs(query: string, apiKey: string, apiHost: string) {
 }
 
 function extractRequirements(job: Record<string, unknown>): string[] {
-  const highlights = job.job_highlights as Record<string, unknown>[] | undefined
-  if (!highlights) return []
-  const quals = highlights.find(h => h.title === 'Qualifications' || h.title === 'Requirements')
+  const highlights = job.job_highlights
+  if (!highlights || !Array.isArray(highlights)) return []
+  const quals = highlights.find((h: Record<string, unknown>) => h.title === 'Qualifications' || h.title === 'Requirements')
   if (quals && Array.isArray(quals.items)) {
     return (quals.items as string[]).slice(0, 8).map(item => truncate(String(item), 500))
   }
