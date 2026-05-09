@@ -66,6 +66,11 @@ export default function JobDetailPage() {
 
           <h2 className="text-lg font-semibold text-fg mb-3">Description</h2>
           <JobDescription text={job.description} />
+          {job.description.length < 500 && (
+            <a href={job.application_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-accent text-sm mt-3 hover:underline">
+              Read full description on employer site <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
 
           {job.requirements.length > 0 && (
             <>
