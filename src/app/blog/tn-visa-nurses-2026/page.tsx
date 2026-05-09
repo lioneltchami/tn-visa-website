@@ -105,7 +105,7 @@ export default function TNVisaNurses2026() {
         <li>Job offer letter (see our <Link href="/employer-letter" className="text-accent hover:underline">letter template</Link>)</li>
         <li>Nursing degree/diploma</li>
         <li>Canadian nursing license</li>
-        <li>$80 fee (cash or card at border)</li>
+        <li>$80 fee (land border) (cash or card at border)</li>
       </ul>
 
       <Callout type="warning" title="Common Mistake">

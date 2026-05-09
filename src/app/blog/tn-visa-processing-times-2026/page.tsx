@@ -35,8 +35,8 @@ export default function TNVisaProcessingTimes2026() {
           <tbody>
             <tr className="border-t border-border"><td className="p-3 font-medium">Port of Entry (Border)</td><td className="p-3">15–60 minutes</td><td className="p-3">$80</td><td className="p-3">Most applicants</td></tr>
             <tr className="border-t border-border"><td className="p-3 font-medium">US Consulate (Canada)</td><td className="p-3">1–3 weeks</td><td className="p-3">$185</td><td className="p-3">Complex cases</td></tr>
-            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Mail (Form I-129)</td><td className="p-3">3–6 months</td><td className="p-3">$695</td><td className="p-3">Change of status</td></tr>
-            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Premium Processing</td><td className="p-3">15 business days</td><td className="p-3">$2,805</td><td className="p-3">Urgent cases</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Mail (Form I-129)</td><td className="p-3">3–6 months</td><td className="p-3">$460–$1,615</td><td className="p-3">Change of status</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Premium Processing</td><td className="p-3">15 business days</td><td className="p-3">$2,965</td><td className="p-3">Urgent cases</td></tr>
           </tbody>
         </table>
       </div>
@@ -93,7 +93,7 @@ export default function TNVisaProcessingTimes2026() {
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Premium Processing: Worth It?</h2>
       <p className="text-fg-secondary mb-4">
-        For $2,805 extra, USCIS guarantees a decision within 15 business days. If they don&apos;t meet the deadline, you get a refund.
+        For $2,965 extra, USCIS guarantees a decision within 15 business days. If they don&apos;t meet the deadline, you get a refund.
       </p>
       <h3 className="text-lg font-semibold text-fg mt-6 mb-3">When premium processing makes sense:</h3>
       <ul className="list-disc pl-6 space-y-2 text-fg-secondary mb-8">

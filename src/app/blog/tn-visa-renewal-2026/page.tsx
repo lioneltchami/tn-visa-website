@@ -34,8 +34,8 @@ export default function TNVisaRenewal2026() {
           <thead><tr className="bg-surface-secondary"><th className="p-3 text-left font-semibold text-fg">Method</th><th className="p-3 text-left font-semibold text-fg">Time</th><th className="p-3 text-left font-semibold text-fg">Cost</th><th className="p-3 text-left font-semibold text-fg">Best For</th></tr></thead>
           <tbody>
             <tr className="border-t border-border"><td className="p-3 font-medium">Border (re-entry)</td><td className="p-3">Same day</td><td className="p-3">$80</td><td className="p-3">Most people</td></tr>
-            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Mail (I-129)</td><td className="p-3">3–6 months</td><td className="p-3">$695</td><td className="p-3">Can&apos;t travel</td></tr>
-            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Premium</td><td className="p-3">15 days</td><td className="p-3">$2,805</td><td className="p-3">Urgent cases</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Mail (I-129)</td><td className="p-3">3–6 months</td><td className="p-3">$460–$1,615</td><td className="p-3">Can&apos;t travel</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Premium</td><td className="p-3">15 days</td><td className="p-3">$2,965</td><td className="p-3">Urgent cases</td></tr>
           </tbody>
         </table>
       </div>
@@ -57,7 +57,7 @@ export default function TNVisaRenewal2026() {
         <li><strong>Gather documents:</strong> Passport, current I-94, degree, new offer letter</li>
         <li><strong>Drive to Canada</strong> — You must physically leave the US</li>
         <li><strong>Re-enter at a US port of entry</strong> and request TN renewal</li>
-        <li><strong>Pay $80 fee</strong> and receive new I-94 with 3-year validity</li>
+        <li><strong>Pay $80 fee (land border)</strong> and receive new I-94 with 3-year validity</li>
       </ol>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Documents for Renewal</h2>
@@ -67,7 +67,7 @@ export default function TNVisaRenewal2026() {
         <li>New offer letter from employer</li>
         <li>Original degree or certified copy</li>
         <li>Recent pay stubs (proves you&apos;re still employed)</li>
-        <li>$80 fee</li>
+        <li>$80 fee (land border)</li>
       </ul>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">What If Your Job Changed?</h2>
@@ -89,7 +89,7 @@ export default function TNVisaRenewal2026() {
       <ol className="list-decimal pl-6 space-y-3 text-fg-secondary mb-8">
         <li>Employer files Form I-129 with USCIS</li>
         <li>Include TN supplement, offer letter, degree copy</li>
-        <li>Pay $695 filing fee (+ $2,805 for premium processing)</li>
+        <li>Pay $460–$1,615 filing fee (+ $2,965 for premium processing)</li>
         <li>Wait 3–6 months (or 15 days with premium)</li>
         <li>Receive approval notice (I-797)</li>
       </ol>

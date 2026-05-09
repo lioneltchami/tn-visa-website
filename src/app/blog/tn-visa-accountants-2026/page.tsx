@@ -114,7 +114,7 @@ export default function TNVisaAccountants2026() {
         <li>Letter of good standing from provincial CPA body</li>
         <li>Job offer letter with accounting duties</li>
         <li>Resume showing accounting experience</li>
-        <li>$80 fee</li>
+        <li>$80 fee (land border)</li>
       </ul>
 
       <Callout type="warning" title="Common Issue">

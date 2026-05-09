@@ -93,7 +93,7 @@ export default function TNVisaEngineers2026() {
         <li>Official transcripts</li>
         <li>Job offer letter with engineering duties</li>
         <li>Resume showing engineering experience</li>
-        <li>$80 fee for border application</li>
+        <li>$80 fee (land border) for border application</li>
       </ul>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Salary Expectations (2026)</h2>
