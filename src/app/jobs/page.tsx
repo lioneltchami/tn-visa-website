@@ -25,7 +25,8 @@ export default function JobsPage() {
   useEffect(() => {
     async function load() {
       const supabase = createClient()
-      const { data, error } = await supabase.from('jobs').select('id,slug,title,company_name,tn_profession,location,salary_min,salary_max,remote_policy,employment_type,is_featured,posted_at').order('is_featured', { ascending: false }).order('posted_at', { ascending: false })
+      const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+      const { data, error } = await supabase.from('jobs').select('id,slug,title,company_name,tn_profession,location,salary_min,salary_max,remote_policy,employment_type,is_featured,posted_at').eq('is_active', true).gte('posted_at', sevenDaysAgo).order('is_featured', { ascending: false }).order('posted_at', { ascending: false })
       if (error) logger.error('Failed to load jobs:', error.message)
       setJobs(data || [])
       setLoading(false)

@@ -262,12 +262,12 @@ async function handleSync(req: NextRequest) {
 
   // Only run cleanup if we successfully inserted at least one job
   if (inserted > 0) {
-    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
     const { error: deleteError } = await supabase
       .from('jobs')
       .delete()
       .eq('source', 'external')
-      .lt('posted_at', thirtyDaysAgo)
+      .lt('posted_at', sevenDaysAgo)
 
     if (deleteError) {
       console.error('[job-sync] Cleanup failed:', deleteError.message)
