@@ -58,37 +58,14 @@ function truncate(text: string, max: number): string {
 }
 
 const SEARCH_CONFIG: { query: string; profession: string }[] = [
-  // Tech - Computer Systems Analyst
   { query: 'Software Engineer TN Visa', profession: 'Computer Systems Analyst' },
-  { query: 'Data Scientist TN Visa', profession: 'Computer Systems Analyst' },
-  
-  // Healthcare
   { query: 'Registered Nurse TN Visa', profession: 'Registered Nurse' },
   { query: 'Pharmacist TN Visa', profession: 'Pharmacist' },
-  { query: 'Physical Therapist TN Visa', profession: 'Physical Therapist' },
-  { query: 'Dentist TN Visa', profession: 'Dentist' },
-  
-  // Engineering
   { query: 'Mechanical Engineer TN Visa', profession: 'Engineer' },
-  { query: 'Civil Engineer TN Visa', profession: 'Engineer' },
-  { query: 'Electrical Engineer TN Visa', profession: 'Engineer' },
-  
-  // Business/Finance
   { query: 'Accountant TN Visa', profession: 'Accountant' },
-  { query: 'Management Consultant TN Visa', profession: 'Management Consultant' },
-  { query: 'Economist TN Visa', profession: 'Economist' },
-  
-  // Scientific
   { query: 'Scientist TN Visa', profession: 'Scientist' },
-  { query: 'Research Scientist TN Visa', profession: 'Scientist' },
-  
-  // Other professions
-  { query: 'Graphic Designer TN Visa', profession: 'Graphic Designer' },
-  { query: 'University Professor TN Visa', profession: 'University Teacher' },
-  { query: 'Veterinarian TN Visa', profession: 'Veterinarian' },
   { query: 'Architect TN Visa', profession: 'Architect' },
-  { query: 'Psychologist TN Visa', profession: 'Psychologist' },
-  { query: 'Technical Writer TN Visa', profession: 'Technical Publications Writer' },
+  { query: 'Management Consultant TN Visa', profession: 'Management Consultant' },
 ]
 
 const VALID_PROFESSIONS = new Set(professions.map(p => p.name))
@@ -264,7 +241,7 @@ async function handleSync(req: NextRequest) {
         }
       }
 
-      await new Promise(r => setTimeout(r, 500))
+      await new Promise(r => setTimeout(r, 300))
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err)
       errors.push(`Query "${query}": ${msg}`)
