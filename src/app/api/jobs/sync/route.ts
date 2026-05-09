@@ -6,7 +6,7 @@ import professions from '@/data/professions.json'
 export const maxDuration = 60
 
 // Minimum minutes between syncs (rate limiting)
-const MIN_SYNC_INTERVAL_MINUTES = 1
+const MIN_SYNC_INTERVAL_MINUTES = 30
 
 function slugify(text: string): string {
   return text.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -58,14 +58,15 @@ function truncate(text: string, max: number): string {
 }
 
 const SEARCH_CONFIG: { query: string; profession: string }[] = [
-  { query: 'Software Engineer TN Visa', profession: 'Computer Systems Analyst' },
-  { query: 'Registered Nurse TN Visa', profession: 'Registered Nurse' },
-  { query: 'Pharmacist TN Visa', profession: 'Pharmacist' },
-  { query: 'Mechanical Engineer TN Visa', profession: 'Engineer' },
-  { query: 'Accountant TN Visa', profession: 'Accountant' },
-  { query: 'Scientist TN Visa', profession: 'Scientist' },
-  { query: 'Architect TN Visa', profession: 'Architect' },
-  { query: 'Management Consultant TN Visa', profession: 'Management Consultant' },
+  // Broader visa sponsorship searches for TN-eligible professions
+  { query: 'Registered Nurse visa sponsorship', profession: 'Registered Nurse' },
+  { query: 'Pharmacist visa sponsorship', profession: 'Pharmacist' },
+  { query: 'Software Engineer visa sponsorship', profession: 'Computer Systems Analyst' },
+  { query: 'Accountant visa sponsorship', profession: 'Accountant' },
+  { query: 'Engineer visa sponsorship', profession: 'Engineer' },
+  { query: 'Scientist visa sponsorship', profession: 'Scientist' },
+  { query: 'Management Consultant visa sponsorship', profession: 'Management Consultant' },
+  { query: 'Architect visa sponsorship', profession: 'Architect' },
 ]
 
 const VALID_PROFESSIONS = new Set(professions.map(p => p.name))
