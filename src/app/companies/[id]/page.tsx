@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
+import { logger } from '@/lib/logger'
 import { Company } from '@/types/database'
 import { SEED_COMPANIES } from '@/data/seed-companies'
 import { MapPin, Users, ExternalLink, ArrowLeft, Building2 } from 'lucide-react'
@@ -23,7 +24,7 @@ export default function CompanyDetailPage() {
         if (data) { setCompany(data); setLoading(false); return }
       } catch (err) {
         // Fall through to mock data if Supabase fails
-        console.error('Failed to load from Supabase:', err instanceof Error ? err.message : err)
+        logger.error('Failed to load from Supabase:', err instanceof Error ? err.message : err)
       }
       setCompany(SEED_COMPANIES.find(c => c.id === id) || null)
       if (!SEED_COMPANIES.find(c => c.id === id)) setError('Company not found.')

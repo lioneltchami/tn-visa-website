@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
+import { logger } from '@/lib/logger'
 import { MapPin, DollarSign, Clock, ExternalLink, ArrowLeft, Star } from 'lucide-react'
 import clsx from 'clsx'
 import professions from '@/data/professions.json'
@@ -25,7 +26,7 @@ export default function JobDetailPage() {
     async function load() {
       const supabase = createClient()
       const { data, error } = await supabase.from('jobs').select('*').eq('slug', slug).single()
-      if (error && error.code !== 'PGRST116') console.error('Failed to load job:', error.message)
+      if (error && error.code !== 'PGRST116') logger.error('Failed to load job:', error.message)
       setJob(data)
       setLoading(false)
     }

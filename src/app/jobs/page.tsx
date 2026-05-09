@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
+import { logger } from '@/lib/logger'
 import { MapPin, DollarSign, Clock, Briefcase, Plus, Star } from 'lucide-react'
 import clsx from 'clsx'
 import professions from '@/data/professions.json'
@@ -25,7 +26,7 @@ export default function JobsPage() {
     async function load() {
       const supabase = createClient()
       const { data, error } = await supabase.from('jobs').select('id,slug,title,company_name,tn_profession,location,salary_min,salary_max,remote_policy,employment_type,is_featured,posted_at').order('is_featured', { ascending: false }).order('posted_at', { ascending: false })
-      if (error) console.error('Failed to load jobs:', error.message)
+      if (error) logger.error('Failed to load jobs:', error.message)
       setJobs(data || [])
       setLoading(false)
     }
