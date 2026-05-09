@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServiceSupabase } from '@/lib/supabase/admin'
 import professions from '@/data/professions.json'
 
-// Allow up to 60s on Vercel Pro (12 queries × ~2s each + delays)
-export const maxDuration = 60
+// Allow up to 120s on Vercel Pro (35 queries × ~2s each + delays)
+export const maxDuration = 120
 
 // Minimum minutes between syncs (rate limiting)
 const MIN_SYNC_INTERVAL_MINUTES = 30
@@ -58,18 +58,51 @@ function truncate(text: string, max: number): string {
 }
 
 const SEARCH_CONFIG: { query: string; profession: string }[] = [
-  { query: 'Software Engineer USMCA TN Visa', profession: 'Computer Systems Analyst' },
-  { query: 'Registered Nurse TN Visa sponsor', profession: 'Registered Nurse' },
-  { query: 'Accountant CPA TN Visa', profession: 'Accountant' },
+  // Software/Tech - maps to Computer Systems Analyst
+  { query: 'Software Engineer TN Visa', profession: 'Computer Systems Analyst' },
+  { query: 'Software Developer USMCA', profession: 'Computer Systems Analyst' },
   { query: 'Data Scientist TN Visa', profession: 'Computer Systems Analyst' },
-  { query: 'Mechanical Engineer TN Visa', profession: 'Engineer' },
+  { query: 'Systems Analyst Canadian', profession: 'Computer Systems Analyst' },
+  
+  // Healthcare
+  { query: 'Registered Nurse TN Visa sponsor', profession: 'Registered Nurse' },
+  { query: 'RN Canadian visa sponsorship', profession: 'Registered Nurse' },
   { query: 'Pharmacist TN Visa', profession: 'Pharmacist' },
+  { query: 'Pharmacist Canadian welcome', profession: 'Pharmacist' },
+  { query: 'Medical Technologist TN Visa', profession: 'Medical Technologist' },
+  { query: 'Physical Therapist visa sponsor', profession: 'Physical Therapist' },
+  { query: 'Occupational Therapist Canadian', profession: 'Occupational Therapist' },
+  { query: 'Dentist TN Visa', profession: 'Dentist' },
+  
+  // Engineering
+  { query: 'Mechanical Engineer TN Visa', profession: 'Engineer' },
+  { query: 'Civil Engineer USMCA', profession: 'Engineer' },
+  { query: 'Electrical Engineer Canadian', profession: 'Engineer' },
+  { query: 'Chemical Engineer visa sponsor', profession: 'Engineer' },
+  
+  // Business/Finance
+  { query: 'Accountant CPA TN Visa', profession: 'Accountant' },
+  { query: 'Accountant Canadian CPA', profession: 'Accountant' },
   { query: 'Management Consultant TN Visa', profession: 'Management Consultant' },
+  { query: 'Financial Analyst Canadian', profession: 'Economist' },
+  { query: 'Economist TN Visa', profession: 'Economist' },
+  
+  // Scientific
+  { query: 'Scientist TN Visa', profession: 'Scientist' },
+  { query: 'Research Scientist Canadian', profession: 'Scientist' },
+  { query: 'Biologist visa sponsor', profession: 'Scientist' },
+  { query: 'Chemist TN Visa', profession: 'Scientist' },
+  
+  // Other professions
   { query: 'Graphic Designer TN Visa', profession: 'Graphic Designer' },
   { query: 'University Professor TN Visa', profession: 'University Teacher' },
   { query: 'Veterinarian TN Visa', profession: 'Veterinarian' },
   { query: 'Architect TN Visa', profession: 'Architect' },
-  { query: 'Economist TN Visa', profession: 'Economist' },
+  { query: 'Lawyer Canadian LLB', profession: 'Lawyer' },
+  { query: 'Psychologist TN Visa', profession: 'Psychologist' },
+  { query: 'Dietitian Canadian', profession: 'Dietitian' },
+  { query: 'Librarian TN Visa', profession: 'Librarian' },
+  { query: 'Technical Writer Canadian', profession: 'Technical Publications Writer' },
 ]
 
 const VALID_PROFESSIONS = new Set(professions.map(p => p.name))
