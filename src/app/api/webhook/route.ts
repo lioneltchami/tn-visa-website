@@ -1,49 +1,86 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { Resend } from 'resend'
+import { sendPurchaseEmail } from '@/lib/fulfillment'
+import { getProduct } from '@/lib/products'
+import { claimFulfillment, ensurePurchase, releaseFulfillment } from '@/lib/purchases'
 
 export const dynamic = 'force-dynamic'
-
-const DOWNLOAD_LINKS: Record<string, string> = {
-  'interview-kit': 'https://tnvisaguide.ca/products/success?product=interview-kit',
-  'letter-templates': 'https://tnvisaguide.ca/products/success?product=letter-templates',
-  'complete-guide': 'https://tnvisaguide.ca/products/success?product=complete-guide',
-}
+export const maxDuration = 30
 
 export async function POST(req: Request) {
+  const secretKey = process.env.STRIPE_SECRET_KEY
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
+
+  if (!secretKey || !webhookSecret) {
+    console.error('[webhook] Stripe keys are not configured')
+    return NextResponse.json({ error: 'Not configured' }, { status: 503 })
+  }
+
+  const signature = req.headers.get('stripe-signature')
+  if (!signature) return NextResponse.json({ error: 'Missing signature' }, { status: 400 })
+
   const body = await req.text()
-  const sig = req.headers.get('stripe-signature')!
 
   let event: Stripe.Event
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-    event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
+    event = new Stripe(secretKey).webhooks.constructEvent(body, signature, webhookSecret)
   } catch (err) {
-    console.error('Webhook signature verification failed:', err)
+    console.error('[webhook] Signature verification failed:', err)
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
   }
 
-  if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as Stripe.Checkout.Session
-    const productId = session.metadata?.productId
-    const email = session.customer_details?.email
-
-    if (email && productId && process.env.RESEND_API_KEY) {
-      const resend = new Resend(process.env.RESEND_API_KEY)
-      await resend.emails.send({
-        from: 'TN Visa Guide <hello@tnvisaguide.ca>',
-        to: email,
-        subject: 'Your TN Visa Guide Purchase \u2014 Download Link',
-        html: `
-          <h2>Thank you for your purchase!</h2>
-          <p>Your download is ready:</p>
-          <p><a href="${DOWNLOAD_LINKS[productId] || 'https://tnvisaguide.ca/products/success'}">Click here to download</a></p>
-          <p>If you have any questions, reply to this email.</p>
-          <p>\u2014 The TN Visa Guide Team</p>
-        `,
-      }).catch(console.error)
-    }
+  if (event.type !== 'checkout.session.completed') {
+    return NextResponse.json({ received: true, ignored: event.type })
   }
 
-  return NextResponse.json({ received: true })
+  const session = event.data.object as Stripe.Checkout.Session
+  if (session.payment_status !== 'paid') {
+    return NextResponse.json({ received: true, ignored: 'unpaid session' })
+  }
+
+  const product = getProduct(session.metadata?.productId)
+  if (!product) {
+    // Returning 200 stops Stripe retrying something we can never fulfill.
+    console.error('[webhook] Unknown productId on session', session.id, session.metadata?.productId)
+    return NextResponse.json({ received: true, ignored: 'unknown product' })
+  }
+
+  const email = session.customer_details?.email || session.customer_email || null
+
+  let purchaseId: string | undefined
+  try {
+    const { purchase } = await ensurePurchase({
+      stripeSessionId: session.id,
+      productId: product.id,
+      email,
+      amountTotal: session.amount_total,
+      currency: session.currency,
+      stripePaymentIntent:
+        typeof session.payment_intent === 'string' ? session.payment_intent : null,
+    })
+    purchaseId = purchase.id
+
+    if (!email) {
+      console.warn('[webhook] Paid session without an email address:', session.id)
+      return NextResponse.json({ received: true, emailed: false })
+    }
+
+    // Claim first so concurrent webhook replays cannot both send the email.
+    const claimed = await claimFulfillment(purchase.id)
+    if (!claimed)
+      return NextResponse.json({
+        received: true,
+        emailed: false,
+        reason: 'already sent',
+      })
+
+    await sendPurchaseEmail({ email, product, purchaseId: purchase.id })
+
+    return NextResponse.json({ received: true, emailed: true })
+  } catch (err) {
+    if (purchaseId) await releaseFulfillment(purchaseId)
+    // 500 makes Stripe retry; the buyer can already download from the success page.
+    console.error('[webhook] Fulfillment failed for session', session.id, err)
+    return NextResponse.json({ error: 'Fulfillment failed' }, { status: 500 })
+  }
 }
