@@ -1,0 +1,91 @@
+name: Build product PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'products/**'
+      - 'src/lib/products.ts'
+      - 'scripts/build-products.ts'
+      - '.github/workflows/build-products.yml'
+  workflow_dispatch:
+    inputs:
+      upload:
+        description: 'Upload built PDFs to the private Supabase product-files bucket'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install system deps (pandoc + Chrome)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+          sudo apt-get install -y google-chrome-stable || true
+          if ! command -v google-chrome >/dev/null 2>&1 && ! command -v google-chrome-stable >/dev/null 2>&1; then
+            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+          fi
+
+      - name: Install npm deps
+        run: npm ci
+
+      - name: Build PDFs (no upload)
+        env:
+          CHROME_PATH: /usr/bin/google-chrome-stable
+        run: npm run build:products -- --skip-upload
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: product-pdfs
+          path: .products-build/*.pdf
+          if-no-files-found: error
+
+  upload:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.upload == 'true'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install system deps (pandoc + Chrome)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+          sudo apt-get install -y google-chrome-stable || true
+          if ! command -v google-chrome >/dev/null 2>&1 && ! command -v google-chrome-stable >/dev/null 2>&1; then
+            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+          fi
+
+      - name: Install npm deps
+        run: npm ci
+
+      - name: Build and upload PDFs
+        env:
+          CHROME_PATH: /usr/bin/google-chrome-stable
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run build:products

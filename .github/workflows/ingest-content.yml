@@ -1,0 +1,40 @@
+name: Ingest chat embeddings
+
+# Manual only — wiping content_embeddings changes live RAG answers.
+on:
+  workflow_dispatch:
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: tn-visa-website
+
+      - name: Checkout guide content
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/tn-visa-guide
+          path: tn-visa-guide
+          token: ${{ secrets.GUIDE_REPO_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tn-visa-website/package-lock.json
+
+      - name: Install npm deps
+        working-directory: tn-visa-website
+        run: npm ci
+
+      - name: Ingest embeddings
+        working-directory: tn-visa-website
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npm run ingest:content
