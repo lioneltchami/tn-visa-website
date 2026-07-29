@@ -60,7 +60,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.upload == 'true'
     needs: build
     runs-on: ubuntu-latest
-    environment: production
+    environment: Production
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
