@@ -203,8 +203,16 @@ async function renderPdf(chrome: string, htmlPath: string, pdfPath: string): Pro
       }
     }
   } finally {
-    if (chromeProcess.exitCode === null) chromeProcess.kill('SIGKILL')
-    rmSync(profileDir, { recursive: true, force: true })
+    if (chromeProcess.exitCode === null) {
+      chromeProcess.kill('SIGKILL')
+      // Give Chrome a beat to release file locks before we wipe the profile.
+      await sleep(400)
+    }
+    try {
+      rmSync(profileDir, { recursive: true, force: true })
+    } catch {
+      // Best-effort cleanup — leftover temp dirs are harmless.
+    }
   }
 
   if (!existsSync(pdfPath) || statSync(pdfPath).size < MIN_PDF_BYTES) {
