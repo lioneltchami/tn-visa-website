@@ -5,7 +5,17 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/dashboard', '/my-documents', '/profile', '/onboarding', '/analyzer', '/login', '/signup'],
+      disallow: [
+        '/dashboard',
+        '/my-documents',
+        '/profile',
+        '/onboarding',
+        '/analyzer',
+        '/login',
+        '/signup',
+        '/products/download',
+        '/products/success',
+      ],
     },
     sitemap: 'https://tnvisaguide.ca/sitemap.xml',
   }

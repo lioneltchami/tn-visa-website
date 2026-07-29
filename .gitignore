@@ -16,6 +16,9 @@
 # production
 /build
 
+# generated paid product PDFs (uploaded to Supabase Storage, never committed)
+/.products-build
+
 # misc
 .DS_Store
 *.pem

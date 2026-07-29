@@ -188,18 +188,29 @@ c) **Set up the webhook:**
    - Events to listen for: `checkout.session.completed`
    - Copy the webhook signing secret → add as `STRIPE_WEBHOOK_SECRET` in `.env.local`
 
-d) **Create the actual PDF products:**
-   - You need to create 3 PDF files and upload them to Supabase Storage (or any file host):
-     - `tn-visa-interview-kit.pdf` — Border Interview Kit ($49)
-     - `tn-visa-letter-templates.pdf` — Employer Letter Template Pack ($29)
-     - `tn-visa-complete-guide.pdf` — Complete Application Guide ($69)
-   - Update the download links in `src/app/api/webhook/route.ts` (DOWNLOAD_LINKS object)
-   - The content outline for each product is in ROADMAP.md Phase 3.2
+d) **Build and publish the PDF products:**
+   1. Run `supabase/migrations/product-delivery-and-rate-limits.sql` once in the Supabase
+      SQL Editor (creates `purchases`, `rate_limits`, and the private `product-files` bucket)
+   2. Set `DOWNLOAD_TOKEN_SECRET` (`openssl rand -hex 32`) in `.env.local` **and** in Vercel.
+      Changing it later invalidates download links you already emailed.
+   3. Build the PDFs from `products/*.md` and upload them:
+      ```bash
+      brew install pandoc                       # one time (Chrome is also required)
+      npm run build:products -- --skip-upload   # review .products-build/*.pdf
+      npm run build:products                    # upload to Supabase Storage
+      ```
+   - Prices, copy and file lists all live in `src/lib/products.ts` — edit there, not in the
+     checkout/webhook routes
+   - Re-run `npm run build:products` after editing the markdown; existing buyer links
+     immediately serve the new file
 
 e) **Test the flow:**
    - Use Stripe test mode first (sk_test_ keys)
    - Test card: 4242 4242 4242 4242, any future date, any CVC
-   - Verify: checkout → payment → webhook → email with download link
+   - Verify: checkout → payment → `/products/success` shows download buttons immediately,
+     then the receipt email arrives with a `/products/download?token=…` link
+   - Access comes from the verified Stripe session, so a slow or failed webhook never
+     blocks a buyer
    - Switch to live keys when ready
 
 ---
