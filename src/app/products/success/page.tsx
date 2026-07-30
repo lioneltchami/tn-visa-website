@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Stripe from 'stripe'
 import ContentLayout from '@/components/layout/ContentLayout'
 import ProductDownloadList from '@/components/products/ProductDownloadList'
+import PurchaseTracker from '@/components/products/PurchaseTracker'
 import { Callout } from '@/components/ui/Callout'
 import { createDownloadToken } from '@/lib/download-token'
 import { getProduct, type Product } from '@/lib/products'
@@ -21,7 +22,14 @@ export const metadata: Metadata = {
 const LOOKUP_LIMIT = 30
 const LOOKUP_WINDOW_SECONDS = 60 * 60
 
-type Access = { product: Product; token: string; email: string | null }
+type Access = {
+  product: Product
+  token: string
+  email: string | null
+  transactionId: string
+  value: number
+  currency: string
+}
 
 /**
  * Grant access straight from the verified Stripe session so the buyer never
@@ -57,7 +65,14 @@ async function resolveAccess(sessionId: string | undefined): Promise<Access | nu
         typeof session.payment_intent === 'string' ? session.payment_intent : null,
     })
 
-    return { product, token: createDownloadToken(purchase.id), email }
+    return {
+      product,
+      token: createDownloadToken(purchase.id),
+      email,
+      transactionId: session.id,
+      value: (session.amount_total ?? product.priceCents) / 100,
+      currency: session.currency ?? 'usd',
+    }
   } catch (err) {
     console.error('[success] Could not resolve checkout session:', err)
     return null
@@ -111,6 +126,14 @@ export default async function SuccessPage({
       description={`Payment confirmed — ${access.product.name} is unlocked below.`}
       breadcrumbs={[{ label: 'Products', href: '/products' }]}
     >
+      <PurchaseTracker
+        transactionId={access.transactionId}
+        productId={access.product.id}
+        productName={access.product.name}
+        value={access.value}
+        currency={access.currency}
+      />
+
       <div className="flex items-center gap-2 text-success">
         <CheckCircle className="w-5 h-5" />
         <span className="font-medium">Purchase complete</span>

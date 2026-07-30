@@ -58,7 +58,7 @@ export default function DocumentsPage() {
       </ul>
 
       <Callout type="tip" title="Need a Credential Evaluation?">
-        If your degree is from outside the US, you may need a credential evaluation. <AffiliateLink href="https://www.wes.org/evaluations-and-fees/" provider="wes">WES (World Education Services)</AffiliateLink> is the most widely accepted evaluation service for TN visa applications.
+        If your degree is from outside the US, you may need a credential evaluation. <AffiliateLink offer="wes-evaluation">WES (World Education Services)</AffiliateLink> is the most widely accepted evaluation service for TN visa applications.
       </Callout>
 
       <div className="mt-8 space-x-4">

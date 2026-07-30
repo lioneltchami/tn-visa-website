@@ -92,7 +92,7 @@ export default function DeniedPage() {
       </ol>
 
       <Callout type="tip" title="Professional Help After a Denial">
-        After a denial, professional guidance significantly improves your chances on the next attempt. <AffiliateLink href="https://tnvisaexpert.com/services/jump-start-basic-tn-visa-support-service/" provider="tnvisaexpert">TN Visa Expert offers visa assessments</AffiliateLink> starting at $850 with a money-back guarantee.
+        After a denial, professional guidance significantly improves your chances on the next attempt. <AffiliateLink offer="tnvisaexpert-denied">TN Visa Expert offers visa assessments</AffiliateLink> starting at $850 with a money-back guarantee.
       </Callout>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Can You Reapply?</h2>

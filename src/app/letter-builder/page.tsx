@@ -31,7 +31,7 @@ export default function LetterBuilderPage() {
       </Callout>
 
       <Callout type="tip" title="Need Professional Help?">
-        For complex cases — especially Engineer, Management Consultant, or Scientific Technician — consider professional letter review. <AffiliateLink href="https://tnvisaexpert.com" provider="tnvisaexpert">TN Visa Expert</AffiliateLink> offers attorney-reviewed letters starting at $850.
+        For complex cases — especially Engineer, Management Consultant, or Scientific Technician — consider professional letter review. <AffiliateLink offer="tnvisaexpert-services">TN Visa Expert</AffiliateLink> offers attorney-reviewed letters starting at $850.
       </Callout>
     </ContentLayout>
   )

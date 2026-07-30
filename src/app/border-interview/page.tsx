@@ -151,7 +151,7 @@ export default function BorderInterviewPage() {
       </div>
 
       <Callout type="tip" title="Professional Interview Preparation">
-        Want to practice with an expert? <AffiliateLink href="https://tnvisaexpert.com/products/tn-visa-border-interview-kit/" provider="tnvisaexpert">TN Visa Expert&apos;s Border Interview Kit</AffiliateLink> ($54) covers 30+ common questions with ideal answers.
+        Want to practice with an expert? <AffiliateLink offer="tnvisaexpert-interview">TN Visa Expert&apos;s Border Interview Kit</AffiliateLink> ($54) covers 30+ common questions with ideal answers.
       </Callout>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Land Border Crossings</h2>

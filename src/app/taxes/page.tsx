@@ -147,7 +147,7 @@ export default function TaxesPage() {
       </Callout>
 
       <Callout type="tip" title="Transferring Money Between Countries?">
-        TN visa holders often need to move money between Canada and the US. <AffiliateLink href="https://wise.com/invite/" provider="wise">Wise (formerly TransferWise)</AffiliateLink> offers the best exchange rates and lowest fees for international transfers.
+        TN visa holders often need to move money between Canada and the US. <AffiliateLink offer="wise-account">Wise (formerly TransferWise)</AffiliateLink> offers the best exchange rates and lowest fees for international transfers.
       </Callout>
 
       <h2 id="canadian-obligations" className="text-2xl font-bold text-fg mt-12 mb-4">Canadian Tax Obligations</h2>
@@ -181,7 +181,7 @@ export default function TaxesPage() {
       </ul>
 
       <Callout type="tip" title="Moving Money Between Accounts?">
-        Managing finances across the border? <AffiliateLink href="https://wise.com/invite/" provider="wise">Wise</AffiliateLink> offers the real exchange rate with transparent fees for transfers between your Canadian and US accounts.
+        Managing finances across the border? <AffiliateLink offer="wise-account">Wise</AffiliateLink> offers the real exchange rate with transparent fees for transfers between your Canadian and US accounts.
       </Callout>
 
       <h2 id="cross-border-pros" className="text-2xl font-bold text-fg mt-12 mb-4">Cross-Border Tax Professionals</h2>

@@ -33,7 +33,7 @@ export default function MovingFinancialGuideBlogPost() {
       <ul className="list-disc pl-6 space-y-2 text-fg-secondary mb-8">
         <li><strong>Keep your Canadian bank accounts open</strong> — you&apos;ll need them for tax refunds, RRSP access, and transfers</li>
         <li><strong>Apply for a US credit card from Canada</strong> — RBC and TD offer cross-border products that give you a head start</li>
-        <li><strong>Set up a <AffiliateLink href="https://wise.com/invite/" provider="wise">Wise multi-currency account</AffiliateLink></strong> to move money between CAD and USD at the real exchange rate</li>
+        <li><strong>Set up a <AffiliateLink offer="wise-account">Wise multi-currency account</AffiliateLink></strong> to move money between CAD and USD at the real exchange rate</li>
         <li><strong>Gather your <Link href="/documents" className="text-accent hover:underline">documents</Link></strong> — you&apos;ll need them for SSN, banking, and housing applications</li>
       </ul>
 
@@ -50,7 +50,7 @@ export default function MovingFinancialGuideBlogPost() {
         You arrive in the US with <strong>zero credit history</strong>. Your Canadian score doesn&apos;t transfer. To build credit fast: get a secured credit card, become an authorized user on a colleague&apos;s card, or use services like Nova Credit that translate your Canadian credit history for US lenders.
       </p>
       <p className="text-fg-secondary mb-8">
-        For ongoing transfers between Canada and the US, <AffiliateLink href="https://wise.com/invite/" provider="wise">Wise</AffiliateLink> consistently offers the best rates — far cheaper than bank wire transfers.
+        For ongoing transfers between Canada and the US, <AffiliateLink offer="wise-account">Wise</AffiliateLink> consistently offers the best rates — far cheaper than bank wire transfers.
       </p>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Taxes: Dual Filing Your First Year</h2>

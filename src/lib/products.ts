@@ -77,7 +77,6 @@ export const PRODUCTS: Record<ProductId, Product> = {
     priceCents: 4900,
     description:
       '30+ CBP questions with ideal answers, profession-specific prep, and emergency scenarios.',
-    popular: true,
     features: [
       '30+ CBP officer questions with answers',
       'Profession-specific question sets',
@@ -94,6 +93,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     priceCents: 6900,
     description:
       'Interview Kit + Letter Templates + step-by-step walkthrough, document checklist, and renewal guide.',
+    popular: true,
     features: [
       'Everything in Interview Kit',
       'Everything in Letter Templates',

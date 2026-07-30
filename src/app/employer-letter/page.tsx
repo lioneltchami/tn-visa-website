@@ -142,7 +142,7 @@ export default function EmployerLetterPage() {
       </Callout>
 
       <Callout type="tip" title="Best Investment You Can Make">
-        Having an immigration lawyer review your employer letter is the single best investment in your TN application. <AffiliateLink href="https://tnvisaexpert.com/services/" provider="tnvisaexpert">TN Visa Expert offers professional letter review and full TN visa services</AffiliateLink> starting at $850.
+        Having an immigration lawyer review your employer letter is the single best investment in your TN application. <AffiliateLink offer="tnvisaexpert-services">TN Visa Expert offers professional letter review and full TN visa services</AffiliateLink> starting at $850.
       </Callout>
 
       <div className="mt-12 pt-8 border-t border-border">

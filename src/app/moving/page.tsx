@@ -112,7 +112,7 @@ export default function MovingPage() {
       </section>
 
       <Callout type="tip" title="Multi-Currency Banking">
-        Before you move, set up a <AffiliateLink href="https://wise.com/invite/" provider="wise">Wise multi-currency account</AffiliateLink> to manage USD and CAD in one place with the real exchange rate.
+        Before you move, set up a <AffiliateLink offer="wise-account">Wise multi-currency account</AffiliateLink> to manage USD and CAD in one place with the real exchange rate.
       </Callout>
 
       <section>

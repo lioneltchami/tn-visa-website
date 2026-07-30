@@ -68,7 +68,7 @@ export default function CredentialsPage() {
         <li>You&apos;re applying for a <strong>regulated profession</strong> that requires US state licensing</li>
       </ul>
       <p className="text-fg-secondary mb-8">
-        <AffiliateLink href="https://www.wes.org/evaluations-and-fees/" provider="wes">WES (World Education Services)</AffiliateLink> is the most widely accepted credential evaluation service for TN visa applications.
+        <AffiliateLink offer="wes-evaluation">WES (World Education Services)</AffiliateLink> is the most widely accepted credential evaluation service for TN visa applications.
       </p>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Province-Specific Notes</h2>
