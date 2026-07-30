@@ -394,8 +394,13 @@ Already wired in `.github/workflows/`:
 
 a) **PDF rebuild** — `build-products.yml`
 
-- Builds on product markdown changes; upload only via `workflow_dispatch` + `upload=true` against the `production` environment
+- Builds on product markdown changes; upload only via `workflow_dispatch` + `upload=true` against the `Production` environment
+- Editing a product's `sources` list in `src/lib/products.ts` does not trigger a build — run the workflow manually
 - Repo secrets: `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
+
+**Actions billing:** this repo is private, so workflow minutes are metered. If runs fail
+instantly with "recent account payments have failed or your spending limit needs to be
+increased", fix billing at GitHub → Settings → Billing & plans (no code change will help).
 
 b) **Chat ingest** — `ingest-content.yml` (`workflow_dispatch` only)
 

@@ -1,11 +1,14 @@
 name: Build product PDFs
 
+# PDF content comes from products/*.md. Pricing and card copy in
+# src/lib/products.ts change often without affecting the PDFs, so that path is
+# not a push trigger; run the workflow manually after editing a product's
+# `sources` list.
 on:
   push:
     branches: [main]
     paths:
       - 'products/**'
-      - 'src/lib/products.ts'
       - 'scripts/build-products.ts'
       - '.github/workflows/build-products.yml'
   workflow_dispatch:
@@ -18,6 +21,10 @@ on:
         options:
           - 'false'
           - 'true'
+
+concurrency:
+  group: build-products-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
