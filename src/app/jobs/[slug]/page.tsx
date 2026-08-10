@@ -91,7 +91,7 @@ export default function JobDetailPage() {
 
           <div className={clsx('card p-8', job.is_featured && 'border-accent border-2')}>
             {job.is_featured && (
-              <span className="inline-flex items-center gap-1 gradient-bg text-white text-xs font-bold px-2.5 py-1 rounded-full mb-4">
+              <span className="inline-flex items-center gap-1 bg-accent text-accent-fg text-xs font-bold px-2.5 py-1 rounded mb-4">
                 <Star className="w-3 h-3" />
                 Featured
               </span>
@@ -121,7 +121,7 @@ export default function JobDetailPage() {
               href={job.application_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 gradient-bg text-white px-6 py-3 rounded-full font-medium mb-8"
+              className="inline-flex items-center gap-2 bg-accent text-accent-fg px-6 py-3 rounded font-medium mb-8"
             >
               Apply Now <ExternalLink className="w-4 h-4" />
             </a>

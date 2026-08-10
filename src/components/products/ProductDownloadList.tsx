@@ -22,7 +22,7 @@ export default function ProductDownloadList({
             <span className="block font-semibold text-fg">{file.label}</span>
             <span className="text-sm text-fg-muted">{file.filename}</span>
           </span>
-          <span className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full gradient-bg text-white text-sm font-medium">
+          <span className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded bg-accent text-accent-fg text-sm font-medium">
             <Download className="w-4 h-4" />
             Download
           </span>

@@ -146,44 +146,28 @@ export default function FaqPage() {
       <p className="text-fg-secondary mt-10">
         Can&apos;t find your answer? Check our detailed guides:
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-        <Link
-          href="/eligibility"
-          className="card card-interactive p-4 text-center font-medium text-accent"
-        >
-          Eligibility Checker
-        </Link>
-        <Link
-          href="/professions"
-          className="card card-interactive p-4 text-center font-medium text-accent"
-        >
-          63 TN Professions
-        </Link>
-        <Link
-          href="/apply"
-          className="card card-interactive p-4 text-center font-medium text-accent"
-        >
-          How to Apply
-        </Link>
-        <Link
-          href="/fees"
-          className="card card-interactive p-4 text-center font-medium text-accent"
-        >
-          Fee Calculator
-        </Link>
-        <Link
-          href="/taxes"
-          className="card card-interactive p-4 text-center font-medium text-accent"
-        >
-          Tax Guide
-        </Link>
-        <Link
-          href="/green-card"
-          className="card card-interactive p-4 text-center font-medium text-accent"
-        >
-          Green Card Pathways
-        </Link>
-      </div>
+      <ul className="mt-4 divide-y divide-border border-y border-border">
+        {[
+          { href: '/eligibility', label: 'Eligibility checker' },
+          { href: '/professions', label: '63 TN professions' },
+          { href: '/apply', label: 'How to apply' },
+          { href: '/fees', label: 'Fee calculator' },
+          { href: '/taxes', label: 'Tax guide' },
+          { href: '/green-card', label: 'Green card pathways' },
+        ].map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className="flex items-baseline justify-between gap-4 py-3 text-fg font-medium hover:text-accent transition-colors"
+            >
+              {item.label}
+              <span className="text-fg-muted text-sm shrink-0" aria-hidden>
+                →
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </ContentLayout>
   )
 }

@@ -35,6 +35,11 @@ modern-minimal (editorial type pairing)
 - Primary: solid accent fill, slight radius (`0.375rem`), no pills, no scale hover
 - Secondary: hairline border, same radius
 
+## Social proof
+
+- No invented testimonials or fabricated metrics
+- Point to `/experiences` for user-submitted border stories when social proof is needed
+
 ## Nav
 
 Edge masthead: wordmark + sparse primary links + text Sign In. Solid surface (no glass). Not the AI SaaS sticky pill bar.

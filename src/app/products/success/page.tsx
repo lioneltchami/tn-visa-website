@@ -106,13 +106,13 @@ export default async function SuccessPage({
         <div className="flex flex-wrap gap-3">
           <Link
             href="/products"
-            className="px-5 py-2.5 rounded-full border border-border text-fg-secondary font-medium text-sm hover:bg-bg-secondary"
+            className="px-5 py-2.5 rounded border border-border text-fg-secondary font-medium text-sm hover:bg-bg-secondary"
           >
             Back to Products
           </Link>
           <Link
             href="/"
-            className="px-5 py-2.5 rounded-full gradient-bg text-white font-medium text-sm"
+            className="px-5 py-2.5 rounded bg-accent text-accent-fg font-medium text-sm"
           >
             Go Home
           </Link>

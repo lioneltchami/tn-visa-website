@@ -70,7 +70,7 @@ export default function CompanyDetailPage() {
           )}
 
           {company.careers_url && (
-            <a href={company.careers_url} target="_blank" rel="noopener noreferrer" className="gradient-bg text-[hsl(var(--accent-fg))] px-5 py-2.5 rounded-full font-medium inline-flex items-center gap-2">
+            <a href={company.careers_url} target="_blank" rel="noopener noreferrer" className="bg-accent text-accent-fg px-5 py-2.5 rounded font-medium inline-flex items-center gap-2">
               Visit Careers Page <ExternalLink className="w-4 h-4" />
             </a>
           )}

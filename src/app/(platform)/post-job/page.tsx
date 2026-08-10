@@ -80,7 +80,7 @@ export default function PostJobPage() {
       <CheckCircle className="w-16 h-16 text-success" />
       <h1 className="text-2xl font-bold text-fg">Job Posted!</h1>
       <p className="text-fg-secondary">Your job listing is now live on the TN Visa Job Board.</p>
-      <button onClick={() => router.push('/jobs')} className="px-5 py-2.5 rounded-full gradient-bg text-white font-medium text-sm">View Job Board</button>
+      <button onClick={() => router.push('/jobs')} className="px-5 py-2.5 rounded bg-accent text-accent-fg font-medium text-sm">View Job Board</button>
     </div>
   )
 
@@ -128,7 +128,7 @@ export default function PostJobPage() {
         <div><label className="block text-sm font-medium text-fg-secondary mb-1">Application URL *</label>
           <input required type="url" value={form.application_url} onChange={e => setForm(f => ({ ...f, application_url: e.target.value }))} placeholder="https://careers.company.com/apply" className={inputCls} />
         </div>
-        <button type="submit" disabled={saving} className="w-full py-2.5 rounded-full gradient-bg text-white font-medium disabled:opacity-50">
+        <button type="submit" disabled={saving} className="w-full py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50">
           {saving ? 'Posting...' : 'Post Job (Free)'}
         </button>
       </form>

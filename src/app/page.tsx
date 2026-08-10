@@ -285,7 +285,7 @@ export default function Home() {
 
       <section className="py-20 sm:py-24 lg:py-28 overflow-hidden">
         <div className="container-wide">
-          <h2 className="font-display text-2xl font-bold text-fg mb-8">What readers say</h2>
+          <h2 className="font-display text-2xl font-bold text-fg mb-8">Reader experiences</h2>
           <TestimonialCarousel />
         </div>
       </section>

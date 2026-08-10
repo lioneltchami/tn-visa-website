@@ -38,7 +38,7 @@ export default function UnsubscribePage() {
           <button
             onClick={handleUnsubscribe}
             disabled={!email || status === 'loading'}
-            className="px-6 py-2.5 rounded-full gradient-bg text-white font-medium disabled:opacity-50"
+            className="px-6 py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50"
           >
             {status === 'loading' ? 'Processing...' : 'Confirm Unsubscribe'}
           </button>

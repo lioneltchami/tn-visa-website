@@ -73,7 +73,7 @@ export default function ExperiencesPage() {
             <h1 className="text-3xl font-bold gradient-text mb-2">Community Experiences</h1>
             <p className="text-fg-secondary">Real TN visa application stories from the community</p>
           </div>
-          <Link href="/experiences/submit" className="gradient-bg text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center gap-2 w-fit">
+          <Link href="/experiences/submit" className="bg-accent text-accent-fg px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2 w-fit">
             <Plus className="w-4 h-4" /> Share Your Experience
           </Link>
         </div>

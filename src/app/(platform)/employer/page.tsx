@@ -46,7 +46,7 @@ export default function EmployerDashboard() {
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold text-fg">Employer Dashboard</h1>
-        <Link href="/post-job" className="gradient-bg text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center gap-2">
+        <Link href="/post-job" className="bg-accent text-accent-fg px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2">
           <Plus className="w-4 h-4" /> Post a Job
         </Link>
       </div>

@@ -137,13 +137,13 @@ export default function AddCompanyPage() {
             <div className="flex flex-wrap gap-2">
               {TOP_PROFESSIONS.map(p => (
                 <button type="button" key={p} onClick={() => toggleProfession(p)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${form.tn_professions_hired.includes(p) ? 'gradient-bg text-[hsl(var(--accent-fg))]' : 'bg-[hsl(var(--bg-secondary))] text-[hsl(var(--fg-secondary))]'}`}
+                  className={`px-3 py-1 rounded text-xs font-medium transition-colors ${form.tn_professions_hired.includes(p) ? 'bg-accent text-accent-fg' : 'bg-[hsl(var(--bg-secondary))] text-[hsl(var(--fg-secondary))]'}`}
                 >{p}</button>
               ))}
             </div>
           </fieldset>
 
-          <button type="submit" className="gradient-bg text-[hsl(var(--accent-fg))] px-6 py-2.5 rounded-full font-medium">
+          <button type="submit" className="bg-accent text-accent-fg px-6 py-2.5 rounded font-medium">
             Submit Company
           </button>
         </form>

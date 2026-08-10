@@ -30,7 +30,7 @@ export default function CompaniesPage() {
             <h1 className="text-3xl font-bold gradient-text mb-2">TN-Friendly Companies</h1>
             <p className="text-[hsl(var(--fg-secondary))]">Companies that actively hire Canadian professionals on TN visas</p>
           </div>
-          <Link href="/companies/add" className="gradient-bg text-[hsl(var(--accent-fg))] px-4 py-2 rounded-full text-sm font-medium inline-flex items-center gap-2 w-fit">
+          <Link href="/companies/add" className="bg-accent text-accent-fg px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2 w-fit">
             <Plus className="w-4 h-4" /> Add Your Company
           </Link>
         </div>
@@ -43,7 +43,7 @@ export default function CompaniesPage() {
               placeholder="Search companies..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-11 pr-4 py-2.5 rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--fg))] focus:outline-none focus:border-[hsl(var(--accent))]"
+              className="w-full pl-11 pr-4 py-2.5 rounded border border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--fg))] focus:outline-none focus:border-[hsl(var(--accent))]"
             />
           </div>
 
@@ -52,7 +52,7 @@ export default function CompaniesPage() {
               <button
                 key={ind}
                 onClick={() => setIndustry(ind)}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${industry === ind ? 'gradient-bg text-[hsl(var(--accent-fg))]' : 'bg-[hsl(var(--bg-secondary))] text-[hsl(var(--fg-secondary))] hover:text-[hsl(var(--fg))]'}`}
+                className={`px-3 py-1 rounded text-sm font-medium transition-colors ${industry === ind ? 'bg-accent text-accent-fg' : 'bg-[hsl(var(--bg-secondary))] text-[hsl(var(--fg-secondary))] hover:text-[hsl(var(--fg))]'}`}
               >
                 {ind}
               </button>
@@ -85,7 +85,7 @@ export default function CompaniesPage() {
               <p className="text-sm text-[hsl(var(--fg-secondary))] mb-3 line-clamp-2">{company.description}</p>
               <div className="flex flex-wrap gap-1.5 mb-3">
                 {company.tn_professions_hired.map(prof => (
-                  <span key={prof} className="text-xs px-2 py-0.5 rounded-full bg-[hsl(var(--bg-secondary))] text-[hsl(var(--fg-secondary))]">{prof}</span>
+                  <span key={prof} className="text-xs px-2 py-0.5 rounded bg-[hsl(var(--bg-secondary))] text-[hsl(var(--fg-secondary))]">{prof}</span>
                 ))}
               </div>
               <span className="text-sm font-medium text-[hsl(var(--accent))] inline-flex items-center gap-1">

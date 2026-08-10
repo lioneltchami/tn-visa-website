@@ -42,19 +42,19 @@ export default function ChatAssistant() {
       <button
         onClick={() => setOpen(!open)}
         className={clsx(
-          'fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all',
-          open ? 'bg-fg text-bg' : 'gradient-bg text-white'
+          'fixed bottom-6 right-6 z-50 w-12 h-12 rounded border border-border flex items-center justify-center transition-colors',
+          open ? 'bg-fg text-bg border-fg' : 'bg-accent text-accent-fg border-accent'
         )}
         aria-label={open ? 'Close chat' : 'Open TN visa assistant'}
       >
-        {open ? <X className="w-5 h-5" /> : <MessageCircle className="w-6 h-6" />}
+        {open ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
       </button>
 
       {/* Chat panel */}
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-[360px] max-h-[500px] rounded-2xl shadow-2xl border border-border bg-bg flex flex-col overflow-hidden">
+        <div className="fixed bottom-20 right-6 z-50 w-[360px] max-h-[500px] rounded border border-border bg-bg flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="gradient-bg px-4 py-3 text-white">
+          <div className="bg-accent text-accent-fg px-4 py-3">
             <p className="font-semibold text-sm">TN Visa Assistant</p>
             <p className="text-xs opacity-80">Powered by AI — Not legal advice</p>
           </div>
@@ -88,7 +88,7 @@ export default function ChatAssistant() {
                 <div
                   className={clsx(
                     'max-w-[85%] rounded-xl px-3 py-2 text-sm',
-                    m.role === 'user' ? 'gradient-bg text-white' : 'bg-bg-secondary text-fg'
+                    m.role === 'user' ? 'bg-accent text-accent-fg' : 'bg-bg-secondary text-fg'
                   )}
                 >
                   {m.content}
@@ -127,7 +127,7 @@ export default function ChatAssistant() {
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="p-2 rounded-lg gradient-bg text-white disabled:opacity-50"
+              className="p-2 rounded bg-accent text-accent-fg disabled:opacity-50 transition-colors"
               aria-label="Send message"
             >
               <Send className="w-4 h-4" />

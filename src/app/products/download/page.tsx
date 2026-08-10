@@ -37,7 +37,7 @@ export default async function DownloadPage({ searchParams }: { searchParams: { t
 
         <Link
           href="/products"
-          className="inline-block px-5 py-2.5 rounded-full border border-border text-fg-secondary font-medium text-sm hover:bg-bg-secondary"
+          className="inline-block px-5 py-2.5 rounded border border-border text-fg-secondary font-medium text-sm hover:bg-bg-secondary"
         >
           Back to Products
         </Link>

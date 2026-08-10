@@ -67,7 +67,7 @@ export default function EligibilityChecker() {
 
   const optionCls = (selected: boolean) =>
     clsx(
-      'p-4 rounded-xl border-2 font-medium transition-all text-left flex items-center gap-3',
+      'p-4 rounded-xl border-2 font-medium transition-colors text-left flex items-center gap-3',
       selected
         ? 'border-accent bg-accent/10 text-accent'
         : 'border-border text-fg-secondary hover:border-border-hover'
@@ -255,7 +255,7 @@ export default function EligibilityChecker() {
                           setSearch(p.name)
                         }}
                         className={clsx(
-                          'w-full p-3 rounded-lg text-left transition-all flex items-center justify-between',
+                          'w-full p-3 rounded-lg text-left transition-colors flex items-center justify-between',
                           selectedProfession === p.name
                             ? 'bg-accent/10 border border-accent'
                             : 'bg-bg-secondary hover:bg-bg-tertiary'

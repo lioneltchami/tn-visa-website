@@ -65,7 +65,7 @@ export default function JobsPage() {
             <h1 className="text-3xl font-bold gradient-text mb-2">TN Visa Job Board</h1>
             <p className="text-fg-secondary">Every job here is TN-eligible. No guessing, no filtering through irrelevant listings.</p>
           </div>
-          <Link href="/post-job" className="gradient-bg text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center gap-2 w-fit">
+          <Link href="/post-job" className="bg-accent text-accent-fg px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2 w-fit">
             <Plus className="w-4 h-4" /> Post a Job
           </Link>
         </div>
@@ -93,7 +93,7 @@ export default function JobsPage() {
           <div className="space-y-3">
             {filtered.map(job => (
               <Link key={job.id} href={`/jobs/${job.slug}`} className={clsx('card card-interactive p-5 block', job.is_featured && 'border-accent border-2 relative')}>
-                {job.is_featured && <span className="absolute -top-2.5 right-4 gradient-bg text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><Star className="w-3 h-3" />Featured</span>}
+                {job.is_featured && <span className="absolute -top-2.5 right-4 bg-accent text-accent-fg text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1"><Star className="w-3 h-3" />Featured</span>}
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h2 className="font-semibold text-fg text-lg">{job.title}</h2>

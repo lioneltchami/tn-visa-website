@@ -64,7 +64,7 @@ export default function SubmitExperiencePage() {
       <CheckCircle className="w-16 h-16 text-success" />
       <h1 className="text-2xl font-bold text-fg">Thank You!</h1>
       <p className="text-fg-secondary">Your experience has been submitted for review. It will appear on the site after moderation.</p>
-      <button onClick={() => router.push('/experiences')} className="px-5 py-2.5 rounded-full gradient-bg text-white font-medium text-sm">Back to Experiences</button>
+      <button onClick={() => router.push('/experiences')} className="px-5 py-2.5 rounded bg-accent text-accent-fg font-medium text-sm">Back to Experiences</button>
     </div>
   )
 
@@ -121,7 +121,7 @@ export default function SubmitExperiencePage() {
             <input type="checkbox" checked={form.is_anonymous} onChange={e => setForm(f => ({ ...f, is_anonymous: e.target.checked }))} className="rounded border-border" />
             <span className="text-sm text-fg-secondary">Submit anonymously</span>
           </label>
-          <button type="submit" disabled={saving} className="w-full py-2.5 rounded-full gradient-bg text-white font-medium disabled:opacity-50">
+          <button type="submit" disabled={saving} className="w-full py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50">
             {saving ? 'Submitting...' : 'Submit Experience'}
           </button>
         </form>

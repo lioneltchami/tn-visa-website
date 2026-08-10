@@ -87,7 +87,7 @@ export default function AnalyzerPage() {
           <textarea value={text} onChange={e => setText(e.target.value)} rows={10} placeholder="Paste the full job posting here..."
             className="w-full rounded-lg border border-border bg-bg p-4 text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 focus:ring-accent/30 resize-y" />
           <button onClick={handleAnalyze} disabled={text.trim().length < 20}
-            className="mt-4 flex items-center gap-2 px-6 py-3 rounded-full gradient-bg text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-40">
+            className="mt-4 flex items-center gap-2 px-6 py-3 rounded bg-accent text-accent-fg font-medium hover:opacity-90 transition-opacity disabled:opacity-40">
             <Search size={18} /> Analyze Job Posting
           </button>
         </div>
