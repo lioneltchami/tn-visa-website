@@ -72,7 +72,7 @@ export default function OnboardingPage() {
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
         <div className="h-2 rounded-full bg-bg-secondary overflow-hidden">
-          <div className="h-full gradient-bg transition-all duration-300" style={{ width: `${progress}%` }} />
+          <div className="h-full accent-fill transition-[width] duration-300" style={{ width: `${progress}%` }} />
         </div>
         <p className="text-fg-muted text-sm mt-2">Step {step} of {totalSteps}</p>
       </div>
@@ -125,7 +125,7 @@ export default function OnboardingPage() {
               <label className="block text-sm font-medium mb-1">Education Level</label>
               <select value={engineer.education_level} onChange={e => setEngineer({ ...engineer, education_level: e.target.value })}
                 className="w-full rounded-lg border border-border bg-bg px-3 py-2 text-fg">
-                <option value="">Select...</option>
+                <option value="">Select…</option>
                 {["Bachelor's", "Master's", "Doctorate", "Post-secondary Diploma"].map(l => <option key={l} value={l}>{l}</option>)}
               </select>
             </div>
@@ -144,7 +144,7 @@ export default function OnboardingPage() {
               <label className="block text-sm font-medium mb-1">Company Size</label>
               <select value={company.size} onChange={e => setCompany({ ...company, size: e.target.value })}
                 className="w-full rounded-lg border border-border bg-bg px-3 py-2 text-fg">
-                <option value="">Select...</option>
+                <option value="">Select…</option>
                 {['1-10', '11-50', '51-200', '201-1000', '1000+'].map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
@@ -175,7 +175,7 @@ export default function OnboardingPage() {
           <h1 className="text-2xl font-bold mb-6">Company details</h1>
           <div className="space-y-4">
             <Input label="Domain" value={company.domain} onChange={v => setCompany({ ...company, domain: v })} placeholder="e.g. example.com" />
-            <Input label="Logo URL" value={company.logo_url} onChange={v => setCompany({ ...company, logo_url: v })} placeholder="https://..." />
+            <Input label="Logo URL" value={company.logo_url} onChange={v => setCompany({ ...company, logo_url: v })} placeholder="https://…" />
           </div>
         </div>
       )}
@@ -186,11 +186,11 @@ export default function OnboardingPage() {
             <ArrowLeft className="w-4 h-4" /> Back
           </button>
           {step < totalSteps ? (
-            <button onClick={() => setStep(step + 1)} className="flex items-center gap-2 px-4 py-2 rounded-lg gradient-bg text-white">
+            <button onClick={() => setStep(step + 1)} className="flex items-center gap-2 px-4 py-2 rounded-lg accent-fill">
               Next <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
-            <button onClick={handleSubmit} disabled={loading} className="flex items-center gap-2 px-6 py-2 rounded-lg gradient-bg text-white disabled:opacity-50">
+            <button onClick={handleSubmit} disabled={loading} className="flex items-center gap-2 px-6 py-2 rounded-lg accent-fill disabled:opacity-50">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null} Complete
             </button>
           )}

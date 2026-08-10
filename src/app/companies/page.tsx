@@ -27,7 +27,7 @@ export default function CompaniesPage() {
       <div className="container-wide">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold gradient-text mb-2">TN-Friendly Companies</h1>
+            <h1 className="font-display text-3xl font-bold text-fg mb-2">TN-Friendly Companies</h1>
             <p className="text-[hsl(var(--fg-secondary))]">Companies that actively hire Canadian professionals on TN visas</p>
           </div>
           <Link href="/companies/add" className="bg-accent text-accent-fg px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2 w-fit">
@@ -40,7 +40,7 @@ export default function CompaniesPage() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(var(--fg-muted))]" />
             <input
               type="text"
-              placeholder="Search companies..."
+              placeholder="Search companies…"
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="w-full pl-11 pr-4 py-2.5 rounded border border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--fg))] focus:outline-none focus:border-[hsl(var(--accent))]"

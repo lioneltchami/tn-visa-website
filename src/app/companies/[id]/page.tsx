@@ -33,7 +33,7 @@ export default function CompanyDetailPage() {
     load()
   }, [id])
 
-  if (loading) return <div className="section-padding"><div className="container-tight"><p className="text-[hsl(var(--fg-muted))]">Loading...</p></div></div>
+  if (loading) return <div className="section-padding"><div className="container-tight"><p className="text-[hsl(var(--fg-muted))]">Loading…</p></div></div>
   if (!company) return <div className="section-padding"><div className="container-tight"><p className="text-[hsl(var(--fg-muted))]">{error || 'Company not found.'}</p></div></div>
 
   return (

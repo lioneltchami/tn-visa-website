@@ -9,7 +9,7 @@ export default function CompaniesError({ error, reset }: { error: Error & { dige
     <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
       <h2 className="text-xl font-bold text-fg">Failed to load companies</h2>
       <p className="text-fg-secondary text-sm">{error.message || 'An unexpected error occurred.'}</p>
-      <button onClick={reset} className="px-4 py-2 rounded-lg gradient-bg text-white text-sm font-medium">
+      <button onClick={reset} className="px-4 py-2 rounded-lg accent-fill text-sm font-medium">
         Try again
       </button>
     </div>

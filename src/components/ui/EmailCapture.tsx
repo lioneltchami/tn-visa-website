@@ -93,7 +93,7 @@ export default function EmailCapture({
 					className="btn-primary disabled:opacity-50 flex items-center gap-1.5"
 				>
 					<Send className="w-3.5 h-3.5" />
-					{status === "loading" ? "..." : "Subscribe"}
+					{status === "loading" ? "…" : "Subscribe"}
 				</button>
 			</form>
 			{status === "error" && (

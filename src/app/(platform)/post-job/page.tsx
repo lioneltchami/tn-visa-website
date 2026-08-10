@@ -73,7 +73,7 @@ export default function PostJobPage() {
 
   const inputCls = 'w-full rounded-lg border border-border bg-bg px-3 py-2 text-fg text-sm focus:outline-none focus:ring-2 focus:ring-accent/30'
 
-  if (loading) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading...</div></div>
+  if (loading) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading…</div></div>
 
   if (submitted) return (
     <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4 text-center">
@@ -97,7 +97,7 @@ export default function PostJobPage() {
         </div>
         <div><label className="block text-sm font-medium text-fg-secondary mb-1">TN Profession *</label>
           <select required value={form.tn_profession} onChange={e => setForm(f => ({ ...f, tn_profession: e.target.value }))} className={inputCls}>
-            <option value="">Select the USMCA profession...</option>
+            <option value="">Select the USMCA profession…</option>
             {professions.map(p => <option key={p.id} value={p.name}>{p.name}</option>)}
           </select>
         </div>
@@ -129,7 +129,7 @@ export default function PostJobPage() {
           <input required type="url" value={form.application_url} onChange={e => setForm(f => ({ ...f, application_url: e.target.value }))} placeholder="https://careers.company.com/apply" className={inputCls} />
         </div>
         <button type="submit" disabled={saving} className="w-full py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50">
-          {saving ? 'Posting...' : 'Post Job (Free)'}
+          {saving ? 'Posting…' : 'Post Job (Free)'}
         </button>
       </form>
     </div>

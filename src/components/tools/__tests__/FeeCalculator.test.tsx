@@ -6,7 +6,7 @@ describe('FeeCalculator', () => {
   it('renders with default POE land border fees', () => {
     render(<FeeCalculator />)
     expect(screen.getByText('POE Processing Fee')).toBeInTheDocument()
-    // Total shown in the gradient-text span
+    // Total shown in the accent-text span
     expect(screen.getByText('$80')).toBeInTheDocument()
   })
 

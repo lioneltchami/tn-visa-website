@@ -85,7 +85,7 @@ export default function EligibilityChecker() {
                   className={clsx(
                     'w-8 h-8 rounded flex items-center justify-center text-sm font-bold shrink-0',
                     i < step
-                      ? 'gradient-bg text-white'
+                      ? 'accent-fill'
                       : i === step
                         ? 'border-2 border-accent text-accent'
                         : 'border-2 border-border text-fg-muted'
@@ -240,7 +240,7 @@ export default function EligibilityChecker() {
                       setSearch(e.target.value)
                       setSelectedProfession('')
                     }}
-                    placeholder="e.g. Software Engineer, Accountant, Nurse..."
+                    placeholder="e.g. Software Engineer, Accountant, Nurse…"
                     aria-label="Search professions"
                     className="w-full pl-10 pr-4 py-3 rounded-lg border border-border bg-bg text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 ring-accent/30 focus:border-accent"
                   />

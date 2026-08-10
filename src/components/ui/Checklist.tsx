@@ -39,7 +39,7 @@ export function Checklist({ items, title }: ChecklistProps) {
           aria-label={`${count} of ${items.length} items completed`}
         >
           <div
-            className="h-full rounded-full bg-accent transition-all duration-300"
+            className="h-full rounded-full bg-accent transition-[width] duration-300"
             style={{ width: `${(count / items.length) * 100}%` }}
           />
         </div>
@@ -66,7 +66,7 @@ export function Checklist({ items, title }: ChecklistProps) {
             </div>
             <span
               className={clsx(
-                'text-sm transition-all duration-200',
+                'text-sm transition-colors duration-200',
                 checked[i] ? 'line-through text-fg-muted' : 'text-fg'
               )}
             >

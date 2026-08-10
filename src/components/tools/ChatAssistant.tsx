@@ -121,7 +121,7 @@ export default function ChatAssistant() {
               value={input}
               onChange={handleInputChange}
               maxLength={MAX_MESSAGE_CHARS}
-              placeholder="Ask about TN visas..."
+              placeholder="Ask about TN visas…"
               className="flex-1 text-sm px-3 py-2 rounded-lg border border-border bg-bg text-fg focus:outline-none focus:ring-1 focus:ring-accent"
             />
             <button

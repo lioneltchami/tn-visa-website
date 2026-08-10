@@ -64,7 +64,7 @@ export default function ProfileEditPage() {
 
 
 
-  if (!profile) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading...</div></div>
+  if (!profile) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading…</div></div>
 
   const embedUrl = profile.video_url ? getVideoEmbed(profile.video_url) : null
 
@@ -89,7 +89,7 @@ export default function ProfileEditPage() {
           <label className="block text-sm font-medium mb-1">TN Profession</label>
           <select value={profile.tn_profession || ''} onChange={e => setProfile({ ...profile, tn_profession: e.target.value })}
             className="w-full rounded-lg border border-border bg-bg px-3 py-2 text-fg">
-            <option value="">Select...</option>
+            <option value="">Select…</option>
             {professions.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
           </select>
         </div>
@@ -117,7 +117,7 @@ export default function ProfileEditPage() {
         <Field label="Portfolio" value={profile.portfolio_url || ''} onChange={v => setProfile({ ...profile, portfolio_url: v })} />
       </div>
       <button onClick={handleSave} disabled={saving}
-        className="mt-6 flex items-center gap-2 px-6 py-2 rounded-lg gradient-bg text-white disabled:opacity-50">
+        className="mt-6 flex items-center gap-2 px-6 py-2 rounded-lg accent-fill disabled:opacity-50">
         {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} Save
       </button>
     </div>

@@ -102,7 +102,7 @@ export default function MyDocumentsPage() {
   return (
     <div className="section-padding">
       <div className="container-tight">
-        <h1 className="gradient-text text-3xl sm:text-4xl font-bold mb-2">My TN Documents</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-fg mb-2">My TN Documents</h1>
         <p className="text-fg-secondary mb-8">Securely store your TN visa application documents.</p>
 
         {error && (

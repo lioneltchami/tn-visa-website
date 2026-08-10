@@ -79,20 +79,20 @@ export default function SubmitExperiencePage() {
         <form onSubmit={handleSubmit} className="card p-6 space-y-4">
           <div><label className="block text-sm font-medium text-fg-secondary mb-1">TN Profession *</label>
             <select required value={form.profession} onChange={e => setForm(f => ({ ...f, profession: e.target.value }))} className={inputCls}>
-              <option value="">Select...</option>
+              <option value="">Select…</option>
               {professions.map(p => <option key={p.id} value={p.name}>{p.name}</option>)}
             </select>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div><label className="block text-sm font-medium text-fg-secondary mb-1">Method *</label>
               <select required value={form.application_method} onChange={e => setForm(f => ({ ...f, application_method: e.target.value }))} className={inputCls}>
-                <option value="">Select...</option>
+                <option value="">Select…</option>
                 {METHODS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
               </select>
             </div>
             <div><label className="block text-sm font-medium text-fg-secondary mb-1">Outcome *</label>
               <select required value={form.outcome} onChange={e => setForm(f => ({ ...f, outcome: e.target.value }))} className={inputCls}>
-                <option value="">Select...</option>
+                <option value="">Select…</option>
                 {OUTCOMES.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
               </select>
             </div>
@@ -115,14 +115,14 @@ export default function SubmitExperiencePage() {
             <textarea value={form.tips} onChange={e => setForm(f => ({ ...f, tips: e.target.value }))} rows={2} placeholder="What advice would you give?" className={inputCls} />
           </div>
           <div><label className="block text-sm font-medium text-fg-secondary mb-1">Full Story</label>
-            <textarea value={form.story} onChange={e => setForm(f => ({ ...f, story: e.target.value }))} rows={4} placeholder="Describe your experience..." className={inputCls} />
+            <textarea value={form.story} onChange={e => setForm(f => ({ ...f, story: e.target.value }))} rows={4} placeholder="Describe your experience…" className={inputCls} />
           </div>
           <label className="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" checked={form.is_anonymous} onChange={e => setForm(f => ({ ...f, is_anonymous: e.target.checked }))} className="rounded border-border" />
             <span className="text-sm text-fg-secondary">Submit anonymously</span>
           </label>
           <button type="submit" disabled={saving} className="w-full py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50">
-            {saving ? 'Submitting...' : 'Submit Experience'}
+            {saving ? 'Submitting…' : 'Submit Experience'}
           </button>
         </form>
       </div>

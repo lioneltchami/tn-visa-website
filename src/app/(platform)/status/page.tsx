@@ -137,7 +137,7 @@ export default function StatusPage() {
   if (loading)
     return (
       <div className="flex justify-center py-20">
-        <div className="animate-pulse text-fg-muted">Loading...</div>
+        <div className="animate-pulse text-fg-muted">Loading…</div>
       </div>
     )
 
@@ -174,7 +174,7 @@ export default function StatusPage() {
               onChange={(e) => setForm((f) => ({ ...f, profession: e.target.value }))}
               className={inputCls}
             >
-              <option value="">Select...</option>
+              <option value="">Select…</option>
               {professions.map((p) => (
                 <option key={p.id} value={p.name}>
                   {p.name}
@@ -225,7 +225,7 @@ export default function StatusPage() {
                 onChange={(e) => setForm((f) => ({ ...f, application_method: e.target.value }))}
                 className={inputCls}
               >
-                <option value="">Select...</option>
+                <option value="">Select…</option>
                 {METHODS.map((m) => (
                   <option key={m.value} value={m.value}>
                     {m.label}
@@ -260,7 +260,7 @@ export default function StatusPage() {
               disabled={saving}
               className="px-5 py-2 rounded bg-accent text-accent-fg text-sm font-medium disabled:opacity-50"
             >
-              {saving ? 'Saving...' : 'Save'}
+              {saving ? 'Saving…' : 'Save'}
             </button>
             <button
               type="button"

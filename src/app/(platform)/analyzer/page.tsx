@@ -80,11 +80,11 @@ export default function AnalyzerPage() {
   return (
     <div className="section-padding">
       <div className="container-tight">
-        <h1 className="gradient-text text-3xl sm:text-4xl font-bold mb-2">Job Posting Analyzer</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-fg mb-2">Job Posting Analyzer</h1>
         <p className="text-fg-secondary mb-8">Paste a job posting to check TN visa eligibility and profession fit.</p>
 
         <div className="card p-6 mb-6">
-          <textarea value={text} onChange={e => setText(e.target.value)} rows={10} placeholder="Paste the full job posting here..."
+          <textarea value={text} onChange={e => setText(e.target.value)} rows={10} placeholder="Paste the full job posting here…"
             className="w-full rounded-lg border border-border bg-bg p-4 text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 focus:ring-accent/30 resize-y" />
           <button onClick={handleAnalyze} disabled={text.trim().length < 20}
             className="mt-4 flex items-center gap-2 px-6 py-3 rounded bg-accent text-accent-fg font-medium hover:opacity-90 transition-opacity disabled:opacity-40">

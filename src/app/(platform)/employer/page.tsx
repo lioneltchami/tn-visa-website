@@ -36,7 +36,7 @@ export default function EmployerDashboard() {
     load()
   }, [router])
 
-  if (loading) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading...</div></div>
+  if (loading) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading…</div></div>
   if (error) return <div className="flex justify-center py-20"><div className="flex items-center gap-2 text-danger"><AlertCircle className="w-5 h-5" />{error}</div></div>
   if (!company) return null
 

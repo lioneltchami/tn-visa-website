@@ -62,7 +62,7 @@ export default function JobsPage() {
       <div className="container-wide">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold gradient-text mb-2">TN Visa Job Board</h1>
+            <h1 className="font-display text-3xl font-bold text-fg mb-2">TN Visa Job Board</h1>
             <p className="text-fg-secondary">Every job here is TN-eligible. No guessing, no filtering through irrelevant listings.</p>
           </div>
           <Link href="/post-job" className="bg-accent text-accent-fg px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2 w-fit">
@@ -75,14 +75,14 @@ export default function JobsPage() {
             <option value="">All Professions</option>
             {professions.map(p => <option key={p.id} value={p.name}>{p.name}</option>)}
           </select>
-          <input value={filters.location} onChange={e => setFilters(f => ({ ...f, location: e.target.value }))} placeholder="Filter by location..." className={clsx(selectCls, 'w-48')} />
+          <input value={filters.location} onChange={e => setFilters(f => ({ ...f, location: e.target.value }))} placeholder="Filter by location…" className={clsx(selectCls, 'w-48')} />
           <select value={filters.remote} onChange={e => setFilters(f => ({ ...f, remote: e.target.value }))} className={selectCls}>
             {REMOTE.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
           </select>
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-12"><div className="animate-pulse text-fg-muted">Loading jobs...</div></div>
+          <div className="flex justify-center py-12"><div className="animate-pulse text-fg-muted">Loading jobs…</div></div>
         ) : filtered.length === 0 ? (
           <div className="card p-10 text-center">
             <Briefcase className="w-12 h-12 mx-auto mb-3 text-fg-muted" />

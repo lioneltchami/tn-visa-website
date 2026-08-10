@@ -30,7 +30,7 @@ export default function FaqAccordion({ sections }: { sections: FaqSection[] }) {
                     <span className="font-medium text-fg">{item.question}</span>
                     <ChevronDown className={clsx('w-4 h-4 text-fg-muted shrink-0 transition-transform duration-200', isOpen && 'rotate-180')} />
                   </button>
-                  <div className={clsx('transition-all duration-300 ease-in-out', isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden')}>
+                  <div className={clsx('transition-[max-height,opacity] duration-300 ease-in-out', isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden')}>
                     <div className="px-4 pb-4 text-sm text-fg-secondary">{item.answer}</div>
                   </div>
                 </div>

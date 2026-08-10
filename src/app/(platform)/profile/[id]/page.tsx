@@ -38,7 +38,7 @@ export default function PublicProfilePage() {
     </div>
   )
 
-  if (!profile) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading...</div></div>
+  if (!profile) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading…</div></div>
 
   const profession = professions.find(p => p.id === profile.tn_profession)
   const embedUrl = profile.video_url ? getVideoEmbed(profile.video_url) : null
@@ -50,7 +50,7 @@ export default function PublicProfilePage() {
           {profile.avatar_url ? (
             <Image src={profile.avatar_url} alt="" width={80} height={80} className="w-20 h-20 rounded-full object-cover" />
           ) : (
-            <div className="w-20 h-20 rounded-full gradient-bg flex items-center justify-center text-white text-2xl font-bold">
+            <div className="w-20 h-20 rounded-full accent-fill flex items-center justify-center text-accent-fg text-2xl font-bold">
               {profile.full_name.charAt(0)}
             </div>
           )}

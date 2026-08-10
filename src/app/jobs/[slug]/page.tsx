@@ -57,7 +57,7 @@ export default function JobDetailPage() {
     return (
       <div className="section-padding">
         <div className="container-tight">
-          <p className="text-fg-muted animate-pulse">Loading...</p>
+          <p className="text-fg-muted animate-pulse">Loading…</p>
         </div>
       </div>
     )

@@ -32,7 +32,7 @@ export default function DashboardPage() {
     load()
   }, [router])
 
-  if (loading || !profile) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading...</div></div>
+  if (loading || !profile) return <div className="flex justify-center py-20"><div className="animate-pulse text-fg-muted">Loading…</div></div>
 
   if (error) return (
     <div className="flex justify-center py-20">

@@ -118,7 +118,7 @@ ${form.companyPhone}${form.signatoryEmail ? ' | ' + form.signatoryEmail : ''}`
   return (
     <div className="card p-6 sm:p-8">
       <div className="flex items-center gap-3 mb-6">
-        <div className="gradient-bg p-2.5 rounded-xl"><FileText className="w-5 h-5 text-white" /></div>
+        <div className="accent-fill p-2.5 rounded-xl"><FileText className="w-5 h-5 text-accent-fg" /></div>
         <h2 className="text-xl font-bold text-fg">Employer Letter Builder</h2>
       </div>
 
@@ -126,7 +126,7 @@ ${form.companyPhone}${form.signatoryEmail ? ' | ' + form.signatoryEmail : ''}`
       <div className="flex gap-1 mb-6">
         {STEPS.map((s, i) => (
           <div key={s} className="flex-1">
-            <div className={clsx('h-1.5 rounded-full transition-colors', i <= step ? 'gradient-bg' : 'bg-bg-tertiary')} />
+            <div className={clsx('h-1.5 rounded-full transition-colors', i <= step ? 'accent-fill' : 'bg-bg-tertiary')} />
             <p className={clsx('text-xs mt-1 text-center', i <= step ? 'text-accent font-medium' : 'text-fg-muted')}>{s}</p>
           </div>
         ))}
@@ -167,7 +167,7 @@ ${form.companyPhone}${form.signatoryEmail ? ' | ' + form.signatoryEmail : ''}`
               <div><label className={labelCls}>Signatory Title *</label><input value={form.signatoryTitle} onChange={e => set('signatoryTitle', e.target.value)} className={inputCls} /></div>
               <div><label className={labelCls}>Signatory Email</label><input value={form.signatoryEmail} onChange={e => set('signatoryEmail', e.target.value)} className={inputCls} /></div>
             </div>
-            <div><label className={labelCls}>Company Description (1-2 sentences)</label><textarea value={form.companyDescription} onChange={e => set('companyDescription', e.target.value)} rows={2} placeholder="a technology company specializing in..." className={inputCls} /></div>
+            <div><label className={labelCls}>Company Description (1-2 sentences)</label><textarea value={form.companyDescription} onChange={e => set('companyDescription', e.target.value)} rows={2} placeholder="a technology company specializing in…" className={inputCls} /></div>
           </div>
         )}
 

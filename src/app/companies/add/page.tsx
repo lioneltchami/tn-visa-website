@@ -83,7 +83,7 @@ export default function AddCompanyPage() {
   return (
     <div className="section-padding">
       <div className="container-tight">
-        <h1 className="text-3xl font-bold gradient-text mb-2">Add Your Company</h1>
+        <h1 className="font-display text-3xl font-bold text-fg mb-2">Add Your Company</h1>
         <p className="text-[hsl(var(--fg-secondary))] mb-8">List your company as TN-friendly to attract Canadian talent.</p>
 
         {error && (
@@ -106,14 +106,14 @@ export default function AddCompanyPage() {
             <label className="block">
               <span className="text-sm font-medium text-[hsl(var(--fg))]">Industry *</span>
               <select required value={form.industry} onChange={e => setForm(f => ({ ...f, industry: e.target.value }))} className="mt-1 w-full px-3 py-2 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--fg))]">
-                <option value="">Select...</option>
+                <option value="">Select…</option>
                 {INDUSTRIES.map(i => <option key={i} value={i}>{i}</option>)}
               </select>
             </label>
             <label className="block">
               <span className="text-sm font-medium text-[hsl(var(--fg))]">Size *</span>
               <select required value={form.size} onChange={e => setForm(f => ({ ...f, size: e.target.value }))} className="mt-1 w-full px-3 py-2 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--fg))]">
-                <option value="">Select...</option>
+                <option value="">Select…</option>
                 {SIZES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </label>
@@ -123,7 +123,7 @@ export default function AddCompanyPage() {
             </label>
             <label className="block">
               <span className="text-sm font-medium text-[hsl(var(--fg))]">Careers URL</span>
-              <input value={form.careers_url} onChange={e => setForm(f => ({ ...f, careers_url: e.target.value }))} placeholder="https://..." className="mt-1 w-full px-3 py-2 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--fg))]" />
+              <input value={form.careers_url} onChange={e => setForm(f => ({ ...f, careers_url: e.target.value }))} placeholder="https://…" className="mt-1 w-full px-3 py-2 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--bg))] text-[hsl(var(--fg))]" />
             </label>
           </div>
 

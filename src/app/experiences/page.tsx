@@ -70,7 +70,7 @@ export default function ExperiencesPage() {
       <div className="container-wide">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold gradient-text mb-2">Community Experiences</h1>
+            <h1 className="font-display text-3xl font-bold text-fg mb-2">Community Experiences</h1>
             <p className="text-fg-secondary">Real TN visa application stories from the community</p>
           </div>
           <Link href="/experiences/submit" className="bg-accent text-accent-fg px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2 w-fit">
@@ -117,7 +117,7 @@ export default function ExperiencesPage() {
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-12"><div className="animate-pulse text-fg-muted">Loading experiences...</div></div>
+          <div className="flex justify-center py-12"><div className="animate-pulse text-fg-muted">Loading experiences…</div></div>
         ) : filtered.length === 0 ? (
           <div className="card p-10 text-center">
             <p className="text-fg-secondary font-medium">No experiences yet</p>

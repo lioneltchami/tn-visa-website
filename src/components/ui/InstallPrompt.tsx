@@ -46,7 +46,7 @@ export default function InstallPrompt() {
           <p className="font-medium text-fg text-sm">Install TN Visa Guide</p>
           <p className="text-xs text-fg-muted mt-0.5">Access checklists and guides offline at the border.</p>
           <div className="flex gap-2 mt-2">
-            <button onClick={handleInstall} className="px-3 py-1.5 rounded-lg gradient-bg text-white text-xs font-medium">Install</button>
+            <button onClick={handleInstall} className="px-3 py-1.5 rounded-lg accent-fill text-xs font-medium">Install</button>
             <button onClick={handleDismiss} className="px-3 py-1.5 rounded-lg border border-border text-fg-muted text-xs">Not now</button>
           </div>
         </div>

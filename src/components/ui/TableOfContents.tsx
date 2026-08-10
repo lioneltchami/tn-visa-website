@@ -20,7 +20,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
         <p className="text-sm font-semibold text-fg">On this page</p>
         <ChevronDown className={clsx('w-4 h-4 text-fg-muted transition-transform', open && 'rotate-180')} />
       </button>
-      <div className={clsx('transition-all duration-300', open ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0 overflow-hidden')}>
+      <div className={clsx('transition-[max-height,opacity] duration-300', open ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0 overflow-hidden')}>
         <ul className="space-y-1.5 border-l border-border">
           {headings.map(h => (
             <li key={h.id}>

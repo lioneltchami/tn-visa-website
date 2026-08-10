@@ -40,7 +40,7 @@ export default function UnsubscribePage() {
             disabled={!email || status === 'loading'}
             className="px-6 py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50"
           >
-            {status === 'loading' ? 'Processing...' : 'Confirm Unsubscribe'}
+            {status === 'loading' ? 'Processing…' : 'Confirm Unsubscribe'}
           </button>
           {status === 'error' && <p className="text-danger text-sm">Something went wrong. Please try again.</p>}
         </>

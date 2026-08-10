@@ -12,13 +12,13 @@ export default function SPTCalculator() {
   const isResident = total >= 183 && current >= 31;
   const hasInput = current > 0 || prior > 0 || twoYearsAgo > 0;
 
-  const inputCls = 'w-full rounded-lg border border-border bg-bg p-3 text-center text-lg font-semibold text-fg focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-all';
+  const inputCls = 'w-full rounded-lg border border-border bg-bg p-3 text-center text-lg font-semibold text-fg focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-colors';
 
   return (
     <div className="card p-6 sm:p-8">
       <div className="flex items-center gap-3 mb-6">
-        <div className="gradient-bg p-2.5 rounded-xl">
-          <Scale className="w-5 h-5 text-white" />
+        <div className="accent-fill p-2.5 rounded-xl">
+          <Scale className="w-5 h-5 text-accent-fg" />
         </div>
         <h2 className="text-xl font-bold text-fg">Substantial Presence Test</h2>
       </div>
@@ -50,7 +50,7 @@ export default function SPTCalculator() {
           <div className="rounded-lg bg-bg-secondary p-4 text-center">
             <p className="text-sm text-fg-muted mb-1">Formula</p>
             <p className="text-lg font-mono font-semibold text-fg">
-              {current} + ({prior} ÷ 3) + ({twoYearsAgo} ÷ 6) = <span className="gradient-text">{total}</span>
+              {current} + ({prior} ÷ 3) + ({twoYearsAgo} ÷ 6) = <span className="accent-text">{total}</span>
             </p>
           </div>
 

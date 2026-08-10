@@ -47,13 +47,13 @@ export default function FeeCalculator() {
   const total = items.reduce((s, i) => s + i.amount, 0)
 
   const selectCls =
-    'rounded-lg border border-border bg-bg p-3 w-full text-fg focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-all'
+    'rounded-lg border border-border bg-bg p-3 w-full text-fg focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-colors'
 
   return (
     <div className="card p-6 sm:p-8">
       <div className="flex items-center gap-3 mb-6">
-        <div className="gradient-bg p-2.5 rounded-xl">
-          <Calculator className="w-5 h-5 text-white" />
+        <div className="accent-fill p-2.5 rounded-xl">
+          <Calculator className="w-5 h-5 text-accent-fg" />
         </div>
         <h2 className="text-xl font-bold text-fg">Fee Calculator</h2>
       </div>
@@ -80,7 +80,7 @@ export default function FeeCalculator() {
 
         <div
           className={clsx(
-            'transition-all duration-300 overflow-hidden',
+            'transition-[max-height,opacity] duration-300 overflow-hidden',
             method === 'i-129' ? 'max-h-24 opacity-100' : 'max-h-0 opacity-0'
           )}
         >
@@ -153,7 +153,7 @@ export default function FeeCalculator() {
 
         <div
           className={clsx(
-            'transition-all duration-300 overflow-hidden',
+            'transition-[max-height,opacity] duration-300 overflow-hidden',
             dependents > 0 ? 'max-h-24 opacity-100' : 'max-h-0 opacity-0'
           )}
         >
@@ -184,7 +184,7 @@ export default function FeeCalculator() {
         <div className="flex justify-between items-center mt-4 pt-4 border-t border-border">
           <span className="font-semibold text-fg">Total</span>
           <div className="text-right">
-            <span className="text-2xl font-bold gradient-text">${total.toLocaleString()}</span>
+            <span className="text-2xl font-bold accent-text">${total.toLocaleString()}</span>
             <p className="text-sm text-fg-muted">{formatCAD(total)}</p>
           </div>
         </div>

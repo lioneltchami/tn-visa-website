@@ -70,7 +70,7 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full gradient-bg text-accent-fg py-2 rounded-lg font-medium disabled:opacity-50"
+          className="w-full accent-fill text-accent-fg py-2 rounded-lg font-medium disabled:opacity-50"
         >
           {loading ? 'Signing in...' : 'Sign in'}
         </button>

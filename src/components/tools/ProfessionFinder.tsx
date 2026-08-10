@@ -29,8 +29,8 @@ export default function ProfessionFinder() {
           value={search}
           onChange={e => setSearch(e.target.value)}
           aria-label="Search professions"
-          placeholder="Search professions, job titles..."
-          className="w-full rounded border border-border bg-bg pl-12 pr-4 py-3.5 text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-all"
+          placeholder="Search professions, job titles…"
+          className="w-full rounded border border-border bg-bg pl-12 pr-4 py-3.5 text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-colors"
         />
       </div>
 
@@ -42,7 +42,7 @@ export default function ProfessionFinder() {
             className={clsx(
               'px-4 py-2 rounded text-sm font-medium transition-colors',
               category === cat
-                ? 'gradient-bg text-white shadow-sm'
+                ? 'accent-fill shadow-sm'
                 : 'bg-bg-secondary text-fg-secondary hover:text-fg hover:bg-bg-tertiary'
             )}
           >
@@ -73,7 +73,7 @@ export default function ProfessionFinder() {
             </button>
 
             <div className={clsx(
-              'transition-all duration-300 ease-in-out',
+              'transition-[max-height,opacity] duration-300 ease-in-out',
               expanded === p.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
             )}>
               <div className="px-4 pb-4 space-y-3 border-t border-border">
