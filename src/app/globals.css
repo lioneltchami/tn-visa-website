@@ -94,6 +94,11 @@
 }
 
 @layer components {
+  .glass {
+    background: hsl(var(--bg));
+    border: 1px solid hsl(var(--border));
+  }
+
   /* Legacy class names kept as solid fills — never gradient text */
   .gradient-text {
     color: hsl(var(--accent));

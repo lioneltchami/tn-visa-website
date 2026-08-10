@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import JsonLd from '@/components/JsonLd'
-import { Reveal } from '@/components/ui/Reveal'
 
 interface ContentLayoutProps {
   title: string
@@ -59,10 +58,10 @@ export default function ContentLayout({
           </nav>
         )}
 
-        <Reveal>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-fg">{title}</h1>
-          <p className="text-fg-secondary text-lg mb-10">{description}</p>
-        </Reveal>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-fg text-balance">
+          {title}
+        </h1>
+        <p className="text-fg-secondary text-lg mb-10 text-pretty">{description}</p>
 
         <div className="space-y-8">{children}</div>
 

@@ -30,7 +30,7 @@ export default function ProfessionFinder() {
           onChange={e => setSearch(e.target.value)}
           aria-label="Search professions"
           placeholder="Search professions, job titles..."
-          className="w-full rounded-full border border-border bg-bg pl-12 pr-4 py-3.5 text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-all"
+          className="w-full rounded border border-border bg-bg pl-12 pr-4 py-3.5 text-fg placeholder:text-fg-muted focus:outline-none focus:ring-2 ring-[var(--accent)]/30 focus:border-[var(--accent)] transition-all"
         />
       </div>
 
@@ -40,7 +40,7 @@ export default function ProfessionFinder() {
             key={cat}
             onClick={() => setCategory(cat)}
             className={clsx(
-              'px-4 py-2 rounded-full text-sm font-medium transition-all',
+              'px-4 py-2 rounded text-sm font-medium transition-colors',
               category === cat
                 ? 'gradient-bg text-white shadow-sm'
                 : 'bg-bg-secondary text-fg-secondary hover:text-fg hover:bg-bg-tertiary'

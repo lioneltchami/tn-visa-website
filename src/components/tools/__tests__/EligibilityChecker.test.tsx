@@ -10,9 +10,9 @@ describe('EligibilityChecker', () => {
 
   it('shows three citizenship options', () => {
     render(<EligibilityChecker />)
-    expect(screen.getByText(/Canadian Citizen/)).toBeInTheDocument()
-    expect(screen.getByText(/Mexican Citizen/)).toBeInTheDocument()
-    expect(screen.getByText(/Other Nationality/)).toBeInTheDocument()
+    expect(screen.getByText('Canadian citizen')).toBeInTheDocument()
+    expect(screen.getByText('Mexican citizen')).toBeInTheDocument()
+    expect(screen.getByText('Other nationality')).toBeInTheDocument()
   })
 
   it('disables Continue when no option selected', () => {
@@ -22,20 +22,20 @@ describe('EligibilityChecker', () => {
 
   it('enables Continue after selecting citizenship', () => {
     render(<EligibilityChecker />)
-    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Canadian citizen'))
     expect(screen.getByText('Continue')).not.toBeDisabled()
   })
 
   it('progresses to job offer step', () => {
     render(<EligibilityChecker />)
-    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Canadian citizen'))
     fireEvent.click(screen.getByText('Continue'))
     expect(screen.getByText(/Do you have a job offer/)).toBeInTheDocument()
   })
 
   it('progresses to education step', () => {
     render(<EligibilityChecker />)
-    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Canadian citizen'))
     fireEvent.click(screen.getByText('Continue'))
     fireEvent.click(screen.getByText(/Yes, I have a job offer/))
     fireEvent.click(screen.getByText('Continue'))
@@ -44,7 +44,7 @@ describe('EligibilityChecker', () => {
 
   it('progresses to profession search step', () => {
     render(<EligibilityChecker />)
-    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Canadian citizen'))
     fireEvent.click(screen.getByText('Continue'))
     fireEvent.click(screen.getByText(/Yes, I have a job offer/))
     fireEvent.click(screen.getByText('Continue'))
@@ -56,7 +56,7 @@ describe('EligibilityChecker', () => {
   it('shows search results when typing', () => {
     render(<EligibilityChecker />)
     // Navigate to step 3
-    fireEvent.click(screen.getByText(/Canadian Citizen/))
+    fireEvent.click(screen.getByText('Canadian citizen'))
     fireEvent.click(screen.getByText('Continue'))
     fireEvent.click(screen.getByText(/Yes, I have a job offer/))
     fireEvent.click(screen.getByText('Continue'))

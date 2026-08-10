@@ -178,7 +178,7 @@ export default function ChangesPage() {
       <section>
         <h2 className="text-2xl font-bold text-fg mt-12 mb-4">2026 Updates</h2>
         <div className="space-y-4 mb-8">
-          <div className="card p-4 border-l-4 border-l-accent">
+          <div className="border border-border bg-bg p-4 rounded">
             <p className="font-semibold text-fg text-sm">
               March 2026 — Billy Bishop Toronto Pre-Clearance
             </p>
@@ -187,7 +187,7 @@ export default function ChangesPage() {
               Canadian TN applicants a new processing location in downtown Toronto.
             </p>
           </div>
-          <div className="card p-4 border-l-4 border-l-warning">
+          <div className="border border-border bg-bg p-4 rounded">
             <p className="font-semibold text-fg text-sm">
               March 2026 — Premium Processing Fee Increase
             </p>
@@ -196,14 +196,14 @@ export default function ChangesPage() {
               to {usd(fees.premiumProcessing)} for I-129 petitions including TN.
             </p>
           </div>
-          <div className="card p-4 border-l-4 border-l-danger">
+          <div className="border border-border bg-bg p-4 rounded">
             <p className="font-semibold text-fg text-sm">December 2025 — USCIS Vetting Center</p>
             <p className="text-sm text-fg-secondary">
               USCIS created a centralized Vetting Center expanding social media and online presence
               checks. Expect more secondary inspections and longer processing at the border.
             </p>
           </div>
-          <div className="card p-4 border-l-4 border-l-warning">
+          <div className="border border-border bg-bg p-4 rounded">
             <p className="font-semibold text-fg text-sm">
               September 2025 — Mexican In-Person Interview Requirement
             </p>
@@ -212,7 +212,7 @@ export default function ChangesPage() {
               adding processing time.
             </p>
           </div>
-          <div className="card p-4 border-l-4 border-l-accent">
+          <div className="border border-border bg-bg p-4 rounded">
             <p className="font-semibold text-fg text-sm">September 2025 — I-94 Fee Increase</p>
             <p className="text-sm text-fg-secondary">
               The I-94 fee at land borders increased from {usd(fees.poe.i94LandPrevious)} to{' '}

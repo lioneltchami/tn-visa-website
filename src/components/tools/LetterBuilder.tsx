@@ -226,7 +226,7 @@ ${form.companyPhone}${form.signatoryEmail ? ' | ' + form.signatoryEmail : ''}`
               {letterText}
             </div>
             <div className="flex gap-3">
-              <button onClick={handleCopy} className="flex items-center gap-2 px-5 py-2.5 rounded-full gradient-bg text-white font-medium text-sm">
+              <button onClick={handleCopy} className="btn-primary flex items-center gap-2 text-sm">
                 {copied ? <><Check className="w-4 h-4" /> Copied!</> : <><Copy className="w-4 h-4" /> Copy to Clipboard</>}
               </button>
             </div>
@@ -241,7 +241,7 @@ ${form.companyPhone}${form.signatoryEmail ? ' | ' + form.signatoryEmail : ''}`
           <ArrowLeft className="w-4 h-4" /> Back
         </button>
         {step < 4 && (
-          <button onClick={() => { if (step === 3) trackEvent('letter_generated', { profession: form.profession }); setStep(step + 1) }} disabled={!canNext()} className={clsx('flex items-center gap-2 px-6 py-2.5 rounded-full font-medium', canNext() ? 'gradient-bg text-white' : 'bg-bg-tertiary text-fg-muted cursor-not-allowed')}>
+          <button onClick={() => { if (step === 3) trackEvent('letter_generated', { profession: form.profession }); setStep(step + 1) }} disabled={!canNext()} className={clsx('flex items-center gap-2 font-medium', canNext() ? 'btn-primary' : 'btn-secondary opacity-50 cursor-not-allowed')}>
             {step === 3 ? 'Generate Letter' : 'Next'} <ArrowRight className="w-4 h-4" />
           </button>
         )}

@@ -41,27 +41,27 @@ export default function TNVisaRemoteWork2026() {
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Remote Work Scenarios</h2>
 
       <div className="space-y-4 mb-8">
-        <div className="card p-5 border-l-4 border-l-green-500">
+        <div className="border border-border p-5 rounded">
           <h3 className="font-semibold text-fg mb-2">✅ Working from home in the US</h3>
           <p className="text-fg-secondary text-sm">Completely fine. Your home office in Texas, California, or anywhere in the US is acceptable.</p>
         </div>
 
-        <div className="card p-5 border-l-4 border-l-green-500">
+        <div className="border border-border p-5 rounded">
           <h3 className="font-semibold text-fg mb-2">✅ Occasional work while traveling in the US</h3>
           <p className="text-fg-secondary text-sm">Working from a hotel in another state during a vacation is fine.</p>
         </div>
 
-        <div className="card p-5 border-l-4 border-l-yellow-500">
+        <div className="border border-border p-5 rounded">
           <h3 className="font-semibold text-fg mb-2">⚠️ Short trips to Canada (1–2 weeks)</h3>
           <p className="text-fg-secondary text-sm">Gray area. Occasional short visits where you check email are generally tolerated, but shouldn&apos;t be a regular pattern.</p>
         </div>
 
-        <div className="card p-5 border-l-4 border-l-red-500">
+        <div className="border border-border p-5 rounded">
           <h3 className="font-semibold text-fg mb-2">❌ Extended work from Canada</h3>
           <p className="text-fg-secondary text-sm">Working from Canada for weeks or months undermines your TN status. You&apos;re supposed to be in the US.</p>
         </div>
 
-        <div className="card p-5 border-l-4 border-l-red-500">
+        <div className="border border-border p-5 rounded">
           <h3 className="font-semibold text-fg mb-2">❌ Living in Canada, commuting to US</h3>
           <p className="text-fg-secondary text-sm">TN requires US residence. Living in Canada and crossing daily/weekly is problematic.</p>
         </div>

@@ -165,22 +165,22 @@ export default function AboutPage() {
       <div className="mt-12 pt-8 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Link
           href="/fees"
-          className="card card-interactive p-4 text-center font-medium text-accent"
+          className="border border-border p-4 rounded font-medium text-accent hover:bg-bg-secondary transition-colors block text-left"
         >
           Fee calculator &amp; sources
         </Link>
-        <Link href="/faq" className="card card-interactive p-4 text-center font-medium text-accent">
+        <Link href="/faq" className="border border-border p-4 rounded font-medium text-accent hover:bg-bg-secondary transition-colors block text-left">
           FAQ
         </Link>
         <Link
           href="/disclosure"
-          className="card card-interactive p-4 text-center font-medium text-accent"
+          className="border border-border p-4 rounded font-medium text-accent hover:bg-bg-secondary transition-colors block text-left"
         >
           Affiliate disclosure
         </Link>
         <Link
           href="/products"
-          className="card card-interactive p-4 text-center font-medium text-accent"
+          className="border border-border p-4 rounded font-medium text-accent hover:bg-bg-secondary transition-colors block text-left"
         >
           Preparation kits
         </Link>

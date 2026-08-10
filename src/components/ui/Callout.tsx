@@ -1,30 +1,46 @@
-import { ReactNode } from 'react';
-import { AlertTriangle, Lightbulb, Info, XCircle } from 'lucide-react';
-import clsx from 'clsx';
+import clsx from "clsx";
+import { AlertTriangle, Info, Lightbulb, XCircle } from "lucide-react";
+import type { ReactNode } from "react";
 
 const config = {
-  warning: { icon: AlertTriangle, border: 'border-l-warning', text: 'text-warning', bg: 'bg-amber-50/50 dark:bg-amber-950/20' },
-  tip: { icon: Lightbulb, border: 'border-l-success', text: 'text-success', bg: 'bg-green-50/50 dark:bg-green-950/20' },
-  info: { icon: Info, border: 'border-l-accent', text: 'text-accent', bg: 'bg-blue-50/50 dark:bg-blue-950/20' },
-  danger: { icon: XCircle, border: 'border-l-canadian', text: 'text-danger', bg: 'bg-red-50/50 dark:bg-red-950/20' },
+	warning: {
+		icon: AlertTriangle,
+		accent: "text-warning",
+		bg: "bg-bg-secondary",
+	},
+	tip: {
+		icon: Lightbulb,
+		accent: "text-success",
+		bg: "bg-bg-secondary",
+	},
+	info: {
+		icon: Info,
+		accent: "text-accent",
+		bg: "bg-bg-secondary",
+	},
+	danger: {
+		icon: XCircle,
+		accent: "text-danger",
+		bg: "bg-bg-secondary",
+	},
 };
 
 interface CalloutProps {
-  type: 'warning' | 'tip' | 'info' | 'danger';
-  title?: string;
-  children: ReactNode;
+	type: "warning" | "tip" | "info" | "danger";
+	title?: string;
+	children: ReactNode;
 }
 
 export function Callout({ type, title, children }: CalloutProps) {
-  const { icon: Icon, border, text, bg } = config[type];
+	const { icon: Icon, accent, bg } = config[type];
 
-  return (
-    <div className={clsx('rounded-lg border-l-4 p-4 my-6 backdrop-blur-sm', border, bg)}>
-      <div className="flex items-center gap-2 mb-2">
-        <Icon className={clsx('w-5 h-5', text)} />
-        {title && <span className="font-bold text-fg">{title}</span>}
-      </div>
-      <div className="text-fg-secondary text-sm">{children}</div>
-    </div>
-  );
+	return (
+		<div className={clsx("rounded border border-border p-4 my-6", bg)}>
+			<div className="flex items-center gap-2 mb-2">
+				<Icon className={clsx("w-5 h-5 shrink-0", accent)} aria-hidden />
+				{title && <span className="font-bold text-fg">{title}</span>}
+			</div>
+			<div className="text-fg-secondary text-sm">{children}</div>
+		</div>
+	);
 }
