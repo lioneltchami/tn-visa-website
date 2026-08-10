@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { type ReactNode } from 'react'
-import { Reveal } from '@/components/ui/Reveal'
+import type { ReactNode } from 'react'
 import JsonLd from '@/components/JsonLd'
+import { Reveal } from '@/components/ui/Reveal'
 
 interface ContentLayoutProps {
   title: string
@@ -11,15 +11,33 @@ interface ContentLayoutProps {
   breadcrumbs?: { label: string; href: string }[]
 }
 
-export default function ContentLayout({ title, description, lastUpdated, children, breadcrumbs }: ContentLayoutProps) {
-  const breadcrumbLd = breadcrumbs?.length ? {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tnvisaguide.ca' },
-      ...breadcrumbs.map((b, i) => ({ '@type': 'ListItem', position: i + 2, name: b.label, item: `https://tnvisaguide.ca${b.href}` })),
-    ],
-  } : null
+export default function ContentLayout({
+  title,
+  description,
+  lastUpdated,
+  children,
+  breadcrumbs,
+}: ContentLayoutProps) {
+  const breadcrumbLd = breadcrumbs?.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://tnvisaguide.ca',
+          },
+          ...breadcrumbs.map((b, i) => ({
+            '@type': 'ListItem',
+            position: i + 2,
+            name: b.label,
+            item: `https://tnvisaguide.ca${b.href}`,
+          })),
+        ],
+      }
+    : null
 
   return (
     <div className="section-padding">
@@ -27,7 +45,9 @@ export default function ContentLayout({ title, description, lastUpdated, childre
         {breadcrumbLd && <JsonLd data={breadcrumbLd} />}
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav className="flex items-center gap-1.5 text-sm text-fg-muted mb-6">
-            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
+            <Link href="/" className="hover:text-accent transition-colors">
+              Home
+            </Link>
             {breadcrumbs.map((crumb) => (
               <span key={crumb.href} className="flex items-center gap-1.5">
                 <span>/</span>
@@ -40,7 +60,7 @@ export default function ContentLayout({ title, description, lastUpdated, childre
         )}
 
         <Reveal>
-          <h1 className="gradient-text text-3xl sm:text-4xl font-bold mb-4">{title}</h1>
+          <h1 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-fg">{title}</h1>
           <p className="text-fg-secondary text-lg mb-10">{description}</p>
         </Reveal>
 

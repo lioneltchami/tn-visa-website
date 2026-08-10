@@ -1,0 +1,12 @@
+[
+  {
+    "date": "2026-08-09",
+    "macrostructure": "left-bias Long Document / Stat",
+    "theme": "maple-ink modern-minimal",
+    "enrichment": "none",
+    "brief": "Fix Hallmark criticals on homepage + chrome",
+    "scope": "app",
+    "nav": "edge masthead",
+    "footer": "dense colophon"
+  }
+]
