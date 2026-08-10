@@ -4,6 +4,16 @@
     "macrostructure": "left-bias Long Document / Stat",
     "theme": "maple-ink modern-minimal",
     "enrichment": "none",
+    "brief": "Fix Hallmark minor tells: padding rhythm, stock imagery, hover scale",
+    "scope": "app",
+    "nav": "edge masthead",
+    "footer": "dense colophon"
+  },
+  {
+    "date": "2026-08-09",
+    "macrostructure": "left-bias Long Document / Stat",
+    "theme": "maple-ink modern-minimal",
+    "enrichment": "none",
     "brief": "Fix Hallmark major tells on chrome + shared UI",
     "scope": "app",
     "nav": "edge masthead",

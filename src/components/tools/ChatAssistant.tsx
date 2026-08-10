@@ -43,7 +43,7 @@ export default function ChatAssistant() {
         onClick={() => setOpen(!open)}
         className={clsx(
           'fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all',
-          open ? 'bg-fg text-bg' : 'gradient-bg text-white hover:scale-110'
+          open ? 'bg-fg text-bg' : 'gradient-bg text-white'
         )}
         aria-label={open ? 'Close chat' : 'Open TN visa assistant'}
       >

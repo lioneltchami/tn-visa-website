@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -44,10 +43,6 @@ export default function BorderInterviewPage() {
       </Callout>
 
       <ProvinceSelector />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1200&h=400&fit=crop" alt="Airport terminal" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">What to Expect</h2>
       <p className="text-fg-secondary mb-4">The TN border process has two stages:</p>

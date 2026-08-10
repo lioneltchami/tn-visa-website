@@ -52,3 +52,12 @@ Dense colophon: brand line + wrapped link list + legal. Not 4-column Product/Com
 - Thick left-border “side-stripe” cards
 - Emoji as UI icons
 - 3 equal icon-feature columns as the page rhythm
+- Uniform equal section padding across a long marketing page (vary rhythm; prefer asymmetric `pt`/`pb`)
+- Stock Unsplash/Pexels decorative hero washes on marketing or blog pages
+- `hover:scale-*` / `group-hover:scale-*` on CTAs, FABs, or card media
+
+## Section rhythm
+
+- Homepage sections use deliberate variety (`py-8`…`py-28`), not one shared band
+- ContentLayout `.section-padding` is asymmetric: tighter top, roomier bottom
+- Helpers: `.section-pad-tight`, `.section-pad-roomy`

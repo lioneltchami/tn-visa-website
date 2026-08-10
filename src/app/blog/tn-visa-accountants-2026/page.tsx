@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -22,10 +21,6 @@ export default function TNVisaAccountants2026() {
       lastUpdated="May 2026"
     >
       <JsonLd data={blogArticleSchema({ headline: 'TN Visa for Accountants 2026: CPA Requirements & Process', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-accountants-2026' })} />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=400&fit=crop" alt="Accountant working" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <Callout type="info" title="Key Requirement">
         TN Accountant status requires EITHER a Baccalaureate degree OR a CPA/CA/CGA/CMA designation. You don&apos;t need both.

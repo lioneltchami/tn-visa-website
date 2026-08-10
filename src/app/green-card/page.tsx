@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { withCanonical } from '@/lib/seo'
 import ContentLayout from '@/components/layout/ContentLayout';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Callout } from '@/components/ui/Callout';
 import { ComparisonTable } from '@/components/ui/ComparisonTable';
 
@@ -19,9 +18,6 @@ export default function GreenCardPage() {
       breadcrumbs={[{label:'Green Card', href:'/green-card'}]}
       lastUpdated="April 2026"
     >
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=400&fit=crop" alt="Path to permanent residence" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <section>
         <h2 className="text-2xl font-bold text-fg mt-12 mb-4">The Dual Intent Problem</h2>

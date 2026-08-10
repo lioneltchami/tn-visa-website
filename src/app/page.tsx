@@ -153,7 +153,7 @@ export default function Home() {
 
       {/* HOW IT WORKS — vertical numbered list */}
       <section className="border-b border-border">
-        <div className="container-wide py-12 sm:py-16 max-w-3xl">
+        <div className="container-wide py-8 sm:py-10 max-w-3xl">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-fg mb-8">How it works</h2>
           <ol className="space-y-8">
             <li className="grid grid-cols-[auto_1fr] gap-4">
@@ -212,7 +212,7 @@ export default function Home() {
       </section>
 
       <section className="border-b border-border">
-        <div className="container-wide py-12 sm:py-14">
+        <div className="container-wide py-8 sm:py-10">
           <EmailCapture
             variant="banner"
             title="Get TN visa policy alerts"
@@ -223,7 +223,7 @@ export default function Home() {
 
       {/* SOURCES */}
       <section className="border-b border-border">
-        <div className="container-wide py-12 sm:py-14">
+        <div className="container-wide py-16 sm:py-20 lg:py-24">
           <h2 className="font-display text-2xl font-bold text-fg mb-4">
             Built on official sources
           </h2>
@@ -283,7 +283,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 overflow-hidden">
+      <section className="py-20 sm:py-24 lg:py-28 overflow-hidden">
         <div className="container-wide">
           <h2 className="font-display text-2xl font-bold text-fg mb-8">What readers say</h2>
           <TestimonialCarousel />

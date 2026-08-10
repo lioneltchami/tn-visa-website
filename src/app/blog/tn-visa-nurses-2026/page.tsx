@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -22,10 +21,6 @@ export default function TNVisaNurses2026() {
       lastUpdated="May 2026"
     >
       <JsonLd data={blogArticleSchema({ headline: 'TN Visa for Nurses 2026: Complete Guide for Canadian RNs', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-nurses-2026' })} />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&h=400&fit=crop" alt="Nurse in hospital" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <Callout type="tip" title="High Demand in 2026">
         The US nursing shortage continues. Many hospitals offer sign-on bonuses of $10,000–$30,000 and TN visa sponsorship for Canadian RNs.

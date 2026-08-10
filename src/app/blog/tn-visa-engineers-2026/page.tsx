@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -22,10 +21,6 @@ export default function TNVisaEngineers2026() {
       lastUpdated="May 2026"
     >
       <JsonLd data={blogArticleSchema({ headline: 'TN Visa for Engineers 2026: Requirements, Degrees & Job Titles', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-engineers-2026' })} />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=400&fit=crop" alt="Engineer at work" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <Callout type="info" title="Key Requirement">
         The TN &quot;Engineer&quot; category requires a Baccalaureate degree in engineering. A computer science degree does NOT qualify for Engineer — use Computer Systems Analyst instead.

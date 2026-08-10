@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import { Callout } from '@/components/ui/Callout';
 import AffiliateLink from '@/components/ui/AffiliateLink';
@@ -21,10 +20,6 @@ export default function MovingPage() {
       lastUpdated="April 2026"
     >
       <AffiliateDisclosure />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&h=400&fit=crop" alt="Moving to a new city" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <section>
         <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Before You Leave Canada</h2>

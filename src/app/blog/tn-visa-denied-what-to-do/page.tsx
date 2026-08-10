@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -21,10 +20,6 @@ export default function TNVisaDenied2026() {
       lastUpdated="May 2026"
     >
       <JsonLd data={blogArticleSchema({ headline: 'TN Visa Denied? What To Do Next (2026 Guide)', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-denied-what-to-do' })} />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=400&fit=crop" alt="Reviewing documents" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <Callout type="info" title="Important">
         A TN denial at the border is NOT the same as a visa ban. You can usually reapply immediately after fixing the issue.

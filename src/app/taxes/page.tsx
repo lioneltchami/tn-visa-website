@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import ContentLayout from '@/components/layout/ContentLayout'
 import TableOfContents from '@/components/ui/TableOfContents'
 import { Callout } from '@/components/ui/Callout'
@@ -14,9 +13,6 @@ export default function TaxesPage() {
       breadcrumbs={[{label:'Taxes', href:'/taxes'}]}
       lastUpdated="April 2026"
     >
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=400&fit=crop" alt="Tax documents and calculator" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <TableOfContents headings={[
         { id: 'spt', text: 'Substantial Presence Test', level: 2 },

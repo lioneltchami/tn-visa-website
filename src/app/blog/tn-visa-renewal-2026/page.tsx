@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -22,10 +21,6 @@ export default function TNVisaRenewal2026() {
       lastUpdated="May 2026"
     >
       <JsonLd data={blogArticleSchema({ headline: 'TN Visa Renewal 2026: Step-by-Step Process & Timeline', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-renewal-2026' })} />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=400&fit=crop" alt="Document renewal" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <Callout type="tip" title="Good News">
         TN status can be renewed indefinitely. There&apos;s no maximum number of renewals — people have maintained TN status for 10+ years.

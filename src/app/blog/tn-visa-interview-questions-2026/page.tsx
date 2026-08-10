@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -21,10 +20,6 @@ export default function TNVisaInterview2026() {
       lastUpdated="May 2026"
     >
       <JsonLd data={blogArticleSchema({ headline: 'TN Visa Interview Questions 2026: What CBP Officers Ask', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-interview-questions-2026' })} />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=400&fit=crop" alt="Professional interview" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <Callout type="info" title="Good News">
         Most TN interviews are straightforward and take 10–20 minutes. Officers are verifying your eligibility, not trying to trick you.

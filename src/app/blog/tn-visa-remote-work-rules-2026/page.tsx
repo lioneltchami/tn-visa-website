@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -21,10 +20,6 @@ export default function TNVisaRemoteWork2026() {
       lastUpdated="May 2026"
     >
       <JsonLd data={blogArticleSchema({ headline: 'Working Remotely on TN Visa 2026: Rules, Risks & Best Practices', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-remote-work-rules-2026' })} />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1200&h=400&fit=crop" alt="Remote work setup" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <Callout type="warning" title="Key Rule">
         TN visa requires you to work IN the United States. Extended remote work from Canada or other countries can jeopardize your status.

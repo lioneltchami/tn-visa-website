@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import ContentLayout from "@/components/layout/ContentLayout";
@@ -61,16 +60,6 @@ export default function ApplyPage() {
 					],
 				}}
 			/>
-
-			<div className="rounded-xl overflow-hidden mb-8 -mt-2">
-				<Image
-					src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=1200&h=400&fit=crop"
-					alt="International border crossing"
-					width={1200}
-					height={400}
-					className="w-full h-48 sm:h-64 object-cover"
-				/>
-			</div>
 
 			<ComparisonTable
 				headers={["", "Port of Entry (POE)", "Form I-129 (USCIS)"]}

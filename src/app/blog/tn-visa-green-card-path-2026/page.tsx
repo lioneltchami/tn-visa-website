@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -21,10 +20,6 @@ export default function TNVisaGreenCard2026() {
       lastUpdated="May 2026"
     >
       <JsonLd data={blogArticleSchema({ headline: 'TN Visa to Green Card 2026: Pathways & Timing Strategy', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-green-card-path-2026' })} />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1569974507005-6dc61f97fb5c?w=1200&h=400&fit=crop" alt="American flag" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <Callout type="warning" title="The Dual Intent Problem">
         TN visa does NOT allow dual intent. You cannot openly pursue a green card while maintaining TN status. But there are legal strategies to navigate this.

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { withCanonical } from '@/lib/seo'
-import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -22,10 +21,6 @@ export default function EmployerLetterPage() {
       lastUpdated="April 2026"
     >
       <AffiliateDisclosure />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=400&fit=crop" alt="Professional reviewing documents" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
-      </div>
 
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'HowTo', name: 'How to Write a TN Visa Employer Support Letter', description: 'Step-by-step guide to writing an employer support letter for TN visa applications.', step: [
         { '@type': 'HowToStep', name: 'Use company letterhead', text: 'Print the letter on official company letterhead with full contact information.' },

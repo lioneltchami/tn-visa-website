@@ -135,7 +135,15 @@
   }
 
   .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20;
+    @apply px-4 sm:px-6 lg:px-8 pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14 lg:pb-24;
+  }
+
+  .section-pad-tight {
+    @apply px-4 sm:px-6 lg:px-8 py-8 sm:py-10;
+  }
+
+  .section-pad-roomy {
+    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28;
   }
 
   .container-tight {

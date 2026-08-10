@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import ContentLayout from "@/components/layout/ContentLayout";
@@ -33,15 +32,6 @@ export default function MexicoTNBlogPost() {
 					path: "/blog/tn-visa-mexico-2026",
 				})}
 			/>
-			<div className="rounded-xl overflow-hidden mb-8 -mt-2">
-				<Image
-					src="https://images.unsplash.com/photo-1518659526054-190340b32735?w=1200&h=400&fit=crop"
-					alt="US consulate building"
-					width={1200}
-					height={400}
-					className="w-full h-48 sm:h-64 object-cover"
-				/>
-			</div>
 
 			<Callout type="warning" title="Key Difference: Visa Stamp Required">
 				Unlike Canadians who apply at the border, Mexican citizens must go

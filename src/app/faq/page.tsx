@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import JsonLd from '@/components/JsonLd'
 import ContentLayout from '@/components/layout/ContentLayout'
@@ -139,16 +138,6 @@ export default function FaqPage() {
           })),
         }}
       />
-
-      <div className="rounded-xl overflow-hidden mb-8 -mt-2">
-        <Image
-          src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop"
-          alt="Finding answers"
-          width={1200}
-          height={400}
-          className="w-full h-48 sm:h-64 object-cover"
-        />
-      </div>
 
       <FaqAccordion sections={sections} />
 
