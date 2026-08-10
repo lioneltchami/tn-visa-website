@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import ProductDownloadList from '@/components/products/ProductDownloadList'
@@ -9,10 +10,10 @@ import { getPurchaseById } from '@/lib/purchases'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/products/download', {
   title: 'Your Downloads',
   robots: { index: false, follow: false },
-}
+})
 
 export default async function DownloadPage({ searchParams }: { searchParams: { token?: string } }) {
   const payload = verifyDownloadToken(searchParams.token)

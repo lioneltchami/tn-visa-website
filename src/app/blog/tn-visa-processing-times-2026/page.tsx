@@ -1,14 +1,17 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
+import { i129TotalRangeLabel, poeLandTotalLabel, premiumLabel } from '@/lib/fees'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-processing-times-2026', {
   title: 'TN Visa Processing Times 2026: How Long Does It Take?',
   description: 'Current TN visa processing times for 2026. Border processing, consulate appointments, mail-in applications, and premium processing options explained.',
-}
+})
 
 export default function TNVisaProcessingTimes2026() {
   return (
@@ -18,7 +21,7 @@ export default function TNVisaProcessingTimes2026() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'Processing Times 2026', href: '/blog/tn-visa-processing-times-2026' }]}
       lastUpdated="May 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'TN Visa Processing Times 2026: How Long Does It Take?', datePublished: '2026-05-09', dateModified: '2026-05-09', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'TN Visa Processing Times 2026: How Long Does It Take?', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-processing-times-2026' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1200&h=400&fit=crop" alt="Clock and calendar" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
@@ -33,10 +36,10 @@ export default function TNVisaProcessingTimes2026() {
         <table className="w-full text-sm text-fg-secondary border border-border rounded-lg">
           <thead><tr className="bg-surface-secondary"><th className="p-3 text-left font-semibold text-fg">Method</th><th className="p-3 text-left font-semibold text-fg">Processing Time</th><th className="p-3 text-left font-semibold text-fg">Cost</th><th className="p-3 text-left font-semibold text-fg">Best For</th></tr></thead>
           <tbody>
-            <tr className="border-t border-border"><td className="p-3 font-medium">Port of Entry (Border)</td><td className="p-3">15–60 minutes</td><td className="p-3">$80</td><td className="p-3">Most applicants</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-medium">Port of Entry (Border)</td><td className="p-3">15–60 minutes</td><td className="p-3">{poeLandTotalLabel()}</td><td className="p-3">Most applicants</td></tr>
             <tr className="border-t border-border"><td className="p-3 font-medium">US Consulate (Canada)</td><td className="p-3">1–3 weeks</td><td className="p-3">$185</td><td className="p-3">Complex cases</td></tr>
-            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Mail (Form I-129)</td><td className="p-3">3–6 months</td><td className="p-3">$460–$1,615</td><td className="p-3">Change of status</td></tr>
-            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Premium Processing</td><td className="p-3">15 business days</td><td className="p-3">$2,965</td><td className="p-3">Urgent cases</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Mail (Form I-129)</td><td className="p-3">3–6 months</td><td className="p-3">{i129TotalRangeLabel()}</td><td className="p-3">Change of status</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-medium">USCIS Premium Processing</td><td className="p-3">15 business days</td><td className="p-3">{premiumLabel()}</td><td className="p-3">Urgent cases</td></tr>
           </tbody>
         </table>
       </div>
@@ -93,7 +96,7 @@ export default function TNVisaProcessingTimes2026() {
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Premium Processing: Worth It?</h2>
       <p className="text-fg-secondary mb-4">
-        For $2,965 extra, USCIS guarantees a decision within 15 business days. If they don&apos;t meet the deadline, you get a refund.
+        For {premiumLabel()} extra, USCIS guarantees a decision within 15 business days. If they don&apos;t meet the deadline, you get a refund.
       </p>
       <h3 className="text-lg font-semibold text-fg mt-6 mb-3">When premium processing makes sense:</h3>
       <ul className="list-disc pl-6 space-y-2 text-fg-secondary mb-8">

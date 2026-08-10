@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import JsonLd from '@/components/JsonLd'
 import glossary from '@/data/glossary.json'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/glossary', {
   title: 'TN Visa Glossary — Immigration Terms Explained',
   description: 'Definitions of key immigration terms: USMCA, TN, TD, CBP, USCIS, I-94, I-129, RFE, PERM, dual intent, and more.',
-}
+})
 
 export default function GlossaryPage() {
   const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term))

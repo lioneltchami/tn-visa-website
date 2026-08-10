@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { ComparisonTable } from '@/components/ui/ComparisonTable'
 import { Callout } from '@/components/ui/Callout'
 import Link from 'next/link'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/compare', {
   title: 'TN Visa vs H-1B Visa Comparison',
   description: 'Comprehensive comparison of TN and H-1B visas for Canadian professionals considering U.S. employment.',
-}
+})
 
 export default function ComparePage() {
   return (

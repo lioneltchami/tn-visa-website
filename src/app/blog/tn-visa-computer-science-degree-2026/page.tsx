@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-computer-science-degree-2026', {
   title: 'Can You Get a TN Visa with a Computer Science Degree in 2026?',
   description: 'Since June 2025, CS degrees no longer qualify for the Engineer TN category. Here are your options: Computer Systems Analyst, Mathematician, and more.',
-}
+})
 
 export default function CSDegreeBlogPost() {
   return (
@@ -18,7 +20,7 @@ export default function CSDegreeBlogPost() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'CS Degree & TN Visa', href: '/blog/tn-visa-computer-science-degree-2026' }]}
       lastUpdated="April 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'Can You Get a TN Visa with a Computer Science Degree in 2026?', datePublished: '2026-04-28', dateModified: '2026-04-28', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'Can You Get a TN Visa with a Computer Science Degree in 2026?', datePublished: '2026-04-28', dateModified: '2026-04-28', path: '/blog/tn-visa-computer-science-degree-2026' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=400&fit=crop" alt="Computer science and programming" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />

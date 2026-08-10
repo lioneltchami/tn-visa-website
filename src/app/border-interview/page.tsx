@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
@@ -10,10 +11,10 @@ import airports from '@/data/airports.json'
 import borderCrossings from '@/data/border-crossings.json'
 import ProvinceSelector from '@/components/ui/ProvinceSelector'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/border-interview', {
   title: 'TN Visa Border Interview Guide for Canadians',
   description: 'What to expect at the border, common CBP officer questions, how to answer, and tips to avoid denial. Updated for 2026 enhanced vetting.',
-}
+})
 
 export default function BorderInterviewPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import { Callout } from '@/components/ui/Callout';
@@ -6,10 +7,10 @@ import AffiliateLink from '@/components/ui/AffiliateLink';
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure';
 import { StepList } from '@/components/ui/StepList';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/moving', {
   title: 'Moving to the US from Canada on a TN Visa',
   description: 'Practical relocation guide: SSN, banking, housing, health insurance, and everything Canadians need to know.',
-};
+});
 
 export default function MovingPage() {
   return (

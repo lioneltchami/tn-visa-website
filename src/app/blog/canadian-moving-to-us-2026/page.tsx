@@ -1,15 +1,18 @@
 import type { Metadata } from 'next'
+import { blogArticleSchema } from '@/lib/article-schema'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
+import JsonLd from '@/components/JsonLd'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/canadian-moving-to-us-2026', {
   title: 'Moving to the US from Canada: Complete 2026 Financial Guide',
   description: 'Everything Canadian TN visa holders need to know about banking, credit, taxes, health insurance, and housing when moving to the US in 2026.',
-}
+})
 
 export default function MovingFinancialGuideBlogPost() {
   return (
@@ -19,6 +22,14 @@ export default function MovingFinancialGuideBlogPost() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'Moving Financial Guide', href: '/blog/canadian-moving-to-us-2026' }]}
       lastUpdated="April 2026"
     >
+      <JsonLd
+        data={blogArticleSchema({
+          headline: 'Moving to the US from Canada: Complete 2026 Financial Guide',
+          datePublished: '2026-04-30',
+          dateModified: '2026-08-01',
+          path: '/blog/canadian-moving-to-us-2026',
+        })}
+      />
       <AffiliateDisclosure />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">

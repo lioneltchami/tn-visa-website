@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
@@ -7,10 +8,10 @@ import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
 import JsonLd from '@/components/JsonLd'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/employer-letter', {
   title: 'TN Visa Employer Letter Guide — Canadian Requirements',
   description: 'How to write a TN visa employer support letter that won\'t get denied. Required elements, sample structure, common mistakes, and profession-specific tips.',
-}
+})
 
 export default function EmployerLetterPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { withCanonical } from '@/lib/seo'
 import ContentLayout from '@/components/layout/ContentLayout';
 import { Callout } from '@/components/ui/Callout';
 import { StepList } from '@/components/ui/StepList';
@@ -6,10 +7,10 @@ import Link from 'next/link';
 import airports from '@/data/airports.json';
 import borderCrossings from '@/data/border-crossings.json';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/apply/port-of-entry', {
   title: 'Applying at the Port of Entry',
   description: 'Step-by-step guide to applying for TN status at the U.S. border or Canadian airport preclearance.',
-};
+});
 
 export default function PortOfEntryPage() {
   return (

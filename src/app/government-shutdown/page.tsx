@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/government-shutdown', {
   title: 'TN Visa During the 2026 Government Shutdown',
   description: 'Can you still apply for a TN visa during the DHS government shutdown? Yes. Here is what you need to know.',
-}
+})
 
 export default function GovernmentShutdownPage() {
   return (

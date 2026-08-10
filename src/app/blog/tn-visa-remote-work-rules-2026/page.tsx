@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-remote-work-rules-2026', {
   title: 'Working Remotely on TN Visa 2026: Rules, Risks & Best Practices',
   description: 'Can you work remotely on a TN visa? Rules for working from home, traveling while employed, and what happens if you work from Canada.',
-}
+})
 
 export default function TNVisaRemoteWork2026() {
   return (
@@ -18,7 +20,7 @@ export default function TNVisaRemoteWork2026() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'Remote Work on TN 2026', href: '/blog/tn-visa-remote-work-rules-2026' }]}
       lastUpdated="May 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'Working Remotely on TN Visa 2026: Rules, Risks & Best Practices', datePublished: '2026-05-09', dateModified: '2026-05-09', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'Working Remotely on TN Visa 2026: Rules, Risks & Best Practices', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-remote-work-rules-2026' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1200&h=400&fit=crop" alt="Remote work setup" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />

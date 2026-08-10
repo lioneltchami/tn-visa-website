@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/self-employment', {
   title: 'TN Visa Self-Employment Rules (Banned Since 2025)',
   description: 'Self-employment is explicitly prohibited on a TN visa since June 2025. Learn what counts as self-employment, the 1099 gray area, and visa alternatives for entrepreneurs.',
-}
+})
 
 export default function SelfEmploymentPage() {
   return (

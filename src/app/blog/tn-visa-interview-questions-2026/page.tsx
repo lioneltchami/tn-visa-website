@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-interview-questions-2026', {
   title: 'TN Visa Interview Questions 2026: What CBP Officers Ask',
   description: 'Prepare for your TN visa border interview. Common questions CBP officers ask, best answers, and mistakes to avoid at the port of entry.',
-}
+})
 
 export default function TNVisaInterview2026() {
   return (
@@ -18,7 +20,7 @@ export default function TNVisaInterview2026() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'Interview Questions 2026', href: '/blog/tn-visa-interview-questions-2026' }]}
       lastUpdated="May 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'TN Visa Interview Questions 2026: What CBP Officers Ask', datePublished: '2026-05-09', dateModified: '2026-05-09', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'TN Visa Interview Questions 2026: What CBP Officers Ask', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-interview-questions-2026' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=400&fit=crop" alt="Professional interview" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />

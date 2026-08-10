@@ -1,13 +1,16 @@
 import type { Metadata } from 'next'
+import { blogArticleSchema } from '@/lib/article-schema'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
+import JsonLd from '@/components/JsonLd'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-remote-work-2026', {
   title: 'TN Visa Remote Work Rules: Can You Work from Canada?',
   description: 'TN visa holders cannot work remotely from Canada for a US employer. Learn why, what is allowed, and alternatives for remote workers in 2026.',
-}
+})
 
 export default function RemoteWorkBlogPost() {
   return (
@@ -17,6 +20,14 @@ export default function RemoteWorkBlogPost() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'Remote Work Rules', href: '/blog/tn-visa-remote-work-2026' }]}
       lastUpdated="April 2026"
     >
+      <JsonLd
+        data={blogArticleSchema({
+          headline: 'TN Visa Remote Work Rules: Can You Work from Canada?',
+          datePublished: '2026-04-30',
+          dateModified: '2026-08-01',
+          path: '/blog/tn-visa-remote-work-2026',
+        })}
+      />
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1521898284481-a5ec348cb555?w=1200&h=400&fit=crop" alt="Remote work from home" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
       </div>

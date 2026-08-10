@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import { StepList } from '@/components/ui/StepList'
 import { ComparisonTable } from '@/components/ui/ComparisonTable'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/dependents', {
   title: 'TD Status for TN Visa Dependents',
   description: 'Guide to TD status for spouses and children of TN visa holders, including work restrictions and school enrollment.',
-}
+})
 
 export default function DependentsPage() {
   return (

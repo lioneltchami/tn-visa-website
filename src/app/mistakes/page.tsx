@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
+import { withCanonical } from '@/lib/seo'
 import ContentLayout from '@/components/layout/ContentLayout';
 import { Callout } from '@/components/ui/Callout';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/mistakes', {
   title: 'Common TN Visa Mistakes & Pitfalls',
   description: 'Avoid the most common TN visa application mistakes that lead to denials and complications.',
-};
+});
 
 export default function MistakesPage() {
   return (

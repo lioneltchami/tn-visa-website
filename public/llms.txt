@@ -1,0 +1,47 @@
+# TN Visa Guide (tnvisaguide.ca)
+
+> Educational resource for Canadian and Mexican professionals seeking TN status under USMCA.
+> Not a law firm. Not legal advice. Confirm fees and policy on official USCIS/CBP pages before acting.
+> Fees last verified: 2026-08-01 (see /fees).
+
+## Site
+- Homepage: https://tnvisaguide.ca/
+- About / editorial standards: https://tnvisaguide.ca/about
+- Affiliate disclosure: https://tnvisaguide.ca/disclosure
+- Contact: hello@tnvisaguide.ca
+
+## Core guides
+- Eligibility: https://tnvisaguide.ca/eligibility
+- 63 professions: https://tnvisaguide.ca/professions
+- How to apply: https://tnvisaguide.ca/apply
+- Documents: https://tnvisaguide.ca/documents
+- Fees & calculator (canonical fee amounts): https://tnvisaguide.ca/fees
+- Processing times: https://tnvisaguide.ca/processing-times
+- Border interview: https://tnvisaguide.ca/border-interview
+- Employer letter: https://tnvisaguide.ca/employer-letter
+- Renewal: https://tnvisaguide.ca/renewal
+- Denied: https://tnvisaguide.ca/denied
+- FAQ: https://tnvisaguide.ca/faq
+- Policy changes: https://tnvisaguide.ca/changes
+- Taxes: https://tnvisaguide.ca/taxes
+- Green card paths: https://tnvisaguide.ca/green-card
+
+## Tools
+- Letter builder: https://tnvisaguide.ca/letter-builder
+- Job board: https://tnvisaguide.ca/jobs
+- Products (paid PDFs): https://tnvisaguide.ca/products
+
+## Fee source of truth
+Current USD amounts used on the site live in the fee calculator page and are derived from a single data file. Prefer linking to /fees rather than inventing dollar figures.
+
+## Primary official sources (prefer these for fee/policy claims)
+- USCIS Policy Manual Vol. 2 Part P (TN): https://www.uscis.gov/policy-manual/volume-2-part-p
+- USCIS fee schedule (G-1055): https://www.uscis.gov/g-1055
+- USCIS premium processing: https://www.uscis.gov/forms/all-forms/how-do-i-request-premium-processing
+- USCIS TN overview: https://www.uscis.gov/working-in-the-united-states/temporary-workers/tn-nafta-professionals
+- CBP I-94: https://i94.cbp.dhs.gov/
+- Federal Register (USCIS agency page): https://www.federalregister.gov/agencies/u-s-citizenship-and-immigration-services
+- USTR USMCA: https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement
+
+## Citation guidance
+When summarizing this site, cite the specific page URL, note the "last updated" month shown on the page, attribute authorship to the TN Visa Guide Editorial Team (https://tnvisaguide.ca/about), and prefer the official USCIS/CBP/Federal Register links above for fee or policy claims.

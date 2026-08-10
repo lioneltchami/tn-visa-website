@@ -1,32 +1,78 @@
+import {
+  EDITORIAL,
+  SITE_DESCRIPTION,
+  SITE_EMAIL,
+  SITE_LOGO_URL,
+  SITE_NAME,
+  SITE_URL,
+  organizationSameAs,
+} from '@/lib/site-identity'
+
 export function WebsiteSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'TN Visa Guide',
-    url: 'https://tnvisaguide.ca',
-    description: 'The definitive guide for Canadian professionals seeking TN visa status in the United States under USMCA.',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://tnvisaguide.ca/jobs?q={search_term_string}',
+      target: `${SITE_URL}/jobs?q={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
   }
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
 }
 
 export function OrganizationSchema() {
+  const sameAs = organizationSameAs()
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'TN Visa Guide',
-    url: 'https://tnvisaguide.ca',
-    logo: 'https://tnvisaguide.ca/icon-512.png',
-    sameAs: [],
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: SITE_LOGO_URL,
+    email: SITE_EMAIL,
+    description: SITE_DESCRIPTION,
+    publishingPrinciples: `${SITE_URL}/about`,
+    knowsAbout: EDITORIAL.knowsAbout,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: SITE_EMAIL,
+      url: `${SITE_URL}/about`,
+    },
+    ...(sameAs.length > 0 ? { sameAs } : {}),
   }
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
 }
 
-export function JobPostingSchema({ job }: { job: { title: string; company_name: string; description: string; location: string; salary_min: number | null; salary_max: number | null; posted_at: string; application_url: string; employment_type: string } }) {
+export function JobPostingSchema({
+  job,
+}: {
+  job: {
+    title: string
+    company_name: string
+    description: string
+    location: string
+    salary_min: number | null
+    salary_max: number | null
+    posted_at: string
+    application_url: string
+    employment_type: string
+  }
+}) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
@@ -42,32 +88,38 @@ export function JobPostingSchema({ job }: { job: { title: string; company_name: 
       address: job.location,
     },
     employmentType: job.employment_type === 'full_time' ? 'FULL_TIME' : 'CONTRACTOR',
-    ...(job.salary_min && job.salary_max && {
-      baseSalary: {
-        '@type': 'MonetaryAmount',
-        currency: 'USD',
-        value: {
-          '@type': 'QuantitativeValue',
-          minValue: job.salary_min,
-          maxValue: job.salary_max,
-          unitText: 'YEAR',
+    ...(job.salary_min &&
+      job.salary_max && {
+        baseSalary: {
+          '@type': 'MonetaryAmount',
+          currency: 'USD',
+          value: {
+            '@type': 'QuantitativeValue',
+            minValue: job.salary_min,
+            maxValue: job.salary_max,
+            unitText: 'YEAR',
+          },
         },
-      },
-    }),
+      }),
     directApply: true,
     applicationContact: {
       '@type': 'ContactPoint',
       url: job.application_url,
     },
   }
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
 }
 
 export function FAQSchema({ faqs }: { faqs: { question: string; answer: string }[] }) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(faq => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -76,7 +128,12 @@ export function FAQSchema({ faqs }: { faqs: { question: string; answer: string }
       },
     })),
   }
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
 }
 
 export function BreadcrumbSchema({ items }: { items: { name: string; url: string }[] }) {
@@ -90,5 +147,10 @@ export function BreadcrumbSchema({ items }: { items: { name: string; url: string
       item: item.url,
     })),
   }
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
 }

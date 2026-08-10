@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
@@ -6,10 +7,10 @@ import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
 import LetterBuilder from '@/components/tools/LetterBuilder'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/letter-builder', {
   title: 'TN Visa Employer Letter Builder',
   description: 'Free interactive tool to generate a TN visa employer support letter. Covers all 63 USMCA professions with profession-specific guidance.',
-}
+})
 
 export default function LetterBuilderPage() {
   return (

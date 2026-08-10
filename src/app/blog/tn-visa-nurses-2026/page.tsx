@@ -1,14 +1,17 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
+import { poeLandTotalLabel } from '@/lib/fees'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-nurses-2026', {
   title: 'TN Visa for Nurses 2026: Complete Guide for Canadian RNs',
   description: 'Everything Canadian nurses need to know about getting a TN visa in 2026. Requirements, CGFNS, state licensing, salary expectations, and step-by-step process.',
-}
+})
 
 export default function TNVisaNurses2026() {
   return (
@@ -18,7 +21,7 @@ export default function TNVisaNurses2026() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'TN Visa for Nurses 2026', href: '/blog/tn-visa-nurses-2026' }]}
       lastUpdated="May 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'TN Visa for Nurses 2026: Complete Guide for Canadian RNs', datePublished: '2026-05-09', dateModified: '2026-05-09', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'TN Visa for Nurses 2026: Complete Guide for Canadian RNs', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-nurses-2026' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&h=400&fit=crop" alt="Nurse in hospital" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
@@ -105,7 +108,7 @@ export default function TNVisaNurses2026() {
         <li>Job offer letter (see our <Link href="/employer-letter" className="text-accent hover:underline">letter template</Link>)</li>
         <li>Nursing degree/diploma</li>
         <li>Canadian nursing license</li>
-        <li>$80 fee (land border) (cash or card at border)</li>
+        <li>{poeLandTotalLabel()} fee (land border) (cash or card at border)</li>
       </ul>
 
       <Callout type="warning" title="Common Mistake">

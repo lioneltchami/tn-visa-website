@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
+import { withCanonical } from '@/lib/seo'
 import ContentLayout from '@/components/layout/ContentLayout';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Callout } from '@/components/ui/Callout';
 import { ComparisonTable } from '@/components/ui/ComparisonTable';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/green-card', {
   title: 'TN Visa to Green Card Pathways',
   description: 'Pathways to permanent residence from TN status, the dual intent problem, and strategies for Canadians.',
-};
+});
 
 export default function GreenCardPage() {
   return (

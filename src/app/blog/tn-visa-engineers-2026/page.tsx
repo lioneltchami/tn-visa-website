@@ -1,14 +1,17 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
+import { poeLandTotalLabel } from '@/lib/fees'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-engineers-2026', {
   title: 'TN Visa for Engineers 2026: Requirements, Degrees & Job Titles',
   description: 'Complete guide for Canadian engineers seeking TN visa status. Which engineering degrees qualify, job title requirements, and how to prove eligibility.',
-}
+})
 
 export default function TNVisaEngineers2026() {
   return (
@@ -18,7 +21,7 @@ export default function TNVisaEngineers2026() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'TN Visa for Engineers 2026', href: '/blog/tn-visa-engineers-2026' }]}
       lastUpdated="May 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'TN Visa for Engineers 2026: Requirements, Degrees & Job Titles', datePublished: '2026-05-09', dateModified: '2026-05-09', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'TN Visa for Engineers 2026: Requirements, Degrees & Job Titles', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-engineers-2026' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=400&fit=crop" alt="Engineer at work" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
@@ -93,7 +96,7 @@ export default function TNVisaEngineers2026() {
         <li>Official transcripts</li>
         <li>Job offer letter with engineering duties</li>
         <li>Resume showing engineering experience</li>
-        <li>$80 fee (land border) for border application</li>
+        <li>{poeLandTotalLabel()} fee (land border) for border application</li>
       </ul>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Salary Expectations (2026)</h2>

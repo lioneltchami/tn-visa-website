@@ -1,14 +1,17 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
+import { fees, poeLandTotalLabel, usd } from '@/lib/fees'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-vs-h1b-2026', {
   title: 'TN Visa vs H-1B in 2026: Complete Comparison After the $100K Fee',
   description: 'Compare TN visa and H-1B for Canadian professionals in 2026. With the new H-1B fee pushing costs past $100K, the TN visa is more attractive than ever.',
-}
+})
 
 export default function TNvsH1BBlogPost() {
   return (
@@ -18,7 +21,7 @@ export default function TNvsH1BBlogPost() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'TN vs H-1B 2026', href: '/blog/tn-visa-vs-h1b-2026' }]}
       lastUpdated="April 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'TN Visa vs H-1B in 2026: Complete Comparison After the $100K Fee', datePublished: '2026-04-30', dateModified: '2026-04-30', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'TN Visa vs H-1B in 2026: Complete Comparison After the $100K Fee', datePublished: '2026-04-30', dateModified: '2026-04-30', path: '/blog/tn-visa-vs-h1b-2026' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=400&fit=crop" alt="Comparing visa options" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
@@ -35,7 +38,7 @@ export default function TNvsH1BBlogPost() {
           <tbody>
             <tr className="border-t border-border"><td className="p-3 font-medium">Annual Cap</td><td className="p-3">None</td><td className="p-3">65,000 + 20,000 (master&apos;s)</td></tr>
             <tr className="border-t border-border"><td className="p-3 font-medium">Processing Time</td><td className="p-3">Same day at border</td><td className="p-3">3–6 months (lottery first)</td></tr>
-            <tr className="border-t border-border"><td className="p-3 font-medium">Employer Cost</td><td className="p-3">~$80 (border) / ~$500 (mail)</td><td className="p-3">$100K+ with new fees</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-medium">Employer Cost</td><td className="p-3">~{poeLandTotalLabel()} (border) / ~{usd(fees.i129.smallFiling)} (mail filing)</td><td className="p-3">$100K+ with new fees</td></tr>
             <tr className="border-t border-border"><td className="p-3 font-medium">Dual Intent</td><td className="p-3">No</td><td className="p-3">Yes</td></tr>
             <tr className="border-t border-border"><td className="p-3 font-medium">Duration</td><td className="p-3">3 years, unlimited renewals</td><td className="p-3">3 years, max 6 total</td></tr>
             <tr className="border-t border-border"><td className="p-3 font-medium">Employer Change</td><td className="p-3">New application at border</td><td className="p-3">Transfer petition required</td></tr>
@@ -45,7 +48,7 @@ export default function TNvsH1BBlogPost() {
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">The $100K Fee Impact</h2>
       <p className="text-fg-secondary mb-4">
-        The new H-1B asylum-funding fee (up to $75,000 for large employers) has fundamentally changed the calculus. Combined with existing filing fees, premium processing, and legal costs, <strong>total H-1B sponsorship now exceeds $100K</strong> for many employers. This makes the TN visa — at roughly $80 at the border — an extraordinary bargain.
+        The new H-1B asylum-funding fee (up to $75,000 for large employers) has fundamentally changed the calculus. Combined with existing filing fees, premium processing, and legal costs, <strong>total H-1B sponsorship now exceeds $100K</strong> for many employers. This makes the TN visa — at roughly {poeLandTotalLabel()} at the land border — an extraordinary bargain.
       </p>
       <p className="text-fg-secondary mb-8">
         For a detailed breakdown, see our <Link href="/fees" className="text-accent hover:underline">complete fee comparison</Link>.

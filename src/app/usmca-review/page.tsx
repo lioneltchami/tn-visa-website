@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import EmailCapture from '@/components/ui/EmailCapture'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/usmca-review', {
   title: 'USMCA 2026 Review: What It Means for TN Visa Holders',
   description: 'The mandatory USMCA joint review deadline is July 1, 2026. Four possible outcomes and what TN visa holders should do now.',
-}
+})
 
 export default function USMCAReviewPage() {
   return (

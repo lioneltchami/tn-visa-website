@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/credentials', {
   title: 'Canadian Credentials for TN Visa Applications',
   description: 'How Canadian degrees and professional designations (CPA, P.Eng, RN) map to US equivalents for TN visa applications.',
-}
+})
 
 export default function CredentialsPage() {
   return (

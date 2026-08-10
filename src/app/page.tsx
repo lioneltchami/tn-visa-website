@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import Image from 'next/image'
 import JsonLd from '@/components/JsonLd'
@@ -21,14 +22,14 @@ import {
   Scale,
 } from 'lucide-react'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/', {
   title: 'TN Visa Guide for Canadians | Complete 2026 Resource',
   description: 'The definitive guide for Canadian professionals seeking TN visa status in the United States. Eligibility checker, fee calculator, and step-by-step application guide.',
   openGraph: {
     title: 'TN Visa Guide for Canadians',
     description: 'Everything Canadian professionals need to work in the U.S. under USMCA — from eligibility to taxes.',
   },
-}
+})
 
 export default function Home() {
   return (

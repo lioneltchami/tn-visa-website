@@ -1,6 +1,68 @@
 {
-  "poe": {"processingFee": 50, "i94LandBorder": 30, "i94Airport": 0},
-  "i129": {"largeFiling": 1015, "largeAsylum": 600, "smallFiling": 510, "smallAsylum": 300, "nonprofitFiling": 510, "nonprofitAsylum": 0},
+  "lastVerified": "2026-08-01",
+  "poe": {
+    "processingFee": 50,
+    "i94LandBorder": 30,
+    "i94Airport": 0,
+    "i94LandPrevious": 6,
+    "i94LandEffective": "2025-09-30"
+  },
+  "i129": {
+    "largeFiling": 1015,
+    "largeAsylum": 600,
+    "smallFiling": 510,
+    "smallAsylum": 300,
+    "nonprofitFiling": 510,
+    "nonprofitAsylum": 0
+  },
   "premiumProcessing": 2965,
-  "other": {"credentialEval": {"min": 100, "max": 400}, "translations": {"min": 50, "max": 200}, "attorney": {"min": 750, "max": 3500}, "tdLandBorder": 30, "tdAirport": 0}
+  "premiumProcessingPrevious": 2805,
+  "premiumProcessingEffective": "2026-03-01",
+  "other": {
+    "credentialEval": { "min": 100, "max": 400 },
+    "translations": { "min": 50, "max": 200 },
+    "attorney": { "min": 750, "max": 3500 },
+    "tdLandBorder": 30,
+    "tdAirport": 0,
+    "visaIntegrityFee": 250,
+    "mrvFee": 185
+  },
+  "usdToCad": 1.38,
+  "sources": [
+    {
+      "id": "uscis-fees",
+      "label": "USCIS Fee Schedule (Form G-1055)",
+      "url": "https://www.uscis.gov/g-1055"
+    },
+    {
+      "id": "uscis-premium",
+      "label": "USCIS Premium Processing (Form I-907)",
+      "url": "https://www.uscis.gov/forms/all-forms/how-do-i-request-premium-processing"
+    },
+    {
+      "id": "cbp-i94",
+      "label": "CBP I-94 / arrival records",
+      "url": "https://i94.cbp.dhs.gov/"
+    },
+    {
+      "id": "uscis-tn",
+      "label": "USCIS TN classification",
+      "url": "https://www.uscis.gov/working-in-the-united-states/temporary-workers/tn-nafta-professionals"
+    },
+    {
+      "id": "uscis-policy-manual",
+      "label": "USCIS Policy Manual — Volume 2, Part P (TN)",
+      "url": "https://www.uscis.gov/policy-manual/volume-2-part-p"
+    },
+    {
+      "id": "federal-register",
+      "label": "Federal Register (USCIS / DHS notices)",
+      "url": "https://www.federalregister.gov/agencies/u-s-citizenship-and-immigration-services"
+    },
+    {
+      "id": "usmca-ustr",
+      "label": "USTR — USMCA agreement overview",
+      "url": "https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement"
+    }
+  ]
 }

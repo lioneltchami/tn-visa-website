@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
@@ -7,10 +8,10 @@ import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
 import JsonLd from '@/components/JsonLd'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/denied', {
   title: 'TN Visa Denied: What To Do Next',
   description: 'Denied a TN visa? Learn the common denial reasons, the critical difference between denial and withdrawal, and how to reapply successfully.',
-}
+})
 
 export default function DeniedPage() {
   return (

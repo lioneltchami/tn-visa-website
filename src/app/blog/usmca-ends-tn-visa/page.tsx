@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/usmca-ends-tn-visa', {
   title: 'What Happens to Your TN Visa if USMCA Ends?',
   description: 'The USMCA joint review is set for July 2026. Here are the 4 scenarios for TN visa holders and what you should do now to protect your status.',
-}
+})
 
 export default function USMCAEndsBlogPost() {
   return (
@@ -18,7 +20,7 @@ export default function USMCAEndsBlogPost() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'USMCA & TN Visa', href: '/blog/usmca-ends-tn-visa' }]}
       lastUpdated="April 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'What Happens to Your TN Visa if USMCA Ends?', datePublished: '2026-04-30', dateModified: '2026-04-30', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'What Happens to Your TN Visa if USMCA Ends?', datePublished: '2026-04-30', dateModified: '2026-04-30', path: '/blog/usmca-ends-tn-visa' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&h=400&fit=crop" alt="Trade agreement documents" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />

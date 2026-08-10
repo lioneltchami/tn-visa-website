@@ -1,14 +1,17 @@
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import { Callout } from '@/components/ui/Callout'
 import JsonLd from '@/components/JsonLd'
+import { blogArticleSchema } from '@/lib/article-schema'
+import { poeLandTotalLabel } from '@/lib/fees'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/blog/tn-visa-accountants-2026', {
   title: 'TN Visa for Accountants 2026: CPA Requirements & Process',
   description: 'Complete guide for Canadian accountants seeking TN visa status. CPA requirements, degree qualifications, Big 4 transfers, and salary expectations.',
-}
+})
 
 export default function TNVisaAccountants2026() {
   return (
@@ -18,7 +21,7 @@ export default function TNVisaAccountants2026() {
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'TN Visa for Accountants 2026', href: '/blog/tn-visa-accountants-2026' }]}
       lastUpdated="May 2026"
     >
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: 'TN Visa for Accountants 2026: CPA Requirements & Process', datePublished: '2026-05-09', dateModified: '2026-05-09', author: { '@type': 'Organization', name: 'TN Visa Guide' } }} />
+      <JsonLd data={blogArticleSchema({ headline: 'TN Visa for Accountants 2026: CPA Requirements & Process', datePublished: '2026-05-09', dateModified: '2026-05-09', path: '/blog/tn-visa-accountants-2026' })} />
 
       <div className="rounded-xl overflow-hidden mb-8 -mt-2">
         <Image src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=400&fit=crop" alt="Accountant working" width={1200} height={400} className="w-full h-48 sm:h-64 object-cover" />
@@ -114,7 +117,7 @@ export default function TNVisaAccountants2026() {
         <li>Letter of good standing from provincial CPA body</li>
         <li>Job offer letter with accounting duties</li>
         <li>Resume showing accounting experience</li>
-        <li>$80 fee (land border)</li>
+        <li>{poeLandTotalLabel()} fee (land border)</li>
       </ul>
 
       <Callout type="warning" title="Common Issue">

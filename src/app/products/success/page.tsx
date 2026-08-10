@@ -1,5 +1,6 @@
 import { CheckCircle } from 'lucide-react'
 import type { Metadata } from 'next'
+import { withCanonical } from '@/lib/seo'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import Stripe from 'stripe'
@@ -14,10 +15,10 @@ import { consumeRateLimit } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withCanonical('/products/success', {
   title: 'Purchase Complete',
   robots: { index: false, follow: false },
-}
+})
 
 const LOOKUP_LIMIT = 30
 const LOOKUP_WINDOW_SECONDS = 60 * 60
