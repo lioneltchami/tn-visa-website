@@ -105,7 +105,7 @@ export interface Document {
   user_id: string
   name: string
   type: 'employer_letter' | 'degree' | 'transcript' | 'license' | 'i94' | 'passport' | 'other'
-  file_url: string
+  storage_path: string | null
   file_size: number
   notes?: string
   created_at: string

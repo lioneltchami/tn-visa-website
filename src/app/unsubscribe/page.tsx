@@ -2,25 +2,53 @@
 
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
+
+type Status = 'idle' | 'loading' | 'done' | 'sent' | 'error'
 
 export default function UnsubscribePage() {
   const params = useSearchParams()
-  const email = params.get('email') || ''
-  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
+  const token = params.get('token') || ''
+  const legacyEmail = params.get('email') || ''
+  const [status, setStatus] = useState<Status>('idle')
+  const [error, setError] = useState<string | null>(null)
 
   async function handleUnsubscribe() {
     setStatus('loading')
+    setError(null)
+
     try {
-      const supabase = createClient()
-      const { error } = await supabase
-        .from('subscribers')
-        .update({ unsubscribed_at: new Date().toISOString() })
-        .eq('email', email)
-      if (error) throw error
+      const response = await fetch('/api/unsubscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token }),
+      })
+      const body = (await response.json()) as { error?: string }
+
+      if (!response.ok) throw new Error(body.error || 'Unable to unsubscribe.')
       setStatus('done')
-    } catch {
+    } catch (err) {
       setStatus('error')
+      setError(err instanceof Error ? err.message : 'Unable to unsubscribe.')
+    }
+  }
+
+  async function requestSecureLink() {
+    setStatus('loading')
+    setError(null)
+
+    try {
+      const response = await fetch('/api/unsubscribe/request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: legacyEmail }),
+      })
+      const body = (await response.json()) as { error?: string }
+
+      if (!response.ok) throw new Error(body.error || 'Unable to process this request.')
+      setStatus('sent')
+    } catch (err) {
+      setStatus('error')
+      setError(err instanceof Error ? err.message : 'Unable to process this request.')
     }
   }
 
@@ -31,18 +59,35 @@ export default function UnsubscribePage() {
           <p className="text-2xl font-bold text-fg">Unsubscribed</p>
           <p className="text-fg-secondary">You won&apos;t receive any more emails from us.</p>
         </>
+      ) : status === 'sent' ? (
+        <>
+          <p className="text-2xl font-bold text-fg">Check your email</p>
+          <p className="text-fg-secondary">If the address has an active subscription, we sent a secure confirmation link.</p>
+        </>
       ) : (
         <>
           <p className="text-2xl font-bold text-fg">Unsubscribe</p>
-          <p className="text-fg-secondary">Unsubscribe <strong>{email}</strong> from TN Visa Guide emails?</p>
-          <button
-            onClick={handleUnsubscribe}
-            disabled={!email || status === 'loading'}
-            className="px-6 py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50"
-          >
-            {status === 'loading' ? 'Processing…' : 'Confirm Unsubscribe'}
-          </button>
-          {status === 'error' && <p className="text-danger text-sm">Something went wrong. Please try again.</p>}
+          <p className="text-fg-secondary">Stop receiving TN Visa Guide emails.</p>
+          {token ? (
+            <button
+              onClick={handleUnsubscribe}
+              disabled={status === 'loading'}
+              className="px-6 py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50"
+            >
+              {status === 'loading' ? 'Processing…' : 'Confirm Unsubscribe'}
+            </button>
+          ) : legacyEmail ? (
+            <button
+              onClick={requestSecureLink}
+              disabled={status === 'loading'}
+              className="px-6 py-2.5 rounded bg-accent text-accent-fg font-medium disabled:opacity-50"
+            >
+              {status === 'loading' ? 'Processing…' : 'Send a secure unsubscribe link'}
+            </button>
+          ) : (
+            <p className="text-danger text-sm">This unsubscribe link is invalid or incomplete.</p>
+          )}
+          {status === 'error' && <p className="text-danger text-sm">{error}</p>}
         </>
       )}
     </div>

@@ -72,7 +72,7 @@ create table public.documents (
   user_id uuid references auth.users(id) on delete cascade not null,
   name text not null,
   type text check (type in ('employer_letter', 'degree', 'transcript', 'license', 'i94', 'passport', 'resume', 'credential_evaluation', 'support_letter', 'photo', 'other')) not null,
-  file_url text not null,
+  storage_path text not null check (storage_path like user_id::text || '/%'),
   file_size integer not null,
   notes text,
   created_at timestamptz default now()
@@ -223,10 +223,10 @@ create policy "Users can manage own work history" on public.work_history for all
   exists (select 1 from public.profiles where profiles.id = work_history.profile_id and profiles.user_id = auth.uid())
 );
 
--- Subscribers (anyone can subscribe, anyone can update for unsubscribe)
-create policy "Anyone can subscribe" on public.subscribers for insert with check (true);
-create policy "Anyone can read subscribers" on public.subscribers for select using (true);
-create policy "Anyone can unsubscribe" on public.subscribers for update using (true);
+-- Subscribers are managed only by server routes using the service role.
+revoke all on table public.subscribers from anon, authenticated;
+grant all on table public.subscribers to service_role;
+create policy "Service role manages subscribers" on public.subscribers for all to service_role using (true) with check (true);
 
 -- TN Status
 create policy "Users can manage own status" on public.tn_status for all using (auth.uid() = user_id);
