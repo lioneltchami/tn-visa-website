@@ -2,7 +2,11 @@ import { openai } from '@ai-sdk/openai'
 import { streamText } from 'ai'
 import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limit'
 import { isAllowedOrigin } from '@/lib/site'
-import { getChatMatchThreshold, shouldRetryWithoutThreshold } from '@/lib/chat-retrieval'
+import {
+  CHAT_RETRIEVAL_MATCH_COUNT,
+  getChatMatchThreshold,
+  shouldRetryWithoutThreshold,
+} from '@/lib/chat-retrieval'
 import { createServiceSupabase } from '@/lib/supabase/admin'
 
 export const maxDuration = 30
@@ -125,7 +129,7 @@ async function getRelevantContext(query: string): Promise<string> {
     let { data: matches, error } = await supabase.rpc('match_content', {
       query_embedding: JSON.stringify(data[0].embedding),
       match_threshold: matchThreshold,
-      match_count: 5,
+      match_count: CHAT_RETRIEVAL_MATCH_COUNT,
     })
 
     if (error) {
@@ -138,7 +142,7 @@ async function getRelevantContext(query: string): Promise<string> {
       const retry = await supabase.rpc('match_content', {
         query_embedding: JSON.stringify(data[0].embedding),
         match_threshold: 0,
-        match_count: 5,
+        match_count: CHAT_RETRIEVAL_MATCH_COUNT,
       })
       matches = retry.data
       error = retry.error

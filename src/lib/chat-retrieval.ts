@@ -1,4 +1,10 @@
 export const DEFAULT_CHAT_MATCH_THRESHOLD = 0.2
+/**
+ * The guide uses broad ~500-word chunks. Eight ranked matches retain enough
+ * topical breadth for factual subsections such as Fees while keeping the
+ * model context bounded and source-focused.
+ */
+export const CHAT_RETRIEVAL_MATCH_COUNT = 8
 
 /**
  * Validates the semantic similarity threshold supplied to the public chat route.

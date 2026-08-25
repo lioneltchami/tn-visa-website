@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  CHAT_RETRIEVAL_MATCH_COUNT,
   DEFAULT_CHAT_MATCH_THRESHOLD,
   getChatMatchThreshold,
   shouldRetryWithoutThreshold,
@@ -19,6 +20,10 @@ describe('getChatMatchThreshold', () => {
     expect(getChatMatchThreshold('not-a-number')).toBe(DEFAULT_CHAT_MATCH_THRESHOLD)
     expect(getChatMatchThreshold('0.09')).toBe(DEFAULT_CHAT_MATCH_THRESHOLD)
     expect(getChatMatchThreshold('0.61')).toBe(DEFAULT_CHAT_MATCH_THRESHOLD)
+  })
+
+  it('uses a bounded source window large enough for factual guide subsections', () => {
+    expect(CHAT_RETRIEVAL_MATCH_COUNT).toBe(8)
   })
 
   it('retries ranked retrieval only when a positive threshold returns no matches', () => {
