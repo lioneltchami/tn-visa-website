@@ -26,6 +26,7 @@ describe('versioned embedding ingestion migration', () => {
     const migration = readFileSync(secureRetrievalMigrationPath, 'utf8')
     expect(migration).toContain('security definer')
     expect(migration).toContain("set search_path = ''")
+    expect(migration).toContain('OPERATOR(extensions.<=>)')
     expect(migration).toContain("cev.status = 'active'")
     expect(migration).toContain('revoke all on function public.match_content')
     expect(migration).toContain('grant execute on function public.match_content')

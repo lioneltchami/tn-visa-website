@@ -22,12 +22,12 @@ as $$
     ce.id,
     ce.content,
     ce.metadata,
-    1 - (ce.embedding <=> query_embedding) as similarity
+    1 - (ce.embedding OPERATOR(extensions.<=>) query_embedding) as similarity
   from public.content_embeddings ce
   join public.content_embedding_versions cev on cev.id = ce.version_id
   where cev.status = 'active'
-    and 1 - (ce.embedding <=> query_embedding) > match_threshold
-  order by ce.embedding <=> query_embedding
+    and 1 - (ce.embedding OPERATOR(extensions.<=>) query_embedding) > match_threshold
+  order by ce.embedding OPERATOR(extensions.<=>) query_embedding
   limit match_count;
 $$;
 

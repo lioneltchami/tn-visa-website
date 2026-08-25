@@ -37,10 +37,10 @@ begin
     ce.id,
     ce.content,
     ce.metadata,
-    1 - (ce.embedding <=> query_embedding) as similarity
+    1 - (ce.embedding OPERATOR(extensions.<=>) query_embedding) as similarity
   from public.content_embeddings ce
-  where 1 - (ce.embedding <=> query_embedding) > match_threshold
-  order by ce.embedding <=> query_embedding
+  where 1 - (ce.embedding OPERATOR(extensions.<=>) query_embedding) > match_threshold
+  order by ce.embedding OPERATOR(extensions.<=>) query_embedding
   limit match_count;
 end;
 $$;
