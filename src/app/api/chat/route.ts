@@ -1,9 +1,9 @@
 import { openai } from '@ai-sdk/openai'
-import { createClient } from '@supabase/supabase-js'
 import { streamText } from 'ai'
 import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limit'
 import { isAllowedOrigin } from '@/lib/site'
 import { getChatMatchThreshold, shouldRetryWithoutThreshold } from '@/lib/chat-retrieval'
+import { createServiceSupabase } from '@/lib/supabase/admin'
 
 export const maxDuration = 30
 export const dynamic = 'force-dynamic'
@@ -74,10 +74,7 @@ function sanitizeMessages(value: unknown): ChatMessage[] | null {
 }
 
 function getSupabase() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  return createServiceSupabase()
 }
 
 const SYSTEM_PROMPT = `You are a TN visa expert assistant for Canadian professionals seeking to work in the United States under USMCA.
