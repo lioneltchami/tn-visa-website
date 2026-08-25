@@ -16,7 +16,14 @@ const DOC_TYPES = [
   { value: 'other' as const, label: 'Other' },
 ]
 
-interface Doc { id: string; name: string; type: string; file_url: string; file_size: number; created_at: string }
+interface Doc {
+  id: string
+  name: string
+  type: string
+  storage_path: string
+  file_size: number
+  created_at: string
+}
 
 export default function MyDocumentsPage() {
   const [docs, setDocs] = useState<Doc[]>([])
@@ -30,11 +37,21 @@ export default function MyDocumentsPage() {
     async function loadDocs() {
       try {
         const supabase = createClient()
-        const { data: { user }, error: authErr } = await supabase.auth.getUser()
-        if (authErr || !user) { setError('Please sign in to view your documents.'); setLoading(false); return }
+        const {
+          data: { user },
+          error: authErr,
+        } = await supabase.auth.getUser()
+        if (authErr || !user) {
+          setError('Please sign in to view your documents.')
+          setLoading(false)
+          return
+        }
 
         const { data, error: fetchErr } = await supabase
-          .from('documents').select('*').eq('user_id', user.id).order('created_at', { ascending: false })
+          .from('documents')
+          .select('id, name, type, storage_path, file_size, created_at')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false })
         if (fetchErr) throw fetchErr
         setDocs(data || [])
       } catch (err) {
@@ -49,24 +66,20 @@ export default function MyDocumentsPage() {
   const handleUpload = async (file: File) => {
     setUploading(true)
     setError(null)
+
     try {
-      const supabase = createClient()
-      const { data: { user }, error: authErr } = await supabase.auth.getUser()
-      if (authErr || !user) { setError('Please sign in to upload documents.'); return }
+      const formData = new FormData()
+      formData.set('file', file)
+      formData.set('type', docType)
 
-      const path = `${user.id}/${Date.now()}-${file.name}`
-      const { error: uploadError } = await supabase.storage.from('documents').upload(path, file)
-      if (uploadError) throw uploadError
+      const response = await fetch('/api/documents/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      const body = (await response.json()) as { document?: Doc; error?: string }
+      if (!response.ok || !body.document) throw new Error(body.error || 'Failed to upload document.')
 
-      const { data: urlData } = supabase.storage.from('documents').getPublicUrl(path)
-
-      const { data: inserted, error: insertErr } = await supabase.from('documents').insert({
-        user_id: user.id, name: file.name, type: docType,
-        file_url: urlData.publicUrl, file_size: file.size,
-      }).select().single()
-      if (insertErr) throw insertErr
-
-      setDocs(prev => [inserted, ...prev])
+      setDocs((previous) => [body.document as Doc, ...previous])
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to upload document.')
     } finally {
@@ -78,16 +91,20 @@ export default function MyDocumentsPage() {
     e.preventDefault()
     setDragOver(false)
     const file = e.dataTransfer.files[0]
-    if (file) handleUpload(file)
+    if (file) void handleUpload(file)
   }
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (document: Doc) => {
     setError(null)
+
     try {
-      const supabase = createClient()
-      const { error: delErr } = await supabase.from('documents').delete().eq('id', id)
-      if (delErr) throw delErr
-      setDocs(prev => prev.filter(d => d.id !== id))
+      const response = await fetch(`/api/documents/${encodeURIComponent(document.id)}`, {
+        method: 'DELETE',
+      })
+      const body = (await response.json()) as { error?: string }
+      if (!response.ok) throw new Error(body.error || 'Failed to delete document.')
+
+      setDocs((previous) => previous.filter((item) => item.id !== document.id))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to delete document.')
     }
@@ -113,14 +130,25 @@ export default function MyDocumentsPage() {
         )}
 
         <div className="card p-6 mb-8">
-          <label className="block text-sm font-medium text-fg mb-2">Document Type</label>
-          <select value={docType} onChange={e => setDocType(e.target.value as Document['type'])}
-            className="w-full sm:w-64 rounded-lg border border-border bg-bg p-3 text-fg mb-4 focus:outline-none focus:ring-2 focus:ring-accent/30">
-            {DOC_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+          <label className="block text-sm font-medium text-fg mb-2" htmlFor="document-type">Document Type</label>
+          <select
+            id="document-type"
+            value={docType}
+            onChange={(e) => setDocType(e.target.value as Document['type'])}
+            className="w-full sm:w-64 rounded-lg border border-border bg-bg p-3 text-fg mb-4 focus:outline-none focus:ring-2 focus:ring-accent/30"
+          >
+            {DOC_TYPES.map((type) => (
+              <option key={type.value} value={type.value}>
+                {type.label}
+              </option>
+            ))}
           </select>
 
           <div
-            onDragOver={e => { e.preventDefault(); setDragOver(true) }}
+            onDragOver={(e) => {
+              e.preventDefault()
+              setDragOver(true)
+            }}
             onDragLeave={() => setDragOver(false)}
             onDrop={handleDrop}
             onClick={() => document.getElementById('file-input')?.click()}
@@ -130,32 +158,49 @@ export default function MyDocumentsPage() {
           >
             <Upload className="w-10 h-10 mx-auto mb-3 text-fg-muted" />
             <p className="text-fg-secondary font-medium">{uploading ? 'Uploading...' : 'Drop files here or click to upload'}</p>
-            <p className="text-fg-muted text-sm mt-1">PDF, JPG, PNG up to 10MB</p>
+            <p className="text-fg-muted text-sm mt-1">PDF, JPG, or PNG up to 10 MB</p>
           </div>
-          <input id="file-input" type="file" className="hidden" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-            onChange={e => { const f = e.target.files?.[0]; if (f) handleUpload(f) }} />
+          <input
+            id="file-input"
+            type="file"
+            className="hidden"
+            accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+            onChange={(e) => {
+              const file = e.target.files?.[0]
+              if (file) void handleUpload(file)
+              e.currentTarget.value = ''
+            }}
+          />
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-12"><div className="animate-pulse text-fg-muted">Loading documents...</div></div>
+          <div className="flex justify-center py-12">
+            <div className="animate-pulse text-fg-muted">Loading documents...</div>
+          </div>
         ) : docs.length > 0 ? (
           <div className="space-y-3">
-            {docs.map(doc => (
-              <div key={doc.id} className="card p-4 flex items-center gap-4">
+            {docs.map((document) => (
+              <div key={document.id} className="card p-4 flex items-center gap-4">
                 <FileText className="w-8 h-8 text-accent shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-fg truncate">{doc.name}</p>
+                  <p className="font-medium text-fg truncate">{document.name}</p>
                   <p className="text-sm text-fg-muted">
-                    {DOC_TYPES.find(t => t.value === doc.type)?.label} · {formatSize(doc.file_size)}
+                    {DOC_TYPES.find((type) => type.value === document.type)?.label} · {formatSize(document.file_size)}
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  {doc.file_url && (
-                    <a href={doc.file_url} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-bg-secondary transition-colors" aria-label="Download">
-                      <Download size={16} className="text-fg-secondary" />
-                    </a>
-                  )}
-                  <button onClick={() => handleDelete(doc.id)} className="p-2 rounded-lg hover:bg-bg-secondary transition-colors" aria-label="Delete">
+                  <a
+                    href={`/api/documents/${encodeURIComponent(document.id)}/download`}
+                    className="p-2 rounded-lg hover:bg-bg-secondary transition-colors"
+                    aria-label="Download"
+                  >
+                    <Download size={16} className="text-fg-secondary" />
+                  </a>
+                  <button
+                    onClick={() => void handleDelete(document)}
+                    className="p-2 rounded-lg hover:bg-bg-secondary transition-colors"
+                    aria-label="Delete"
+                  >
                     <Trash2 size={16} className="text-danger" />
                   </button>
                 </div>

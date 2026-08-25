@@ -1,63 +1,110 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limit'
+import { siteUrl } from '@/lib/site'
+import { createServiceSupabase } from '@/lib/supabase/admin'
+import { createUnsubscribeToken, normalizeSubscriberEmail } from '@/lib/unsubscribe-token'
 
 export const dynamic = 'force-dynamic'
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const SUBSCRIBE_LIMIT = 5
+const SUBSCRIBE_WINDOW_SECONDS = 60 * 60
+const NO_STORE = { 'Cache-Control': 'no-store, max-age=0' }
+
+type SubscribeRequest = {
+  email?: unknown
+  name?: unknown
+  interests?: unknown
+}
+
+function normalizeName(value: unknown): string | null {
+  if (typeof value !== 'string') return null
+  const name = value.trim()
+  return name ? name.slice(0, 120) : null
+}
+
+function normalizeInterests(value: unknown): string[] {
+  if (!Array.isArray(value)) return []
+
+  return value
+    .filter((item): item is string => typeof item === 'string')
+    .map((item) => item.trim().slice(0, 80))
+    .filter(Boolean)
+    .slice(0, 10)
+}
+
+function unsubscribeUrl(token: string): string {
+  const url = new URL('/unsubscribe', siteUrl())
+  url.searchParams.set('token', token)
+  return url.toString()
+}
 
 export async function POST(req: Request) {
-  try {
-    const { email, name, interests } = await req.json()
+  const rate = await consumeRateLimit(
+    `subscribe:${getClientIp(req)}`,
+    SUBSCRIBE_LIMIT,
+    SUBSCRIBE_WINDOW_SECONDS
+  )
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: 'Too many subscription attempts. Please try again later.' },
+      { status: 429, headers: { ...NO_STORE, ...rateLimitHeaders(rate) } }
+    )
+  }
 
-    if (!email || !EMAIL_REGEX.test(email)) {
-      return NextResponse.json({ error: 'Valid email is required.' }, { status: 400 })
+  try {
+    const body = (await req.json()) as SubscribeRequest
+    const email = normalizeSubscriberEmail(body?.email)
+    if (!email) {
+      return NextResponse.json(
+        { error: 'Valid email is required.' },
+        { status: 400, headers: NO_STORE }
+      )
     }
 
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
+    const name = normalizeName(body.name)
+    const interests = normalizeInterests(body.interests)
+    const shouldSendWelcomeEmail = Boolean(process.env.RESEND_API_KEY)
+    const token = shouldSendWelcomeEmail ? createUnsubscribeToken(email) : null
 
-    const { error: dbError } = await supabase.from('subscribers').insert({
+    const { error: dbError } = await createServiceSupabase().from('subscribers').insert({
       email,
-      name: name || null,
-      interests: interests || [],
+      name,
+      interests,
     })
 
-    if (dbError) {
-      if (dbError.code === '23505') {
-        return NextResponse.json({ error: 'You are already subscribed!' }, { status: 409 })
-      }
-      throw dbError
-    }
+    if (dbError && dbError.code !== '23505') throw dbError
 
-    // Send welcome email if Resend is configured
-    if (process.env.RESEND_API_KEY) {
+    // Do not reveal whether an email was already subscribed. This response is
+    // intentionally the same for first-time and duplicate submissions.
+    if (!dbError && shouldSendWelcomeEmail && token) {
       const resend = new Resend(process.env.RESEND_API_KEY)
       await resend.emails.send({
         from: 'TN Visa Guide <hello@tnvisaguide.ca>',
         to: email,
-        subject: 'Welcome to TN Visa Guide \u2014 Here\u2019s your free checklist',
+        subject: 'Welcome to TN Visa Guide — Here’s your free checklist',
         html: `
           <h2>Welcome to TN Visa Guide!</h2>
           <p>Thanks for subscribing${name ? `, ${name}` : ''}. Here's what you'll get:</p>
           <ul>
-            <li>\ud83d\udce2 Policy change alerts (USMCA review, USCIS updates)</li>
-            <li>\ud83d\udccb TN visa tips and guides</li>
-            <li>\ud83d\udcbc New TN-friendly job postings</li>
+            <li>Policy change alerts (USMCA review, USCIS updates)</li>
+            <li>TN visa tips and guides</li>
+            <li>New TN-friendly job postings</li>
           </ul>
-          <p><strong>Your free checklist:</strong> Visit <a href="https://tnvisaguide.ca/documents">tnvisaguide.ca/documents</a> for the complete TN visa document checklist.</p>
-          <p>\u2014 The TN Visa Guide Team</p>
+          <p><strong>Your free checklist:</strong> Visit <a href="${siteUrl()}/documents">tnvisaguide.ca/documents</a> for the complete TN visa document checklist.</p>
+          <p>— The TN Visa Guide Team</p>
           <hr />
-          <p style="font-size:12px;color:#888;">You're receiving this because you subscribed at tnvisaguide.ca. <a href="https://tnvisaguide.ca/unsubscribe?email=${encodeURIComponent(email)}">Unsubscribe</a></p>
+          <p style="font-size:12px;color:#888;">You're receiving this because you subscribed at tnvisaguide.ca. <a href="${unsubscribeUrl(token)}">Unsubscribe</a></p>
         `,
-      }).catch(console.error)
+      }).catch((err: unknown) => console.error('[subscribe] Welcome email failed:', err))
     }
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true }, { headers: NO_STORE })
   } catch (err) {
-    console.error('Subscribe error:', err)
-    return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 500 })
+    console.error('[subscribe] Unexpected error:', err)
+    return NextResponse.json(
+      { error: 'Something went wrong. Please try again.' },
+      { status: 500, headers: NO_STORE }
+    )
   }
 }
