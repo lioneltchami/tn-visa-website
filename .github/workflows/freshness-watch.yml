@@ -1,16 +1,20 @@
 name: Freshness watch
 
-# Opens/updates a GitHub Issue when fee literals drift from fees.json.
+# Opens or updates a GitHub Issue when TN fee literals drift from fees.json.
 # Never auto-publishes policy content.
 on:
   schedule:
-    # Offset from :00 to reduce Actions schedule drops
+    # Offset from :00 to reduce Actions schedule drops.
     - cron: '20 14 * * 1'
   workflow_dispatch:
 
 permissions:
   contents: read
   issues: write
+
+concurrency:
+  group: freshness-watch
+  cancel-in-progress: false
 
 jobs:
   check:
@@ -24,10 +28,10 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Install npm deps
+      - name: Install npm dependencies
         run: npm ci
 
-      - name: Check fee literal drift
+      - name: Check TN fee literal drift
         id: freshness
         continue-on-error: true
         run: npm run check:freshness
@@ -46,9 +50,11 @@ jobs:
           script: |
             const fs = require('fs');
             const title = 'Fee freshness drift detected';
-            const body = fs.existsSync('freshness-report.md')
+            const marker = '<!-- freshness-watch-current-report -->';
+            const report = fs.existsSync('freshness-report.md')
               ? fs.readFileSync('freshness-report.md', 'utf8')
               : 'Fee literal drift detected. Re-run `npm run check:freshness` locally.';
+            const body = `${marker}\n\n${report}`;
             const labels = ['freshness', 'content'];
 
             const issues = await github.rest.issues.listForRepo({
@@ -58,16 +64,8 @@ jobs:
               labels: 'freshness',
               per_page: 20,
             });
-            const existing = issues.data.find((i) => i.title === title);
-            if (existing) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body: `Updated by freshness-watch run ${context.runId}\n\n${body}`,
-              });
-              core.info(`Updated issue #${existing.number}`);
-            } else {
+            const existing = issues.data.find((issue) => issue.title === title);
+            if (!existing) {
               const created = await github.rest.issues.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -76,4 +74,32 @@ jobs:
                 labels,
               });
               core.info(`Opened issue #${created.data.number}`);
+              return;
+            }
+
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: existing.number,
+              per_page: 100,
+            });
+            const currentReport = comments.data.find((comment) =>
+              comment.user?.type === 'Bot' && comment.body?.includes(marker)
+            );
+            if (currentReport) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: currentReport.id,
+                body,
+              });
+              core.info(`Updated current report comment on issue #${existing.number}`);
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+              });
+              core.info(`Added current report comment to issue #${existing.number}`);
             }

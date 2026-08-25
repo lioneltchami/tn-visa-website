@@ -1,8 +1,21 @@
 name: Ingest chat embeddings
 
-# Manual only — wiping content_embeddings changes live RAG answers.
+# Manual only. A build creates a ready version while the active RAG index remains live.
+# A separate run activates one explicitly named, reviewed ready version.
 on:
   workflow_dispatch:
+    inputs:
+      activate_version:
+        description: 'Ready embedding version UUID to activate. Leave blank to build a new ready version.'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-content-embedding-ingest
+  cancel-in-progress: false
 
 jobs:
   ingest:
@@ -15,6 +28,7 @@ jobs:
           path: tn-visa-website
 
       - name: Checkout guide content
+        if: inputs.activate_version == ''
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/tn-visa-guide
@@ -27,14 +41,34 @@ jobs:
           cache: npm
           cache-dependency-path: tn-visa-website/package-lock.json
 
-      - name: Install npm deps
+      - name: Verify guide source
+        if: inputs.activate_version == ''
+        run: test -s tn-visa-guide/TN-VISA-COMPLETE-GUIDE.md
+
+      - name: Install npm dependencies
         working-directory: tn-visa-website
         run: npm ci
 
-      - name: Ingest embeddings
+      - name: Build a ready embedding version
+        if: inputs.activate_version == ''
         working-directory: tn-visa-website
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: npm run ingest:content
+        run: npm run ingest:content -- --guide-path=../tn-visa-guide/TN-VISA-COMPLETE-GUIDE.md
+
+      - name: Activate the reviewed ready version
+        if: inputs.activate_version != ''
+        working-directory: tn-visa-website
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run ingest:content -- --activate-version=${{ inputs.activate_version }}
+
+      - name: Upload ingestion report
+        if: always() && hashFiles('tn-visa-website/embedding-ingest-report.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: embedding-ingest-report
+          path: tn-visa-website/embedding-ingest-report.json
