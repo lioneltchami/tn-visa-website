@@ -77,6 +77,14 @@ function getSupabase() {
   return createServiceSupabase()
 }
 
+function getSupabaseHost(): string {
+  try {
+    return new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').host || 'missing'
+  } catch {
+    return 'invalid'
+  }
+}
+
 const SYSTEM_PROMPT = `You are a TN visa expert assistant for Canadian professionals seeking to work in the United States under USMCA.
 
 Rules:
@@ -141,7 +149,10 @@ async function getRelevantContext(query: string): Promise<string> {
       return ''
     }
     if (!matches?.length) {
-      console.info('[chat] No content matches after ranked retrieval retry')
+      console.info('[chat] No content matches after ranked retrieval retry', {
+        supabaseHost: getSupabaseHost(),
+        serviceRoleConfigured: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
+      })
       return ''
     }
 
