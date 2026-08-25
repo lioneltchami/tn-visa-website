@@ -14,11 +14,16 @@ export type PurchaseRecord = {
   download_count: number
   max_downloads: number
   fulfilled_at: string | null
+  revoked_at: string | null
   created_at: string
 }
 
 const COLUMNS =
-  'id, stripe_session_id, stripe_payment_intent, product_id, email, amount_total, currency, download_count, max_downloads, fulfilled_at, created_at'
+  'id, stripe_session_id, stripe_payment_intent, product_id, email, amount_total, currency, download_count, max_downloads, fulfilled_at, revoked_at, created_at'
+
+export function isPurchaseRevoked(purchase: Pick<PurchaseRecord, 'revoked_at'>): boolean {
+  return purchase.revoked_at != null
+}
 
 export type EnsurePurchaseInput = {
   stripeSessionId: string
@@ -87,6 +92,23 @@ export async function getPurchaseById(purchaseId: string): Promise<PurchaseRecor
 
   if (error) throw error
   return data
+}
+
+/** Idempotently revoke access for a refunded or disputed payment. */
+export async function revokePurchaseByPaymentIntent(
+  paymentIntentId: string
+): Promise<{ revoked: boolean; purchaseId?: string }> {
+  const { data, error } = await createServiceSupabase()
+    .from('purchases')
+    .update({ revoked_at: new Date().toISOString() })
+    .eq('stripe_payment_intent', paymentIntentId)
+    .is('revoked_at', null)
+    .select('id')
+
+  if (error) throw error
+  if (!data?.length) return { revoked: false }
+
+  return { revoked: true, purchaseId: data[0].id }
 }
 
 /**

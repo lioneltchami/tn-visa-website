@@ -1,6 +1,5 @@
 import { CheckCircle } from 'lucide-react'
 import type { Metadata } from 'next'
-import { withCanonical } from '@/lib/seo'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import Stripe from 'stripe'
@@ -10,8 +9,9 @@ import PurchaseTracker from '@/components/products/PurchaseTracker'
 import { Callout } from '@/components/ui/Callout'
 import { createDownloadToken } from '@/lib/download-token'
 import { getProduct, type Product } from '@/lib/products'
-import { ensurePurchase } from '@/lib/purchases'
+import { ensurePurchase, isPurchaseRevoked } from '@/lib/purchases'
 import { consumeRateLimit } from '@/lib/rate-limit'
+import { withCanonical } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -65,6 +65,8 @@ async function resolveAccess(sessionId: string | undefined): Promise<Access | nu
       stripePaymentIntent:
         typeof session.payment_intent === 'string' ? session.payment_intent : null,
     })
+
+    if (isPurchaseRevoked(purchase)) return null
 
     return {
       product,
