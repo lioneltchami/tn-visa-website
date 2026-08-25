@@ -76,6 +76,8 @@ returns table (
 )
 language sql
 stable
+security definer
+set search_path = ''
 as $$
   select
     ce.id,
@@ -134,6 +136,9 @@ $$;
 
 revoke all on function public.activate_content_embedding_version(uuid) from public, anon, authenticated;
 grant execute on function public.activate_content_embedding_version(uuid) to service_role;
+
+revoke all on function public.match_content(extensions.vector, float, int) from public;
+grant execute on function public.match_content(extensions.vector, float, int) to anon, authenticated, service_role;
 
 comment on table public.content_embedding_versions is
   'Version ledger for safe chat-index rebuilds. Keep archived versions until a separately reviewed cleanup task removes them.';

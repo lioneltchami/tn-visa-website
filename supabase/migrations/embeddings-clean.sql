@@ -28,6 +28,8 @@ returns table (
   similarity float
 )
 language plpgsql
+security definer
+set search_path = ''
 as $$
 begin
   return query
@@ -42,6 +44,9 @@ begin
   limit match_count;
 end;
 $$;
+
+revoke all on function public.match_content(extensions.vector, float, int) from public;
+grant execute on function public.match_content(extensions.vector, float, int) to anon, authenticated, service_role;
 
 -- NOTE: Run this AFTER ingesting content (the index needs data to build):
 -- create index on public.content_embeddings using ivfflat (embedding extensions.vector_cosine_ops) with (lists = 10);
