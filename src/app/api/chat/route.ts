@@ -1,12 +1,12 @@
 import { openai } from '@ai-sdk/openai'
 import { streamText } from 'ai'
-import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limit'
-import { isAllowedOrigin } from '@/lib/site'
 import {
   CHAT_RETRIEVAL_MATCH_COUNT,
   getChatMatchThreshold,
   shouldRetryWithoutThreshold,
 } from '@/lib/chat-retrieval'
+import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limit'
+import { isAllowedOrigin } from '@/lib/site'
 import { createServiceSupabase } from '@/lib/supabase/admin'
 
 export const maxDuration = 30
@@ -138,7 +138,9 @@ async function getRelevantContext(query: string): Promise<string> {
     }
 
     if (shouldRetryWithoutThreshold(matches?.length ?? 0, matchThreshold)) {
-      console.info(`[chat] No content matches at threshold ${matchThreshold}; retrying ranked retrieval`)
+      console.info(
+        `[chat] No content matches at threshold ${matchThreshold}; retrying ranked retrieval`
+      )
       const retry = await supabase.rpc('match_content', {
         query_embedding: JSON.stringify(data[0].embedding),
         match_threshold: 0,
@@ -156,9 +158,18 @@ async function getRelevantContext(query: string): Promise<string> {
       console.info('[chat] No content matches after ranked retrieval retry', {
         supabaseHost: getSupabaseHost(),
         serviceRoleConfigured: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
+        grounded: false,
       })
       return ''
     }
+
+    console.info('[chat] Retrieved guide context', {
+      matchCount: matches.length,
+      grounded: true,
+      sections: matches
+        .map((m: { metadata?: { section?: string } }) => m.metadata?.section || 'General')
+        .slice(0, 3),
+    })
 
     return matches
       .map(

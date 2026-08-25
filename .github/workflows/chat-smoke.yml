@@ -1,0 +1,30 @@
+name: Chat smoke test
+
+on:
+  schedule:
+    # Mondays 14:00 UTC — weekly prod check after deploys
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run production chat smoke test
+        run: npm run smoke:chat
+        env:
+          SMOKE_CHAT_ORIGIN: https://tnvisaguide.ca
