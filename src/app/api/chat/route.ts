@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { streamText } from 'ai'
 import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limit'
 import { isAllowedOrigin } from '@/lib/site'
+import { getChatMatchThreshold } from '@/lib/chat-retrieval'
 
 export const maxDuration = 30
 export const dynamic = 'force-dynamic'
@@ -114,9 +115,10 @@ async function getRelevantContext(query: string): Promise<string> {
     const { data } = await embeddingResponse.json()
     if (!data?.[0]?.embedding) return ''
 
+    const matchThreshold = getChatMatchThreshold(process.env.CHAT_MATCH_THRESHOLD)
     const { data: matches, error } = await getSupabase().rpc('match_content', {
       query_embedding: JSON.stringify(data[0].embedding),
-      match_threshold: 0.5,
+      match_threshold: matchThreshold,
       match_count: 5,
     })
 
@@ -124,7 +126,10 @@ async function getRelevantContext(query: string): Promise<string> {
       console.error('[chat] match_content failed:', error.message)
       return ''
     }
-    if (!matches?.length) return ''
+    if (!matches?.length) {
+      console.info(`[chat] No content matches at threshold ${matchThreshold}`)
+      return ''
+    }
 
     return matches
       .map(
