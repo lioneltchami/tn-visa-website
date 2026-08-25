@@ -41,11 +41,16 @@ const CHROME_CANDIDATES = [
   '/usr/bin/chromium',
 ].filter(Boolean) as string[]
 
-type Args = { only?: string; skipUpload: boolean }
+type Args = { only?: string; skipUpload: boolean; uploadExisting: boolean }
 
 function parseArgs(argv: string[]): Args {
   const only = argv.find((arg) => arg.startsWith('--only='))?.split('=')[1]
-  return { only, skipUpload: argv.includes('--skip-upload') }
+  const skipUpload = argv.includes('--skip-upload')
+  const uploadExisting = argv.includes('--upload-existing')
+  if (skipUpload && uploadExisting) {
+    throw new Error('Use either --skip-upload or --upload-existing, not both')
+  }
+  return { only, skipUpload, uploadExisting }
 }
 
 /** Minimal .env.local reader so the script works without dotenv wrappers. */
@@ -254,12 +259,17 @@ async function upload(files: { file: ProductFile; pdfPath: string }[]): Promise<
   }
 }
 
+function buildPaths(file: ProductFile): { htmlPath: string; pdfPath: string } {
+  const slug = file.path.replace(/[/\\]/g, '_').replace(/\.pdf$/, '')
+  return {
+    htmlPath: join(BUILD_DIR, `${slug}.html`),
+    pdfPath: join(BUILD_DIR, `${slug}.pdf`),
+  }
+}
+
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2))
   loadEnvLocal()
-
-  if (!which('pandoc')) throw new Error('pandoc not found. Install it with: brew install pandoc')
-  const chrome = findChrome()
 
   const selected = args.only
     ? ALL_PRODUCTS.filter((product) => product.id === args.only).flatMap((product) => product.files)
@@ -268,6 +278,21 @@ async function main(): Promise<void> {
   if (selected.length === 0) throw new Error(`No product files matched --only=${args.only}`)
 
   const unique = [...new Map(selected.map((file) => [file.path, file])).values()]
+
+  if (args.uploadExisting) {
+    const verified = unique.map((file) => ({ file, pdfPath: buildPaths(file).pdfPath }))
+    for (const { pdfPath } of verified) {
+      if (!existsSync(pdfPath) || statSync(pdfPath).size < MIN_PDF_BYTES) {
+        throw new Error(`Verified PDF artifact is missing or unusable: ${pdfPath}`)
+      }
+    }
+    await upload(verified)
+    console.log(`\nUploaded ${verified.length} verified PDF artifact(s).`)
+    return
+  }
+
+  if (!which('pandoc')) throw new Error('pandoc not found. Install it with: brew install pandoc')
+  const chrome = findChrome()
   const edition = new Date().toLocaleDateString('en-CA', {
     year: 'numeric',
     month: 'long',
@@ -278,9 +303,7 @@ async function main(): Promise<void> {
   const built: { file: ProductFile; pdfPath: string }[] = []
 
   for (const file of unique) {
-    const slug = file.path.replace(/[/\\]/g, '_').replace(/\.pdf$/, '')
-    const htmlPath = join(BUILD_DIR, `${slug}.html`)
-    const pdfPath = join(BUILD_DIR, `${slug}.pdf`)
+    const { htmlPath, pdfPath } = buildPaths(file)
 
     console.log(`Building ${file.label} (${file.sources.join(' + ')})`)
     writeFileSync(htmlPath, buildHtml(file, edition), 'utf8')

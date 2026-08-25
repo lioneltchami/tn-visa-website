@@ -14,13 +14,16 @@ on:
   workflow_dispatch:
     inputs:
       upload:
-        description: 'Upload built PDFs to the private Supabase product-files bucket'
+        description: 'Upload the verified PDFs to the private Supabase product-files bucket'
         required: true
         default: 'false'
         type: choice
         options:
           - 'false'
           - 'true'
+
+permissions:
+  contents: read
 
 concurrency:
   group: build-products-${{ github.ref }}
@@ -38,7 +41,7 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Install system deps (pandoc + Chrome)
+      - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc
@@ -48,27 +51,28 @@ jobs:
             sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
           fi
 
-      - name: Install npm deps
+      - name: Install npm dependencies
         run: npm ci
 
-      - name: Build PDFs (no upload)
+      - name: Build PDFs without publishing
         env:
           CHROME_PATH: /usr/bin/google-chrome-stable
         run: npm run build:products -- --skip-upload
 
-      - name: Upload PDF artifacts
+      - name: Upload verified PDF artifacts
         uses: actions/upload-artifact@v4
         with:
           name: product-pdfs
           path: .products-build/*.pdf
           if-no-files-found: error
+          include-hidden-files: true
 
   upload:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.upload == 'true'
     needs: build
     runs-on: ubuntu-latest
     environment: Production
-    timeout-minutes: 20
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -77,22 +81,22 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Install system deps (pandoc + Chrome)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y pandoc
-          sudo apt-get install -y google-chrome-stable || true
-          if ! command -v google-chrome >/dev/null 2>&1 && ! command -v google-chrome-stable >/dev/null 2>&1; then
-            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
-          fi
-
-      - name: Install npm deps
+      - name: Install npm dependencies
         run: npm ci
 
-      - name: Build and upload PDFs
+      - name: Download verified PDF artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: product-pdfs
+          path: .products-build
+
+      - name: Verify downloaded PDFs
+        run: |
+          test -d .products-build
+          test -n "$(find .products-build -maxdepth 1 -name '*.pdf' -print -quit)"
+
+      - name: Upload verified PDFs to private storage
         env:
-          CHROME_PATH: /usr/bin/google-chrome-stable
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: npm run build:products
+        run: npm run build:products -- --upload-existing

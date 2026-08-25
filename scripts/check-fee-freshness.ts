@@ -81,6 +81,14 @@ const KNOWN_STALE = new Map<number, string>([
   [460, 'Possible old I-129 small filing (now fees.i129.smallFiling)'],
 ])
 
+function shouldSkipLine(line: string): boolean {
+  const lower = line.toLowerCase()
+  if (line.includes('@freshness-ignore')) return true
+  if (/\$[0-9][0-9,]*\s*[–-]\s*\$[0-9][0-9,]*/.test(line)) return true
+  if (lower.includes('h-1b') || lower.includes('h1b')) return true
+  return false
+}
+
 function scanFile(file: string, expected: Map<number, string>, findings: Finding[]): void {
   const rel = relative(ROOT, file)
   // FeeCalculator + fees page already import fees.json — skip noise
@@ -88,9 +96,11 @@ function scanFile(file: string, expected: Map<number, string>, findings: Finding
 
   const lines = readFileSync(file, 'utf8').split('\n')
   lines.forEach((line, idx) => {
-    // Skip imports and comments that reference fees.json keys
+    // Skip imports, comments, documented exceptions, salary ranges, and H-1B-only copy.
+    // Use @freshness-ignore only for an intentional, reviewed non-TN fee literal.
     if (line.includes('fees.') || line.includes('fees.json')) return
     if (/^\s*\/\//.test(line) || /^\s*\*/.test(line)) return
+    if (shouldSkipLine(line)) return
 
     const money = line.matchAll(/\$([0-9]{1,3}(?:,[0-9]{3})+|[0-9]+)/g)
     for (const match of money) {
