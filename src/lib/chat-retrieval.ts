@@ -15,3 +15,12 @@ export function getChatMatchThreshold(value: string | undefined): number {
 
   return parsed
 }
+
+/**
+ * A threshold can screen out every result when a short question is compared with
+ * a broad source chunk. In that case, return the ranked top matches rather than
+ * sending a known in-corpus question to the generic fallback response.
+ */
+export function shouldRetryWithoutThreshold(matchCount: number, threshold: number): boolean {
+  return matchCount === 0 && threshold > 0
+}

@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { streamText } from 'ai'
 import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limit'
 import { isAllowedOrigin } from '@/lib/site'
-import { getChatMatchThreshold } from '@/lib/chat-retrieval'
+import { getChatMatchThreshold, shouldRetryWithoutThreshold } from '@/lib/chat-retrieval'
 
 export const maxDuration = 30
 export const dynamic = 'force-dynamic'
@@ -116,7 +116,8 @@ async function getRelevantContext(query: string): Promise<string> {
     if (!data?.[0]?.embedding) return ''
 
     const matchThreshold = getChatMatchThreshold(process.env.CHAT_MATCH_THRESHOLD)
-    const { data: matches, error } = await getSupabase().rpc('match_content', {
+    const supabase = getSupabase()
+    let { data: matches, error } = await supabase.rpc('match_content', {
       query_embedding: JSON.stringify(data[0].embedding),
       match_threshold: matchThreshold,
       match_count: 5,
@@ -126,8 +127,24 @@ async function getRelevantContext(query: string): Promise<string> {
       console.error('[chat] match_content failed:', error.message)
       return ''
     }
+
+    if (shouldRetryWithoutThreshold(matches?.length ?? 0, matchThreshold)) {
+      console.info(`[chat] No content matches at threshold ${matchThreshold}; retrying ranked retrieval`)
+      const retry = await supabase.rpc('match_content', {
+        query_embedding: JSON.stringify(data[0].embedding),
+        match_threshold: 0,
+        match_count: 5,
+      })
+      matches = retry.data
+      error = retry.error
+    }
+
+    if (error) {
+      console.error('[chat] ranked match_content retry failed:', error.message)
+      return ''
+    }
     if (!matches?.length) {
-      console.info(`[chat] No content matches at threshold ${matchThreshold}`)
+      console.info('[chat] No content matches after ranked retrieval retry')
       return ''
     }
 
