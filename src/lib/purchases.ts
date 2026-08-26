@@ -51,7 +51,22 @@ export async function ensurePurchase(
     .maybeSingle<PurchaseRecord>()
 
   if (existing.error) throw existing.error
-  if (existing.data) return { purchase: existing.data, created: false }
+  if (existing.data) {
+    // Backfill payment intent so later refund/dispute webhooks can revoke access.
+    if (!existing.data.stripe_payment_intent && input.stripePaymentIntent) {
+      const updated = await supabase
+        .from('purchases')
+        .update({ stripe_payment_intent: input.stripePaymentIntent })
+        .eq('id', existing.data.id)
+        .is('stripe_payment_intent', null)
+        .select(COLUMNS)
+        .maybeSingle<PurchaseRecord>()
+
+      if (updated.error) throw updated.error
+      if (updated.data) return { purchase: updated.data, created: false }
+    }
+    return { purchase: existing.data, created: false }
+  }
 
   const inserted = await supabase
     .from('purchases')
