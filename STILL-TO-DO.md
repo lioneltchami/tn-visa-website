@@ -212,13 +212,14 @@ c) **Set up the webhook:**
 
 - Stripe Dashboard → Developers → Webhooks → Add endpoint
 - URL: `https://tnvisaguide.ca/api/webhook`
-- Events to listen for: `checkout.session.completed`
+- Events to listen for: `checkout.session.completed`, `charge.refunded`, `charge.dispute.created`
 - Copy the webhook signing secret → add as `STRIPE_WEBHOOK_SECRET` in `.env.local`
 
 d) **Build and publish the PDF products:**
 
 1.  Run `supabase/migrations/product-delivery-and-rate-limits.sql` once in the Supabase
     SQL Editor (creates `purchases`, `rate_limits`, and the private `product-files` bucket)
+    1b. Run `supabase/migrations/20260825180000_purchase_revocation.sql` (adds `revoked_at` for refunds/disputes)
 2.  Set `DOWNLOAD_TOKEN_SECRET` (`openssl rand -hex 32`) in `.env.local` **and** in Vercel.
     Changing it later invalidates download links you already emailed.
 3.  Build the PDFs from `products/*.md` and upload them:

@@ -52,4 +52,13 @@ describe('download tokens', () => {
   it('refuses to sign a non-uuid purchase id', () => {
     expect(() => createDownloadToken('../../etc/passwd')).toThrow()
   })
+
+  it('requires a dedicated secret in production', () => {
+    delete process.env.DOWNLOAD_TOKEN_SECRET
+    process.env.NODE_ENV = 'production'
+    expect(() => createDownloadToken(PURCHASE_ID)).toThrow(
+      'DOWNLOAD_TOKEN_SECRET must be set in production'
+    )
+    process.env.NODE_ENV = 'test'
+  })
 })

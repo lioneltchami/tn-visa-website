@@ -1,9 +1,8 @@
 name: Build product PDFs
 
-# PDF content comes from products/*.md. Pricing and card copy in
-# src/lib/products.ts change often without affecting the PDFs, so that path is
-# not a push trigger; run the workflow manually after editing a product's
-# `sources` list.
+# PDF content comes from products/*.md. Pushes to main rebuild PDFs and upload
+# them to the private Supabase bucket automatically. Use workflow_dispatch with
+# upload=false to build artifacts only.
 on:
   push:
     branches: [main]
@@ -68,7 +67,13 @@ jobs:
           include-hidden-files: true
 
   upload:
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.upload == 'true'
+    if: |
+      always() &&
+      needs.build.result == 'success' &&
+      (
+        github.event_name == 'push' ||
+        (github.event_name == 'workflow_dispatch' && github.event.inputs.upload == 'true')
+      )
     needs: build
     runs-on: ubuntu-latest
     environment: Production

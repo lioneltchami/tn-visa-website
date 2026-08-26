@@ -17,13 +17,22 @@ export type DownloadTokenPayload = {
 }
 
 function getSecret(): string {
-  // Falls back to the service role key (server-only, high entropy) so links
-  // keep working even if DOWNLOAD_TOKEN_SECRET was never provisioned.
-  const secret = process.env.DOWNLOAD_TOKEN_SECRET || process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!secret) {
+  const dedicated = process.env.DOWNLOAD_TOKEN_SECRET
+  const isProduction =
+    process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production'
+
+  if (dedicated) return dedicated
+
+  if (isProduction) {
+    throw new Error('DOWNLOAD_TOKEN_SECRET must be set in production')
+  }
+
+  const fallback = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!fallback) {
     throw new Error('DOWNLOAD_TOKEN_SECRET (or SUPABASE_SERVICE_ROLE_KEY) is not set')
   }
-  return secret
+
+  return fallback
 }
 
 function sign(payload: string): string {
