@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
+import professions from '@/data/professions.json'
 import { authorizeCronRequest, newRunId } from '@/lib/cron-auth'
+import { extractJobRequirements } from '@/lib/job-description'
 import { consumeRateLimit } from '@/lib/rate-limit'
 import { createServiceSupabase } from '@/lib/supabase/admin'
-import professions from '@/data/professions.json'
 
 export const maxDuration = 60
 
@@ -62,13 +63,22 @@ function truncate(text: string, max: number): string {
 }
 
 const SEARCH_CONFIG: { query: string; profession: string }[] = [
-  { query: 'Registered Nurse visa sponsorship', profession: 'Registered Nurse' },
+  {
+    query: 'Registered Nurse visa sponsorship',
+    profession: 'Registered Nurse',
+  },
   { query: 'Pharmacist visa sponsorship', profession: 'Pharmacist' },
-  { query: 'Software Engineer visa sponsorship', profession: 'Computer Systems Analyst' },
+  {
+    query: 'Software Engineer visa sponsorship',
+    profession: 'Computer Systems Analyst',
+  },
   { query: 'Accountant visa sponsorship', profession: 'Accountant' },
   { query: 'Engineer visa sponsorship', profession: 'Engineer' },
   { query: 'Scientist visa sponsorship', profession: 'Scientist' },
-  { query: 'Management Consultant visa sponsorship', profession: 'Management Consultant' },
+  {
+    query: 'Management Consultant visa sponsorship',
+    profession: 'Management Consultant',
+  },
   { query: 'Architect visa sponsorship', profession: 'Architect' },
 ]
 
@@ -90,16 +100,20 @@ async function fetchJobs(query: string, apiKey: string, apiHost: string) {
   return (json.data || []) as Record<string, unknown>[]
 }
 
-function extractRequirements(job: Record<string, unknown>): string[] {
+function extractRequirements(job: Record<string, unknown>, description: string): string[] {
   const highlights = job.job_highlights
-  if (!highlights || !Array.isArray(highlights)) return []
-  const quals = highlights.find(
-    (h: Record<string, unknown>) => h.title === 'Qualifications' || h.title === 'Requirements'
-  )
-  if (quals && Array.isArray(quals.items)) {
-    return (quals.items as string[]).slice(0, 8).map((item) => truncate(String(item), 500))
+  let highlightItems: string[] | null = null
+
+  if (highlights && Array.isArray(highlights)) {
+    const quals = highlights.find(
+      (h: Record<string, unknown>) => h.title === 'Qualifications' || h.title === 'Requirements'
+    )
+    if (quals && Array.isArray(quals.items)) {
+      highlightItems = (quals.items as unknown[]).map((item) => String(item))
+    }
   }
-  return []
+
+  return extractJobRequirements(description, highlightItems)
 }
 
 function mapRemotePolicy(job: Record<string, unknown>): 'onsite' | 'hybrid' | 'remote' {
@@ -131,7 +145,10 @@ async function handleSync(req: NextRequest) {
   // Fail-closed lock across serverless instances (Vercel has no overlap guard).
   const lock = await consumeRateLimit('job-sync', 1, MIN_SYNC_INTERVAL_SECONDS)
   if (!lock.allowed) {
-    console.warn('[job-sync] rate limited', { runId, resetSeconds: lock.resetSeconds })
+    console.warn('[job-sync] rate limited', {
+      runId,
+      resetSeconds: lock.resetSeconds,
+    })
     return NextResponse.json(
       {
         error: `Rate limited. Retry in ~${lock.resetSeconds}s.`,
@@ -160,7 +177,9 @@ async function handleSync(req: NextRequest) {
       const jobs = await fetchJobs(query, apiKey, apiHost)
 
       if (jobs.length === 0) {
-        console.warn(`[job-sync] Query "${query}" returned 0 results`, { runId })
+        console.warn(`[job-sync] Query "${query}" returned 0 results`, {
+          runId,
+        })
       }
 
       for (const job of jobs) {
@@ -235,7 +254,7 @@ async function handleSync(req: NextRequest) {
             ? profession
             : 'Computer Systems Analyst',
           description,
-          requirements: extractRequirements(job),
+          requirements: extractRequirements(job, description),
           salary_min: sanitizeSalary(job.job_min_salary),
           salary_max: sanitizeSalary(job.job_max_salary),
           location,
@@ -279,7 +298,9 @@ async function handleSync(req: NextRequest) {
       .lt('posted_at', sevenDaysAgo)
 
     if (deleteError) {
-      console.error('[job-sync] Cleanup failed:', deleteError.message, { runId })
+      console.error('[job-sync] Cleanup failed:', deleteError.message, {
+        runId,
+      })
       errors.push(`Cleanup: ${deleteError.message}`)
     }
   }

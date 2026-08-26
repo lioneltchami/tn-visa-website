@@ -1,81 +1,87 @@
-'use client'
+"use client";
+
+import {
+	type JobDescriptionBlock,
+	parseJobDescription,
+} from "@/lib/job-description";
 
 interface JobDescriptionProps {
-  text: string
+	text: string;
+	/** Hide sections already rendered elsewhere (e.g. Requirements list). */
+	hideSections?: string[];
 }
 
-export function JobDescription({ text }: JobDescriptionProps) {
-  // Clean up text
-  const cleaned = text
-    .replace(/\r\n/g, '\n')
-    .replace(/•\s*/g, '\n• ')
-    .replace(/\n{3,}/g, '\n\n')
-    .replace(/\s{2,}/g, ' ')
-    .trim()
+function FactsBlock({ facts }: { facts: { label: string; value: string }[] }) {
+	return (
+		<dl className="grid gap-2 sm:grid-cols-2 text-sm rounded border border-border p-4 bg-bg-secondary/40">
+			{facts.map((fact) => (
+				<div key={`${fact.label}:${fact.value}`} className="min-w-0">
+					<dt className="text-fg-muted">{fact.label}</dt>
+					<dd className="text-fg-secondary font-medium">{fact.value}</dd>
+				</div>
+			))}
+		</dl>
+	);
+}
 
-  // For short descriptions, just show as clean paragraph(s)
-  if (cleaned.length < 600) {
-    const paragraphs = cleaned.split(/\n\n+/).filter(Boolean)
-    return (
-      <div className="space-y-3">
-        {paragraphs.map((p, i) => (
-          <p key={i} className="text-fg-secondary leading-relaxed">{p.replace(/\n/g, ' ').trim()}</p>
-        ))}
-      </div>
-    )
-  }
+function Block({ block }: { block: JobDescriptionBlock }) {
+	if (block.type === "facts") {
+		return <FactsBlock facts={block.facts} />;
+	}
 
-  // For longer descriptions, parse structure
-  const sections = cleaned.split(/\n\n+/)
+	if (block.type === "list") {
+		const looksLikeProse =
+			block.items.length === 1 && block.items[0].length > 120;
+		return (
+			<div>
+				{block.title && (
+					<h3 className="font-medium text-fg mb-2">{block.title}</h3>
+				)}
+				{looksLikeProse ? (
+					<p className="text-fg-secondary leading-relaxed">{block.items[0]}</p>
+				) : (
+					<ul className="list-disc pl-5 space-y-1">
+						{block.items.map((item) => (
+							<li key={item} className="text-fg-secondary">
+								{item}
+							</li>
+						))}
+					</ul>
+				)}
+			</div>
+		);
+	}
 
-  return (
-    <div className="space-y-4">
-      {sections.map((section, i) => {
-        const trimmed = section.trim()
-        if (!trimmed) return null
+	return (
+		<div>
+			{block.title && (
+				<h3 className="font-medium text-fg mb-2">{block.title}</h3>
+			)}
+			<p className="text-fg-secondary leading-relaxed">{block.text}</p>
+		</div>
+	);
+}
 
-        const lines = trimmed.split('\n').map(l => l.trim()).filter(Boolean)
-        
-        // Check if section has bullets
-        const bulletLines = lines.filter(line => /^[•\-\*]/.test(line))
-        const isList = bulletLines.length >= 2
+export function JobDescription({
+	text,
+	hideSections = [],
+}: JobDescriptionProps) {
+	const hidden = new Set(hideSections.map((s) => s.toLowerCase()));
+	const { blocks } = parseJobDescription(text);
+	const visible = blocks.filter((block) => {
+		if (!("title" in block) || !block.title) return true;
+		return !hidden.has(block.title.toLowerCase());
+	});
 
-        if (isList) {
-          const headerLines: string[] = []
-          const listItems: string[] = []
-          
-          for (const line of lines) {
-            if (/^[•\-\*]/.test(line)) {
-              listItems.push(line.replace(/^[•\-\*]\s*/, ''))
-            } else if (listItems.length === 0) {
-              headerLines.push(line)
-            }
-          }
+	if (!visible.length) {
+		return <p className="text-fg-muted">No description provided.</p>;
+	}
 
-          return (
-            <div key={i}>
-              {headerLines.length > 0 && (
-                <p className="font-medium text-fg mb-2">{headerLines.join(' ')}</p>
-              )}
-              <ul className="list-disc pl-5 space-y-1">
-                {listItems.map((item, j) => (
-                  <li key={j} className="text-fg-secondary">{item}</li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
-
-        // Check if header (short, title-like)
-        if (lines.length === 1 && trimmed.length < 60 && /^[A-Z]/.test(trimmed)) {
-          return <h3 key={i} className="font-medium text-fg mt-2">{trimmed.replace(/:$/, '')}</h3>
-        }
-
-        // Regular paragraph
-        return (
-          <p key={i} className="text-fg-secondary leading-relaxed">{lines.join(' ')}</p>
-        )
-      })}
-    </div>
-  )
+	return (
+		<div className="space-y-5">
+			{visible.map((block, index) => (
+				<Block key={index} block={block} />
+			))}
+		</div>
+	);
 }
