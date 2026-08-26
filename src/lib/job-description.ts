@@ -48,8 +48,8 @@ const FACT_LABELS = [
 
 const REQUIREMENTS_TITLES = new Set(["qualifications", "requirements"]);
 
-const INLINE_FACT_RE =
-	/\b(Job Type|Setting|Population Type|Duration|Location|Schedule|Shift|Salary|Pay|Employment Type):\s*/gi;
+const FACT_LABEL_PATTERN =
+	"Job Type|Setting|Population Type|Duration|Location|Schedule|Shift|Salary|Pay|Employment Type";
 
 function escapeRegExp(value: string): string {
 	return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -88,11 +88,7 @@ function matchFactLabel(text: string): JobFact | null {
 	if (!(FACT_LABELS as readonly string[]).includes(label.toLowerCase()))
 		return null;
 	if (!value || value.length > 200) return null;
-	// Reject values that still contain another fact label
-	if (INLINE_FACT_RE.test(value)) {
-		INLINE_FACT_RE.lastIndex = 0;
-		return null;
-	}
+	if (new RegExp(`\\b(?:${FACT_LABEL_PATTERN}):`, "i").test(value)) return null;
 	return { label, value };
 }
 
@@ -111,6 +107,13 @@ function splitLines(text: string): string[] {
 		.filter(Boolean);
 }
 
+function truncateFactValue(value: string): string {
+	let cleaned = value.trim().replace(/[.;]\s*$/, "");
+	const sentenceEnd = cleaned.search(/(?<=\w)\.\s+[A-Z]/);
+	if (sentenceEnd > 0) cleaned = cleaned.slice(0, sentenceEnd);
+	return cleaned.trim();
+}
+
 /**
  * Insert structure into wall-of-text employer copy before section parsing.
  */
@@ -126,26 +129,37 @@ export function normalizeJobDescriptionText(raw: string): string {
 
 	// Break before common fact labels after a sentence end
 	text = text.replace(
-		/([.!?])\s+(?=(?:Job Type|Setting|Population Type|Duration|Location|Schedule|Shift|Salary|Pay|Employment Type):)/gi,
+		new RegExp(`([.!?])\\s+(?=(?:${FACT_LABEL_PATTERN}):)`, "gi"),
 		"$1\n\n",
 	);
 
-	// Mid-line section headers with a colon (e.g. "...Insurance About the Role: ...")
-	// Sort longer headers first so "about the role" wins over shorter collisions.
+	// Mid-line section headers with a colon.
+	// Multi-word role headers may appear mid-line without punctuation
+	// ("…Insurance About the Role:"). Single-word headers like "benefits:"
+	// only split after a clause boundary to avoid "offer strong benefits: medical".
 	const headersByLength = [...SECTION_HEADERS].sort(
 		(a, b) => b.length - a.length,
 	);
+	const aggressiveHeaders = new Set([
+		"about the role",
+		"about this role",
+		"for immediate consideration",
+		"how to apply",
+		"what we offer",
+		"job description",
+	]);
 	for (const header of headersByLength) {
-		const pattern = new RegExp(
-			`([^\\n])\\s*(${escapeRegExp(header)})\\s*:`,
-			"gi",
+		const pattern = aggressiveHeaders.has(header)
+			? new RegExp(`([^\\n])\\s*(${escapeRegExp(header)})\\s*:`, "gi")
+			: new RegExp(`(^|[.\\n!?])\\s*(${escapeRegExp(header)})\\s*:`, "gi");
+		text = text.replace(
+			pattern,
+			(_full, boundary: string, matched: string) =>
+				`${boundary}\n\n${titleCaseHeader(matched)}:\n`,
 		);
-		text = text.replace(pattern, (_full, before: string, matched: string) => {
-			return `${before}\n\n${titleCaseHeader(matched)}:\n`;
-		});
 	}
 
-	// Bare headers already on their own line: "Benefits:" / "QUALIFICATIONS"
+	// Bare headers already on their own line
 	for (const header of headersByLength) {
 		const pattern = new RegExp(
 			`(?:^|\\n)\\s*(${escapeRegExp(header)})\\s*:?\\s*(?=\\n|$)`,
@@ -157,16 +171,13 @@ export function normalizeJobDescriptionText(raw: string): string {
 		);
 	}
 
-	// ALL-CAPS section labels anywhere in the blob (no colon required)
+	// ALL-CAPS section labels anywhere (no colon required)
 	text = text.replace(
 		/\s*(QUALIFICATIONS|RESPONSIBILITIES|REQUIREMENTS|DUTIES|BENEFITS)\b\s*:?\s*/g,
 		(_full, matched: string) => `\n\n${titleCaseHeader(matched)}:\n`,
 	);
 
-	// Drop orphan empty bullets
 	text = text.replace(/^\s*•\s*$/gm, "");
-
-	// Split residual "• … Benefits:" bullets into content + Benefits header
 	text = text.replace(
 		/•\s*([^•\n]*?)\s+Benefits:\s*$/gim,
 		"• $1\n\nBenefits:\n",
@@ -178,10 +189,10 @@ export function normalizeJobDescriptionText(raw: string): string {
 function extractInlineFacts(line: string): JobFact[] {
 	const facts: JobFact[] = [];
 	const labelsFound: { label: string; index: number }[] = [];
+	const re = new RegExp(`\\b(${FACT_LABEL_PATTERN}):\\s*`, "gi");
 
-	INLINE_FACT_RE.lastIndex = 0;
 	let match: RegExpExecArray | null;
-	while ((match = INLINE_FACT_RE.exec(line)) !== null) {
+	while ((match = re.exec(line)) !== null) {
 		labelsFound.push({ label: match[1], index: match.index });
 	}
 
@@ -193,10 +204,7 @@ function extractInlineFacts(line: string): JobFact[] {
 		const start = labelEnd + valueStart;
 		const end =
 			i + 1 < labelsFound.length ? labelsFound[i + 1].index : line.length;
-		const value = line
-			.slice(start, end)
-			.trim()
-			.replace(/[.;]\s*$/, "");
+		const value = truncateFactValue(line.slice(start, end));
 		if (!value || value.length > 160) continue;
 		facts.push({ label: current.label, value });
 	}
@@ -244,6 +252,17 @@ export function parseJobDescription(raw: string): ParsedJobDescription {
 		listBuf = [];
 		if (!items.length) return;
 
+		// Lead prose under the same section should not keep a duplicate heading.
+		const prev = blocks[blocks.length - 1];
+		if (
+			prev?.type === "paragraph" &&
+			prev.title &&
+			currentTitle &&
+			prev.title.toLowerCase() === currentTitle.toLowerCase()
+		) {
+			blocks[blocks.length - 1] = { type: "paragraph", text: prev.text };
+		}
+
 		blocks.push({ type: "list", title: currentTitle, items });
 		if (collectingRequirements) {
 			for (const item of items) {
@@ -264,12 +283,8 @@ export function parseJobDescription(raw: string): ParsedJobDescription {
 		if (!text) return;
 
 		if (currentTitle) {
+			// Keep title open for following bullets; requirements come from bullets only.
 			blocks.push({ type: "paragraph", title: currentTitle, text });
-			if (collectingRequirements && requirements.length < 12) {
-				requirements.push(text.slice(0, 500));
-			}
-			currentTitle = undefined;
-			collectingRequirements = false;
 			return;
 		}
 
@@ -279,6 +294,8 @@ export function parseJobDescription(raw: string): ParsedJobDescription {
 	const flushAll = () => {
 		flushList();
 		flushParagraph();
+		currentTitle = undefined;
+		collectingRequirements = false;
 	};
 
 	const startSection = (header: string) => {
@@ -311,7 +328,6 @@ export function parseJobDescription(raw: string): ParsedJobDescription {
 			}
 		}
 
-		// Facts: prefer extracting even after intro is buffered
 		if (!currentTitle && !listBuf.length) {
 			const inlineFacts = extractInlineFacts(line);
 			if (inlineFacts.length >= 1) {
@@ -354,10 +370,9 @@ export function parseJobDescription(raw: string): ParsedJobDescription {
 	flushAll();
 
 	if (facts.length) {
-		// Dedupe by label (last wins)
 		const byLabel = new Map<string, JobFact>();
 		for (const fact of facts) byLabel.set(fact.label.toLowerCase(), fact);
-		blocks.unshift({ type: "facts", facts: [...byLabel.values()] });
+		blocks.unshift({ type: "facts", facts: Array.from(byLabel.values()) });
 	}
 
 	return {

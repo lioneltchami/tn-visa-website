@@ -8,7 +8,7 @@ export function paymentIntentId(
   return typeof value === 'string' ? value : value.id
 }
 
-/** Revoke when any refund lands — digital goods should not stay unlocked. */
+/** Revoke only on a fully refunded charge (partial refunds keep access). */
 export function shouldRevokeOnCharge(charge: Stripe.Charge): boolean {
   return charge.refunded && charge.amount_refunded > 0
 }

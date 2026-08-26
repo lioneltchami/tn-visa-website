@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { withCanonical } from '@/lib/seo'
 import Link from 'next/link'
 import ContentLayout from '@/components/layout/ContentLayout'
 import ProductDownloadList from '@/components/products/ProductDownloadList'
 import { Callout } from '@/components/ui/Callout'
 import { verifyDownloadToken } from '@/lib/download-token'
 import { getProduct } from '@/lib/products'
-import { getPurchaseById } from '@/lib/purchases'
+import { getPurchaseById, isPurchaseRevoked } from '@/lib/purchases'
+import { withCanonical } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -20,11 +20,11 @@ export default async function DownloadPage({ searchParams }: { searchParams: { t
   const purchase = payload ? await getPurchaseById(payload.purchaseId).catch(() => null) : null
   const product = purchase ? getProduct(purchase.product_id) : null
 
-  if (!payload || !purchase || !product) {
+  if (!payload || !purchase || !product || isPurchaseRevoked(purchase)) {
     return (
       <ContentLayout
         title="Download Link Not Valid"
-        description="This link has expired, was mistyped, or belongs to a purchase we cannot find."
+        description="This link has expired, was mistyped, belongs to a purchase we cannot find, or is no longer active."
         breadcrumbs={[{ label: 'Products', href: '/products' }]}
       >
         <Callout type="warning" title="We can reissue your link">

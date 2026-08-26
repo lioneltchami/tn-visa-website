@@ -41,8 +41,11 @@ function Block({ block }: { block: JobDescriptionBlock }) {
 					<p className="text-fg-secondary leading-relaxed">{block.items[0]}</p>
 				) : (
 					<ul className="list-disc pl-5 space-y-1">
-						{block.items.map((item) => (
-							<li key={item} className="text-fg-secondary">
+						{block.items.map((item, index) => (
+							<li
+								key={`${index}-${item.slice(0, 48)}`}
+								className="text-fg-secondary"
+							>
 								{item}
 							</li>
 						))}
