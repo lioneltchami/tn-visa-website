@@ -1,6 +1,6 @@
 # TN Visa Employer Letter Template Pack
 
-> **Last Updated:** April 2026 | Reflects June 2025 USCIS Policy Changes
+> **Edition 1.1:** Sources checked August 27, 2026 | Uses the current USCIS Policy Manual TN framework
 >
 > **Disclaimer:** These templates are for informational purposes only and do not constitute legal advice. Immigration law changes frequently. Consult a qualified immigration attorney before submitting any TN visa application. Every case is unique — these templates are starting points, not guarantees of approval.
 
@@ -11,10 +11,10 @@
 ### Instructions for Employers
 
 1. **Select the correct template** for the USMCA profession category (not the internal job title)
-2. **Print on official company letterhead** — this is mandatory, not optional
+2. **Use official company letterhead where available** so the letter identifies and authenticates the employer
 3. **Fill in all bracketed fields** `[like this]` with accurate, specific information
-4. **Have an authorised company representative sign** the letter in ink (blue ink preferred for originals)
-5. **Provide the original signed letter** to the applicant — photocopies are not acceptable at the border
+4. **Have an authorised company representative sign** the letter and follow the current signature instructions for the relevant USCIS filing or port-of-entry process
+5. **Give the applicant a complete current letter and supporting evidence.** Carry originals of core credentials when available, plus clear copies; confirm any port-specific document practice before travel.
 
 ### What to Customise
 
@@ -26,26 +26,26 @@
 
 ### What NOT to Change
 
-- **The RE: line profession name** — must match the exact USMCA profession list name
-- **The temporary nature statement** — this language is critical; do not remove or weaken it
-- **The addressee** (U.S. Customs and Border Protection) — do not change this
-- **The structure** — CBP officers expect this format; rearranging sections causes confusion
+- **The RE: line profession name** — keep it aligned with the specific USMCA profession relied on in the application
+- **The temporary nature statement** — keep it accurate and consistent with the actual role and requested period
+- **The addressee** — use CBP for a port-of-entry request or USCIS for a Form I-129 filing
+- **The factual structure** — keep the facts clear and easy to verify; adapt the format only when it improves accuracy and clarity
 - **References to USMCA** — do not use "NAFTA" (it was replaced by USMCA on July 1, 2020)
 
 ### Printing and Signing Requirements
 
-- Print on **official company letterhead** with company name, address, phone, and logo
-- Letter must be **dated** (use the date closest to the border crossing or filing)
-- **Wet signature in ink** from an authorised representative (HR director, hiring manager, department head, or company officer)
+- Use official company letterhead when available, with company name, address, phone, and logo
+- Date the letter close to the filing or proposed port-of-entry presentation
+- Use an authorised representative's signature and follow current signature requirements for the relevant process
 - Include the **signer's printed name, title, direct phone number, and email**
-- Keep the letter to **1–2 pages** (single-spaced, standard margins)
-- Use **professional fonts** (Times New Roman, Arial, Calibri) at 11–12pt
+- Keep the letter focused and substantive; length depends on the facts of the case
+- Use a readable professional font and a clean layout
 
 ---
 
 ## Required Elements Checklist
 
-Every TN employer support letter **MUST** contain all of the following. Missing even one element can result in denial.
+A complete TN employer support letter should address the following facts where they apply. The appropriate evidence depends on the profession, filing route, and individual case.
 
 ### Mandatory Elements
 
@@ -58,7 +58,7 @@ Every TN employer support letter **MUST** contain all of the following. Missing 
 - [ ] **Company description** — what the company does, industry, size
 - [ ] **Job title** offered to the applicant
 - [ ] **USMCA profession category** the position falls under
-- [ ] **Detailed job duties** — minimum 5 specific duties tied to the USMCA profession
+- [ ] **Detailed job duties** — several specific duties tied to the USMCA profession
 - [ ] **Applicant's qualifications** — degree, field of study, institution, graduation date
 - [ ] **Professional licence or designation** (if required or applicable for the profession)
 - [ ] **Start date and end date** of employment (maximum 3 years)
@@ -66,14 +66,14 @@ Every TN employer support letter **MUST** contain all of the following. Missing 
 - [ ] **Work location** (full U.S. address)
 - [ ] **Full-time or part-time** status
 - [ ] **Temporary nature statement** — the position is temporary and the applicant will depart upon completion
-- [ ] **Signature block** — wet signature, printed name, title, phone, email
+- [ ] **Signature block** — authorised signature, printed name, title, phone, and email
 
 ### Common Mistakes That Cause Denials
 
 1. **Vague or generic job duties** — "will perform engineering tasks" is not enough; list specific duties
-2. **Job duties that don't match the USMCA profession** — the #1 reason for denial; CBP looks at duties, not titles
-3. **Using "Software Engineer" under the Engineer category with a Computer Science degree** — explicitly prohibited since June 2025
-4. **Missing end date** — suggests permanent employment, which disqualifies TN status
+2. **Job duties that do not match the USMCA profession** — officers assess the proposed duties, not the job title alone
+3. **Relying on a job title alone for an Engineer case** — computer-related Engineer roles require full related engineering credentials under current USCIS policy
+4. **Unclear proposed period of employment** — describe the anticipated period accurately and consistently with the employer’s actual plans
 5. **Language suggesting permanence** — avoid "permanent," "indefinite," "long-term career," "career growth path"
 6. **Mismatch between letter, résumé, and diploma** — all documents must tell the same story
 7. **Wrong profession category** — e.g., calling a financial analyst an "Economist" or a project manager a "Management Consultant"
@@ -1196,7 +1196,7 @@ ____________________________
 
 ### 10. Scientific Technician/Technologist
 
-> **USMCA Requirement:** Post-secondary diploma (2+ years) in a relevant scientific discipline, OR 2 years of experience in the discipline.
+> **USCIS policy focus:** The applicant needs theoretical knowledge in a qualifying scientific discipline, generally documented through at least two years of relevant education or training. USCIS may also assess extensive directly related experience as part of the whole record. The work must directly support a qualifying supervisory professional.
 >
 > **⚠️ June 2025 Change — MAJOR RESTRICTIONS:**
 > 1. **No direct patient care.** Roles supporting physicians who provide patient care are explicitly disqualified (surgical techs, medical techs, sonographers, etc.).
@@ -1405,78 +1405,36 @@ These phrases and patterns raise concerns with CBP officers and can trigger deni
 
 ---
 
-## 2026 Update Notes
+## Current Drafting Standard
 
-### What Changed: The June 2025 USCIS Policy Memo
+The USCIS Policy Manual describes the evidence needed for TN classification. The relevant question is whether the individual case establishes a qualifying profession, qualifying credentials, a real temporary position, and work that fits the claimed profession. A support letter does not create eligibility; it should document the employer’s and applicant’s actual facts clearly and accurately.
 
-On **June 4, 2025**, USCIS published a major policy update to the USCIS Policy Manual (Volume 2, Part P) that significantly tightened the interpretation of several TN categories. This is the most consequential change to TN visa adjudication in over a decade. The Department of State denial rate for TN visas reached **42.63% in FY 2024**, and the June 2025 changes have made proper documentation even more critical.
+### Draft Every Letter Around the Evidence
 
-### Stricter Requirements Since June 2025
+| Topic | What the support letter should explain |
+|---|---|
+| **Profession and duties** | Identify the USMCA profession relied on and describe the actual proposed duties in concrete terms. A job title alone is not enough. |
+| **Applicant qualification** | State the relevant degree, licence, professional credential, or permitted experience route and explain its connection to the profession. |
+| **Employer and position** | Identify the employer, work location, compensation, proposed period, and the business need for the role. |
+| **Temporary period** | State the anticipated employment period truthfully. TN classification is temporary, but each case’s facts matter. |
+| **Consistency** | Ensure the letter, résumé, credentials, offer, and other evidence describe the same material facts. |
+| **Profession-specific facts** | Explain the elements that matter for the selected category. For example, an Engineer case needs related engineering credentials; a Computer Systems Analyst case needs systems-analysis duties; a Management Consultant case needs qualifying consulting facts; and a Scientific Technician/Technologist case needs qualifying supervision and scientific support work. |
 
-The old approach of submitting a one-page, vague support letter is now **grounds for denial**. CBP officers and USCIS adjudicators are trained on the new policy memo and will scrutinise letters against these updated standards.
+### Quality Checks Before Use
 
-### What Changed for Each Profession
+A company representative should verify every bracketed field, replace examples with the actual facts, and remove any statement that is not true. Use official USCIS and CBP sources to confirm the current filing or port-of-entry process. The template is a structured drafting aid, not legal advice and not a guarantee of approval.
 
-#### Engineer — CRITICAL CHANGES
-- **Computer Science degrees no longer qualify.** The degree must be in a recognised engineering discipline (Mechanical, Civil, Electrical, Chemical, Aerospace, etc.)
-- **Job duties must involve the application of engineering principles.** Writing code for business applications, managing networks, or database administration is NOT engineering under this category.
-- **"Software Engineer" title alone is insufficient.** The actual duties must be engineering. If the role is standard IT or software development, use Computer Systems Analyst instead.
-- **P.Eng / PE licence now carries significant weight.** If the applicant has a professional engineering licence, reference it prominently.
-- **How letters need to be different now:** Explicitly state the engineering discipline. Detail how duties apply engineering principles and methodology. Reference the engineering degree by its full name. If the applicant has a P.Eng, lead with it.
-
-#### Computer Systems Analyst — INCREASED SCRUTINY
-- **Spillover from the Engineer crackdown.** Many tech workers displaced from the Engineer category are now applying as CSAs, leading to higher scrutiny.
-- **"Systems analysis" must be the primary activity.** USCIS explicitly states this category "does not include programmers."
-- **How letters need to be different now:** Emphasise analysis of organisational needs and design of computer-based systems. Avoid listing coding or programming as primary duties. Show the role bridges business requirements and technical solutions.
-
-#### Management Consultant — CLARIFIED RESTRICTIONS
-- **Must be advisory, not operational.** The consultant recommends; management decides.
-- **Salaried employees of client companies** can only fill "irregular or non-routine temporary positions."
-- **Employees of consulting firms** may fill otherwise permanent positions at the firm.
-- **How letters need to be different now:** Clearly describe the consulting engagement scope and timeline. Emphasise deliverables and advisory nature. If the applicant is a direct employee of the client, explain why the position is non-routine and temporary.
-
-#### Economist — NARROWED SIGNIFICANTLY
-- **Financial analysts, market research analysts, and marketing specialists are explicitly excluded** — even if the job title says "Economist."
-- **Must demonstrate genuine economic research and analysis** — microeconomics, macroeconomics, econometrics, labour economics, etc.
-- **USCIS now references the DOL Standard Occupational Classification (SOC)** to define what an economist does and does not do.
-- **How letters need to be different now:** Reference specific economic theories, models, and methodologies. Distinguish clearly from financial analysis or market research. Use language consistent with the SOC definition of economist.
-
-#### Scientific Technician/Technologist — MAJOR RESTRICTIONS
-- **No direct patient care. Period.** This kills the use of ScT for surgical technologists, medical technologists who interact with patients, sonographers, cardiovascular technicians, and similar roles.
-- **Must name the supervising professional** and state their credentials. The supervisor must individually qualify as a professional in one of the listed scientific disciplines.
-- **Work must be managed, coordinated, and reviewed** by the supervising professional. Self-directed work does not qualify.
-- **Construction trades are excluded** — even specialised ones.
-- **How letters need to be different now:** Name the supervising professional with full credentials. Describe how the ScT's work directly supports the supervisor's research/projects. Explicitly state no patient care is involved. Detail the scientific discipline and the supervisor-subordinate relationship.
-
-#### Pharmacist, Registered Nurse, Architect, Graphic Designer, Accountant
-- **No profession-specific rule changes** in the June 2025 memo for these categories.
-- **However, the general standard has risen.** All TN letters are now held to a higher standard of specificity and documentation.
-- **Registered Nurses:** CGFNS has been renamed to **TruMerit** (December 2025 technical update). Use the new name in applications.
-- **How letters need to be different now:** More detailed duties (5–7 specific duties minimum). Stronger qualification links. Explicit temporary nature language. No vague or generic descriptions.
-
-### General Changes Affecting ALL Professions in 2026
-
-1. **Longer, more detailed letters expected.** The one-page letter is dead. Plan for 1.5–2 pages of substantive content.
-2. **Duties must match the USMCA profession, not just the job title.** CBP officers are trained to look past titles and evaluate actual duties.
-3. **Qualification links must be explicit.** Don't just list the degree — explain *why* it qualifies the applicant for this specific USMCA profession.
-4. **Consistency across all documents is critical.** The letter, résumé, diploma, and any licence documents must tell the same story. Mismatches trigger secondary inspection or denial.
-5. **USCIS references the DOL Occupational Outlook Handbook (OOH) and Standard Occupational Classification (SOC)** as guidance for determining whether job duties match a TN profession. Align your duty descriptions with these sources.
-6. **Enhanced vetting during government shutdowns.** TN visa border processing continues during DHS shutdowns, but expect longer wait times and more thorough reviews.
-
-### Before vs. After June 2025
-
-| Aspect | Before June 2025 | After June 2025 |
-|--------|-------------------|------------------|
-| **Letter length** | 1 page often sufficient | 1.5–2 pages expected |
-| **Duty descriptions** | 3–4 generic duties accepted | 5–7 specific, profession-aligned duties required |
-| **Engineer + CS degree** | Generally accepted | Explicitly rejected |
-| **ScT patient care roles** | Sometimes approved | Explicitly prohibited |
-| **ScT supervisor naming** | Optional | Mandatory with credentials |
-| **Economist scope** | Broadly interpreted | Narrowed — no financial analysts or market researchers |
-| **Management Consultant** | Loosely applied | Must demonstrate advisory nature and temporary scope |
-| **Qualification link** | Degree listed was sufficient | Must explain why degree qualifies for the specific profession |
-| **USCIS reference sources** | Internal guidance only | OOH and SOC explicitly referenced as adjudication tools |
+> **Before presentation or filing:** Have a qualified immigration lawyer review complex, non-standard, or high-risk cases, especially roles that do not clearly fit a listed profession, degree-equivalency issues, management-consultant arrangements, Scientific Technician/Technologist roles, employer changes, or prior immigration history.
 
 ---
 
-> **Bottom Line:** The TN visa is no longer "easy" — it's just faster than the H-1B. A poorly written support letter is now an invitation for denial. Take the time to write a detailed, profession-specific letter that addresses the June 2025 requirements head-on. When in doubt, consult an immigration attorney who specialises in TN visas.
+## Official Reference Links
+
+Use current official sources to confirm the required evidence, the selected profession, the applicable fee, and the chosen application route before using a template.
+
+| Resource | URL | Use it to confirm |
+|---|---|---|
+| USCIS TN classification | uscis.gov/working-in-the-united-states/temporary-workers/tn-nafta-professionals | Eligibility, filing route, and baseline evidence |
+| USCIS Policy Manual, Volume 2, Part P | uscis.gov/policy-manual/volume-2-part-p | Profession-specific requirements and USCIS policy guidance |
+| CBP TN/L-1 information | cbp.gov/travel/canadian-and-mexican-citizens/traveling-tn-or-l1-visa-canada | Current port-of-entry procedure and Canadian applicant information |
+| USCIS Fee Schedule | uscis.gov/g-1055 | Current Form I-129 and associated fees |

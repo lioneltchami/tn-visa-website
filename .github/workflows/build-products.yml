@@ -1,8 +1,8 @@
 name: Build product PDFs
 
-# PDF content comes from products/*.md. Pushes to main rebuild PDFs and upload
-# them to the private Supabase bucket automatically. Use workflow_dispatch with
-# upload=false to build artifacts only.
+# PDF content comes from products/*.md. Pushes to main rebuild verified review
+# artifacts only. Publication is manual: review the artifact, manually dispatch
+# with upload=true, then approve the protected Production environment gate.
 on:
   push:
     branches: [main]
@@ -43,7 +43,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc
+          sudo apt-get install -y pandoc poppler-utils
           sudo apt-get install -y google-chrome-stable || true
           if ! command -v google-chrome >/dev/null 2>&1 && ! command -v google-chrome-stable >/dev/null 2>&1; then
             wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -62,7 +62,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: product-pdfs
-          path: .products-build/*.pdf
+          path: |
+            .products-build/*.pdf
+            .products-build/*.html
           if-no-files-found: error
           include-hidden-files: true
 
@@ -70,10 +72,7 @@ jobs:
     if: |
       always() &&
       needs.build.result == 'success' &&
-      (
-        github.event_name == 'push' ||
-        (github.event_name == 'workflow_dispatch' && github.event.inputs.upload == 'true')
-      )
+      github.event_name == 'workflow_dispatch' && github.event.inputs.upload == 'true'
     needs: build
     runs-on: ubuntu-latest
     environment: Production
@@ -99,6 +98,12 @@ jobs:
         run: |
           test -d .products-build
           test -n "$(find .products-build -maxdepth 1 -name '*.pdf' -print -quit)"
+
+      - name: Install PDF inspection tools
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Re-verify downloaded release artifacts
+        run: npx tsx scripts/verify-product-pdfs.ts
 
       - name: Upload verified PDFs to private storage
         env:

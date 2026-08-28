@@ -30,8 +30,14 @@ export default function ProductsPage() {
       <ProductCards />
 
       <Callout type="info" title="100% Digital Delivery">
-        All products are delivered instantly as downloadable PDF files after purchase. No physical
-        shipping.
+        All products are delivered as downloadable PDF files after purchase. No physical shipping.
+      </Callout>
+
+      <Callout type="tip" title="Licensed purchaser copy">
+        Each download is personalized with the purchaser’s checkout email and a purchase reference
+        for licence verification and to deter unauthorized sharing. The guides are proprietary to TN
+        Visa Guide and are licensed for the purchaser’s personal use only; they may not be posted,
+        redistributed, resold, or shared without written permission.
       </Callout>
 
       <Callout type="tip" title="Not ready to buy? Start free.">

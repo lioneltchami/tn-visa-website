@@ -2,7 +2,7 @@
 
 **The Only Guide You Need — From First Decision to Settled Life in America**
 
-*Last Updated: April 2026*
+*Edition 1.1 — Sources checked August 27, 2026*
 
 > This is the premium Complete Application Guide ($69). It includes everything in the Interview Preparation Kit and the Letter Templates Bundle, PLUS the comprehensive additional content below — covering the full journey from choosing your application method through your first year of life in the United States.
 
@@ -35,10 +35,10 @@ There are three ways to obtain TN status. Your choice depends on your nationalit
 You physically go to a US border crossing or Canadian pre-clearance airport, present your documents to a CBP officer, and get a decision on the spot. If approved, you walk away with a new I-94 and can start working immediately.
 
 **Pros:**
-- Same-day decision (often within 1–3 hours)
-- Lowest cost ($56 total: $50 application + $6 I-94 fee)
-- No advance filing required
-- Can apply any day the port is open
+- Same-day decision, subject to the port’s workload and procedures
+- Direct application at a port of entry or a confirmed Canadian pre-clearance facility
+- No advance USCIS petition for this route
+- You can confirm availability and hours with CBP before travel
 
 **Cons:**
 - Must physically travel to the border
@@ -46,7 +46,7 @@ You physically go to a US border crossing or Canadian pre-clearance airport, pre
 - Officer discretion varies by port and day
 - Cannot apply from inside the US
 
-**Cost:** ~$56 USD (~$77 CAD)
+**Government-fee planning amount:** $50 USD at a Canadian pre-clearance airport, or $80 USD at a land border when the current $50 TN processing fee and $30 I-94 fee both apply. Confirm current fees and payment methods with CBP before travel.
 
 ### Method B: Form I-129 Petition (USCIS) — Both Canadians and Mexicans
 
@@ -56,18 +56,17 @@ Your employer files Form I-129 (Petition for a Nonimmigrant Worker) with USCIS. 
 
 **Pros:**
 - No need to leave the US
-- 240-day automatic work authorization extension if filed before current status expires
-- More predictable than border officer discretion
-- Paper trail provides documentation
+- A timely extension request may allow eligible workers to continue working for the same employer for up to 240 days after I-94 expiry while USCIS decides the request
+- USCIS adjudication record and written approval notice
+- Premium processing may be available for an additional government fee
 
 **Cons:**
-- Standard processing: 3–7 months (FY2026 average ~4.2 months)
-- Premium processing available but expensive ($2,965 as of March 2026)
-- Base filing fee: $460–$1,015 depending on employer size
-- Additional Asylum Program Fee: $300–$600
-- Cannot travel internationally while pending (petition considered abandoned)
+- Standard processing varies by service center and workload; check the USCIS processing-times tool before deciding
+- Premium processing is $2,965 for TN Form I-129 requests submitted on or after March 1, 2026
+- Form I-129 and Asylum Program Fees vary by the petitioner’s fee category
+- Travel outside the United States can affect a pending extension or change-of-status request; obtain case-specific immigration advice before travelling
 
-**Cost:** $810–$4,420+ USD depending on employer size and premium processing
+**Government-fee planning amount:** $510–$1,615 without premium processing, or $3,475–$4,580 with premium processing, based on the current fee categories. Confirm the exact amount in the USCIS fee schedule before filing.
 
 ### Method C: Consular Application — Mexican Citizens (Required)
 
@@ -169,7 +168,7 @@ Are you a Canadian citizen?
 - [ ] Lay out your clothes — dress business casual (think "first day at a professional job")
 - [ ] Pack your document folder (see packing list below)
 - [ ] Charge your phone fully
-- [ ] Check that you have a valid payment method for the $56 fee (credit/debit card — cash not accepted at all locations)
+- [ ] Confirm the current CBP fee and accepted payment method for your chosen location. For planning, budget $50 USD at Canadian pre-clearance or $80 USD at a land border when both current fees apply.
 - [ ] Set your alarm for early arrival — aim to be at the port within the first hour of opening
 - [ ] Review your employer letter one more time — you should be able to explain every duty listed
 - [ ] Review the top 10 interview questions and your answers (see Interview Preparation Kit)
@@ -255,13 +254,13 @@ Are you a Canadian citizen?
    - "What is your educational background?"
    - "Do you plan to return to Canada?"
    - "Have you applied for TN status before?"
-7. **Pay the $56 fee** when prompted.
+7. **Pay the applicable current CBP fees** when prompted. For planning, budget $50 USD at Canadian pre-clearance or $80 USD at a land border when both the TN processing and I-94 fees apply.
 8. **If approved:** You'll receive a stamped I-94 (or electronic I-94). Confirm the dates are correct before leaving.
 9. **If denied:** Ask the officer to explain the reason. You can try again at a different port or on a different day — there is no formal bar on reapplying.
 
 ### Designated Ports of Entry for Optimized TN Processing
 
-CBP has designated 14 ports for faster TN processing. You're not required to use them, but they have officers experienced with TN applications:
+CBP publishes a current list of locations that handle TN requests. You are not required to use one of these locations, but you should confirm the current list, hours, and procedures directly with CBP before travel:
 
 **Pre-Clearance Airports (Canada):**
 - Calgary International Airport (YYC)
@@ -273,7 +272,6 @@ CBP has designated 14 ports for faster TN processing. You're not required to use
 - Peace Bridge — Buffalo, NY
 - Rainbow Bridge — Niagara Falls, NY
 - Lewiston-Queenston Bridge — Lewiston, NY
-- Whirlpool Bridge — Niagara Falls, NY
 - Ambassador Bridge — Detroit, MI
 - Detroit-Windsor Tunnel — Detroit, MI
 - Thousand Islands Bridge — Alexandria Bay, NY
@@ -283,7 +281,7 @@ CBP has designated 14 ports for faster TN processing. You're not required to use
 - Peace Arch — Blaine, WA
 - Sweetgrass — Sweetgrass, MT
 
-> **Pro Tip:** Toronto Pearson and Peace Bridge are the most popular for TN applications. If you want a quieter experience, consider smaller crossings like Derby Line or Highgate Springs. Avoid Friday afternoons and holiday weekends.
+> **Travel planning:** Confirm the location’s current TN-processing procedure, hours, and payment requirements before travel. Allow substantial time for secondary inspection and do not rely on historic wait-time estimates.
 
 
 
@@ -299,10 +297,10 @@ This is the complete list. Not every applicant needs every document — check th
 
 | Document | Where to Get It | Processing Time | Cost | Notes |
 |----------|----------------|-----------------|------|-------|
-| Valid Canadian passport | Service Canada or passport office | 10 business days (in-person) to 20 business days (mail) | $160 CAD (5-year) / $260 CAD (10-year) | Must be valid for duration of TN status (up to 3 years) |
-| Valid Mexican passport | SRE (Secretaría de Relaciones Exteriores) | 1–3 weeks | ~$1,620–$2,540 MXN depending on validity | Must be valid 6+ months beyond intended stay |
-| Birth certificate | Provincial/territorial vital statistics office (Canada) or Registro Civil (Mexico) | 1–4 weeks | $15–$75 CAD (varies by province) | Backup identity document — not always required |
-| NEXUS card (optional) | NEXUS enrollment center | 2–6 months for new applications | $50 USD | Useful for expedited border crossings but NOT required for TN |
+| Valid Canadian passport | Service Canada or passport office | Check the current service standard | Check the official Government of Canada fee page | Keep it valid for your intended period of TN status; CBP determines admission length |
+| Valid Mexican passport | SRE (Secretaría de Relaciones Exteriores) | Check the current service standard | Check SRE’s current fee schedule | Carry the valid passport and follow Department of State and CBP documentation requirements |
+| Birth certificate | Provincial/territorial vital statistics office (Canada) or Registro Civil (Mexico) | Varies by issuing authority | Varies by issuing authority | A supporting identity record; requirements depend on the case |
+| NEXUS card (optional) | NEXUS enrollment center | Check the current enrollment timeline | $120 USD per adult applicant | Can support expedited travel but is not required for TN status |
 
 ### Employment Documents
 
@@ -318,10 +316,10 @@ This is the complete list. Not every applicant needs every document — check th
 
 | Document | Where to Get It | Processing Time | Cost | Notes |
 |----------|----------------|-----------------|------|-------|
-| University degree/diploma (original) | Your university | Already in your possession (or request replacement: 2–4 weeks) | $25–$75 for replacement | Bring the ORIGINAL — photocopies are not sufficient |
-| Official transcripts | Your university registrar | 1–2 weeks | $10–$25 per copy | Sealed envelope preferred; some officers want to see course details |
-| Professional license | Relevant licensing body (state board, provincial regulator) | Varies (1–8 weeks for new licenses) | Varies ($50–$500+) | Required for: nurses, engineers, accountants, pharmacists, physical therapists, dentists, dietitians |
-| Credential evaluation report | WES, ECE, IQAS, or other NACES/AICE member | 2–7 weeks (see Section 2.6) | $118–$250+ USD | Required if degree is from outside US, Canada, or Mexico |
+| University degree/diploma | Your university | Allow time to replace a missing credential | Varies by institution | Carry the original credential when available and clear copies of supporting records |
+| Official transcripts | Your university registrar | Varies by registrar | Varies by institution | Use official records where the role, credential, or case calls for course detail |
+| Professional license | Relevant licensing body (state board, provincial regulator) | Varies | Varies | Carry it when the TN profession or state law requires licensure |
+| Credential evaluation report | A qualified credential evaluator | Varies by evaluator and institution | Varies | It may be needed to document the U.S. equivalency of a non-U.S./Canadian/Mexican credential |
 | Professional certifications | Issuing organization | Varies | Varies | CPA, PEng, PMP, etc. — bring if relevant to your TN category |
 | Letters of professional experience | Previous employers | 1–2 weeks | Free | Especially important for Management Consultants who qualify via experience |
 
@@ -357,7 +355,7 @@ This is the complete list. Not every applicant needs every document — check th
 - [ ] Official transcripts
 - [ ] Professional license (if your TN category requires one)
 - [ ] Credential evaluation (if degree from outside US/Canada/Mexico)
-- [ ] Payment method for $56 fee
+- [ ] Current applicable CBP fee and an accepted payment method
 
 **Strongly Recommended:**
 - [ ] Resume/CV
@@ -374,9 +372,8 @@ This is the complete list. Not every applicant needs every document — check th
 Everything in the POE list above, PLUS:
 
 - [ ] Completed Form I-129 with TN supplement (employer files this)
-- [ ] Filing fee payment ($460–$1,015 depending on employer size)
-- [ ] Asylum Program Fee ($300 for ≤25 employees, $600 for >25 employees)
-- [ ] Form I-907 + $2,965 fee (only if requesting premium processing)
+- [ ] Current Form I-129 filing fee and applicable Asylum Program Fee, confirmed in USCIS Form G-1055
+- [ ] Form I-907 and current fee only if requesting premium processing
 - [ ] Copy of passport (biographical page)
 - [ ] Copy of current I-94
 - [ ] Copy of most recent I-797 (if extending existing TN status)
@@ -421,7 +418,7 @@ Your spouse and unmarried children under 21 can accompany you in TD (Trade Depen
 - [ ] Birth certificates (for children) — originals
 - [ ] Copy of the TN applicant's approval (I-94 or I-797)
 - [ ] Copy of the TN applicant's employer support letter
-- [ ] $6 I-94 fee per dependent
+- [ ] Current I-94 fee per dependent where applicable; confirm the travel location and CBP requirements before departure
 
 **For I-129 (adding dependents to the petition):**
 - [ ] Form I-539 (Application to Extend/Change Nonimmigrant Status) for each dependent
@@ -489,10 +486,10 @@ Even if you don't need a credential evaluation (because your degree is from Cana
 
 ### Checklist for Degree Verification
 
-- [ ] **Original diploma/degree certificate** — not a photocopy, not a scan. The original document with the university seal.
+- [ ] **Degree credential and supporting records** — carry the original credential when available, plus clear copies of transcripts and other supporting evidence.
 - [ ] **Official transcripts** — sealed in the university envelope if possible. Shows courses completed and grades earned.
 - [ ] **Degree name matches TN category** — if your degree is in "Applied Computing" but you're applying as an "Engineer," you may need additional evidence showing the engineering content of your program.
-- [ ] **Degree is at least a bachelor's level** — most TN categories require a minimum of a bachelor's degree. Diplomas and certificates generally don't qualify (exception: Scientific Technicians may qualify with a post-secondary diploma + 3 years experience).
+- [ ] **Degree or qualifying credential matches the listed TN profession** — many TN professions require a baccalaureate or licenciatura degree. Scientific Technician/Technologist cases require particular care: USCIS looks for theoretical knowledge generally gained through at least two years of relevant education or training, or documented extensive directly related experience.
 
 ### What If Your Degree Doesn't Perfectly Match?
 
@@ -919,12 +916,12 @@ TN status is granted for up to 3 years at a time and can be renewed **indefinite
 |----------------------|--------|
 | **6 months** | Begin gathering updated documents. Confirm your employer will support renewal. |
 | **4–5 months** | Draft updated employer support letter. Order new credential evaluation if needed. |
-| **3–4 months** | If using I-129: employer should file the petition now (standard processing takes 3–7 months) |
+| **3–4 months** | If considering Form I-129, review the USCIS processing-times tool and allow the employer enough time to prepare an accurate filing |
 | **2–3 months** | If using POE: finalize all documents and plan your border trip |
 | **1 month** | Final review of all documents. Practice interview questions. Book travel if needed. |
 | **2 weeks** | Confirm port of entry hours. Do a final document check. |
 
-> **Why 6 months?** If you're using the I-129 method, standard processing can take 3–7 months. Filing 6 months early gives you a comfortable buffer. Even for POE renewals, starting early means you have time to fix any document issues.
+> **Why prepare early?** USCIS processing times, port procedures, and document-replacement timelines vary. Starting early gives the employer and applicant time to verify the current route, correct inaccuracies, and avoid a rushed filing or trip.
 
 ---
 
@@ -937,7 +934,7 @@ TN status is granted for up to 3 years at a time and can be renewed **indefinite
 | Aspect | Details |
 |--------|---------|
 | **Eligible** | Canadian citizens only |
-| **Cost** | $56 ($50 application + $6 I-94) |
+| **Cost** | $50 at Canadian pre-clearance or $80 at a land border when the current I-94 fee applies |
 | **Processing time** | Same day (1–4 hours) |
 | **Risk** | Denial means you're outside the US |
 | **Best for** | People comfortable with border interviews who want speed and low cost |
@@ -958,9 +955,9 @@ TN status is granted for up to 3 years at a time and can be renewed **indefinite
 | Aspect | Details |
 |--------|---------|
 | **Eligible** | Canadian and Mexican citizens |
-| **Cost** | $810–$4,420+ (base fee + Asylum Program Fee + optional premium processing) |
-| **Processing time** | 3–7 months standard; 15 business days with premium processing ($2,965) |
-| **Risk** | Low — you can keep working for up to 240 days past I-94 expiry while pending |
+| **Cost** | $510–$1,615 without premium processing; $3,475–$4,580 with premium processing, based on the current fee categories |
+| **Processing time** | Check USCIS’s current processing-times tool; premium processing is $2,965 for eligible TN Form I-129 requests |
+| **Risk** | Timely extension filings may permit same-employer work for up to 240 days after I-94 expiry in eligible cases; confirm work authorization with counsel and the employer |
 | **Best for** | People who don't want to leave the US, or who want the security of the 240-day rule |
 
 **Documents needed:**
@@ -994,7 +991,7 @@ Renewals are generally easier than first-time applications, but there are key di
 | **Documents** | Must prove everything from scratch | Can reference prior approvals |
 | **Employer letter** | Must be extremely detailed | Still needs to be detailed, but can reference continuity |
 | **Questions asked** | Broad — qualifications, intent, job duties | Focused — "has anything changed?" |
-| **Approval rate** | ~95% | Higher than first-time (assuming no issues) |
+| **Approval assessment** | Case-specific | Case-specific; prior approval does not guarantee approval |
 | **New requirement** | N/A | Must show you've been working in the approved role (pay stubs, tax returns) |
 
 ### What to Emphasize in Your Renewal
@@ -1010,18 +1007,13 @@ Renewals are generally easier than first-time applications, but there are key di
 
 ### Pitfall 1: Waiting Too Long to File
 
-If your I-94 expires before your I-129 extension is filed, you lose the 240-day work authorization protection. File early — at least 3–4 months before expiry for I-129, or plan your POE trip well in advance.
+A timely I-129 extension request can be important for eligible same-employer work authorization. File in accordance with current USCIS requirements and give your employer adequate time to prepare an accurate filing.
 
 ### Pitfall 2: Traveling While I-129 Is Pending
 
-**This is the #1 most costly mistake in TN renewals.** If you leave the US while your I-129 extension is pending, USCIS generally treats the petition as **abandoned**. You lose:
-- The pending petition
-- The 240-day work authorization
-- Your current TN status
+Travel can change the consequences of a pending I-129 request. In particular, departure can affect a requested extension or change of status even if the underlying petition remains pending or is later approved. Your visa requirements, I-94, requested classification, and travel plans all matter.
 
-To re-enter, you'd need to apply fresh at a POE (Canadians) or consulate (Mexicans).
-
-> **Rule:** Do NOT travel internationally while an I-129 extension is pending unless you've consulted an immigration attorney about your specific situation.
+> **Action:** Before international travel while an I-129 TN request is pending, obtain case-specific advice from a qualified immigration lawyer and follow the employer’s filing strategy. Do not assume the pending request alone permits return or continued work.
 
 ### Pitfall 3: Job Duties That Have Changed
 
@@ -1033,7 +1025,7 @@ If your actual job duties have drifted significantly from what's described in yo
 
 Your TN status cannot extend beyond your passport expiry date. If your passport expires before your desired 3-year TN extension, you'll only get TN status until the passport expiry.
 
-**Prevention:** Renew your passport before applying for TN renewal. Canadian passport renewal takes 10–20 business days.
+**Prevention:** Renew a passport well before the desired TN period and confirm the current Government of Canada or SRE service standard before making travel plans.
 
 ### Pitfall 5: Gaps in Employment
 
@@ -1088,7 +1080,7 @@ This is your safety net for I-129 renewals. Here's how it works:
 - The petition must be filed **before** your I-94 expires — even one day late and the protection doesn't apply
 - You can only work for the **same employer** who filed the petition
 - If USCIS **denies** the petition, your work authorization ends immediately upon receiving the denial
-- If you **leave the US** while the petition is pending, the protection is lost
+- International travel can affect a pending extension or change-of-status request; obtain case-specific advice before leaving the United States
 
 > **Best practice:** File the I-129 extension at least 3–4 months before your I-94 expires. This gives USCIS time to process within the 240-day window even with standard processing.
 
@@ -1098,14 +1090,12 @@ This is your safety net for I-129 renewals. Here's how it works:
 
 | Cost Component | POE (Canadian) | I-129 Standard | I-129 Premium | Consular (Mexican) |
 |---------------|---------------|----------------|---------------|-------------------|
-| Application/filing fee | $56 | $460–$1,015 | $460–$1,015 | $185 (MRV) |
-| Asylum Program Fee | — | $300–$600 | $300–$600 | — |
+| Application/filing fee | $50 TN processing fee | $510–$1,615, including the applicable Asylum Program Fee | $510–$1,615, including the applicable Asylum Program Fee | Check the current Department of State fee and reciprocity tables |
+| I-94 fee | $0 at Canadian pre-clearance; $30 at a land border where applicable | — | — | — |
 | Premium processing | — | — | $2,965 | — |
-| Reciprocity fee | — | — | — | $79–$357 |
-| **Total (USD)** | **$56** | **$760–$1,615** | **$3,725–$4,580** | **$264–$542** |
-| **Total (CAD approx.)** | **~$77** | **~$1,045–$2,220** | **~$5,120–$6,300** | **~$363–$745** |
+| **Government-fee planning amount** | **$50 airport / $80 land where the I-94 fee applies** | **$510–$1,615** | **$3,475–$4,580** | **Confirm in the current Department of State tables** |
 
-*CAD amounts estimated at 1 USD = 1.375 CAD. Check current exchange rates.*
+*Government fees and exchange rates change. Verify the current USCIS, CBP, and Department of State sources before filing or travel.*
 
 > **Note:** These are government fees only. Attorney fees ($1,500–$3,500) are additional if you use legal representation.
 
@@ -1145,34 +1135,27 @@ Print these pages and keep them in your document folder for quick access.
 
 | Deadline | Action | Consequence of Missing |
 |----------|--------|----------------------|
-| 6+ months before move | Start cross-border tax planning | Missed optimization opportunities (RRSP crystallization, TFSA closure) |
-| 4 weeks before application | Begin document preparation | Rushed application, missing documents |
-| Before departure | Close TFSA | IRS treats as taxable foreign trust; PFIC reporting nightmare |
-| Before departure | Repay HBP/LLP balances | Full balance added to income on departure T1 |
-| Before departure | File NR73 (if needed) | Ambiguous residency status; potential double taxation |
+| Before a cross-border move | Obtain cross-border tax advice if your facts involve Canadian accounts, a TFSA, RRSP, property, investments, or departure residency | Cross-border tax treatment is fact-specific and can create filing obligations |
+| Before application or travel | Begin document preparation | Rushed application and incomplete supporting evidence |
+| Before departure | Review Canadian departure and U.S. arrival tax issues with a qualified cross-border tax professional where applicable | Tax residency and reporting outcomes depend on the individual facts |
+| Before departure | Use CRA and IRS official resources to identify any required forms | Do not rely on generic deadline summaries for a cross-border filing decision |
 
 ### After Your Move
 
 | Deadline | Action | Consequence of Missing |
 |----------|--------|----------------------|
-| 10+ days after entry | Apply for SSN | Delays in banking, employment paperwork |
-| 30 days after start date | Enroll in employer health insurance | Must wait until next open enrollment |
-| April 15 | File US tax return (Form 1040) | Penalties and interest |
-| April 15 | File FBAR (FinCEN 114) — auto-extends to Oct 15 | Penalties up to $10,000+ per violation |
-| April 30 | File Canadian T1 departure return (for year of move) | Late filing penalties |
-| 6 months before TN expiry | Begin renewal preparation | Risk of status gap or rushed filing |
-| Before TN expiry | File I-129 extension (if using that method) | Loss of 240-day work authorization protection |
+| After admission | Follow employer onboarding and Social Security Administration instructions when an SSN application is needed | Timing depends on the agency and individual record |
+| After employment starts | Review employer benefits enrollment deadlines | Employer plans set their own eligibility and enrollment rules |
+| Each tax year | Confirm U.S., Canadian, state, and foreign-account filing obligations with official sources or a qualified cross-border professional | Filing deadlines and extensions vary by return and circumstances |
+| Before TN expiry | Begin renewal preparation and confirm the current filing or travel strategy | Reduces the risk of an avoidable status or work-authorization gap |
 
 ### Ongoing Annual Obligations
 
 | When | What | Where |
 |------|------|-------|
-| January–April | File US Form 1040 | IRS |
-| January–April | File FBAR if foreign accounts > $10,000 | FinCEN (fincen.gov/bsa-e-filing) |
-| January–April | File Form 8938 if foreign assets > $50,000 | With Form 1040 |
-| January–April | File Canadian non-resident return (if Canadian-source income) | CRA |
-| Annually | Renew state driver's license (if tied to I-94 expiry) | State DMV |
-| Every 3 years | Renew TN status | POE, USCIS, or Consulate |
+| Each tax year | Confirm U.S. federal, state, Canadian, and foreign-account reporting duties that apply to you | IRS, FinCEN, CRA, and a qualified cross-border professional where appropriate |
+| Before any document expires | Review state driver's-license and work-authorization requirements | State DMV and employer records |
+| Before TN status expires | Plan a TN renewal route that fits your current facts | CBP, USCIS, or Department of State, as applicable |
 
 ---
 
@@ -1182,25 +1165,23 @@ Print these pages and keep them in your document folder for quick access.
 
 | Fee | POE (Canadian) | I-129 (Both) | Consular (Mexican) |
 |-----|---------------|-------------|-------------------|
-| Application / Filing fee | $50 | $460 (≤25 employees) / $1,015 (>25 employees) | $185 (MRV fee) |
-| I-94 fee | $6 | Included | — |
-| Asylum Program Fee | — | $300 (≤25 employees) / $600 (>25 employees) | — |
-| Premium Processing (optional) | — | $2,965 | — |
-| Reciprocity fee | — | — | $79 (1-year) / $357 (4-year) |
-| **TOTAL (USD)** | **$56** | **$760–$4,580** | **$264–$542** |
-| **TOTAL (CAD approx.)** | **~$77** | **~$1,045–$6,300** | **~$363–$745** |
+| Application / Filing fee | $50 TN processing fee | $510–$1,015 filing fee, depending on the petitioner category | Check the current Department of State fee table |
+| I-94 fee | $0 at Canadian pre-clearance; $30 at a land border where applicable | — | — |
+| Asylum Program Fee | — | $0 / $300 / $600, depending on petitioner category | — |
+| Premium Processing (optional) | — | $2,965 for eligible TN Form I-129 requests | — |
+| **Government-fee planning amount** | **$50 airport / $80 land where the I-94 fee applies** | **$510–$1,615 without premium processing; $3,475–$4,580 with it** | **Confirm the current Department of State fee and reciprocity tables** |
 
 ### Other Costs You May Encounter
 
 | Item | Cost (USD) | Cost (CAD approx.) | Notes |
 |------|-----------|--------------------|----|
-| Credential evaluation (WES) | $118–$250 | $162–$344 | Only if degree from outside US/Canada/Mexico |
-| Document translation | $25–$50/page | $34–$69/page | Only if documents not in English |
-| Attorney fees | $1,500–$3,500 | $2,063–$4,813 | Optional but recommended for complex cases |
-| Passport renewal (Canadian) | — | $160–$260 CAD | If passport expires before desired TN period |
-| I-129 denial appeal (Form I-290B) | $675 | ~$928 | Only if petition is denied |
+| Credential evaluation | Varies by evaluator and credential | Varies with exchange rate | May be needed to document degree equivalency in some cases |
+| Document translation | Varies by document and provider | Varies with exchange rate | Use a competent translation where required |
+| Immigration legal advice | Varies by matter and provider | Varies with exchange rate | Consider qualified counsel for complex or high-risk cases |
+| Passport renewal | Check the issuing authority's current fee and service table | Check the issuing authority's current fee and service table | Renew before the desired TN period where needed |
+| Appeal or motion | Confirm the current form, eligibility, and fee before acting | Confirm the current form, eligibility, and fee before acting | Seek legal advice before responding to a denial |
 
-*CAD amounts estimated at 1 USD = 1.375 CAD. Rates fluctuate — check xe.com for current rates.*
+*Government and professional-service fees change. Use official sources and obtain advice appropriate to your facts.*
 
 ---
 
@@ -1229,7 +1210,7 @@ Print these pages and keep them in your document folder for quick access.
 | **NR73** | CRA form to determine your Canadian residency status when leaving Canada |
 | **PFIC** | Passive Foreign Investment Company — how the IRS classifies Canadian mutual funds and ETFs |
 | **POE** | Port of Entry — a border crossing or pre-clearance airport where you apply for TN status |
-| **Premium Processing** | USCIS service guaranteeing action on your petition within 15 business days ($2,965) |
+| **Premium Processing** | USCIS service that provides the current published action timeframe for eligible requests; $2,965 for TN Form I-129 requests submitted on or after March 1, 2026 |
 | **SPT** | Substantial Presence Test — how the IRS determines if you're a US tax resident |
 | **SSN** | Social Security Number — your US identification number for taxes, banking, and credit |
 | **TD Status** | Trade Dependent — the status given to spouses and children of TN visa holders |
@@ -1292,9 +1273,9 @@ Print these pages and keep them in your document folder for quick access.
 
 This guide is for informational purposes only and does not constitute legal, tax, or financial advice. Immigration law, tax regulations, and government fees change frequently. Always verify current information with official government sources (USCIS, CBP, CRA, IRS) before making decisions. For complex situations, consult a qualified immigration attorney and/or cross-border tax professional.
 
-Fee amounts, processing times, and procedures described in this guide are accurate as of April 2026 but are subject to change. CAD equivalents are approximate and based on exchange rates at the time of writing.
+Fees, processing times, and procedures in this guide were checked against the linked official sources on August 27, 2026. They can change without notice. Confirm current information with USCIS, CBP, the Department of State, CRA, and IRS before acting.
 
 ---
 
-*© 2026 TN Jobs. All rights reserved. This guide is licensed for personal use only. Do not redistribute or resell.*
+*© 2026 TN Visa Guide. All rights reserved. Licensed to the purchaser for personal use only. Do not reproduce, redistribute, resell, post, or share this guide or any substantial portion of it without prior written permission from TN Visa Guide.*
 

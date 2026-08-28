@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import {
+	BadgeCheck,
 	Check,
 	Clock3,
 	Download,
@@ -73,7 +74,9 @@ export default function ProductCards() {
 				{[
 					{ icon: LockKeyhole, label: "Secure Stripe checkout" },
 					{ icon: Download, label: "Instant PDF access" },
-					{ icon: Clock3, label: "Download link valid 1 year" },
+											{ icon: Clock3, label: "Download link valid 1 year" },
+						{ icon: BadgeCheck, label: "Personalized licensed PDF copy" },
+
 				].map(({ icon: TrustIcon, label }) => (
 					<li key={label} className="flex items-center gap-2">
 						<TrustIcon className="h-4 w-4 text-accent shrink-0" aria-hidden />
