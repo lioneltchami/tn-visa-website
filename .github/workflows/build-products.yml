@@ -4,11 +4,25 @@ name: Build product PDFs
 # artifacts only. Publication is manual: review the artifact, manually dispatch
 # with upload=true, then approve the protected Production environment gate.
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'products/**'
+      - 'public/icon.svg'
+      - 'scripts/build-products.ts'
+      - 'scripts/verify-product-pdfs.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/build-products.yml'
   push:
     branches: [main]
     paths:
       - 'products/**'
+      - 'public/icon.svg'
       - 'scripts/build-products.ts'
+      - 'scripts/verify-product-pdfs.ts'
+      - 'package.json'
+      - 'package-lock.json'
       - '.github/workflows/build-products.yml'
   workflow_dispatch:
     inputs:
