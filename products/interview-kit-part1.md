@@ -2,7 +2,7 @@
 
 ## Part 1: What to Expect & Common Questions
 
-> **Last Updated: April 2026** — Reflects the latest USCIS policy guidance (June 2025, now fully in force), enhanced biometric screening effective January 1, 2026, and the 76-day DHS shutdown impact on processing.
+> **Edition 1.1 — Sources checked August 27, 2026.** This guide reflects the USCIS Policy Manual’s TN guidance, but CBP procedures, fees, and port operations can change. Confirm current requirements before travel.
 
 > **Important Disclaimer:** This guide is for informational purposes only and does not constitute legal advice. Immigration law changes frequently. Always verify information with official USCIS sources or consult a qualified immigration attorney for your specific situation.
 
@@ -28,26 +28,25 @@ There are two ways Canadian citizens apply for TN status at the border:
 **Path A: Land Border Crossing (Port of Entry)**
 - You drive to a U.S.-Canada land border crossing (e.g., Peace Bridge in Buffalo, Pacific Highway in Blaine, Ambassador Bridge in Detroit)
 - You tell the primary inspection officer you are applying for TN status
-- You pay the **$50 USD filing fee** (credit card or cash)
-- You are directed to secondary inspection for your interview
+- You pay the applicable current government fees. For planning, budget $80 USD where the $50 TN processing fee and $30 I-94 land-border fee both apply
+- You may be directed to secondary inspection for an interview
 
 **Path B: Airport (Pre-Clearance)**
-- You arrive at a Canadian airport with U.S. pre-clearance (Toronto Pearson, Vancouver, Calgary, Montreal, Ottawa, Edmonton, Winnipeg, Halifax)
+- You arrive at a Canadian airport with a U.S. pre-clearance facility that confirms it can process your TN request
 - You tell the CBP officer at pre-clearance that you are applying for TN status
-- **2026 Change:** Canadian TN filings are now limited to CBP pre-clearance or preflight inspection stations **located within Canada only**. Pre-clearance facilities in Ireland, the Caribbean, or elsewhere no longer accept TN applications.
-- No separate $50 filing fee at airports (processed through I-94 automation)
+- Confirm the facility’s current TN-processing procedure, hours, documents, and payment method before booking travel
+- For planning, budget the current $50 TN processing fee at Canadian pre-clearance; a separate land-border I-94 fee does not apply at the airport
 
 **Which should you choose?**
 
 | Factor | Land Border | Airport Pre-Clearance |
 |---|---|---|
-| Cost | $50 filing fee | No separate fee |
-| Wait times | Can be shorter on weekdays | Depends on flight schedule |
-| Flexibility | Can try again same day if denied | Must rebook flight if denied |
-| Pressure | Lower — you can drive home | Higher — you have a flight to catch |
-| Best for | First-time applicants, complex cases | Renewals, straightforward cases |
+| Government-fee planning | $80 where the current TN processing and land-border I-94 fees both apply | $50 TN processing fee at Canadian pre-clearance |
+| Inspection time | Varies by facility, workload, and individual case | Varies by facility, workload, and individual case; secondary inspection can affect travel plans |
+| Practical consideration | Confirm current port procedure, payment method, and any appointment requirement | Confirm current pre-clearance procedure, payment method, flight timing, and TN-processing availability |
+| If not admitted | Understand the reason for the decision before deciding on any next step | Understand the reason for the decision before deciding on any next step |
 
-**Pro tip:** For your first TN application, many immigration lawyers recommend a **land border crossing on a Tuesday, Wednesday, or Thursday morning**. Mondays and Fridays are busier. Weekday mornings tend to have more experienced officers and shorter wait times.
+**Travel planning:** Choose a location only after confirming current TN-processing availability with CBP. Allow enough time for secondary inspection and avoid relying on historic wait-time patterns.
 
 ---
 
@@ -61,35 +60,29 @@ There are two ways Canadian citizens apply for TN status at the border:
 5. Bring ALL your documents in a clearly organized folder or binder
 
 **At an Airport (Pre-Clearance):**
-1. Arrive at the airport **at least 3-4 hours before your flight** (this is critical — TN processing can take 1-3 hours)
+1. Confirm the facility’s current TN-processing procedure and allow enough time for possible secondary inspection
 2. Proceed to U.S. Customs and Border Protection pre-clearance
 3. Tell the first officer: **"I'm applying for TN status"**
-4. You will be directed to a secondary inspection area
+4. You may be directed to a secondary inspection area
 5. Have all documents ready and organized
 
 **What to bring (your document checklist):**
-- ✅ Valid Canadian passport (not expiring within 6 months)
-- ✅ Original employer support letter on company letterhead, **signed in wet ink** (not digital/e-signature)
-- ✅ Copy of your degree(s) and/or diploma(s) — originals preferred
-- ✅ Official transcripts (especially if your degree name doesn't obviously match your TN category)
-- ✅ Professional licenses or certifications (if applicable to your profession)
-- ✅ Foreign credential evaluation (if your degree is from outside the U.S., Canada, or Mexico)
-- ✅ Resume/CV
-- ✅ Previous I-94 records (if this is a renewal)
-- ✅ Proof of ties to Canada (property deed, lease, family documentation — optional but helpful)
-- ✅ $50 USD filing fee for land crossings (credit card or exact cash)
+- ✅ Valid Canadian passport for the intended travel and proposed admission period
+- ✅ Current employer support letter on company letterhead, signed by an authorized company representative in the form appropriate to the selected process
+- ✅ Degree credential and supporting records; carry original credentials when available plus clear copies
+- ✅ Official transcripts where the credential, profession, or case calls for course detail
+- ✅ Professional licences or certifications where applicable
+- ✅ Credential evaluation where needed to establish degree equivalency
+- ✅ Résumé/CV and prior I-94 or approval records where relevant
+- ✅ Current applicable CBP fees and an accepted payment method; confirm the selected location’s requirements before travel
 
-**2026 Critical Change — Employer Letter Requirements:**
-Your employer support letter must now include ALL of the following:
-- The specific TN profession title (must match the USMCA list exactly)
-- A detailed description of your job duties (vague descriptions are now grounds for denial)
-- The purpose of your entry to the U.S.
-- The anticipated length of stay (with start and end dates)
-- Your salary/compensation details
-- The employer's U.S. address and contact information
-- Confirmation that the employer is a **U.S.-based entity** (foreign companies with U.S. operations no longer qualify as sponsors)
-- Printed on official company letterhead
-- **Signed in original ink** (wet signature required — digital signatures are rejected)
+**Employer Letter Preparation:**
+A strong employer support letter should clearly and truthfully address:
+- The specific USMCA profession relied on and the actual proposed duties
+- The purpose of entry and anticipated employment period
+- The applicant’s qualification and its connection to the profession
+- Compensation, work location, employer identity, and contact information
+- The authorized representative’s signature in the format appropriate to the selected process
 
 ---
 
@@ -166,55 +159,33 @@ This is where your TN application is actually adjudicated. A CBP officer will re
 
 ---
 
-### Step 5: 2026 Enhanced Vetting — What's New
+### Step 5: Current Eligibility Focus
 
-The immigration landscape has changed significantly in 2026. Here's what you need to know:
+The controlling USCIS TN guidance requires the applicant to show that the proposed work, qualifications, and any required licence fit the specific profession listed in the USMCA framework. A job title alone does not establish eligibility.
 
-**Stricter Documentation Standards**
-- USCIS policy guidance updated in June 2025 is now fully in force
-- Officers now scrutinize whether your **actual job duties** match the TN occupation list — a matching job title alone is no longer sufficient
-- **Experience can no longer substitute for a required degree.** If your TN category requires a bachelor's degree, you must have one. Years of work experience will not be accepted as a replacement.
-- Only **U.S.-based entities** can sponsor TN applicants. A foreign company with U.S. operations does not qualify.
-- Self-employment remains strictly prohibited under TN status
+**Prepare the application around documented facts**
+- Match the actual job duties to the relevant TN profession rather than relying on the internal job title
+- Show the qualifying degree, credential, licence, or permitted experience route for that profession
+- Describe the employer, work location, compensation, and temporary period accurately
+- Keep the employer letter, résumé, credentials, and supporting records consistent
 
-**Enhanced Biometric Screening (Effective January 1, 2026)**
-- Expanded biometric collection at all ports of entry
-- Mandatory facial scans for all travelers
-- Potential device searches (phones, laptops) — officers have broad authority
-- Nationals of certain countries face additional screening layers
+**Occupation-specific cautions**
+- The **Engineer** category requires a baccalaureate or licenciatura degree in the related engineering field, or a state or provincial licence
+- A **Computer Systems Analyst** role centers on analysing and designing computer-based processing systems; programming alone does not establish the category
+- A **Management Consultant** must perform qualifying consulting work; direct client employment has additional limits
+- A **Scientific Technician/Technologist** must support a qualifying supervisory professional and may not support patient care under this category
 
-**Longer Processing Times**
-- The 76-day DHS shutdown (ended late April 2026) created backlogs
-- Enhanced vetting means officers are spending more time per case
-- Social media checks are now routine — officers may review your LinkedIn, Facebook, and other public profiles
-- Expect wait times 20-40% longer than pre-2026 levels at most ports
-
-**Narrower Occupation Categories**
-- The **Engineer** classification now requires credentials in a recognized engineering discipline (computer science alone may not qualify)
-- **Scientific Technician/Technologist** is much narrower — patient care roles no longer qualify
-- **Management Consultant** remains heavily scrutinized — officers challenge whether you're truly consulting vs. performing permanent employee duties
-- All licensed professions (nurses, lawyers, physical therapists, veterinarians) must meet **state-specific licensing requirements** for the state where they'll work
-
-**What this means for you:**
-- Prepare more thoroughly than ever before
-- Have your documents perfectly organized
-- Practice your answers until they're natural and confident
-- Arrive early and expect longer waits
-- Make sure your social media profiles are professional and consistent with your application
+**Plan for a case-specific inspection**
+- Confirm the port or pre-clearance facility’s current availability and procedures before travel
+- Arrive with a complete, orderly document package and enough time for secondary inspection
+- Answer truthfully, concisely, and consistently with the written evidence
+- Seek qualified immigration advice for unusual facts, changes of employer, prior status issues, or travel while a USCIS request is pending
 
 ---
 
 ### If You're Denied: What Happens Next
 
-A denial is serious but not the end of the road. Key facts:
-
-- A **denial** goes on your immigration record and can complicate future applications
-- A **withdrawal** (if offered) does NOT go on your record — always accept a withdrawal over a denial if given the choice
-- You **can reapply** after a denial, but you must address the specific reason for refusal
-- There is **no formal appeal** for TN denials
-- The FY 2024 Department of State denial rate was **42.63%** (primarily Mexican applicants through consular processing)
-- The USCIS denial rate for employer-sponsored cases is much lower at **5.2%** (FY 2025)
-- For Canadians at the border, approval rates for well-prepared cases exceed **99%**
+An unsuccessful request is serious and the appropriate next step depends on the facts and on the nature of the decision. Preserve any written record or explanation, do not make a new application until you understand and address the identified issue, and obtain qualified immigration advice before deciding whether, when, or how to proceed. Do not rely on published approval-rate claims to predict an individual outcome.
 
 **Top reasons for denial:**
 1. Job duties don't match the TN occupation category

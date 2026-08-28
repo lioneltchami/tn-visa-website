@@ -1,7 +1,7 @@
 # TN Visa Border Interview Kit
 ## Part 2: Profession-Specific Prep & Emergency Scenarios
 
-*Last updated: April 2026*
+*Edition 1.1 — Sources checked August 27, 2026*
 
 > **Disclaimer:** This guide is for informational purposes only and does not constitute legal advice. Immigration laws and officer discretion vary. Consult a licensed immigration attorney for your specific situation.
 
@@ -15,7 +15,7 @@ Each profession below includes the most likely questions a CBP officer will ask 
 
 ### 1. Engineer
 
-**Key context:** The June 2025 USCIS Policy Manual update tightened the Engineer category. A general Computer Science degree alone is no longer sufficient — you need a degree in a *bona fide engineering specialty* (e.g., Software Engineering, Electrical Engineering) or a professional engineering license. Officers are now explicitly checking for this.
+**Key context:** Current USCIS policy states that an Engineer requires a baccalaureate or licenciatura degree in the related engineering field, or a state or provincial licence. Computer-related roles require full engineering credentials when the TN classification sought is Engineer. Assess the actual duties and credentials carefully.
 
 **Q: What is your degree in?**
 > **Ideal answer:** State your exact degree title. If it's in an engineering field (Civil, Mechanical, Electrical, Software Engineering, etc.), say so clearly. If your degree says "Computer Science," be prepared to explain how your program was engineering-focused or present your professional engineering license (P.Eng, PE).
@@ -239,7 +239,7 @@ Each profession below includes the most likely questions a CBP officer will ask 
 
 ### 10. Scientific Technician/Technologist
 
-**Key context:** This is the other heavily scrutinized "catch-all" category alongside Management Consultant. The June 2025 USCIS update reinforced strict requirements: (1) you must have theoretical knowledge in one of 10 specified disciplines (agricultural sciences, astronomy, biology, chemistry, engineering, forestry, geology, geophysics, meteorology, physics), (2) you must work under the *direct supervision* of a degreed professional in that discipline, and (3) you must exercise *independent judgment* — not just follow manuals. Patient care is explicitly excluded.
+**Key context:** This category has detailed requirements. USCIS looks for theoretical knowledge in one of the listed scientific disciplines, practical problem-solving ability or ability to apply principles in that discipline, and direct support for a qualifying supervisory professional. The supervisor’s work must be managed, coordinated, and reviewed as part of the professional relationship. Patient-care work does not qualify under this category.
 
 **Q: Who is your supervising professional?**
 > **Ideal answer:** "I will work under the direct supervision of [name], who holds a [bachelor's/master's/PhD] degree in [one of the 10 qualifying disciplines] and serves as [title] at [company]. They will manage, coordinate, and review my work." **Have the supervisor's credentials documented.**
@@ -403,45 +403,33 @@ Canadians can apply for TN status at any U.S. port of entry — airports with pr
 
 | Factor | Airport (Pre-Clearance) | Land Border |
 |--------|------------------------|-------------|
-| **Wait time** | 30 min – 2 hours (plus flight schedule) | 1 – 4+ hours (variable, especially during shutdown) |
-| **Cost** | Flight ticket + $6 I-94 fee | Gas/transit + $6 I-94 fee |
-| **If denied** | You don't board the plane; stay in Canada | You turn around and drive home |
-| **Officer experience with TN** | Moderate — varies by airport | High at major crossings (Buffalo, Detroit, Blaine) |
-| **Scheduling** | Tied to your flight time | Flexible (some ports now require online scheduling) |
-| **Secondary inspection** | Available but may delay your flight | No flight to miss; more time for review |
-| **Stress level** | Higher — flight pressure, public setting | Lower — you can try again same day if needed |
-| **Document review depth** | Often quicker due to flight schedules | Can be more thorough |
+| **Inspection time** | Varies by facility, workload, and case; secondary inspection can affect your flight | Varies by port, workload, and case; allow substantial time for possible secondary inspection |
+| **Government-fee planning** | Flight cost plus the current $50 TN processing fee at Canadian pre-clearance | Travel cost plus $80 where the current TN processing and land-border I-94 fees both apply |
+| **If the request is not admitted** | Travel plans and next steps can change; understand the reason for the decision before acting | Travel plans and next steps can change; understand the reason for the decision before acting |
+| **Facility experience and process** | Confirm current TN availability and procedure directly with the selected facility | Confirm current TN availability and procedure directly with the selected facility |
+| **Scheduling** | Tied to flight and facility procedure | Confirm whether the selected port has a current appointment or walk-in process |
+| **Secondary inspection** | Available and may delay the flight | Available and may take material time |
+| **Document review** | Officers assess the individual record | Officers assess the individual record |
 
-### Which Is Safer for First-Time Applicants?
+### Choosing Between Pre-Clearance and a Land Border
 
-**Land border is generally recommended for first-time TN applicants**, for several reasons:
+Choose a route based on confirmed current processing availability, your travel plans, potential secondary-inspection time, and the consequences of a delayed or unsuccessful request. Neither route guarantees a particular outcome or faster processing.
 
-- **No flight at risk.** If you're denied or sent to secondary, you haven't lost a plane ticket. You drive home and regroup.
-- **You can try again.** At a land border, if denied, you can return the same day or next day with improved documentation (though this carries risk — see Emergency Scenarios).
-- **More time for review.** Officers at busy land ports like Buffalo Peace Bridge process many TN applications and are familiar with the categories.
-- **Less pressure.** No boarding time, no gate announcements, no line of passengers behind you.
+A Canadian pre-clearance request may fit an existing flight itinerary, but you should allow enough time to miss or delay the flight if secondary inspection takes longer. A land-border request may avoid a flight itinerary, but you must confirm the location’s procedure, payment method, and any current appointment requirement before travel.
 
-**Airport pre-clearance is better when:**
-- You've been approved before and are renewing
-- Your case is straightforward (clear degree match, common profession)
-- You're already flying for other reasons
-- You're using Billy Bishop Toronto (new pre-clearance as of March 2026) for convenience
+### Timing
 
-### Which Is Faster?
-
-- **Airport:** Faster if your case is simple and you're already flying. Pre-clearance adds 30–60 minutes to your airport arrival time.
-- **Land border:** Faster for the TN process itself (no flight overhead), but wait times vary wildly. Peak hours (7–9 AM, 4–6 PM) can mean 2+ hour waits before you even reach an officer. Off-peak (mid-morning, mid-week) is fastest.
+CBP does not promise a fixed TN-processing time. Build enough flexibility into any travel plan for secondary inspection and do not rely on historic “best days” or peak-hour predictions.
 
 ### Cost Comparison
 
 | Route | Typical Cost |
 |-------|-------------|
-| **Land border (driving)** | Gas ($20–60) + I-94 fee ($6) = **$26–66** |
-| **Airport (flying)** | Flight ($150–500+) + I-94 fee ($6) = **$156–506+** |
-| **Airport (if denied)** | Flight cost is lost; may need to rebook = **$300–1,000+** |
-| **Land border (if denied)** | Gas only; can retry = **$26–66** |
+| **Land border (driving)** | Travel cost plus the current $50 TN processing fee and $30 I-94 fee where applicable; confirm the port’s requirements |
+| **Airport (flying)** | Flight cost plus the current $50 TN processing fee at Canadian pre-clearance; confirm the facility’s requirements |
+| **If the request is not admitted** | Travel, rebooking, and next-step costs depend on the facts, the carrier, and the selected location. Do not assume a retry is appropriate without understanding the reason for the decision. |
 
-**Bottom line:** Land border is cheaper and lower-risk for first-timers. Airport is more convenient for renewals and straightforward cases.
+**Travel decision:** Select a route only after confirming the current facility process and considering the practical consequences of a delayed or unsuccessful request.
 
 
 ---
@@ -506,7 +494,7 @@ Withdrawal of application for admission is governed by DHS discretionary authori
 
 - **Stay calm.** Being sent to secondary often just means the primary officer wants a specialist to review your case, or the case is more complex than usual.
 - **Bring everything.** This is where your extra copies and supporting documents pay off. The secondary officer may ask for documents the primary officer didn't.
-- **Expect a longer wait.** Secondary can take 30 minutes to several hours. During the 2026 DHS shutdown, waits have been even longer.
+- **Allow adequate time.** Secondary inspection can take materially longer than primary inspection. Confirm current procedures and do not rely on historic wait-time estimates.
 - **You may be interviewed again.** Answer consistently with what you told the primary officer. Inconsistencies between primary and secondary interviews are a major red flag.
 - **Your phone and belongings may be inspected** (see below).
 
@@ -549,96 +537,23 @@ Withdrawal of application for admission is governed by DHS discretionary authori
 
 ---
 
-## 2026 Enhanced Vetting Preparation
+## Preparing a Coherent TN Request
 
-The immigration landscape has shifted significantly since late 2025. Multiple new policies affect TN applicants directly. Here's what you need to know and how to prepare.
+USCIS evaluates a TN request against the specific USMCA profession, the actual job duties, the applicant’s qualifications, and the supporting record. A job title, a template, or a previous approval does not decide a new case.
 
-### USCIS Vetting Centre (December 2025)
+### Consistency Check
 
-In December 2025, USCIS announced a new centralized **Vetting Center in Atlanta** dedicated to "enhanced screening" of immigrants and visa applicants. The center focuses on:
+Before travel, compare the employer letter, résumé, degree records, licences, and any professional-experience evidence. Each document should describe the same employer, role, location, anticipated period, and qualifying profession. Do not change a truthful record merely to make it resemble a template.
 
-- **National security screening** — cross-referencing applicants against expanded databases
-- **Fraud detection** — verifying employer letters, job offers, and credentials more thoroughly
-- **Social media and online presence review** — checking public profiles for inconsistencies
-- **"Anti-American" concerns** — a vaguely defined category that has raised concerns among immigration attorneys
+### Port and Travel Planning
 
-**What this means for TN applicants:**
-- USCIS-filed petitions (I-129 extensions, changes of status) may face longer processing times as cases are routed through the Vetting Center.
-- Border applications (CBP) are not directly processed by the Vetting Center, but CBP officers have access to enhanced screening tools and may apply similar scrutiny.
-- Ensure your application is airtight — any inconsistency between your documents, online presence, and interview answers will be flagged.
+CBP locations, hours, appointment procedures, payment methods, and inspection times can change. Confirm the current process directly with your selected port or Canadian pre-clearance facility before booking travel. Allow enough time for secondary inspection and do not rely on historic wait-time predictions.
 
-### Social Media Checks — What to Clean Up
+For Canadian applicants, CBP publishes the current TN-processing locations and procedures. A land-border request can involve the current $50 TN processing fee and $30 I-94 fee, while Canadian pre-clearance has a different I-94-fee treatment. Confirm the current amount and payment method before travel.
 
-The State Department and USCIS now require disclosure of **five years of social media handles** for many visa categories. While TN border applications don't have a formal social media disclosure form, CBP officers can and do check social media during inspections.
+### When to Seek Individual Advice
 
-**Before your border crossing, review and clean up:**
-
-- **LinkedIn:** Ensure your profile matches your TN application exactly — same job title, same employer, same duties. Remove any references to "permanent" roles, green card sponsorship, or job searching for non-TN positions.
-- **Facebook/Instagram:** Remove or make private any posts about "moving to America permanently," "starting a new life in the U.S.," or similar language that contradicts temporary intent.
-- **Twitter/X:** Review posts about immigration, work, or relocation. Delete anything that could be interpreted as immigrant intent.
-- **Job boards:** If you have active profiles on Indeed, LinkedIn Jobs, or Glassdoor, ensure they don't show you searching for jobs outside your TN role.
-- **Reddit/forums:** If you've posted in immigration forums about green card strategies or permanent relocation, consider deleting those posts.
-- **Set profiles to private** if you're concerned about content you can't easily review.
-
-**What officers look for:**
-- Contradictions between your stated temporary intent and social media posts suggesting permanence
-- Evidence of unauthorized work or job searching
-- Posts about green card applications or permanent immigration plans
-- Connections to individuals or organizations flagged for security concerns
-
-### DHS Shutdown Impact on Wait Times
-
-The 2026 DHS shutdown — which began January 31, 2026 and lasted 76 days (the longest in U.S. history) — had significant impacts on TN processing:
-
-- **CBP continued processing TN applications** at the border throughout the shutdown (border inspections are "essential" services).
-- **Wait times increased dramatically** due to staffing shortages, with TSA reporting the "highest wait times in TSA history."
-- **Enhanced vetting added further delays** — more applicants were sent to secondary inspection.
-- **USCIS remained open** (fee-funded) for extensions and changes of status filed inside the U.S.
-- **The Department of Labor went offline**, blocking H-1B LCA filings — this made TN even more attractive for eligible professionals, increasing border volume.
-
-**As of April 30, 2026:** The DHS shutdown has just ended with President Trump signing a bipartisan funding bill. However, the backlog effects will linger for weeks. Expect:
-- Continued longer-than-normal wait times at ports of entry
-- Possible staffing gaps as furloughed workers return
-- Enhanced vetting procedures that were implemented during the shutdown are likely to remain permanent
-
-**Planning advice:**
-- Build in 2–3 extra hours for any border crossing
-- Avoid peak hours (7–9 AM, 4–6 PM)
-- Avoid Fridays and long weekends
-- Mid-week, mid-morning crossings have the shortest waits
-
-### Billy Bishop Toronto Pre-Clearance (New — March 2026)
-
-As of **March 10, 2026**, Billy Bishop Toronto City Airport (YTZ) now has a **U.S. Customs and Border Protection pre-clearance facility**. This is the ninth Canadian airport — and the first since 2016 — to offer pre-clearance.
-
-**What this means for TN applicants:**
-- You can now apply for TN status at Billy Bishop before boarding a flight to the U.S.
-- This is a major convenience for Toronto-area professionals who previously had to drive to a land border or use Pearson (YYZ).
-- Pre-clearance means you clear U.S. immigration *before* departure — you arrive in the U.S. as a domestic passenger.
-
-**Considerations:**
-- Billy Bishop is a smaller airport with limited U.S. destinations (primarily Porter Airlines to Newark, Boston, Chicago, Washington).
-- Pre-clearance officers at new facilities may be less experienced with TN applications than officers at established ports like Buffalo or Pearson.
-- For first-time TN applications, the land border may still be safer (no flight at risk if denied).
-- For renewals and straightforward cases, Billy Bishop is an excellent new option.
-
-### CBP Buffalo Online Scheduling Requirement
-
-As of **June 2025**, CBP at the Port of Buffalo (Peace Bridge) now requires **all USMCA-related appointments — including TN and L visa applications — to be scheduled entirely online**.
-
-**What you need to know:**
-- You can no longer walk up to Buffalo without an appointment for TN processing.
-- Schedule your appointment at [cbp.gov/contact/ports/buffalo](https://www.cbp.gov/about/contact/ports/buffalo-new-york-0901) using their online scheduling system.
-- **Book at least two weeks in advance** to secure a slot. Popular times fill up quickly.
-- Changes and rescheduling are also done online — no phone calls.
-- This applies to initial TN applications, employer changes, and category changes at Buffalo.
-
-**Other land border ports** (e.g., Detroit/Ambassador Bridge, Blaine/Pacific Highway, Champlain) may have different scheduling requirements. Check the specific port's CBP page before travelling.
-
-**Pro tip:** If Buffalo appointments are fully booked, consider:
-- Rainbow Bridge (Niagara Falls) — different port, may have availability
-- Lewiston-Queenston Bridge — another Niagara option
-- Other ports that don't yet require online scheduling
+A qualified immigration lawyer can help when the role does not cleanly fit a USMCA profession, the degree does not clearly match, the applicant has prior immigration issues, the employer or work arrangement has changed, or travel is planned during a pending USCIS request. This guide cannot resolve those fact-specific issues.
 
 ---
 
@@ -648,19 +563,16 @@ As of **June 2025**, CBP at the Port of Buffalo (Peace Bridge) now requires **al
 - [ ] All documents organized in a tabbed folder with cover sheet
 - [ ] Multiple copies of every document
 - [ ] Practiced answering profession-specific questions out loud
-- [ ] Social media profiles reviewed and cleaned up
-- [ ] LinkedIn matches your TN application details
-- [ ] Dressed in business casual
-- [ ] Phone is "border clean" — no contradictory messages
-- [ ] Travelling light — no moving boxes or household goods
-- [ ] Appointment scheduled (if required at your port)
+- [ ] Employer letter, résumé, credentials, and supporting records are factually consistent
+- [ ] Dressed and prepared for a professional inspection
+- [ ] Appointment or port-specific process confirmed where the selected location requires it
 - [ ] Employer contact information readily available
-- [ ] Ties to Canada documented (lease, property, family)
-- [ ] Arrived during off-peak hours with 2–3 hours buffer
+- [ ] Current applicable fee and payment method confirmed with the selected location
+- [ ] Enough time allowed for potential secondary inspection
 - [ ] Water, snacks, and patience packed
 
 ---
 
 *This guide is Part 2 of the TN Visa Border Interview Kit. For foundational interview preparation, common questions, and employer letter guidance, see Part 1.*
 
-*Information current as of April 2026. Immigration policies change frequently — verify details with official USCIS/CBP sources or consult an immigration attorney before your application.*
+*Sources checked August 27, 2026. Immigration policies, fees, and port procedures change frequently. Verify current details with official USCIS and CBP sources or consult a qualified immigration attorney before applying.*

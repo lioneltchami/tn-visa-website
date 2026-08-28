@@ -51,3 +51,13 @@ Complete these settings before treating the workflows as release controls.
 - Activation archives the previous active version but does not delete it. A previously archived version can be promoted again through the same reviewed activation path.
 - Do not restore the old destructive `delete().neq(...)` ingestion pattern.
 - Do not bypass the Production environment approval for product uploads or embedding activation.
+
+## Product-PDF release standard
+
+The paid PDFs are proprietary TN Visa Guide publications. Every master artifact must use the approved TN Visa Guide maple-leaf mark, the **TN Visa Guide** wordmark, a visible personal-use licence notice, a current edition date, a contents page, page numbering, PDF tagging, active primary-source links, and the source-backed product disclaimer. The build pipeline verifies these release controls before an artifact can be selected for upload.
+
+The PDF builder is intentionally review-first. A push that affects product content or the builder creates a `product-pdfs` artifact but does not make it available to buyers. Review each artifact visually and run `npm run verify:products` when validating it locally. Only then manually dispatch **Build product PDFs** with `upload=true` and approve the protected `Production` environment. The protected upload job independently verifies the downloaded artifact before writing it to the private `product-files` bucket.
+
+Buyer downloads are personalized at the authenticated download route with the checkout email and a purchase reference, together with a subtle licence watermark. This is a redistribution deterrent and licence-verification control, not DRM: no delivered PDF can be made impossible to copy or share. The purchase page discloses the personalization before checkout. Private storage, signed entitlement tokens, download limits, no-store delivery headers, and refund/dispute revocation remain the primary access controls.
+
+Before approving an upload, confirm that `20260825180000_purchase_revocation.sql` has been applied in production. Without it, refunded or disputed payments may not reliably revoke a buyer’s subsequent download access.

@@ -11,13 +11,13 @@ import {
 	getClientIp,
 	rateLimitHeaders,
 } from "@/lib/rate-limit";
+import { personalizeProductPdf } from "@/lib/pdf-personalization";
 import { createServiceSupabase } from "@/lib/supabase/admin";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 15;
 
 const BUCKET = "product-files";
-const SIGNED_URL_TTL_SECONDS = 120;
 const DOWNLOAD_LIMIT = 60;
 const DOWNLOAD_WINDOW_SECONDS = 60 * 60;
 
@@ -94,41 +94,60 @@ export async function GET(req: Request) {
 			);
 		}
 
-		const consumption = await consumeDownload(purchase.id);
-		if (!consumption.allowed) {
-			return NextResponse.json(
-				{
-					error: `Download limit reached (${consumption.downloadsMax}). Email hello@tnvisaguide.ca and we will reissue your link.`,
-				},
-				{ status: 429, headers: NO_STORE },
-			);
-		}
+			const { data, error } = await createServiceSupabase()
+				.storage.from(BUCKET)
+				.download(file.path);
 
-		const { data, error } = await createServiceSupabase()
-			.storage.from(BUCKET)
-			.createSignedUrl(file.path, SIGNED_URL_TTL_SECONDS, {
-				download: file.filename,
+			if (error || !data) {
+				console.error(
+					"[download] Private product retrieval failed for",
+					file.path,
+					error?.message,
+				);
+				return NextResponse.json(
+					{
+						error:
+							"Your files are being finalized. Please try again in a few minutes or email hello@tnvisaguide.ca.",
+					},
+					{ status: 503, headers: NO_STORE },
+				);
+			}
+
+			const personalized = await personalizeProductPdf(
+				new Uint8Array(await data.arrayBuffer()),
+				{
+					purchaserEmail: purchase.email,
+					purchaseId: purchase.id,
+					productName: product.name,
+				},
+			);
+
+			// Do not consume a buyer’s allowance unless the private file was retrieved
+			// and the personalized copy was produced successfully.
+			const consumption = await consumeDownload(purchase.id);
+			if (!consumption.allowed) {
+				return NextResponse.json(
+					{
+						error: `Download limit reached (${consumption.downloadsMax}). Email hello@tnvisaguide.ca and we will reissue your link.`,
+					},
+					{ status: 429, headers: NO_STORE },
+				);
+			}
+
+			const body = personalized.buffer.slice(
+				personalized.byteOffset,
+				personalized.byteOffset + personalized.byteLength,
+			) as ArrayBuffer;
+
+			return new NextResponse(body, {
+				status: 200,
+				headers: {
+					...NO_STORE,
+					"Content-Type": "application/pdf",
+					"Content-Disposition": `attachment; filename="${file.filename}"`,
+					"X-Content-Type-Options": "nosniff",
+				},
 			});
-
-		if (error || !data?.signedUrl) {
-			console.error(
-				"[download] Signed URL failed for",
-				file.path,
-				error?.message,
-			);
-			return NextResponse.json(
-				{
-					error:
-						"Your files are being finalized. Please try again in a few minutes or email hello@tnvisaguide.ca.",
-				},
-				{ status: 503, headers: NO_STORE },
-			);
-		}
-
-		return NextResponse.redirect(data.signedUrl, {
-			status: 307,
-			headers: NO_STORE,
-		});
 	} catch (err) {
 		console.error("[download] Unexpected error:", err);
 		return NextResponse.json(
