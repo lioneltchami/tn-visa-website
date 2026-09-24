@@ -20,9 +20,17 @@ export function generateMetadata({
 }): Metadata {
 	const p = professions.find((p) => p.slug === params.slug);
 	if (!p) return {};
+	const engineerMeta =
+		params.slug === "engineer"
+			? {
+					title: "Engineer TN Visa Requirements for Canadians 2026",
+					description:
+						"Engineer TN visa: degree rules after June 2025, CS degrees excluded, credentials CBP expects, and how Canadian engineers qualify.",
+				}
+			: null;
 	return withCanonical(`/professions/${params.slug}`, {
-		title: `${p.name} — TN Visa Profession Guide`,
-		description: p.description,
+		title: engineerMeta?.title ?? `${p.name} — TN Visa Profession Guide`,
+		description: engineerMeta?.description ?? p.description,
 	});
 }
 
