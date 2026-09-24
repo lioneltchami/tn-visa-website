@@ -7,8 +7,8 @@ import JsonLd from '@/components/JsonLd'
 import { blogArticleSchema } from '@/lib/article-schema'
 
 export const metadata: Metadata = withCanonical('/blog/tn-visa-computer-science-degree-2026', {
-  title: 'Can You Get a TN Visa with a Computer Science Degree in 2026?',
-  description: 'Since June 2025, CS degrees no longer qualify for the Engineer TN category. Here are your options: Computer Systems Analyst, Mathematician, and more.',
+  title: 'TN Visa with a Computer Science Degree (2026 Options)',
+  description: 'CS degree + TN visa after June 2025: Engineer path closed — use Computer Systems Analyst, Mathematician, and other USMCA options.',
 })
 
 export default function CSDegreeBlogPost() {
