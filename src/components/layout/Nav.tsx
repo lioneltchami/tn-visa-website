@@ -99,12 +99,6 @@ export default function Nav() {
 
             <div className="flex items-center gap-3 shrink-0">
               <ThemeToggle />
-              <Link
-                href="/login"
-                className="hidden sm:inline-flex text-sm font-semibold text-fg border-b border-transparent hover:border-fg transition-colors"
-              >
-                Sign in
-              </Link>
               <button
                 className="lg:hidden p-2 rounded hover:bg-bg-secondary transition-colors"
                 onClick={() => setMobileOpen(!mobileOpen)}
@@ -206,13 +200,6 @@ export default function Nav() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/login"
-                onClick={() => setMobileOpen(false)}
-                className="mt-6 btn-primary text-center"
-              >
-                Sign in
-              </Link>
             </nav>
           </motion.div>
         )}
