@@ -101,10 +101,6 @@ export default function Footer() {
 						>
 							ustr.gov
 						</a>
-						{" · "}
-						<Link href="/llms.txt" className="hover:text-fg-secondary">
-							llms.txt
-						</Link>
 					</p>
 				</div>
 			</div>
