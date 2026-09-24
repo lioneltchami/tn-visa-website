@@ -8,6 +8,8 @@ export type ArticleSchemaInput = {
   /** Site path, e.g. `/blog/tn-visa-renewal-2026` */
   path: string
   image?: string
+  /** Visible topics this article is about. URLs must be pages the article actually discusses. */
+  about?: { name: string; url: string }[]
 }
 
 /** Named Person author pointing at /about — prefer over bare Organization. */
@@ -56,6 +58,15 @@ export function blogArticleSchema(input: ArticleSchemaInput) {
     },
     url,
     ...(input.image ? { image: input.image } : {}),
+    ...(input.about?.length
+      ? {
+          about: input.about.map((topic) => ({
+            '@type': 'Thing' as const,
+            name: topic.name,
+            url: topic.url,
+          })),
+        }
+      : {}),
     isAccessibleForFree: true,
   }
 }

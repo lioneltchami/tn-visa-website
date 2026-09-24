@@ -63,6 +63,8 @@ export default function JobsPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h1 className="font-display text-3xl font-bold text-fg mb-2">TN Visa Job Board</h1>
+            <h2 className="text-lg font-semibold text-fg mb-2">What are TN visa jobs?</h2>
+            <p className="text-fg-secondary max-w-3xl mb-3">TN visa jobs are U.S. positions offered to Canadian or Mexican citizens in one of the 63 USMCA professions. This board lists openings checked against that profession list. Filter by profession and location instead of guessing which postings qualify. A TN offer is a U.S. employer hiring you into an eligible profession, not an H-1B lottery. Confirm the category on the <Link href="/professions" className="text-accent hover:underline">professions list</Link>, and confirm fees on the <Link href="/fees" className="text-accent hover:underline">fees page</Link>.</p>
             <p className="text-fg-secondary">Every job here is TN-eligible. No guessing, no filtering through irrelevant listings.</p>
           </div>
           <Link href="/post-job" className="bg-accent text-accent-fg px-4 py-2 rounded text-sm font-medium inline-flex items-center gap-2 w-fit">

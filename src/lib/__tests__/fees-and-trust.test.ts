@@ -74,5 +74,22 @@ describe("article schema", () => {
 		expect(schema.author.url).toContain("/about");
 		expect(schema.publisher["@type"]).toBe("Organization");
 		expect(schema.publisher.name).toBeTruthy();
+		expect(schema.about).toBeUndefined();
+	});
+
+	it("attaches about only when the article names those topics", () => {
+		const schema = blogArticleSchema({
+			headline: "Test",
+			datePublished: "2026-04-28",
+			path: "/blog/test",
+			about: [{ name: "Engineer", url: "https://tnvisaguide.ca/professions/engineer" }],
+		});
+		expect(schema.about).toEqual([
+			{
+				"@type": "Thing",
+				name: "Engineer",
+				url: "https://tnvisaguide.ca/professions/engineer",
+			},
+		]);
 	});
 });

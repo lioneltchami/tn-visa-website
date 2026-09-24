@@ -17,9 +17,23 @@ export default function CSDegreeBlogPost() {
       title="Can You Get a TN Visa with a Computer Science Degree in 2026?"
       description="The June 2025 USCIS policy change disqualified CS degrees from the Engineer category. Here's what you need to know."
       breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: 'CS Degree & TN Visa', href: '/blog/tn-visa-computer-science-degree-2026' }]}
-      lastUpdated="April 2026"
+      lastUpdated="September 2026"
     >
-      <JsonLd data={blogArticleSchema({ headline: 'Can You Get a TN Visa with a Computer Science Degree in 2026?', datePublished: '2026-04-28', dateModified: '2026-04-28', path: '/blog/tn-visa-computer-science-degree-2026' })} />
+      <JsonLd data={blogArticleSchema({
+        headline: 'Can You Get a TN Visa with a Computer Science Degree in 2026?',
+        datePublished: '2026-04-28',
+        dateModified: '2026-09-24',
+        path: '/blog/tn-visa-computer-science-degree-2026',
+        about: [
+          { name: 'Engineer TN category', url: 'https://tnvisaguide.ca/professions/engineer' },
+          { name: 'Computer Systems Analyst', url: 'https://tnvisaguide.ca/professions/computer-systems-analyst' },
+        ],
+      })} />
+
+      <h2 className="text-2xl font-bold text-fg mb-4">Can you get a TN visa with a computer science degree?</h2>
+      <p className="text-fg-secondary mb-6">
+        Not under Engineer. As of June 2025, USCIS does not treat a Computer Science degree as an engineering credential, so that degree alone no longer qualifies for the Engineer TN category. Canadian CS graduates usually qualify only when the job duties match another USMCA profession, most often Computer Systems Analyst, and sometimes Mathematician. A Computer Engineering degree is a different credential from Computer Science. This is educational, not legal advice. See the <Link href="https://www.uscis.gov/policy-manual/volume-2-part-p" className="text-accent hover:underline">USCIS Policy Manual, Volume 2, Part P</Link>.
+      </p>
 
       <Callout type="danger" title="Key Change: CS ≠ Engineering">
         As of June 2025, USCIS no longer accepts Computer Science degrees for the Engineer TN category. This affects thousands of Canadian tech workers.
