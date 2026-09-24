@@ -63,7 +63,7 @@ export default function ProfessionPage({
 				{ label: "Professions", href: "/professions" },
 				{ label: p.name, href: `/professions/${p.slug}` },
 			]}
-			lastUpdated="April 2026"
+			lastUpdated={params.slug === "engineer" ? "September 2026" : "April 2026"}
 		>
 			<JsonLd
 				data={{
@@ -102,6 +102,21 @@ export default function ProfessionPage({
 				<Callout type="warning" title="June 2025 USCIS Policy Update">
 					{p.juneUpdate}
 				</Callout>
+			)}
+
+			{params.slug === "engineer" && (
+				<>
+					<h2 className="text-2xl font-bold text-fg mt-8 mb-4">
+						Who qualifies for the Engineer TN category?
+					</h2>
+					<p className="mb-6">
+						Canadian engineers qualify for TN status when the job applies engineering principles in a recognized discipline and the degree or P.Eng license matches that discipline. Since June 2025, a Computer Science degree does not qualify for Engineer. Software-only duties belong under Computer Systems Analyst instead. Qualifying degrees and common denial reasons are listed on this page. This page is educational, not legal advice.{" "}
+						<Link href="https://www.uscis.gov/policy-manual/volume-2-part-p" className="text-accent hover:underline">
+							USCIS Policy Manual, Volume 2, Part P
+						</Link>
+						.
+					</p>
+				</>
 			)}
 
 			<div className="flex flex-wrap gap-3 mb-8">

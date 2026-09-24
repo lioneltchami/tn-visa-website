@@ -10,17 +10,24 @@ export default function EligibilityPage() {
       title="Am I Eligible for a TN Visa?"
       description="Check if you qualify for TN status as a Canadian citizen."
       breadcrumbs={[{label:'Eligibility', href:'/eligibility'}]}
-      lastUpdated="April 2026"
+      lastUpdated="September 2026"
     >
       <JsonLd data={{
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Who is eligible for a TN visa?", "acceptedAnswer": { "@type": "Answer", "text": "Canadian citizens with a job offer from a U.S. employer in one of the 63 USMCA-listed professions who meet the education/credential requirements." } },
+          { "@type": "Question", "name": "Who is eligible for a TN visa?", "acceptedAnswer": { "@type": "Answer", "text": "A TN applicant is a Canadian or Mexican citizen with a job offer from a U.S. employer in one of the 63 USMCA professions, who meets that profession's education or credential rule, and whose job is temporary. Canadian citizens can apply at a port of entry. Mexican citizens apply for a TN visa at a U.S. consulate. This page is educational, not legal advice." } },
           { "@type": "Question", "name": "Do I need a degree for a TN visa?", "acceptedAnswer": { "@type": "Answer", "text": "Most TN professions require a bachelor's degree or higher. Some accept alternative credentials like professional licenses or post-secondary diplomas with experience." } },
           { "@type": "Question", "name": "How many professions qualify for TN status?", "acceptedAnswer": { "@type": "Answer", "text": "There are 63 designated occupations eligible for TN status under USMCA Chapter 16, Appendix 2." } }
         ]
       }} />
+
+      <h2 className="text-2xl font-bold text-fg mb-4">Who is eligible for a TN visa?</h2>
+      <p className="mb-6">A TN applicant is a Canadian or Mexican citizen with a job offer from a U.S. employer in one of the 63 USMCA professions, who meets that profession&apos;s education or credential rule, and whose job is temporary. Canadian citizens can apply at a port of entry. Mexican citizens apply for a TN visa at a U.S. consulate. This page is educational, not legal advice.</p>
+      <h2 className="text-2xl font-bold text-fg mt-8 mb-4">Do I need a degree for a TN visa?</h2>
+      <p className="mb-6">Most TN professions require a bachelor&apos;s degree or higher. Some accept alternative credentials like professional licenses or post-secondary diplomas with experience.</p>
+      <h2 className="text-2xl font-bold text-fg mt-8 mb-4">How many professions qualify for TN status?</h2>
+      <p className="mb-8">There are 63 designated occupations eligible for TN status under USMCA Chapter 16, Appendix 2.</p>
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Core Requirements</h2>
       <ul className="list-disc pl-6 space-y-2 mb-8">
