@@ -9,6 +9,8 @@
 
 const ORIGIN = (process.env.SMOKE_CHAT_ORIGIN ?? 'https://tnvisaguide.ca').replace(/\/+$/, '')
 const CHAT_URL = `${ORIGIN}/api/chat`
+/** GitHub-hosted runners often eat a Cloudflare interstitial on the first hit. */
+const CF_RETRY_DELAYS_MS = [2000, 4000]
 
 const FALLBACK_MARKERS = [
   "i don't have specific information about that",
@@ -40,6 +42,12 @@ const CASES: Case[] = [
   },
 ]
 
+export function isCloudflareChallenge(status: number, body: string): boolean {
+  if (status !== 403 && status !== 503) return false
+  const head = body.slice(0, 500).toLowerCase()
+  return head.includes('just a moment') || head.includes('cdn-cgi/challenge')
+}
+
 function parseDataStream(raw: string): string {
   const chunks: string[] = []
 
@@ -58,7 +66,11 @@ function parseDataStream(raw: string): string {
   return chunks.join('').trim()
 }
 
-async function ask(question: string): Promise<{ status: number; answer: string; raw: string }> {
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+async function askOnce(question: string): Promise<{ status: number; answer: string; raw: string }> {
   const response = await fetch(CHAT_URL, {
     method: 'POST',
     headers: {
@@ -79,6 +91,18 @@ async function ask(question: string): Promise<{ status: number; answer: string; 
     answer: parseDataStream(raw),
     raw,
   }
+}
+
+async function ask(question: string): Promise<{ status: number; answer: string; raw: string }> {
+  let result = await askOnce(question)
+  for (let i = 0; i < CF_RETRY_DELAYS_MS.length; i++) {
+    if (!isCloudflareChallenge(result.status, result.raw)) break
+    const delay = CF_RETRY_DELAYS_MS[i]
+    console.log(`  Cloudflare challenge, retry in ${delay / 1000}s`)
+    await sleep(delay)
+    result = await askOnce(question)
+  }
+  return result
 }
 
 async function main() {
@@ -127,4 +151,7 @@ async function main() {
   console.log(`\nAll ${CASES.length} chat smoke checks passed`)
 }
 
-main()
+const entry = process.argv[1]?.replace(/\\/g, '/')
+if (entry?.endsWith('scripts/smoke-chat.ts') || entry?.endsWith('scripts/smoke-chat.js')) {
+  main()
+}
