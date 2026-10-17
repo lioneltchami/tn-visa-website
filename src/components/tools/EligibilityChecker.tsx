@@ -15,6 +15,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import professions from '@/data/professions.json'
 import { trackEvent } from '@/hooks/useAnalytics'
+import SoftProductCta from '@/components/tools/SoftProductCta'
 
 export default function EligibilityChecker() {
   const [step, setStep] = useState(0)
@@ -334,17 +335,20 @@ export default function EligibilityChecker() {
       {showResult && (
         <div className="space-y-6" aria-live="polite">
           {result === 'eligible' && (
-            <div className="rounded border border-success/30 p-6 bg-success/10 text-left">
-              <CheckCircle className="w-8 h-8 text-success mb-3" />
-              <p className="text-xl font-bold text-success">You&apos;re Likely Eligible!</p>
-              <p className="text-sm text-fg-secondary mt-2 max-w-md">
-                Based on your answers, you may qualify for TN status as{' '}
-                <strong>{selectedProfession}</strong>.
-                {citizenship === 'canadian'
-                  ? ' As a Canadian, you can apply at the border for same-day approval.'
-                  : " As a Mexican citizen, you'll apply at a US consulate."}
-              </p>
-            </div>
+            <>
+              <div className="rounded border border-success/30 p-6 bg-success/10 text-left">
+                <CheckCircle className="w-8 h-8 text-success mb-3" />
+                <p className="text-xl font-bold text-success">You&apos;re Likely Eligible!</p>
+                <p className="text-sm text-fg-secondary mt-2 max-w-md">
+                  Based on your answers, you may qualify for TN status as{' '}
+                  <strong>{selectedProfession}</strong>.
+                  {citizenship === 'canadian'
+                    ? ' As a Canadian, you can apply at the border for same-day approval.'
+                    : " As a Mexican citizen, you'll apply at a US consulate."}
+                </p>
+              </div>
+              <SoftProductCta kind="documents" />
+            </>
           )}
           {result === 'ineligible' && (
             <div className="rounded border border-danger/30 p-6 bg-danger/10 text-left">

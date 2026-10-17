@@ -10,6 +10,8 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle'
 /* Hallmark · nav: edge masthead (not AI SaaS sticky glass) */
 
 const primaryLinks = [
+  { href: '/products', label: 'Products' },
+  { href: '/letter-builder', label: 'Letter Builder' },
   { href: '/eligibility', label: 'Eligibility' },
   { href: '/professions', label: 'Professions' },
   { href: '/apply', label: 'Apply' },

@@ -6,6 +6,7 @@ import { Callout } from '@/components/ui/Callout'
 import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
 import JsonLd from '@/components/JsonLd'
+import SoftProductCta from '@/components/tools/SoftProductCta'
 
 export const metadata: Metadata = withCanonical('/employer-letter', {
   title: 'TN Visa Employer Letter Guide — Canadian Requirements',
@@ -91,6 +92,8 @@ export default function EmployerLetterPage() {
       <Callout type="info" title="This Is a Template, Not Legal Advice">
         This outline provides general guidance. Every application is different. For complex cases — especially Engineer, Management Consultant, or Scientific Technician — have an immigration lawyer review your letter before submitting.
       </Callout>
+
+      <SoftProductCta kind="letter" />
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Common Mistakes</h2>
       <ul className="list-disc pl-6 space-y-2 text-fg-secondary mb-8">
