@@ -41,7 +41,11 @@ export default function ExperiencesPage() {
   useEffect(() => {
     async function load() {
       const supabase = createClient()
-      const { data } = await supabase.from('experiences').select('*').order('date', { ascending: false })
+      const { data } = await supabase
+        .from('experiences')
+        .select('*')
+        .eq('is_approved', true)
+        .order('date', { ascending: false })
       setExperiences(data || [])
       setLoading(false)
     }
@@ -79,20 +83,26 @@ export default function ExperiencesPage() {
         </div>
 
         {stats.total > 0 && (
-          <div className="grid grid-cols-3 gap-4 mb-8">
-            <div className="card p-4 text-center">
-              <p className="text-2xl font-bold text-fg">{stats.total}</p>
-              <p className="text-xs text-fg-muted">Total Reports</p>
+          <>
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="card p-4 text-center">
+                <p className="text-2xl font-bold text-fg">{stats.total}</p>
+                <p className="text-xs text-fg-muted">Reported outcomes</p>
+              </div>
+              <div className="card p-4 text-center">
+                <p className="text-2xl font-bold text-success">{stats.total ? Math.round((stats.approved / stats.total) * 100) : 0}%</p>
+                <p className="text-xs text-fg-muted">Reported approval outcome</p>
+              </div>
+              <div className="card p-4 text-center">
+                <p className="text-2xl font-bold text-fg">{stats.avgWait ? `${stats.avgWait} min` : '—'}</p>
+                <p className="text-xs text-fg-muted">Avg Wait Time</p>
+              </div>
             </div>
-            <div className="card p-4 text-center">
-              <p className="text-2xl font-bold text-success">{stats.total ? Math.round((stats.approved / stats.total) * 100) : 0}%</p>
-              <p className="text-xs text-fg-muted">Approval Rate</p>
-            </div>
-            <div className="card p-4 text-center">
-              <p className="text-2xl font-bold text-fg">{stats.avgWait ? `${stats.avgWait} min` : '—'}</p>
-              <p className="text-xs text-fg-muted">Avg Wait Time</p>
-            </div>
-          </div>
+            <p className="text-xs text-fg-muted -mt-4 mb-8 max-w-2xl">
+              Based on {stats.total} self-selected community report{stats.total === 1 ? '' : 's'};
+              this is not an official approval rate or a representative sample.
+            </p>
+          </>
         )}
 
         <div className="flex flex-wrap gap-3 mb-6">

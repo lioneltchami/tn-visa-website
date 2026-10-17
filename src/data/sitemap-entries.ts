@@ -1,6 +1,7 @@
 /**
  * Single source of truth for public sitemap URLs and freshness dates.
- * lastModified should move when the page's substantive content changes.
+ * Sitemap generation uses each page source file's build-time mtime when available.
+ * These dates are fallbacks for generated routes and environments without source files.
  */
 
 export type SitemapFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
@@ -12,164 +13,164 @@ export type SitemapEntry = {
   priority: number
 }
 
-/** End-of-month stand-ins for ContentLayout `lastUpdated` month labels. */
-const APRIL_2026 = '2026-04-30'
+/** Fallback for pages without a source file available to sitemap generation. */
+const OCTOBER_2026 = '2026-10-16'
 const MAY_2026 = '2026-05-09'
 
 export const SITEMAP_STATIC: SitemapEntry[] = [
   {
     path: '/',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'weekly',
     priority: 1.0,
   },
   {
     path: '/eligibility',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: '/professions',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: '/apply',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: '/apply/port-of-entry',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/documents',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/fees',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/renewal',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/dependents',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/employers',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/taxes',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/green-card',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/moving',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/mistakes',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/changes',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'weekly',
     priority: 0.8,
   },
   {
     path: '/compare',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.6,
   },
   {
     path: '/compare/tn-vs-o1',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.6,
   },
   {
     path: '/compare/tn-vs-l1',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.6,
   },
   {
     path: '/compare/tn-vs-e2',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.6,
   },
   {
     path: '/companies',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'weekly',
     priority: 0.6,
   },
   {
     path: '/denied',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/border-interview',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/employer-letter',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/self-employment',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/processing-times',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'weekly',
     priority: 0.8,
   },
   {
     path: '/faq',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.9,
   },
@@ -187,55 +188,55 @@ export const SITEMAP_STATIC: SitemapEntry[] = [
   },
   {
     path: '/letter-builder',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/products',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.6,
   },
   {
     path: '/experiences',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'weekly',
     priority: 0.7,
   },
   {
     path: '/jobs',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'daily',
     priority: 0.8,
   },
   {
     path: '/usmca-review',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'weekly',
     priority: 0.9,
   },
   {
     path: '/government-shutdown',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'weekly',
     priority: 0.8,
   },
   {
     path: '/employer-guide',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/glossary',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.6,
   },
   {
     path: '/credentials',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
@@ -257,31 +258,31 @@ export const SITEMAP_BLOGS: SitemapEntry[] = [
   },
   {
     path: '/blog/tn-visa-vs-h1b-2026',
-    lastModified: '2026-04-30',
+    lastModified: '2026-10-16',
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/blog/usmca-ends-tn-visa',
-    lastModified: '2026-04-30',
+    lastModified: '2026-10-16',
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     path: '/blog/tn-visa-remote-work-2026',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/blog/canadian-moving-to-us-2026',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     path: '/blog/tn-visa-mexico-2026',
-    lastModified: APRIL_2026,
+    lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
@@ -347,5 +348,5 @@ export const SITEMAP_BLOGS: SitemapEntry[] = [
   },
 ]
 
-export const PROFESSION_LAST_MODIFIED = APRIL_2026
-export const COMPANY_LAST_MODIFIED = APRIL_2026
+export const PROFESSION_LAST_MODIFIED = OCTOBER_2026
+export const COMPANY_LAST_MODIFIED = OCTOBER_2026

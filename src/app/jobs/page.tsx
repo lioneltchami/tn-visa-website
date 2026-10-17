@@ -7,6 +7,7 @@ import { logger } from '@/lib/logger'
 import { MapPin, DollarSign, Clock, Briefcase, Plus, Star } from 'lucide-react'
 import clsx from 'clsx'
 import professions from '@/data/professions.json'
+import EmailCapture from '@/components/ui/EmailCapture'
 
 interface Job {
   id: string; slug: string; title: string; company_name: string; tn_profession: string
@@ -82,6 +83,12 @@ export default function JobsPage() {
             {REMOTE.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
           </select>
         </div>
+
+        <EmailCapture
+          variant="banner"
+          title="Get TN job alerts"
+          description="Get occasional alerts when new TN-friendly roles are posted. Unsubscribe anytime."
+        />
 
         {loading ? (
           <div className="flex justify-center py-12"><div className="animate-pulse text-fg-muted">Loading jobs…</div></div>
