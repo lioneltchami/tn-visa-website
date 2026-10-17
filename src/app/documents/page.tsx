@@ -4,6 +4,7 @@ import { Checklist } from '@/components/ui/Checklist'
 import AffiliateLink from '@/components/ui/AffiliateLink'
 import AffiliateDisclosure from '@/components/ui/AffiliateDisclosure'
 import Link from 'next/link'
+import SoftProductCta from '@/components/tools/SoftProductCta'
 
 export default function DocumentsPage() {
   return (
@@ -48,6 +49,8 @@ export default function DocumentsPage() {
       <Callout type="tip" title="Pro Tip">
         Bring multiple copies of all documents, organized with a cover sheet summarizing your application.
       </Callout>
+
+      <SoftProductCta kind="documents" />
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">Additional Documents for I-129 Filing</h2>
       <ul className="list-disc pl-6 space-y-2 mb-8">

@@ -9,6 +9,7 @@ import JsonLd from '@/components/JsonLd'
 import airports from '@/data/airports.json'
 import borderCrossings from '@/data/border-crossings.json'
 import ProvinceSelector from '@/components/ui/ProvinceSelector'
+import SoftProductCta from '@/components/tools/SoftProductCta'
 
 export const metadata: Metadata = withCanonical('/border-interview', {
   title: 'TN Visa Border Interview Guide for Canadians',
@@ -73,6 +74,8 @@ export default function BorderInterviewPage() {
         <li>Where will you be living in the US?</li>
         <li>Is your spouse or family coming with you?</li>
       </ol>
+
+      <SoftProductCta kind="interview" />
 
       <h2 className="text-2xl font-bold text-fg mt-12 mb-4">How to Answer</h2>
       <ul className="list-disc pl-6 space-y-2 text-fg-secondary mb-8">
