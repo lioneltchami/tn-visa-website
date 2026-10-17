@@ -17,15 +17,22 @@ export default function HomeExperiences() {
 
   useEffect(() => {
     async function loadQuotes() {
+      // Fetch a wider window, then keep the first two non-blank stories.
+      // limit(2) before trim would let whitespace-only rows fill both slots.
       const { data } = await createClient()
         .from('experiences')
         .select('id,profession,story,date')
         .eq('is_approved', true)
         .not('story', 'is', null)
+        .neq('story', '')
         .order('date', { ascending: false })
-        .limit(2)
+        .limit(20)
 
-      setQuotes((data || []).filter((quote) => quote.story.trim().length > 0))
+      setQuotes(
+        (data || [])
+          .filter((quote) => quote.story.trim().length > 0)
+          .slice(0, 2)
+      )
     }
 
     loadQuotes()
