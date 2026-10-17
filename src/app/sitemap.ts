@@ -8,6 +8,7 @@ import {
   SITEMAP_STATIC,
 } from '@/data/sitemap-entries'
 import { absoluteUrl } from '@/lib/seo'
+import { sitemapLastModified } from '@/lib/sitemap-freshness'
 
 function toSitemapItem(entry: {
   path: string
@@ -17,7 +18,7 @@ function toSitemapItem(entry: {
 }): MetadataRoute.Sitemap[number] {
   return {
     url: absoluteUrl(entry.path),
-    lastModified: entry.lastModified,
+    lastModified: sitemapLastModified(entry.path, entry.lastModified),
     changeFrequency: entry.changeFrequency,
     priority: entry.priority,
   }
@@ -26,14 +27,14 @@ function toSitemapItem(entry: {
 export default function sitemap(): MetadataRoute.Sitemap {
   const companyRoutes: MetadataRoute.Sitemap = SEED_COMPANIES.map((c) => ({
     url: absoluteUrl(`/companies/${c.id}`),
-    lastModified: COMPANY_LAST_MODIFIED,
+    lastModified: sitemapLastModified('/companies', COMPANY_LAST_MODIFIED, 'src/data/seed-companies.ts'),
     changeFrequency: 'monthly' as const,
     priority: 0.5,
   }))
 
   const professionRoutes: MetadataRoute.Sitemap = professions.map((p) => ({
     url: absoluteUrl(`/professions/${p.slug}`),
-    lastModified: PROFESSION_LAST_MODIFIED,
+    lastModified: sitemapLastModified('/professions', PROFESSION_LAST_MODIFIED, 'src/data/professions.json'),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))

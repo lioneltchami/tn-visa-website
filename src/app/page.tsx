@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import JsonLd from '@/components/JsonLd'
 import EmailCapture from '@/components/ui/EmailCapture'
-import TestimonialCarousel from '@/components/ui/TestimonialCarousel'
+import HomeExperiences from '@/components/ui/HomeExperiences'
 import { withCanonical } from '@/lib/seo'
 
 /* Hallmark · macrostructure: left-bias Long Document / Stat
@@ -74,6 +74,16 @@ export default function Home() {
             Covers all 63 USMCA professions · Same-day border option for many Canadians · Updated
             for 2026 fee schedules
           </p>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-bg-secondary">
+        <div className="container-wide py-8 sm:py-10">
+          <EmailCapture
+            variant="banner"
+            title="Get TN visa policy alerts"
+            description="Updates when fee schedules or adjudication guidance change. Unsubscribe anytime."
+          />
         </div>
       </section>
 
@@ -211,16 +221,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-border">
-        <div className="container-wide py-8 sm:py-10">
-          <EmailCapture
-            variant="banner"
-            title="Get TN visa policy alerts"
-            description="Updates when fee schedules or adjudication guidance change. Unsubscribe anytime."
-          />
-        </div>
-      </section>
-
       {/* SOURCES */}
       <section className="border-b border-border">
         <div className="container-wide py-16 sm:py-20 lg:py-24">
@@ -283,12 +283,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24 lg:py-28 overflow-hidden">
-        <div className="container-wide">
-          <h2 className="font-display text-2xl font-bold text-fg mb-8">Reader experiences</h2>
-          <TestimonialCarousel />
-        </div>
-      </section>
+      <HomeExperiences />
     </main>
   )
 }
