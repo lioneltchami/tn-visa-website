@@ -10,9 +10,10 @@ import { Callout } from '@/components/ui/Callout'
 import { createDownloadToken } from '@/lib/download-token'
 import { getProduct, type Product } from '@/lib/products'
 import { ensurePurchase, isPurchaseRevoked } from '@/lib/purchases'
-import { consumeRateLimit } from '@/lib/rate-limit'
+import { consumeRateLimit, getClientIp } from '@/lib/rate-limit'
 import { withCanonical } from '@/lib/seo'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = withCanonical('/products/success', {
@@ -42,8 +43,7 @@ async function resolveAccess(sessionId: string | undefined): Promise<Access | nu
   const secretKey = process.env.STRIPE_SECRET_KEY
   if (!secretKey) return null
 
-  const forwarded = headers().get('x-forwarded-for')
-  const ip = forwarded?.split(',')[0]?.trim() || headers().get('cf-connecting-ip') || 'unknown'
+  const ip = getClientIp(headers())
   const rate = await consumeRateLimit(`success:${ip}`, LOOKUP_LIMIT, LOOKUP_WINDOW_SECONDS)
   if (!rate.allowed) return null
 
@@ -70,7 +70,7 @@ async function resolveAccess(sessionId: string | undefined): Promise<Access | nu
 
     return {
       product,
-      token: createDownloadToken(purchase.id),
+      token: await createDownloadToken(purchase.id),
       email,
       transactionId: session.id,
       value: (session.amount_total ?? product.priceCents) / 100,

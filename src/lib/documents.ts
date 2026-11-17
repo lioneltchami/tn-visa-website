@@ -1,5 +1,3 @@
-import { randomUUID } from 'crypto'
-
 export const DOCUMENT_BUCKET = 'documents'
 export const MAX_DOCUMENT_SIZE_BYTES = 10 * 1024 * 1024
 
@@ -71,7 +69,7 @@ export function createDocumentStoragePath(userId: string, extension: string): st
   if (!UUID_RE.test(userId)) throw new Error('createDocumentStoragePath: invalid user id')
   if (!/^\.[a-z0-9]+$/i.test(extension)) throw new Error('createDocumentStoragePath: invalid extension')
 
-  return `${userId}/${randomUUID()}${extension.toLowerCase()}`
+  return `${userId}/${crypto.randomUUID()}${extension.toLowerCase()}`
 }
 
 export function isDocumentStoragePathOwnedBy(storagePath: string, userId: string): boolean {

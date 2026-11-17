@@ -1,4 +1,4 @@
-import { createHmac, timingSafeEqual } from 'crypto'
+import { base64UrlToUtf8, bytesToBase64Url, hmacSha256Base64Url, timingSafeEqualString } from '@/lib/hmac'
 
 /**
  * Stateless, signed download links: `base64url(purchaseId.expiry).hmac`.
@@ -19,7 +19,7 @@ export type DownloadTokenPayload = {
 function getSecret(): string {
   const dedicated = process.env.DOWNLOAD_TOKEN_SECRET
   const isProduction =
-    process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production'
+    process.env.NODE_ENV === 'production' || process.env.CF_PAGES === '1'
 
   if (dedicated) return dedicated
 
@@ -35,20 +35,20 @@ function getSecret(): string {
   return fallback
 }
 
-function sign(payload: string): string {
-  return createHmac('sha256', getSecret()).update(payload).digest('base64url')
+async function sign(payload: string): Promise<string> {
+  return hmacSha256Base64Url(getSecret(), payload)
 }
 
-export function createDownloadToken(purchaseId: string, ttlDays = DEFAULT_TTL_DAYS): string {
+export async function createDownloadToken(purchaseId: string, ttlDays = DEFAULT_TTL_DAYS): Promise<string> {
   if (!UUID_RE.test(purchaseId)) throw new Error('createDownloadToken: invalid purchase id')
 
   const expiresAt = Math.floor(Date.now() / 1000) + Math.round(ttlDays * 86_400)
   const payload = `${purchaseId}.${expiresAt}`
 
-  return `${Buffer.from(payload, 'utf8').toString('base64url')}.${sign(payload)}`
+  return `${bytesToBase64Url(new TextEncoder().encode(payload))}.${await sign(payload)}`
 }
 
-export function verifyDownloadToken(token: unknown): DownloadTokenPayload | null {
+export async function verifyDownloadToken(token: unknown): Promise<DownloadTokenPayload | null> {
   if (typeof token !== 'string' || token.length < 32 || token.length > 512) return null
 
   const separator = token.lastIndexOf('.')
@@ -60,14 +60,13 @@ export function verifyDownloadToken(token: unknown): DownloadTokenPayload | null
 
   let payload: string
   try {
-    payload = Buffer.from(encodedPayload, 'base64url').toString('utf8')
+    payload = base64UrlToUtf8(encodedPayload)
   } catch {
     return null
   }
 
-  const expected = Buffer.from(sign(payload), 'utf8')
-  const received = Buffer.from(signature, 'utf8')
-  if (expected.length !== received.length || !timingSafeEqual(expected, received)) return null
+  const expected = await sign(payload)
+  if (!timingSafeEqualString(expected, signature)) return null
 
   const [purchaseId, rawExpiry] = payload.split('.')
   const expiresAt = Number(rawExpiry)

@@ -8,8 +8,9 @@
 | Build product PDFs | Yes | Build buyer-facing PDFs and upload only a reviewed artifact to private storage. | Build on relevant `main` changes; upload only when manually requested. |
 | Freshness watch | Yes | Flag potential TN fee-copy drift for human review. | Weekly schedule and manual runs. Never publishes content. |
 | Ingest chat embeddings | Yes | Build a new retrieval index while the active index remains live. | Manual only. Build-ready and activate-ready-version are separate actions. |
+| Scheduled jobs | Yes | Hit production cron routes: job sync (`0 6 * * *`) and renewal reminders (`15 6 * * *`). | Daily schedule and `workflow_dispatch` (`jobs-sync` or `renewal-reminders`). Uses repository secret `CRON_SECRET`. No Production environment gate. |
 
-Do not add an automatic production-deployment workflow. Vercel already deploys approved merges from `main`. Do not add an automatic Supabase-migration workflow. Database changes require the staged release and verification process in `P0_SECURITY_DEPLOYMENT_RUNBOOK.md`.
+Cloudflare Pages Git integration deploys approved merges from `main`. Do not add an automatic production-deployment GitHub workflow. Do not add an automatic Supabase-migration workflow. Database changes require the staged release and verification process in `P0_SECURITY_DEPLOYMENT_RUNBOOK.md`.
 
 ## Required GitHub configuration
 
@@ -19,6 +20,7 @@ Complete these settings before treating the workflows as release controls.
 2. Protect the `Production` environment: require one reviewer, allow self-review only if you are the sole operator, and restrict deployments to `main`.
 3. Confirm that `GUIDE_REPO_TOKEN` has read-only access to `lioneltchami/tn-visa-guide` only.
 4. Keep `SUPABASE_SERVICE_ROLE_KEY`, `OPENAI_API_KEY`, and `UNSUBSCRIBE_TOKEN_SECRET` server-side and scoped to the `Production` environment. Never create `NEXT_PUBLIC_` versions of them.
+5. Set repository secret `CRON_SECRET` (same value as the Cloudflare Pages `CRON_SECRET`) so `scheduled-jobs.yml` can call production routes. Do not attach the Production environment gate to that workflow — required reviewers would block unattended cron.
 
 ## Initial activation sequence
 

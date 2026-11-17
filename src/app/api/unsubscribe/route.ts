@@ -3,6 +3,7 @@ import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limi
 import { createServiceSupabase } from '@/lib/supabase/admin'
 import { verifyUnsubscribeToken } from '@/lib/unsubscribe-token'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const UNSUBSCRIBE_LIMIT = 10
@@ -24,7 +25,7 @@ export async function POST(req: Request) {
 
   try {
     const body = (await req.json()) as { token?: unknown }
-    const payload = verifyUnsubscribeToken(body?.token)
+    const payload = await verifyUnsubscribeToken(body?.token)
     if (!payload) {
       return NextResponse.json(
         { error: 'This unsubscribe link is invalid or has expired.' },

@@ -5,6 +5,7 @@ import { siteUrl } from '@/lib/site'
 import { createServiceSupabase } from '@/lib/supabase/admin'
 import { createUnsubscribeToken, normalizeSubscriberEmail } from '@/lib/unsubscribe-token'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const REQUEST_LIMIT = 5
@@ -49,7 +50,7 @@ export async function POST(req: Request) {
     if (error) throw error
 
     if (subscriber && process.env.RESEND_API_KEY) {
-      const token = createUnsubscribeToken(email)
+      const token = await createUnsubscribeToken(email)
       const resend = new Resend(process.env.RESEND_API_KEY)
       await resend.emails.send({
         from: 'TN Visa Guide <hello@tnvisaguide.ca>',

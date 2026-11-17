@@ -14,8 +14,8 @@ import {
 	shouldRevokeOnDispute,
 } from "@/lib/stripe-webhook-events";
 
+export const runtime = "edge";
 export const dynamic = "force-dynamic";
-export const maxDuration = 30;
 
 async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 	if (session.payment_status !== "paid") {
@@ -128,7 +128,7 @@ export async function POST(req: Request) {
 
 	let event: Stripe.Event;
 	try {
-		event = new Stripe(secretKey).webhooks.constructEvent(
+		event = await new Stripe(secretKey).webhooks.constructEventAsync(
 			body,
 			signature,
 			webhookSecret,

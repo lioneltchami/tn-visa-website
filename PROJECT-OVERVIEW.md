@@ -13,7 +13,7 @@
 - **Email:** Resend (newsletter subscriptions, renewal reminders).
 - **PWA:** `next-pwa` with service worker and offline caching.
 - **Analytics:** Plausible (self-hosted script, no cookie banner needed).
-- **Deployment target:** Vercel (`.vercel/` directory present, domain: `tnvisaguide.ca`).
+- **Deployment target:** Cloudflare Pages (`tnvisaguide.ca`) via `@cloudflare/next-on-pages` + Wrangler. `.vercel/` is adapter output, not Vercel hosting.
 
 ---
 

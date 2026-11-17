@@ -1,16 +1,13 @@
-import { timingSafeEqual } from 'crypto'
 import { NextResponse } from 'next/server'
+import { timingSafeEqualString } from '@/lib/hmac'
 
 /**
- * Shared auth for Vercel Cron + manual sync triggers.
- * Vercel sends `Authorization: Bearer $CRON_SECRET` automatically.
+ * Shared auth for GitHub scheduled workflows and manual Bearer triggers.
+ * Send `Authorization: Bearer $CRON_SECRET` (or `$SYNC_SECRET`).
  */
 
 function safeEqual(a: string, b: string): boolean {
-  const left = Buffer.from(a)
-  const right = Buffer.from(b)
-  if (left.length !== right.length) return false
-  return timingSafeEqual(left, right)
+  return timingSafeEqualString(a, b)
 }
 
 export function authorizeCronRequest(req: Request): NextResponse | null {

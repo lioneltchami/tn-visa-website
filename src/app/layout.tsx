@@ -8,6 +8,8 @@ import ChatAssistant from '@/components/tools/ChatAssistant'
 import BackToTop from '@/components/ui/BackToTop'
 import InstallPrompt from '@/components/ui/InstallPrompt'
 
+export const runtime = 'edge'
+
 const literata = Literata({
   subsets: ['latin'],
   variable: '--font-literata',

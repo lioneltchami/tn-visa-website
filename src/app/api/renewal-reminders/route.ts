@@ -3,8 +3,8 @@ import { authorizeCronRequest, newRunId } from '@/lib/cron-auth'
 import { consumeRateLimit } from '@/lib/rate-limit'
 import { sendRenewalReminders } from '@/lib/renewal-reminders'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
-export const maxDuration = 60
 
 async function handle(req: NextRequest) {
   const unauthorized = authorizeCronRequest(req)

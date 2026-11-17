@@ -3,8 +3,8 @@ import { getProduct } from '@/lib/products'
 import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limit'
 import { resolveOrigin } from '@/lib/site'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
-export const maxDuration = 15
 
 const CHECKOUT_LIMIT = 15
 const CHECKOUT_WINDOW_SECONDS = 60 * 60

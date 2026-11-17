@@ -6,6 +6,7 @@ import {
 import { createServiceSupabase } from '@/lib/supabase/admin'
 import { createServerSupabase } from '@/lib/supabase/server'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const NO_STORE = { 'Cache-Control': 'no-store, max-age=0' }

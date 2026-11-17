@@ -8,62 +8,62 @@ describe("download tokens", () => {
 		process.env.DOWNLOAD_TOKEN_SECRET = "test-secret-do-not-use-in-production";
 	});
 
-	it("round-trips a purchase id", () => {
-		const token = createDownloadToken(PURCHASE_ID);
-		expect(verifyDownloadToken(token)).toMatchObject({
+	it("round-trips a purchase id", async () => {
+		const token = await createDownloadToken(PURCHASE_ID);
+		expect(await verifyDownloadToken(token)).toMatchObject({
 			purchaseId: PURCHASE_ID,
 		});
 	});
 
-	it("rejects a tampered signature", () => {
-		const token = createDownloadToken(PURCHASE_ID);
+	it("rejects a tampered signature", async () => {
+		const token = await createDownloadToken(PURCHASE_ID);
 		const tampered = `${token.slice(0, -1)}${token.endsWith("a") ? "b" : "a"}`;
-		expect(verifyDownloadToken(tampered)).toBeNull();
+		expect(await verifyDownloadToken(tampered)).toBeNull();
 	});
 
-	it("rejects a swapped payload", () => {
-		const token = createDownloadToken(PURCHASE_ID);
+	it("rejects a swapped payload", async () => {
+		const token = await createDownloadToken(PURCHASE_ID);
 		const signature = token.slice(token.lastIndexOf(".") + 1);
 		const forgedPayload = Buffer.from(
 			`11111111-1111-1111-1111-111111111111.${Math.floor(Date.now() / 1000) + 60}`,
 			"utf8",
 		).toString("base64url");
 
-		expect(verifyDownloadToken(`${forgedPayload}.${signature}`)).toBeNull();
+		expect(await verifyDownloadToken(`${forgedPayload}.${signature}`)).toBeNull();
 	});
 
-	it("rejects an expired token", () => {
-		const token = createDownloadToken(PURCHASE_ID, -1);
-		expect(verifyDownloadToken(token)).toBeNull();
+	it("rejects an expired token", async () => {
+		const token = await createDownloadToken(PURCHASE_ID, -1);
+		expect(await verifyDownloadToken(token)).toBeNull();
 	});
 
-	it("rejects tokens signed with another secret", () => {
-		const token = createDownloadToken(PURCHASE_ID);
+	it("rejects tokens signed with another secret", async () => {
+		const token = await createDownloadToken(PURCHASE_ID);
 		process.env.DOWNLOAD_TOKEN_SECRET = "a-different-secret";
-		expect(verifyDownloadToken(token)).toBeNull();
+		expect(await verifyDownloadToken(token)).toBeNull();
 	});
 
-	it("rejects malformed input", () => {
+	it("rejects malformed input", async () => {
 		for (const value of [null, undefined, "", "not-a-token", "a.b", 42, {}]) {
-			expect(verifyDownloadToken(value)).toBeNull();
+			expect(await verifyDownloadToken(value)).toBeNull();
 		}
 	});
 
-	it("refuses to sign a non-uuid purchase id", () => {
-		expect(() => createDownloadToken("../../etc/passwd")).toThrow();
+	it("refuses to sign a non-uuid purchase id", async () => {
+		await expect(createDownloadToken("../../etc/passwd")).rejects.toThrow();
 	});
 
-	it("requires a dedicated secret in production", () => {
+	it("requires a dedicated secret in production", async () => {
 		delete process.env.DOWNLOAD_TOKEN_SECRET;
-		const previous = process.env.VERCEL_ENV;
-		process.env.VERCEL_ENV = "production";
+		const previous = process.env.CF_PAGES;
+		process.env.CF_PAGES = "1";
 		try {
-			expect(() => createDownloadToken(PURCHASE_ID)).toThrow(
+			await expect(createDownloadToken(PURCHASE_ID)).rejects.toThrow(
 				"DOWNLOAD_TOKEN_SECRET must be set in production",
 			);
 		} finally {
-			if (previous === undefined) delete process.env.VERCEL_ENV;
-			else process.env.VERCEL_ENV = previous;
+			if (previous === undefined) delete process.env.CF_PAGES;
+			else process.env.CF_PAGES = previous;
 			process.env.DOWNLOAD_TOKEN_SECRET =
 				"test-secret-do-not-use-in-production";
 		}

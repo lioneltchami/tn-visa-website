@@ -6,8 +6,8 @@
 - [ ] Go to https://analytics.google.com
 - [ ] Create property for tnvisaguide.ca
 - [ ] Copy your `G-XXXXXXXXXX` ID
-- [ ] Add to Vercel: `vercel env add NEXT_PUBLIC_GA_ID` → paste the ID
-- [ ] Redeploy: `vercel --prod`
+- [ ] Add `NEXT_PUBLIC_GA_ID` in Cloudflare Pages project settings → paste the ID
+- [ ] Redeploy via Pages Git integration or `npm run deploy`
 
 ### Google Search Console
 - [ ] Go to https://search.google.com/search-console
@@ -201,7 +201,7 @@ Target blogs about:
 ## 📧 Email List (Future)
 
 - [ ] Set up Resend for newsletter sending
-- [ ] Add `RESEND_API_KEY` to Vercel
+- [ ] Add `RESEND_API_KEY` in Cloudflare Pages project settings
 - [ ] Verify domain in Resend dashboard
 - [ ] Create welcome email sequence
 - [ ] Weekly/monthly newsletter with new jobs, articles
