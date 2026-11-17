@@ -1,14 +1,11 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  ignore = "false"
 
 [build.environment]
   NODE_VERSION = "22"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
+# Next.js 14 is adapted automatically via OpenNext. Do not pin @netlify/plugin-nextjs.
 # Job sync and renewal reminders can exceed the 30s scheduled-function cap, so the
 # cron handlers only kick a -background function that calls the existing Next routes
 # with Bearer CRON_SECRET / SYNC_SECRET. Scheduled functions run on published
