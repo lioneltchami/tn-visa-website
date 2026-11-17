@@ -1,6 +1,6 @@
 /**
  * Renewal Reminder Script
- * Prefer the Vercel cron route in production. This CLI wraps the same logic:
+ * Prefer the Netlify scheduled function in production. This CLI wraps the same logic:
  *   npx tsx scripts/send-renewal-reminders.ts
  *   npx tsx scripts/send-renewal-reminders.ts --dry-run
  */

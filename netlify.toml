@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Next.js 14 is adapted automatically via OpenNext. Do not pin @netlify/plugin-nextjs.
+# Job sync and renewal reminders can exceed the 30s scheduled-function cap, so the
+# cron handlers only kick a -background function that calls the existing Next routes
+# with Bearer CRON_SECRET / SYNC_SECRET. Scheduled functions run on published
+# production deploys only.
+[functions]
+  directory = "netlify/functions"
+
+[functions."job-sync"]
+  schedule = "0 6 * * *"
+
+[functions."renewal-reminders"]
+  schedule = "15 6 * * *"

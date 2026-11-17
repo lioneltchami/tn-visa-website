@@ -670,7 +670,7 @@ Option A (Recommended): Plausible Analytics (privacy-friendly, no cookies, GDPR 
 - Track: page views, referrers, countries, devices
 - Set up custom events for: eligibility checker completion, fee calculator usage, letter builder usage, affiliate link clicks, email signups, product purchases
 
-Option B (Free alternative): Umami Analytics (self-hosted on Vercel/Railway)
+Option B (Free alternative): Umami Analytics (self-hosted on Netlify/Railway)
 - Similar to Plausible but free and self-hosted
 
 Step 1: Add the analytics script to the root layout <head>.

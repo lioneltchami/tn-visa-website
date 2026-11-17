@@ -55,15 +55,43 @@ describe("download tokens", () => {
 
 	it("requires a dedicated secret in production", () => {
 		delete process.env.DOWNLOAD_TOKEN_SECRET;
-		const previous = process.env.VERCEL_ENV;
-		process.env.VERCEL_ENV = "production";
+		const previous = process.env.CONTEXT;
+		process.env.CONTEXT = "production";
 		try {
 			expect(() => createDownloadToken(PURCHASE_ID)).toThrow(
 				"DOWNLOAD_TOKEN_SECRET must be set in production",
 			);
 		} finally {
-			if (previous === undefined) delete process.env.VERCEL_ENV;
-			else process.env.VERCEL_ENV = previous;
+			if (previous === undefined) delete process.env.CONTEXT;
+			else process.env.CONTEXT = previous;
+			process.env.DOWNLOAD_TOKEN_SECRET =
+				"test-secret-do-not-use-in-production";
+		}
+	});
+
+	it("allows SUPABASE_SERVICE_ROLE_KEY fallback on deploy-preview", () => {
+		delete process.env.DOWNLOAD_TOKEN_SECRET;
+		const previousContext = process.env.CONTEXT;
+		const previousNodeEnv = process.env.NODE_ENV;
+		const previousServiceRole = process.env.SUPABASE_SERVICE_ROLE_KEY;
+		process.env.CONTEXT = "deploy-preview";
+		process.env.NODE_ENV = "production";
+		process.env.SUPABASE_SERVICE_ROLE_KEY = "service-role-fallback-key";
+		try {
+			const token = createDownloadToken(PURCHASE_ID);
+			expect(verifyDownloadToken(token)).toMatchObject({
+				purchaseId: PURCHASE_ID,
+			});
+		} finally {
+			if (previousContext === undefined) delete process.env.CONTEXT;
+			else process.env.CONTEXT = previousContext;
+			if (previousNodeEnv === undefined) delete process.env.NODE_ENV;
+			else process.env.NODE_ENV = previousNodeEnv;
+			if (previousServiceRole === undefined) {
+				delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+			} else {
+				process.env.SUPABASE_SERVICE_ROLE_KEY = previousServiceRole;
+			}
 			process.env.DOWNLOAD_TOKEN_SECRET =
 				"test-secret-do-not-use-in-production";
 		}

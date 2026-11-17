@@ -9,7 +9,7 @@
 | Freshness watch | Yes | Flag potential TN fee-copy drift for human review. | Weekly schedule and manual runs. Never publishes content. |
 | Ingest chat embeddings | Yes | Build a new retrieval index while the active index remains live. | Manual only. Build-ready and activate-ready-version are separate actions. |
 
-Do not add an automatic production-deployment workflow. Vercel already deploys approved merges from `main`. Do not add an automatic Supabase-migration workflow. Database changes require the staged release and verification process in `P0_SECURITY_DEPLOYMENT_RUNBOOK.md`.
+Do not add an automatic production-deployment workflow. Netlify already deploys approved merges from `main`. Do not add an automatic Supabase-migration workflow. Database changes require the staged release and verification process in `P0_SECURITY_DEPLOYMENT_RUNBOOK.md`.
 
 ## Required GitHub configuration
 

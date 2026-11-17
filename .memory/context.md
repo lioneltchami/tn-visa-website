@@ -8,7 +8,7 @@ A comprehensive TN visa resource website for Canadian professionals seeking to w
 
 - **Domain:** tnvisaguide.ca (primary), tnvisaguide.com (redirects to .ca)
 - **Stack:** Next.js 14 (App Router), TypeScript, Tailwind CSS, Supabase, Vitest
-- **Hosting:** Vercel (app) + Cloudflare (DNS/CDN)
+- **Hosting:** Netlify (app) + Cloudflare (DNS/CDN)
 - **Repo:** github.com/lioneltchami/tn-visa-website (private)
 
 ## Current State (as of May 2026)
@@ -84,7 +84,7 @@ A comprehensive TN visa resource website for Canadian professionals seeking to w
 ## What's NOT Done Yet (Manual Tasks)
 
 See STILL-TO-DO.md for full details. Key items:
-1. Set environment variables in Vercel (Supabase, OpenAI, Resend)
+1. Set environment variables in Netlify (Supabase, OpenAI, Resend)
 2. Run schema-clean.sql in Supabase SQL Editor
 3. Run embeddings-clean.sql in Supabase
 4. Ingest chatbot content (npx tsx scripts/ingest-content.ts)
@@ -112,7 +112,7 @@ Our edge: Free interactive tools + 63-profession data + modern tech + .ca domain
 - fees.json as single source of truth (imported by FeeCalculator + fees page + employer guide)
 - professions.json powers 63 detail pages + ProfessionFinder + EligibilityChecker + LetterBuilder + job posting
 - Supabase for auth, database, storage (8 tables with RLS)
-- Stripe checkout via fetch API (not SDK — SDK has connection issues on Vercel serverless)
+- Stripe checkout via fetch API (not SDK — SDK has connection issues on serverless)
 - ContentLayout component auto-generates BreadcrumbList JSON-LD
 - Security headers in next.config.mjs (HSTS, CSP, X-Frame-Options)
 - CSP allows: Plausible, Cloudflare Insights, Supabase, OpenAI, Stripe, YouTube, Vimeo

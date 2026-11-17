@@ -66,7 +66,7 @@ Cost: ~$0.01 in OpenAI credits. Takes ~1-2 minutes.
   - Add the DNS records Resend gives you (SPF, DKIM, DMARC)
   - Until verified, emails send from `onboarding@resend.dev` (fine for testing)
 
-### 5. Domain & Deployment (Cloudflare + Vercel)
+### 5. Domain & Deployment (Cloudflare + Netlify)
 
 **a) Buy your domain:**
 
@@ -83,31 +83,32 @@ Cost: ~$0.01 in OpenAI credits. Takes ~1-2 minutes.
 - Enable **Web Analytics** (free, no JS needed — Analytics → Web Analytics)
 - Enable **Bot Fight Mode** (Security → Bots)
 
-**c) Deploy on Vercel:**
+**c) Deploy on Netlify:**
 
-- Push your code to GitHub:
+- Site: `tnvisaguide` → https://tnvisaguide.netlify.app (admin: https://app.netlify.com/projects/tnvisaguide)
+- Push your code to GitHub and link the repo in Netlify (Git integration builds `main`), **or** deploy via CLI:
   ```bash
-  git add -A && git commit -m "feat: complete TN visa guide" && git push
+  netlify deploy --build --prod
   ```
-- Go to [vercel.com/new](https://vercel.com/new) and import your GitHub repo
-- Add ALL environment variables from `.env.local` to Vercel project settings:
+- Env vars live in Netlify site env (Project → Environment variables). Import from `.env.local` / `netlify env:import` as needed:
   - `NEXT_PUBLIC_SUPABASE_URL`
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
   - `OPENAI_API_KEY`
   - `SUPABASE_SERVICE_ROLE_KEY`
   - `RESEND_API_KEY`
+  - `CRON_SECRET` / `SYNC_SECRET`
   - `STRIPE_SECRET_KEY` (when ready)
   - `STRIPE_WEBHOOK_SECRET` (when ready)
   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (when ready)
-- Deploy (Vercel builds automatically)
+- Confirm https://tnvisaguide.netlify.app returns HTTP 200 **before** pointing the custom domain.
 
 **d) Connect domain via Cloudflare DNS:**
 
 - In Cloudflare DNS settings, add these records:
-  - Type: `CNAME` | Name: `@` | Target: `cname.vercel-dns.com` | Proxy: ON (orange cloud)
-  - Type: `CNAME` | Name: `www` | Target: `cname.vercel-dns.com` | Proxy: ON (orange cloud)
-- In Vercel, go to your project → Settings → Domains → Add `tnvisaguide.ca` and `www.tnvisaguide.ca`
-- Vercel will verify the domain automatically
+  - Type: `CNAME` | Name: `@` | Target: `tnvisaguide.netlify.app` | Proxy: ON (orange cloud)
+  - Type: `CNAME` | Name: `www` | Target: `tnvisaguide.netlify.app` | Proxy: ON (orange cloud)
+- SSL/TLS: **Full (strict)**
+- In Netlify, go to Project → Domain management → Add `tnvisaguide.ca` and `www.tnvisaguide.ca`
 
 **e) Verify everything works:**
 
@@ -118,7 +119,7 @@ Cost: ~$0.01 in OpenAI credits. Takes ~1-2 minutes.
 **What you get for free:**
 
 - Cloudflare: DDoS protection, CDN, Web Analytics, WAF, Bot Management, SSL
-- Vercel: Full Next.js hosting, serverless functions, edge middleware, image optimization, 100GB bandwidth
+- Netlify: Next.js hosting (OpenNext), serverless + scheduled/background functions, image optimization
 
 ---
 
@@ -192,7 +193,7 @@ c) **Custom events already tracked:**
 
 d) **Free alternative:** If you prefer free self-hosted analytics:
 
-- Sign up for Umami (umami.is) and deploy on Vercel/Railway
+- Sign up for Umami (umami.is) and deploy on Netlify/Railway
 - Replace the Plausible script in `src/app/layout.tsx` with the Umami script
 - Update `src/hooks/useAnalytics.ts` to call `umami.track()` instead of `plausible()`
 
@@ -220,7 +221,7 @@ d) **Build and publish the PDF products:**
 1.  Run `supabase/migrations/product-delivery-and-rate-limits.sql` once in the Supabase
     SQL Editor (creates `purchases`, `rate_limits`, and the private `product-files` bucket)
     1b. Run `supabase/migrations/20260825180000_purchase_revocation.sql` (adds `revoked_at` for refunds/disputes)
-2.  Set `DOWNLOAD_TOKEN_SECRET` (`openssl rand -hex 32`) in `.env.local` **and** in Vercel.
+2.  Set `DOWNLOAD_TOKEN_SECRET` (`openssl rand -hex 32`) in `.env.local` **and** in Netlify site env.
     Changing it later invalidates download links you already emailed.
 3.  Build the PDFs from `products/*.md` and upload them:
     ```bash
@@ -287,8 +288,8 @@ b) **Run the freshness migration** once (already applied on production):
 `supabase/migrations/20260729160000_freshness_pipelines.sql`
 (creates `renewal_reminder_sends` ledger + indexes)
 
-c) **Confirm Vercel Cron** includes `/api/renewal-reminders` at `15 6 * * *`
-(`vercel.json`). Vercel sends `Authorization: Bearer $CRON_SECRET`.
+c) **Confirm Netlify scheduled functions** include `renewal-reminders` at `15 6 * * *`
+(`netlify.toml`). The scheduled function kicks `renewal-reminders-background`, which POSTs `/api/renewal-reminders` with `Authorization: Bearer $CRON_SECRET` (or `$SYNC_SECRET`).
 
 d) **Manual dry-run / CLI:**
 
@@ -299,7 +300,7 @@ npm run reminders -- --dry-run
 ```
 
 Reminders are idempotent via `renewal_reminder_sends` (unique per status + 90/60/30).
-Profiles must have email. Vercel does not retry failed cron runs — check Project → Logs.
+Profiles must have email. Netlify scheduled functions do not retry failed runs — check Project → Functions → Logs.
 
 ### 13. Community Experience Database
 
@@ -341,7 +342,7 @@ public/workbox-*.js
 
 c) **Test PWA:**
 
-- Deploy to Vercel (PWA requires HTTPS)
+- Deploy to Netlify (PWA requires HTTPS)
 - Open in Chrome on mobile
 - You should see the install prompt
 - After installing, the app works offline for cached pages
@@ -358,10 +359,10 @@ b) **Set up JSearch API (for external job sync):**
 - Sign up at [RapidAPI](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch)
 - Subscribe to JSearch API (free tier: 100 requests/month)
 - Get your API key from RapidAPI dashboard
-- Add to Vercel environment variables:
+- Add to Netlify environment variables:
   - `JSEARCH_API_KEY=your-rapidapi-key`
   - `SYNC_SECRET=<generate with: openssl rand -hex 32>`
-  - `CRON_SECRET=<same value as SYNC_SECRET for Vercel Cron>`
+  - `CRON_SECRET=<same value as SYNC_SECRET for Netlify scheduled functions>`
 
 c) **Test the sync endpoint locally:**
 
@@ -372,11 +373,12 @@ curl -X POST http://localhost:3000/api/jobs/sync \
 
 - Should return: `{ success: true, inserted: N, skipped: N, failed: 0, errors: [] }`
 
-d) **Deploy and verify Vercel Cron:**
+d) **Deploy and verify Netlify scheduled functions:**
 
-- The `vercel.json` configures daily job sync at 6:00 AM UTC and renewal reminders at 6:15 AM UTC
-- After deploy, check Vercel dashboard → Project → Settings → Cron Jobs
-- You should see `/api/jobs/sync` and `/api/renewal-reminders`
+- `netlify.toml` schedules `job-sync` at 6:00 AM UTC and `renewal-reminders` at 6:15 AM UTC
+- Each scheduled function kicks a `-background` function that POSTs the existing API routes with Bearer `CRON_SECRET` / `SYNC_SECRET`
+- After deploy, check Netlify dashboard → Project → Functions (and scheduled function logs)
+- You should see `job-sync`, `job-sync-background`, `renewal-reminders`, `renewal-reminders-background`
 
 e) **Seed initial jobs:**
 

@@ -51,3 +51,7 @@ public/workbox-*.js
 
 # supabase cli
 supabase/.temp/
+
+# netlify
+.netlify
+.env.netlify-import

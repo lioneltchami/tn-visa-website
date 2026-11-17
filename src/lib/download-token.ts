@@ -16,14 +16,18 @@ export type DownloadTokenPayload = {
   expiresAt: number
 }
 
+function isProductionRuntime(): boolean {
+  const context = process.env.CONTEXT
+  if (context) return context === 'production'
+  return process.env.NODE_ENV === 'production'
+}
+
 function getSecret(): string {
   const dedicated = process.env.DOWNLOAD_TOKEN_SECRET
-  const isProduction =
-    process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production'
 
   if (dedicated) return dedicated
 
-  if (isProduction) {
+  if (isProductionRuntime()) {
     throw new Error('DOWNLOAD_TOKEN_SECRET must be set in production')
   }
 
