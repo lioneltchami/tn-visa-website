@@ -128,7 +128,7 @@ export async function POST(req: Request) {
 
 	let event: Stripe.Event;
 	try {
-		event = new Stripe(secretKey).webhooks.constructEvent(
+		event = await new Stripe(secretKey).webhooks.constructEventAsync(
 			body,
 			signature,
 			webhookSecret,
