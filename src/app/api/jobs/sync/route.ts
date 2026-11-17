@@ -5,7 +5,7 @@ import { extractJobRequirements } from '@/lib/job-description'
 import { consumeRateLimit } from '@/lib/rate-limit'
 import { createServiceSupabase } from '@/lib/supabase/admin'
 
-export const maxDuration = 60
+export const runtime = 'edge'
 
 const MIN_SYNC_INTERVAL_SECONDS = 30 * 60
 const JSEARCH_TIMEOUT_MS = 10_000
@@ -142,7 +142,7 @@ async function handleSync(req: NextRequest) {
     return NextResponse.json({ error: 'Internal server error', runId }, { status: 500 })
   }
 
-  // Fail-closed lock across serverless instances (Vercel has no overlap guard).
+  // Fail-closed lock across isolates (the platform does not serialize overlapping runs).
   const lock = await consumeRateLimit('job-sync', 1, MIN_SYNC_INTERVAL_SECONDS)
   if (!lock.allowed) {
     console.warn('[job-sync] rate limited', {

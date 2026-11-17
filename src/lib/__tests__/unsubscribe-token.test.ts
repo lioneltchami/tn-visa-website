@@ -12,35 +12,35 @@ describe('unsubscribe tokens', () => {
     process.env.UNSUBSCRIBE_TOKEN_SECRET = 'test-unsubscribe-secret-do-not-use-in-production'
   })
 
-  it('normalizes an email before signing and verifying it', () => {
-    const token = createUnsubscribeToken(' Reader@Example.COM ')
-    expect(verifyUnsubscribeToken(token)).toMatchObject({ email: EMAIL })
+  it('normalizes an email before signing and verifying it', async () => {
+    const token = await createUnsubscribeToken(' Reader@Example.COM ')
+    expect(await verifyUnsubscribeToken(token)).toMatchObject({ email: EMAIL })
   })
 
-  it('rejects a tampered signature', () => {
-    const token = createUnsubscribeToken(EMAIL)
+  it('rejects a tampered signature', async () => {
+    const token = await createUnsubscribeToken(EMAIL)
     const tampered = `${token.slice(0, -1)}${token.endsWith('a') ? 'b' : 'a'}`
-    expect(verifyUnsubscribeToken(tampered)).toBeNull()
+    expect(await verifyUnsubscribeToken(tampered)).toBeNull()
   })
 
-  it('rejects a token signed with a different secret', () => {
-    const token = createUnsubscribeToken(EMAIL)
+  it('rejects a token signed with a different secret', async () => {
+    const token = await createUnsubscribeToken(EMAIL)
     process.env.UNSUBSCRIBE_TOKEN_SECRET = 'another-secret'
-    expect(verifyUnsubscribeToken(token)).toBeNull()
+    expect(await verifyUnsubscribeToken(token)).toBeNull()
   })
 
-  it('rejects expired and malformed tokens', () => {
-    expect(verifyUnsubscribeToken(createUnsubscribeToken(EMAIL, -1))).toBeNull()
+  it('rejects expired and malformed tokens', async () => {
+    expect(await verifyUnsubscribeToken(await createUnsubscribeToken(EMAIL, -1))).toBeNull()
 
     for (const value of [null, undefined, '', 'not-a-token', 'a.b', 42, {}]) {
-      expect(verifyUnsubscribeToken(value)).toBeNull()
+      expect(await verifyUnsubscribeToken(value)).toBeNull()
     }
   })
 
-  it('rejects invalid email values', () => {
+  it('rejects invalid email values', async () => {
     for (const value of [null, undefined, '', 'not-an-email', 'a'.repeat(321) + '@example.com']) {
       expect(normalizeSubscriberEmail(value)).toBeNull()
     }
-    expect(() => createUnsubscribeToken('not-an-email')).toThrow()
+    await expect(createUnsubscribeToken('not-an-email')).rejects.toThrow()
   })
 })

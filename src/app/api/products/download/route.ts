@@ -14,8 +14,8 @@ import {
 import { personalizeProductPdf } from "@/lib/pdf-personalization";
 import { createServiceSupabase } from "@/lib/supabase/admin";
 
+export const runtime = "edge";
 export const dynamic = "force-dynamic";
-export const maxDuration = 15;
 
 const BUCKET = "product-files";
 const DOWNLOAD_LIMIT = 60;
@@ -28,7 +28,7 @@ export async function GET(req: Request) {
 	const token = url.searchParams.get("token");
 	const requestedFile = url.searchParams.get("file");
 
-	const payload = verifyDownloadToken(token);
+	const payload = await verifyDownloadToken(token);
 	if (!payload) {
 		return NextResponse.json(
 			{ error: "This download link is invalid or has expired." },

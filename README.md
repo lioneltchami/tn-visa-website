@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TN Visa Guide (`tnvisaguide.ca`)
 
-## Getting Started
+Next.js 14 App Router site for Canadian professionals applying for TN status. Production host is **Cloudflare Pages** with `@cloudflare/next-on-pages` + Wrangler (not OpenNext, not Vercel).
 
-First, run the development server:
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev           # local Next.js dev server
+npm run build         # standard Next.js production build (local `next start` only)
+npm start             # Next.js production server (local only)
+npm run pages:build   # production compile for Cloudflare Pages
+npm run preview       # pages:build + wrangler pages dev
+npm run deploy        # pages:build + wrangler pages deploy
+npm test
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`next dev` is unchanged. The Pages adapter runs `next build` internally, then writes a Vercel-format bundle that Wrangler deploys to Pages (`pages_build_output_dir = ".vercel/output/static"`). That directory is adapter output, not Vercel hosting.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`@cloudflare/next-on-pages` is pinned to **1.13.15** (still 1.13.x). 1.13.16 declares a `next >=14.3` peer, which does not exist on the 14.x line; this app stays on Next.js 14.2.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment variables
 
-## Learn More
+Copy `.env.example` to `.env.local` for `next dev`. Production and Preview values live in the Cloudflare Pages project settings. Do not add an automatic GitHub production-deploy workflow: Pages Git integration (or `npm run deploy`) is the production path.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Scheduled job sync and renewal reminders run from `.github/workflows/scheduled-jobs.yml`. Set the same `CRON_SECRET` as a **GitHub Actions repository secret** and as a Pages environment variable.

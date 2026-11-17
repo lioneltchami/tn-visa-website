@@ -80,14 +80,28 @@ export async function consumeRateLimit(
   }
 }
 
-/** First hop of the proxy chain: Cloudflare in front of Vercel. */
-export function getClientIp(req: Request): string {
-  const forwarded = req.headers.get('x-forwarded-for')
+type HeaderGetter = { get(name: string): string | null }
+
+function asHeaders(source: Request | HeaderGetter): HeaderGetter {
+  if ('headers' in source && typeof source.headers?.get === 'function') {
+    return source.headers
+  }
+  return source as HeaderGetter
+}
+
+/** Client IP as seen by this origin (Cloudflare Pages). */
+export function getClientIp(source: Request | HeaderGetter): string {
+  const headers = asHeaders(source)
+  const cf = headers.get('cf-connecting-ip')?.trim()
+  if (cf) return cf
+
+  const forwarded = headers.get('x-forwarded-for')
   if (forwarded) {
     const first = forwarded.split(',')[0]?.trim()
     if (first) return first
   }
-  return req.headers.get('cf-connecting-ip') || req.headers.get('x-real-ip') || 'unknown'
+
+  return headers.get('x-real-ip')?.trim() || 'unknown'
 }
 
 export function rateLimitHeaders(result: RateLimitResult): Record<string, string> {

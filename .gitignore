@@ -35,8 +35,12 @@ yarn-error.log*
 # local env files
 .env*.local
 
-# vercel
+# next-on-pages adapter output (not Vercel hosting)
 .vercel
+
+# wrangler / Cloudflare Pages local
+.wrangler
+.dev.vars
 
 # typescript
 *.tsbuildinfo

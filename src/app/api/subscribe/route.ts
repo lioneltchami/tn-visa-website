@@ -5,6 +5,7 @@ import { siteUrl } from '@/lib/site'
 import { createServiceSupabase } from '@/lib/supabase/admin'
 import { createUnsubscribeToken, normalizeSubscriberEmail } from '@/lib/unsubscribe-token'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const SUBSCRIBE_LIMIT = 5
@@ -65,7 +66,7 @@ export async function POST(req: Request) {
     const name = normalizeName(body.name)
     const interests = normalizeInterests(body.interests)
     const shouldSendWelcomeEmail = Boolean(process.env.RESEND_API_KEY)
-    const token = shouldSendWelcomeEmail ? createUnsubscribeToken(email) : null
+    const token = shouldSendWelcomeEmail ? await createUnsubscribeToken(email) : null
 
     const { error: dbError } = await createServiceSupabase().from('subscribers').insert({
       email,

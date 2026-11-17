@@ -1,0 +1,65 @@
+name: Scheduled jobs
+
+# Hits production cron routes. Do not attach the Production environment gate —
+# required reviewers would block unattended cron. CRON_SECRET must be a
+# repository secret (same value as the Cloudflare Pages CRON_SECRET).
+on:
+  schedule:
+    - cron: '0 6 * * *'
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Which scheduled job to run'
+        required: true
+        type: choice
+        options:
+          - jobs-sync
+          - renewal-reminders
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scheduled-jobs-${{ github.event.schedule || inputs.job }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Resolve endpoint
+        id: target
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            case "${{ inputs.job }}" in
+              jobs-sync) path=/api/jobs/sync ;;
+              renewal-reminders) path=/api/renewal-reminders ;;
+              *) echo "Unknown job: ${{ inputs.job }}" >&2; exit 1 ;;
+            esac
+          elif [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
+            path=/api/jobs/sync
+          else
+            path=/api/renewal-reminders
+          fi
+          echo "path=$path" >> "$GITHUB_OUTPUT"
+
+      - name: Call production route
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          PATH_SUFFIX: ${{ steps.target.outputs.path }}
+        run: |
+          set -euo pipefail
+          : "${CRON_SECRET:?Set the CRON_SECRET repository secret}"
+          : "${PATH_SUFFIX:?Missing path}"
+          code=$(curl -sS -o /tmp/cron-body -w "%{http_code}" \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            "https://tnvisaguide.ca${PATH_SUFFIX}")
+          cat /tmp/cron-body
+          echo
+          echo "HTTP $code"
+          case "$code" in
+            200|207) exit 0 ;;
+            *) echo "Unexpected status $code" >&2; exit 1 ;;
+          esac

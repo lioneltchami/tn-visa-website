@@ -66,7 +66,7 @@ Cost: ~$0.01 in OpenAI credits. Takes ~1-2 minutes.
   - Add the DNS records Resend gives you (SPF, DKIM, DMARC)
   - Until verified, emails send from `onboarding@resend.dev` (fine for testing)
 
-### 5. Domain & Deployment (Cloudflare + Vercel)
+### 5. Domain & Deployment (Cloudflare Pages + wrangler)
 
 **a) Buy your domain:**
 
@@ -83,14 +83,11 @@ Cost: ~$0.01 in OpenAI credits. Takes ~1-2 minutes.
 - Enable **Web Analytics** (free, no JS needed — Analytics → Web Analytics)
 - Enable **Bot Fight Mode** (Security → Bots)
 
-**c) Deploy on Vercel:**
+**c) Deploy on Cloudflare Pages:**
 
-- Push your code to GitHub:
-  ```bash
-  git add -A && git commit -m "feat: complete TN visa guide" && git push
-  ```
-- Go to [vercel.com/new](https://vercel.com/new) and import your GitHub repo
-- Add ALL environment variables from `.env.local` to Vercel project settings:
+- Push your code to GitHub (Pages Git integration deploys approved merges from `main`; or run `npm run deploy`)
+- Create a Pages project named `tn-visa-website` (framework: Next.js via `@cloudflare/next-on-pages`, build command `npm run pages:build`, output `.vercel/output/static`)
+- Add ALL environment variables from `.env.local` to **Cloudflare Pages project settings** (Production and Preview as needed):
   - `NEXT_PUBLIC_SUPABASE_URL`
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
   - `OPENAI_API_KEY`
@@ -99,15 +96,14 @@ Cost: ~$0.01 in OpenAI credits. Takes ~1-2 minutes.
   - `STRIPE_SECRET_KEY` (when ready)
   - `STRIPE_WEBHOOK_SECRET` (when ready)
   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (when ready)
-- Deploy (Vercel builds automatically)
+  - `CRON_SECRET` / `SYNC_SECRET` (when scheduled jobs are live)
+- Do not add an automatic GitHub production-deploy workflow
+- Also set `CRON_SECRET` as a **GitHub Actions repository secret** so `.github/workflows/scheduled-jobs.yml` can call `/api/jobs/sync` and `/api/renewal-reminders`
 
 **d) Connect domain via Cloudflare DNS:**
 
-- In Cloudflare DNS settings, add these records:
-  - Type: `CNAME` | Name: `@` | Target: `cname.vercel-dns.com` | Proxy: ON (orange cloud)
-  - Type: `CNAME` | Name: `www` | Target: `cname.vercel-dns.com` | Proxy: ON (orange cloud)
-- In Vercel, go to your project → Settings → Domains → Add `tnvisaguide.ca` and `www.tnvisaguide.ca`
-- Vercel will verify the domain automatically
+- Point DNS at Cloudflare Pages (`tn-visa-website.pages.dev` / Pages custom domain). Orange-cloud proxy is OK because the origin is Pages.
+- In Cloudflare Pages → Custom domains, add `tnvisaguide.ca` and `www.tnvisaguide.ca`
 
 **e) Verify everything works:**
 
@@ -117,8 +113,7 @@ Cost: ~$0.01 in OpenAI credits. Takes ~1-2 minutes.
 
 **What you get for free:**
 
-- Cloudflare: DDoS protection, CDN, Web Analytics, WAF, Bot Management, SSL
-- Vercel: Full Next.js hosting, serverless functions, edge middleware, image optimization, 100GB bandwidth
+- Cloudflare Pages: Next.js hosting (next-on-pages), DDoS protection, CDN, Web Analytics, WAF, Bot Management, SSL
 
 ---
 
@@ -192,7 +187,7 @@ c) **Custom events already tracked:**
 
 d) **Free alternative:** If you prefer free self-hosted analytics:
 
-- Sign up for Umami (umami.is) and deploy on Vercel/Railway
+- Sign up for Umami (umami.is) and self-host (Cloudflare Pages or Railway)
 - Replace the Plausible script in `src/app/layout.tsx` with the Umami script
 - Update `src/hooks/useAnalytics.ts` to call `umami.track()` instead of `plausible()`
 
@@ -220,7 +215,7 @@ d) **Build and publish the PDF products:**
 1.  Run `supabase/migrations/product-delivery-and-rate-limits.sql` once in the Supabase
     SQL Editor (creates `purchases`, `rate_limits`, and the private `product-files` bucket)
     1b. Run `supabase/migrations/20260825180000_purchase_revocation.sql` (adds `revoked_at` for refunds/disputes)
-2.  Set `DOWNLOAD_TOKEN_SECRET` (`openssl rand -hex 32`) in `.env.local` **and** in Vercel.
+2.  Set `DOWNLOAD_TOKEN_SECRET` (`openssl rand -hex 32`) in `.env.local` **and** in Cloudflare Pages.
     Changing it later invalidates download links you already emailed.
 3.  Build the PDFs from `products/*.md` and upload them:
     ```bash
@@ -287,8 +282,8 @@ b) **Run the freshness migration** once (already applied on production):
 `supabase/migrations/20260729160000_freshness_pipelines.sql`
 (creates `renewal_reminder_sends` ledger + indexes)
 
-c) **Confirm Vercel Cron** includes `/api/renewal-reminders` at `15 6 * * *`
-(`vercel.json`). Vercel sends `Authorization: Bearer $CRON_SECRET`.
+c) **Confirm GitHub Actions** `scheduled-jobs.yml` includes `/api/renewal-reminders` at `15 6 * * *`.
+The workflow sends `Authorization: Bearer $CRON_SECRET` (repository secret).
 
 d) **Manual dry-run / CLI:**
 
@@ -299,7 +294,7 @@ npm run reminders -- --dry-run
 ```
 
 Reminders are idempotent via `renewal_reminder_sends` (unique per status + 90/60/30).
-Profiles must have email. Vercel does not retry failed cron runs — check Project → Logs.
+Profiles must have email. GitHub scheduled workflows do not retry a failed run automatically — check Actions logs.
 
 ### 13. Community Experience Database
 
@@ -341,7 +336,7 @@ public/workbox-*.js
 
 c) **Test PWA:**
 
-- Deploy to Vercel (PWA requires HTTPS)
+- Deploy to Cloudflare Pages (PWA requires HTTPS)
 - Open in Chrome on mobile
 - You should see the install prompt
 - After installing, the app works offline for cached pages
@@ -358,10 +353,10 @@ b) **Set up JSearch API (for external job sync):**
 - Sign up at [RapidAPI](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch)
 - Subscribe to JSearch API (free tier: 100 requests/month)
 - Get your API key from RapidAPI dashboard
-- Add to Vercel environment variables:
+- Add to Cloudflare Pages environment variables:
   - `JSEARCH_API_KEY=your-rapidapi-key`
   - `SYNC_SECRET=<generate with: openssl rand -hex 32>`
-  - `CRON_SECRET=<same value as SYNC_SECRET for Vercel Cron>`
+  - `CRON_SECRET=<same value as the GitHub Actions CRON_SECRET repository secret>`
 
 c) **Test the sync endpoint locally:**
 
@@ -372,11 +367,11 @@ curl -X POST http://localhost:3000/api/jobs/sync \
 
 - Should return: `{ success: true, inserted: N, skipped: N, failed: 0, errors: [] }`
 
-d) **Deploy and verify Vercel Cron:**
+d) **Deploy and verify scheduled jobs:**
 
-- The `vercel.json` configures daily job sync at 6:00 AM UTC and renewal reminders at 6:15 AM UTC
-- After deploy, check Vercel dashboard → Project → Settings → Cron Jobs
-- You should see `/api/jobs/sync` and `/api/renewal-reminders`
+- `.github/workflows/scheduled-jobs.yml` GETs `/api/jobs/sync` at 6:00 AM UTC and `/api/renewal-reminders` at 6:15 AM UTC
+- After deploy, confirm the workflow is enabled and `CRON_SECRET` is set as a GitHub Actions repository secret
+- Use **workflow_dispatch** (`jobs-sync` or `renewal-reminders`) for a manual run
 
 e) **Seed initial jobs:**
 

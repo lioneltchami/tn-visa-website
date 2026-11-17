@@ -27,7 +27,7 @@ export async function sendPurchaseEmail(input: {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) throw new Error('RESEND_API_KEY is not configured')
 
-  const token = createDownloadToken(input.purchaseId)
+  const token = await createDownloadToken(input.purchaseId)
   const downloadUrl = buildDownloadPageUrl(token)
 
   const fileList = input.product.files

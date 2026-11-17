@@ -8,6 +8,7 @@ import { getProduct } from '@/lib/products'
 import { getPurchaseById, isPurchaseRevoked } from '@/lib/purchases'
 import { withCanonical } from '@/lib/seo'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = withCanonical('/products/download', {
@@ -16,7 +17,7 @@ export const metadata: Metadata = withCanonical('/products/download', {
 })
 
 export default async function DownloadPage({ searchParams }: { searchParams: { token?: string } }) {
-  const payload = verifyDownloadToken(searchParams.token)
+  const payload = await verifyDownloadToken(searchParams.token)
   const purchase = payload ? await getPurchaseById(payload.purchaseId).catch(() => null) : null
   const product = purchase ? getProduct(purchase.product_id) : null
 

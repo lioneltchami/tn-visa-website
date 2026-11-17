@@ -15,8 +15,8 @@ Do not apply these migrations or deploy the application until a reviewer has app
 |---|---|
 | Remediation branch is approved | Review `fix/p0-subscriber-document-security`; confirm tests, lint, and build pass. |
 | Supabase backup or recovery plan is confirmed | Verify the project backup point and the owner who can restore it. |
-| Vercel environment has `SUPABASE_SERVICE_ROLE_KEY` | Confirm it exists only in server-side environment variables. Never expose it as `NEXT_PUBLIC_*`. |
-| Vercel environment has a unique `UNSUBSCRIBE_TOKEN_SECRET` | Generate a new high-entropy value, for example `openssl rand -hex 32`. Do not reuse the download-token or service-role secret. |
+| Cloudflare Pages environment has `SUPABASE_SERVICE_ROLE_KEY` | Confirm it exists only in server-side environment variables. Never expose it as `NEXT_PUBLIC_*`. |
+| Cloudflare Pages environment has a unique `UNSUBSCRIBE_TOKEN_SECRET` | Generate a new high-entropy value, for example `openssl rand -hex 32`. Do not reuse the download-token or service-role secret. |
 | Staging environment is available | Use a staging Supabase project and non-sensitive test data first. |
 | Existing document inventory is understood | Before deployment, record the count of rows with a legacy `file_url` and no `storage_path`. |
 
@@ -69,16 +69,16 @@ Do not apply these migrations or deploy the application until a reviewer has app
 The subscriber policy migration will break the old browser-client subscribe and unsubscribe paths. The document migration must exist before the new document code reads `storage_path`. Use a short, scheduled maintenance window:
 
 1. Confirm the production environment contains `UNSUBSCRIBE_TOKEN_SECRET` and the service-role key.
-2. Confirm the Vercel deployment is built and ready but do not promote it yet.
+2. Confirm a Cloudflare Pages preview (or a `pages:build` artifact) of the new code is healthy, but do not ship it to production yet.
 3. Apply `20260824174500_secure_document_storage.sql` in production. Record unresolved legacy document rows. The current application remains functional while `file_url` remains available.
-4. Promote the Vercel deployment containing the new server-side subscriber and document routes.
+4. Deploy the new server-side subscriber and document routes to Cloudflare Pages production (Pages Git integration on `main`, or `npm run deploy`).
 5. Immediately apply `20260824173000_secure_subscribers.sql` in production.
 6. Run the production smoke tests with a new non-sensitive subscriber and a non-sensitive test document.
-7. Monitor Vercel runtime errors, subscription success rate, document route 4xx/5xx responses, and Supabase logs for at least 30 minutes.
+7. Monitor Cloudflare Pages logs, subscription success rate, document route 4xx/5xx responses, and Supabase logs for at least 30 minutes.
 
 ## Rollback boundaries
 
-- **Application rollback:** Revert the Vercel deployment only if the subscriber migration has not been applied. Once public subscriber policies are removed, the previous client-side unsubscribe flow cannot work.
+- **Application rollback:** In Cloudflare Pages, roll back to the previous production deployment only if the subscriber migration has not been applied. Once public subscriber policies are removed, the previous client-side unsubscribe flow cannot work.
 - **Subscriber migration:** Do not recreate public `SELECT` or `UPDATE` policies. If the new server route fails, repair or temporarily disable the form while preserving privacy.
 - **Document migration:** Leave `file_url` in place during the initial release. If the new document routes fail, roll back the application while retaining `storage_path`; do not remove the storage-path backfill without reviewing affected rows.
 - **Secrets:** Rotating `UNSUBSCRIBE_TOKEN_SECRET` invalidates active unsubscribe links. Plan a replacement email or support process before rotation.

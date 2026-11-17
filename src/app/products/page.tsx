@@ -1,5 +1,3 @@
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
 import type { Metadata } from 'next'
 import JsonLd from '@/components/JsonLd'
 import ContentLayout from '@/components/layout/ContentLayout'
@@ -7,6 +5,9 @@ import ProductCards from '@/components/tools/ProductCards'
 import { Callout } from '@/components/ui/Callout'
 import { productsCatalogSchema } from '@/lib/product-schema'
 import { withCanonical } from '@/lib/seo'
+import completeGuide from '../../../products/complete-guide.md'
+import interviewKitPart1 from '../../../products/interview-kit-part1.md'
+import letterTemplates from '../../../products/letter-templates.md'
 
 export const metadata: Metadata = withCanonical('/products', {
   title: 'TN Visa Guides & Templates',
@@ -18,25 +19,27 @@ const previews = [
   {
     title: 'Border Interview Kit',
     file: 'interview-kit-part1.md',
+    source: interviewKitPart1,
     start: '1. **The complete border process**',
     end: 'Read this guide at least',
   },
   {
     title: 'Letter Template Pack',
     file: 'letter-templates.md',
+    source: letterTemplates,
     start: '### What to Customise',
     end: '### What NOT to Change',
   },
   {
     title: 'Complete Application Guide',
     file: 'complete-guide.md',
+    source: completeGuide,
     start: 'This guide is organized into five parts',
     end: 'Each section is designed',
   },
 ]
 
-function previewExcerpt(file: string, start: string, end: string) {
-  const source = readFileSync(join(process.cwd(), 'products', file), 'utf8')
+function previewExcerpt(source: string, start: string, end: string) {
   const excerpt = source.slice(source.indexOf(start), source.indexOf(end))
 
   return excerpt
@@ -100,7 +103,7 @@ export default function ProductsPage() {
             <article key={preview.file} className="py-5">
               <h3 className="font-semibold text-fg">{preview.title}</h3>
               <blockquote className="mt-2 max-w-3xl border-l-2 border-accent pl-4 text-sm leading-relaxed text-fg-secondary">
-                {previewExcerpt(preview.file, preview.start, preview.end)}
+                {previewExcerpt(preview.source, preview.start, preview.end)}
               </blockquote>
             </article>
           ))}

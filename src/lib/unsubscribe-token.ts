@@ -1,4 +1,4 @@
-import { createHmac, timingSafeEqual } from 'crypto'
+import { base64UrlToUtf8, bytesToBase64Url, hmacSha256Base64Url, timingSafeEqualString } from '@/lib/hmac'
 
 const DEFAULT_TTL_DAYS = 30
 const MAX_TOKEN_LENGTH = 1024
@@ -24,21 +24,21 @@ function getSecret(): string {
   return secret
 }
 
-function sign(payload: string): string {
-  return createHmac('sha256', getSecret()).update(payload).digest('base64url')
+async function sign(payload: string): Promise<string> {
+  return hmacSha256Base64Url(getSecret(), payload)
 }
 
-export function createUnsubscribeToken(email: string, ttlDays = DEFAULT_TTL_DAYS): string {
+export async function createUnsubscribeToken(email: string, ttlDays = DEFAULT_TTL_DAYS): Promise<string> {
   const normalizedEmail = normalizeSubscriberEmail(email)
   if (!normalizedEmail) throw new Error('createUnsubscribeToken: invalid email')
 
   const expiresAt = Math.floor(Date.now() / 1000) + Math.round(ttlDays * 86_400)
   const payload = `${normalizedEmail}.${expiresAt}`
 
-  return `${Buffer.from(payload, 'utf8').toString('base64url')}.${sign(payload)}`
+  return `${bytesToBase64Url(new TextEncoder().encode(payload))}.${await sign(payload)}`
 }
 
-export function verifyUnsubscribeToken(token: unknown): UnsubscribeTokenPayload | null {
+export async function verifyUnsubscribeToken(token: unknown): Promise<UnsubscribeTokenPayload | null> {
   if (typeof token !== 'string' || token.length < 32 || token.length > MAX_TOKEN_LENGTH) return null
 
   const separator = token.lastIndexOf('.')
@@ -50,14 +50,13 @@ export function verifyUnsubscribeToken(token: unknown): UnsubscribeTokenPayload 
 
   let payload: string
   try {
-    payload = Buffer.from(encodedPayload, 'base64url').toString('utf8')
+    payload = base64UrlToUtf8(encodedPayload)
   } catch {
     return null
   }
 
-  const expected = Buffer.from(sign(payload), 'utf8')
-  const received = Buffer.from(signature, 'utf8')
-  if (expected.length !== received.length || !timingSafeEqual(expected, received)) return null
+  const expected = await sign(payload)
+  if (!timingSafeEqualString(expected, signature)) return null
 
   const payloadSeparator = payload.lastIndexOf('.')
   if (payloadSeparator <= 0) return null

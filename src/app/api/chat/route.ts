@@ -9,7 +9,7 @@ import { consumeRateLimit, getClientIp, rateLimitHeaders } from '@/lib/rate-limi
 import { isAllowedOrigin } from '@/lib/site'
 import { createServiceSupabase } from '@/lib/supabase/admin'
 
-export const maxDuration = 30
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 const MAX_MESSAGES = 20
