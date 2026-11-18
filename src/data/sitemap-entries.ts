@@ -187,6 +187,18 @@ export const SITEMAP_STATIC: SitemapEntry[] = [
     priority: 0.3,
   },
   {
+    path: '/privacy',
+    lastModified: '2026-11-17',
+    changeFrequency: 'yearly',
+    priority: 0.3,
+  },
+  {
+    path: '/terms',
+    lastModified: '2026-11-17',
+    changeFrequency: 'yearly',
+    priority: 0.3,
+  },
+  {
     path: '/letter-builder',
     lastModified: OCTOBER_2026,
     changeFrequency: 'monthly',

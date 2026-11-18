@@ -14,6 +14,8 @@ const primary = [
 	{ href: "/products", label: "Products" },
 	{ href: "/about", label: "About" },
 	{ href: "/disclosure", label: "Disclosure" },
+	{ href: "/privacy", label: "Privacy" },
+	{ href: "/terms", label: "Terms" },
 ];
 
 const secondary = [
