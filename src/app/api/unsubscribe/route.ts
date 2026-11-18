@@ -32,16 +32,18 @@ export async function POST(req: Request) {
       )
     }
 
+    // Upsert so profile-email / renewal-reminder opt-outs stick even when no
+    // subscribers row exists yet (shouldSkipUnsubscribed only skips when set).
     const { error } = await createServiceSupabase()
       .from('subscribers')
-      .update({ unsubscribed_at: new Date().toISOString() })
-      .eq('email', payload.email)
-      .is('unsubscribed_at', null)
+      .upsert(
+        { email: payload.email, unsubscribed_at: new Date().toISOString() },
+        { onConflict: 'email' }
+      )
 
     if (error) throw error
 
-    // The operation is idempotent. A valid token always receives the same
-    // response, whether the address was already unsubscribed or no longer exists.
+    // Idempotent: a valid token always gets success after the upsert lands.
     return NextResponse.json({ success: true }, { headers: NO_STORE })
   } catch (err) {
     console.error('[unsubscribe] Unexpected error:', err)

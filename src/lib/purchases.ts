@@ -120,31 +120,62 @@ export function revocationStatus(result: RevocationResult): 200 | 500 {
   return result.pending ? 500 : 200
 }
 
+/**
+ * Classify zero-update follow-up rows after a revoke attempt.
+ * A row that landed mid-race with revoked_at still null must not look "already revoked".
+ */
+export function interpretRevocationFollowUp(
+  rows: Array<{ id: string; revoked_at: string | null }>
+):
+  | { kind: 'missing' }
+  | { kind: 'already_revoked'; purchaseId: string }
+  | { kind: 'still_active'; purchaseId: string } {
+  if (!rows.length) return { kind: 'missing' }
+
+  const active = rows.find((row) => row.revoked_at == null)
+  if (active) return { kind: 'still_active', purchaseId: active.id }
+
+  return { kind: 'already_revoked', purchaseId: rows[0].id }
+}
+
 /** Idempotently revoke access for a refunded or disputed payment. */
 export async function revokePurchaseByPaymentIntent(
   paymentIntentId: string
 ): Promise<RevocationResult> {
   const supabase = createServiceSupabase()
-  const { data, error } = await supabase
-    .from('purchases')
-    .update({ revoked_at: new Date().toISOString() })
-    .eq('stripe_payment_intent', paymentIntentId)
-    .is('revoked_at', null)
-    .select('id')
 
+  const attemptRevoke = () =>
+    supabase
+      .from('purchases')
+      .update({ revoked_at: new Date().toISOString() })
+      .eq('stripe_payment_intent', paymentIntentId)
+      .is('revoked_at', null)
+      .select('id')
+
+  const { data, error } = await attemptRevoke()
   if (error) throw error
   if (data?.length) return { revoked: true, purchaseId: data[0].id }
 
-  // Zero updated rows is either "already revoked" or "checkout has not inserted yet".
+  // Zero updated rows: missing, already revoked, or a race left an active row.
   const existing = await supabase
     .from('purchases')
-    .select('id')
+    .select('id, revoked_at')
     .eq('stripe_payment_intent', paymentIntentId)
 
   if (existing.error) throw existing.error
-  if (existing.data?.length) return { revoked: false, purchaseId: existing.data[0].id }
 
-  return { revoked: false, pending: true }
+  const followUp = interpretRevocationFollowUp(existing.data ?? [])
+  if (followUp.kind === 'missing') return { revoked: false, pending: true }
+  if (followUp.kind === 'already_revoked') {
+    return { revoked: false, purchaseId: followUp.purchaseId }
+  }
+
+  // still_active: checkout/backfill raced in — retry once so Stripe gets a real revoke or a retryable 500.
+  const retry = await attemptRevoke()
+  if (retry.error) throw retry.error
+  if (retry.data?.length) return { revoked: true, purchaseId: retry.data[0].id }
+
+  return { revoked: false, pending: true, purchaseId: followUp.purchaseId }
 }
 
 /**
