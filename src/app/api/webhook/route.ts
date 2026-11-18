@@ -7,6 +7,7 @@ import {
 	ensurePurchase,
 	releaseFulfillment,
 	revokePurchaseByPaymentIntent,
+	revocationStatus,
 } from "@/lib/purchases";
 import {
 	paymentIntentId,
@@ -92,6 +93,15 @@ async function handleAccessRevocation(
 
 	try {
 		const result = await revokePurchaseByPaymentIntent(paymentIntent);
+		if (result.pending) {
+			console.warn(
+				`[webhook] ${reason} for ${paymentIntent} arrived before the purchase row`,
+			);
+			return NextResponse.json(
+				{ error: "Purchase not recorded yet" },
+				{ status: revocationStatus(result) },
+			);
+		}
 		if (result.revoked) {
 			console.info(
 				"[webhook] Revoked purchase",
@@ -100,11 +110,14 @@ async function handleAccessRevocation(
 				reason,
 			);
 		}
-		return NextResponse.json({
-			received: true,
-			revoked: result.revoked,
-			purchaseId: result.purchaseId,
-		});
+		return NextResponse.json(
+			{
+				received: true,
+				revoked: result.revoked,
+				purchaseId: result.purchaseId,
+			},
+			{ status: revocationStatus(result) },
+		);
 	} catch (err) {
 		console.error("[webhook] Revocation failed for", paymentIntent, err);
 		return NextResponse.json({ error: "Revocation failed" }, { status: 500 });
