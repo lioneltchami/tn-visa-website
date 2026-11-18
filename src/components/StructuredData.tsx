@@ -1,3 +1,5 @@
+import { httpApplicationUrl } from '@/lib/http-url'
+import { jsonLdHtml } from '@/lib/json-ld'
 import {
   EDITORIAL,
   SITE_DESCRIPTION,
@@ -25,7 +27,7 @@ export function WebsiteSchema() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdHtml(schema) }}
     />
   )
 }
@@ -53,7 +55,7 @@ export function OrganizationSchema() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdHtml(schema) }}
     />
   )
 }
@@ -73,6 +75,7 @@ export function JobPostingSchema({
     employment_type: string
   }
 }) {
+  const applyUrl = httpApplicationUrl(job.application_url)
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
@@ -101,16 +104,20 @@ export function JobPostingSchema({
           },
         },
       }),
-    directApply: true,
-    applicationContact: {
-      '@type': 'ContactPoint',
-      url: job.application_url,
-    },
+    ...(applyUrl
+      ? {
+          directApply: true,
+          applicationContact: {
+            '@type': 'ContactPoint',
+            url: applyUrl,
+          },
+        }
+      : {}),
   }
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdHtml(schema) }}
     />
   )
 }
@@ -131,7 +138,7 @@ export function FAQSchema({ faqs }: { faqs: { question: string; answer: string }
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdHtml(schema) }}
     />
   )
 }
@@ -150,7 +157,7 @@ export function BreadcrumbSchema({ items }: { items: { name: string; url: string
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdHtml(schema) }}
     />
   )
 }

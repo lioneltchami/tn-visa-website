@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import { JobDescription } from '@/components/JobDescription'
 import { JobPostingSchema } from '@/components/StructuredData'
 import professions from '@/data/professions.json'
+import { httpApplicationUrl } from '@/lib/http-url'
 import { logger } from '@/lib/logger'
 import { withCanonical } from '@/lib/seo'
 import { createServerSupabase } from '@/lib/supabase/server'
@@ -79,6 +80,8 @@ export default async function JobDetailPage({ params }: { params: { slug: string
           ? `Up to $${(job.salary_max / 1000).toFixed(0)}K/year`
           : null
 
+  const applyHref = httpApplicationUrl(job.application_url)
+
   const professionSlug =
     professions.find((p) => p.name === job.tn_profession)?.slug ||
     job.tn_profession.toLowerCase().replace(/[\s/]+/g, '-')
@@ -121,23 +124,25 @@ export default async function JobDetailPage({ params }: { params: { slug: string
               </span>
             </div>
 
-            <a
-              href={job.application_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-accent text-accent-fg px-6 py-3 rounded font-medium mb-8"
-            >
-              Apply Now <ExternalLink className="w-4 h-4" />
-            </a>
+            {applyHref && (
+              <a
+                href={applyHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-accent text-accent-fg px-6 py-3 rounded font-medium mb-8"
+              >
+                Apply Now <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
 
             <h2 className="text-lg font-semibold text-fg mb-3">Description</h2>
             <JobDescription
               text={job.description}
               hideSections={job.requirements.length > 0 ? ['qualifications', 'requirements'] : []}
             />
-            {job.description.length < 500 && (
+            {job.description.length < 500 && applyHref && (
               <a
-                href={job.application_url}
+                href={applyHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-accent text-sm mt-3 hover:underline"
