@@ -120,29 +120,54 @@ export function revocationStatus(result: RevocationResult): 200 | 500 {
   return result.pending ? 500 : 200
 }
 
+/** A row found after a zero-row revoke is not revoked unless `revoked_at` is set. */
+export function existingPurchaseVerdict(
+  row: { id: string; revoked_at: string | null } | null | undefined
+): 'missing' | 'already-revoked' | 'active' {
+  if (!row) return 'missing'
+  if (row.revoked_at) return 'already-revoked'
+  return 'active'
+}
+
 /** Idempotently revoke access for a refunded or disputed payment. */
 export async function revokePurchaseByPaymentIntent(
   paymentIntentId: string
 ): Promise<RevocationResult> {
   const supabase = createServiceSupabase()
-  const { data, error } = await supabase
+
+  const revoked = await supabase
     .from('purchases')
     .update({ revoked_at: new Date().toISOString() })
     .eq('stripe_payment_intent', paymentIntentId)
     .is('revoked_at', null)
     .select('id')
 
-  if (error) throw error
-  if (data?.length) return { revoked: true, purchaseId: data[0].id }
+  if (revoked.error) throw revoked.error
+  if (revoked.data?.length) return { revoked: true, purchaseId: revoked.data[0].id }
 
-  // Zero updated rows is either "already revoked" or "checkout has not inserted yet".
   const existing = await supabase
     .from('purchases')
-    .select('id')
+    .select('id, revoked_at')
     .eq('stripe_payment_intent', paymentIntentId)
+    .maybeSingle<{ id: string; revoked_at: string | null }>()
 
   if (existing.error) throw existing.error
-  if (existing.data?.length) return { revoked: false, purchaseId: existing.data[0].id }
+
+  const row = existing.data
+  const verdict = existingPurchaseVerdict(row)
+  if (verdict === 'missing' || !row) return { revoked: false, pending: true }
+  if (verdict === 'already-revoked') return { revoked: false, purchaseId: row.id }
+
+  // Purchase landed in the gap with access still on. One more conditional update.
+  const retry = await supabase
+    .from('purchases')
+    .update({ revoked_at: new Date().toISOString() })
+    .eq('stripe_payment_intent', paymentIntentId)
+    .is('revoked_at', null)
+    .select('id')
+
+  if (retry.error) throw retry.error
+  if (retry.data?.length) return { revoked: true, purchaseId: retry.data[0].id }
 
   return { revoked: false, pending: true }
 }
