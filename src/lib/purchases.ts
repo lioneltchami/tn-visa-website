@@ -109,11 +109,23 @@ export async function getPurchaseById(purchaseId: string): Promise<PurchaseRecor
   return data
 }
 
+export type RevocationResult = {
+  revoked: boolean
+  purchaseId?: string
+  pending?: boolean
+}
+
+/** 500 only when the purchase row is not recorded yet, so Stripe retries the event. */
+export function revocationStatus(result: RevocationResult): 200 | 500 {
+  return result.pending ? 500 : 200
+}
+
 /** Idempotently revoke access for a refunded or disputed payment. */
 export async function revokePurchaseByPaymentIntent(
   paymentIntentId: string
-): Promise<{ revoked: boolean; purchaseId?: string }> {
-  const { data, error } = await createServiceSupabase()
+): Promise<RevocationResult> {
+  const supabase = createServiceSupabase()
+  const { data, error } = await supabase
     .from('purchases')
     .update({ revoked_at: new Date().toISOString() })
     .eq('stripe_payment_intent', paymentIntentId)
@@ -121,9 +133,18 @@ export async function revokePurchaseByPaymentIntent(
     .select('id')
 
   if (error) throw error
-  if (!data?.length) return { revoked: false }
+  if (data?.length) return { revoked: true, purchaseId: data[0].id }
 
-  return { revoked: true, purchaseId: data[0].id }
+  // Zero updated rows is either "already revoked" or "checkout has not inserted yet".
+  const existing = await supabase
+    .from('purchases')
+    .select('id')
+    .eq('stripe_payment_intent', paymentIntentId)
+
+  if (existing.error) throw existing.error
+  if (existing.data?.length) return { revoked: false, purchaseId: existing.data[0].id }
+
+  return { revoked: false, pending: true }
 }
 
 /**
