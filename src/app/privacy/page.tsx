@@ -99,8 +99,8 @@ export default function PrivacyPage() {
 			<p className="text-fg-secondary mb-8">
 				Signed-in readers can submit a TN experience — profession, filing
 				method, outcome, and the story you write — for review before it is
-				published. Marking it anonymous hides your name on the public page. We
-				still store the story with your account.
+				published. We store that story with your account. The public page shows
+				the story, not your name.
 			</p>
 
 			<h2 className="text-2xl font-bold text-fg mt-8 mb-4">
