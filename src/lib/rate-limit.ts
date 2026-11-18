@@ -80,7 +80,7 @@ export async function consumeRateLimit(
   }
 }
 
-/** First hop of the proxy chain: Cloudflare in front of Vercel. */
+/** First hop of the proxy chain: Cloudflare in front of Netlify. */
 export function getClientIp(req: Request): string {
   const forwarded = req.headers.get('x-forwarded-for')
   if (forwarded) {

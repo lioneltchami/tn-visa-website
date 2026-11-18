@@ -1,6 +1,7 @@
 import { Resend } from 'resend'
 import { siteUrl } from '@/lib/site'
 import { createServiceSupabase } from '@/lib/supabase/admin'
+import { createUnsubscribeToken, normalizeSubscriberEmail } from '@/lib/unsubscribe-token'
 
 export const REMINDER_WINDOWS = [90, 60, 30] as const
 export type ReminderDays = (typeof REMINDER_WINDOWS)[number]
@@ -20,6 +21,11 @@ type ProfileRow = {
   full_name: string | null
 }
 
+type SubscriberMailRow = {
+  email: string
+  unsubscribed_at: string | null
+}
+
 export type ReminderRunResult = {
   dryRun: boolean
   candidates: number
@@ -27,6 +33,22 @@ export type ReminderRunResult = {
   skipped: number
   failed: number
   errors: string[]
+}
+
+/**
+ * A unique violation is an abandoned claim only when sent_at was never set.
+ * Any other error, or a row that already recorded a send, must not be reused.
+ */
+export function shouldReclaimUnsentReminder(
+  errorCode: string | undefined,
+  sentAt: string | null | undefined
+): boolean {
+  return errorCode === '23505' && sentAt == null
+}
+
+/** Skip opted-out addresses. A missing subscriber row still receives the reminder. */
+export function shouldSkipUnsubscribed(unsubscribedAt: string | null | undefined): boolean {
+  return unsubscribedAt != null
 }
 
 function utcDateOffset(days: number): string {
@@ -42,12 +64,19 @@ function subjectFor(days: ReminderDays): string {
   return 'Urgent: Your TN visa expires in 30 days'
 }
 
-function buildHtml(input: {
+export function reminderUnsubscribeUrl(email: string): string {
+  const url = new URL('/unsubscribe', siteUrl())
+  url.searchParams.set('token', createUnsubscribeToken(email))
+  return url.toString()
+}
+
+export function buildHtml(input: {
   days: ReminderDays
   firstName: string
   employer: string
   profession: string
   endDate: string
+  unsubscribeUrl: string
 }): string {
   const base = siteUrl()
   const urgent =
@@ -64,29 +93,57 @@ function buildHtml(input: {
       <p><a href="${base}/renewal">View our renewal guide →</a></p>
       <p><a href="${base}/status">Check your status dashboard →</a></p>
       <hr />
-      <p style="font-size:12px;color:#888;">You're receiving this because you track your TN status on tnvisaguide.ca.</p>
+      <p style="font-size:12px;color:#888;">You're receiving this because you track your TN status on tnvisaguide.ca. <a href="${input.unsubscribeUrl}">Unsubscribe</a></p>
     </div>
   `
+}
+
+async function insertClaim(input: {
+  tnStatusId: string
+  daysBefore: ReminderDays
+  email: string
+}) {
+  const { error } = await createServiceSupabase().from('renewal_reminder_sends').insert({
+    tn_status_id: input.tnStatusId,
+    days_before: input.daysBefore,
+    email: input.email,
+  })
+  return error
 }
 
 /**
  * Claim a reminder slot. Returns true only for the caller that inserted the row,
  * so concurrent cron invocations cannot both send.
+ *
+ * ponytail: a 23505 row with sent_at null is reclaimed immediately, so an overlapping
+ * cron can double-send while the first worker is still inside Resend. Upgrade path:
+ * reclaim only when created_at is older than the send timeout.
  */
 async function claimSend(input: {
   tnStatusId: string
   daysBefore: ReminderDays
   email: string
 }): Promise<boolean> {
-  const { error } = await createServiceSupabase().from('renewal_reminder_sends').insert({
-    tn_status_id: input.tnStatusId,
-    days_before: input.daysBefore,
-    email: input.email,
-  })
+  const firstError = await insertClaim(input)
+  if (!firstError) return true
+  if (firstError.code !== '23505') throw firstError
 
-  if (!error) return true
-  if (error.code === '23505') return false
-  throw error
+  const { data, error: readError } = await createServiceSupabase()
+    .from('renewal_reminder_sends')
+    .select('sent_at')
+    .eq('tn_status_id', input.tnStatusId)
+    .eq('days_before', input.daysBefore)
+    .maybeSingle()
+
+  if (readError) throw readError
+  if (!shouldReclaimUnsentReminder(firstError.code, data?.sent_at)) return false
+
+  await releaseClaim(input.tnStatusId, input.daysBefore)
+
+  const secondError = await insertClaim(input)
+  if (!secondError) return true
+  if (secondError.code === '23505') return false
+  throw secondError
 }
 
 async function markSent(tnStatusId: string, daysBefore: ReminderDays, providerId: string | null) {
@@ -162,14 +219,45 @@ export async function sendRenewalReminders(options: {
     }
 
     const profileByUser = new Map((profiles || []).map((p) => [p.user_id, p]))
+    const emails = Array.from(
+      new Set(
+        statuses
+          .map((status) => normalizeSubscriberEmail(profileByUser.get(status.user_id)?.email))
+          .filter((email): email is string => email !== null)
+      )
+    )
+    const subscriberByEmail = new Map<string, string | null>()
+
+    if (emails.length > 0) {
+      const { data: subscribers, error: subscriberError } = await supabase
+        .from('subscribers')
+        .select('email, unsubscribed_at')
+        .in('email', emails)
+        .returns<SubscriberMailRow[]>()
+
+      if (subscriberError) {
+        result.errors.push(`subscribers query (${days}d): ${subscriberError.message}`)
+        result.failed++
+        continue
+      }
+
+      for (const row of subscribers || []) {
+        subscriberByEmail.set(row.email, row.unsubscribed_at)
+      }
+    }
 
     for (const status of statuses) {
       result.candidates++
       const profile = profileByUser.get(status.user_id)
-      const email = profile?.email?.trim()
+      const email = normalizeSubscriberEmail(profile?.email)
       if (!email) {
         result.skipped++
         result.errors.push(`No profile email for status ${status.id}`)
+        continue
+      }
+
+      if (shouldSkipUnsubscribed(subscriberByEmail.get(email))) {
+        result.skipped++
         continue
       }
 
@@ -201,6 +289,7 @@ export async function sendRenewalReminders(options: {
             employer: status.employer,
             profession: status.profession,
             endDate: status.end_date,
+            unsubscribeUrl: reminderUnsubscribeUrl(email),
           }),
         })
 

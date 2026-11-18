@@ -2,8 +2,8 @@ import { timingSafeEqual } from 'crypto'
 import { NextResponse } from 'next/server'
 
 /**
- * Shared auth for Vercel Cron + manual sync triggers.
- * Vercel sends `Authorization: Bearer $CRON_SECRET` automatically.
+ * Shared auth for Netlify scheduled/background functions + manual curl.
+ * Callers send `Authorization: Bearer $CRON_SECRET` (or SYNC_SECRET).
  */
 
 function safeEqual(a: string, b: string): boolean {

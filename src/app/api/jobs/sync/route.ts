@@ -142,7 +142,7 @@ async function handleSync(req: NextRequest) {
     return NextResponse.json({ error: 'Internal server error', runId }, { status: 500 })
   }
 
-  // Fail-closed lock across serverless instances (Vercel has no overlap guard).
+  // Fail-closed lock across serverless instances.
   const lock = await consumeRateLimit('job-sync', 1, MIN_SYNC_INTERVAL_SECONDS)
   if (!lock.allowed) {
     console.warn('[job-sync] rate limited', {

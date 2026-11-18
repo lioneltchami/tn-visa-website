@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { httpApplicationUrl } from '@/lib/http-url'
 import { createClient } from '@/lib/supabase/client'
 import { AlertCircle, CheckCircle } from 'lucide-react'
 import professions from '@/data/professions.json'
@@ -47,6 +48,8 @@ export default function PostJobPage() {
     if (form.salary_min && parseInt(form.salary_min) < 0) { setError('Salary cannot be negative.'); setSaving(false); return }
     if (form.salary_max && parseInt(form.salary_max) < 0) { setError('Salary cannot be negative.'); setSaving(false); return }
     if (form.salary_min && form.salary_max && parseInt(form.salary_min) > parseInt(form.salary_max)) { setError('Min salary cannot exceed max salary.'); setSaving(false); return }
+    const applicationUrl = httpApplicationUrl(form.application_url)
+    if (!applicationUrl) { setError('Application URL must be an http or https link.'); setSaving(false); return }
     try {
       const supabase = createClient()
       const { error: err } = await supabase.from('jobs').insert({
@@ -62,7 +65,7 @@ export default function PostJobPage() {
         location: form.location,
         remote_policy: form.remote_policy,
         employment_type: form.employment_type,
-        application_url: form.application_url,
+        application_url: applicationUrl,
       })
       if (err) throw err
       setSubmitted(true)

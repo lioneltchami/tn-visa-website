@@ -66,14 +66,25 @@ export async function POST(req: Request) {
     const interests = normalizeInterests(body.interests)
     const shouldSendWelcomeEmail = Boolean(process.env.RESEND_API_KEY)
     const token = shouldSendWelcomeEmail ? createUnsubscribeToken(email) : null
+    const supabase = createServiceSupabase()
 
-    const { error: dbError } = await createServiceSupabase().from('subscribers').insert({
+    const { error: dbError } = await supabase.from('subscribers').insert({
       email,
       name,
       interests,
     })
 
-    if (dbError && dbError.code !== '23505') throw dbError
+    if (dbError?.code === '23505') {
+      // Same success response either way. Clear the opt-out so a resubscribe
+      // receives mail again, without saying whether this address existed.
+      const { error: resubscribeError } = await supabase
+        .from('subscribers')
+        .update({ unsubscribed_at: null })
+        .eq('email', email)
+      if (resubscribeError) throw resubscribeError
+    } else if (dbError) {
+      throw dbError
+    }
 
     // Do not reveal whether an email was already subscribed. This response is
     // intentionally the same for first-time and duplicate submissions.

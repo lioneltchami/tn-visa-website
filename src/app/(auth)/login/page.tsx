@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { safeInternalPath } from '@/lib/safe-redirect'
 import { createClient } from '@/lib/supabase/client'
 
 export default function LoginPage() {
@@ -36,7 +37,7 @@ export default function LoginPage() {
       setLoading(false)
     } else {
       const params = new URLSearchParams(window.location.search)
-      router.push(params.get('redirect') || '/dashboard')
+      router.push(safeInternalPath(params.get('redirect')))
     }
   }
 
